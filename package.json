@@ -1,0 +1,38 @@
+{
+  "name": "academibot",
+  "version": "1.0.0",
+  "engines": {
+    "node": "12.2.0"
+  },
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Marco Antonio Vela Rodriguez",
+  "license": "MIT",
+  "dependencies": {
+    "@google-cloud/storage": "^2.5.0",
+    "aws-sdk": "^2.433.0",
+    "bluebird": "^3.5.3",
+    "body-parser": "^1.18.3",
+    "dialogflow": "^0.9.1",
+    "dotenv": "^8.0.0",
+    "express": "^4.16.4",
+    "fs": "0.0.1-security",
+    "http": "0.0.0",
+    "jquery": "^3.4.1",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CoolHeroUNI/AcademiBot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/CoolHeroUNI/AcademiBot/issues"
+  },
+  "homepage": "https://github.com/CoolHeroUNI/AcademiBot#readme",
+  "description": ""
+}

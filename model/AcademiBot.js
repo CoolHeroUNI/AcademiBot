@@ -1,0 +1,715 @@
+const fs = require('fs');
+const request = require('request');
+const RequestPromise = require('request-promise');
+
+const Amazon = require('./servicios-web/Amazon');
+const Facebook = require('./servicios-web/Facebook');
+const DialogFlow = require('./servicios-web/DialogFlow');
+
+const Universidad = require('./universidad/Universidad');
+const Archivador = require('./universidad/archivos/Archivador');
+const Archivo = require('./universidad/archivos/Archivo');
+const Usuario = require('./universidad/facultad/Usuario');
+const Peticion = require('./universidad/facultad/Peticion');
+const Especialidad = require('./universidad/facultad/Especialidad');
+const Facultad = require('./universidad/facultad/Facultad');
+
+/**
+ * Clase que representa el funcionamiento del ChatBot,
+ * interactua con AWS y Facebook por medio de sus modulos
+ * propios, esta clase debe ser considerada como una 
+ * interfaz para simplificar el llamado de metodos entre
+ * los modulos.
+ * @class AcademiBot
+ */
+class AcademiBot {
+  /**
+   * @constructor
+   * @param {{accessKeyId:String, secretAccessKey:String, region:String, nombre:String}} amazonConfig
+   * datos para la creacion de un bucket de S3
+   * @param {String} facebookToken token para poder interactuar con la
+   * graph API de Facebook
+   * @param {String} [DialogFlowProjectId] id del proyecto de dialogflow, es opcional
+   */
+  constructor (amazonConfig, facebookToken, DialogFlowProjectId) {
+    const accessKeyId = amazonConfig.accessKeyId;
+    const secretAccessKey = amazonConfig.secretAccessKey;
+    const region = amazonConfig.region;
+    const nombre = amazonConfig.nombre;
+    let dialogflow = this.setupDialogFlow(DialogFlowProjectId);
+    /**
+     * Propiedad para interactuar con la Universidad
+     * @property {Universidad} UNI
+     */
+    this.UNI = new Universidad();
+    /**
+     * Propiedad para guardar los archivos y leerlos de 
+     * forma eficiente
+     * @property {Archivador} archivador
+     */
+    this.archivos = new Archivador();
+    /**
+     * Propiedad para interactuar con s3
+     * @property {Amazon} amazon
+     */
+    this.amazon = new Amazon(accessKeyId, secretAccessKey, region, nombre);
+    /**
+     * Propiedad para interactuar con facebook
+     * @property {Facebook} FB
+     */
+    this.FB = new Facebook(facebookToken);
+    /**
+     * Propiedad para interactuar con DialogFlow
+     * @property {DialogFlow} dialogflow
+     */
+    this.dialogflow = dialogflow;
+  }
+}
+
+/**
+ * Metodo para configurar las variables de entorno para DialogFlow
+ * se carga el archivo de claves a partir de la variable DIALOGFLOW
+ * y se escribe en la ubicacion indicada por GOOGLE_APPLICATION_CREDENTIALS
+ * @method setupDialogFlow
+ * @param {String} projectId id del proyecto de
+ */
+AcademiBot.prototype.setupDialogFlow = function (projectId) {
+  if (projectId === "DONT USE") return null;
+  const path = process.env.GOOGLE_APPLICATION_CREDENTIALS;
+  let jsonString = process.env.DIALOGFLOW;
+  fs.writeFileSync(path, jsonString);
+  const json = JSON.parse(jsonString);
+  const id = projectId || json.project_id;
+  return new DialogFlow(id);
+};
+/**
+ * Metodo llamado luego de configurar DF
+ * @method setDiagolFlow
+ */
+AcademiBot.prototype.setDiagolFlow = function () {
+  this.dialogflow = new DialogFlow(process.env.DIALOGFLOW_PROJECT_NAME);
+};
+/**
+ * Metodo para cargar los datos de la Universidad
+ * @method cargaUniversidad
+ * @param {{id:String,especialidades:{id:String,malla:Object[]}[],directorio:Object,cursos:{codigo:String,nombre:String}[]}[]} facultades
+ * @param {{id:String,especialidad:String,ciclo:String,historial:String[],cantidadHistorica:Number,peticionActual:{curso:{codigo:String,nombre:String},carpeta:String}}[]} usuarios
+ */
+AcademiBot.prototype.cargaUniversidad = function (facultades, usuarios) {
+  this.UNI.cargaFacultades(facultades);
+  this.UNI.cargaUsuarios(usuarios);
+};
+/**
+ * Metodo para cargar los datos del archivador
+ * @method cargaArchivador
+ * @param {[String,{attachment_id:String,contador:Number}][]} archivador
+ */
+AcademiBot.prototype.cargaArchivador = function (archivador) {
+  this.archivos.cargaArchivos(archivador);
+};
+/**
+ * Metodo para crear un nuevo usuario
+ * @method creaUsuario
+ * @param {String} id
+ * @returns {Usuario}
+ */
+AcademiBot.prototype.creaUsuario = function (id) {
+  const imagen = new Archivo("configuracion/bienvenida.jpg");
+  const imagenesBienvenida = this.amazon.firmaUrls([imagen]);
+  const mensajeBienvenida = 
+  "Hola, no te habia visto por aqui antes, soy AcademiBot," + 
+  " me encargo de mantener una base de datos de material académico" + 
+  " en constante crecimiento, espero poder ser de utilidad, te enviaré" + 
+  " un manual para que puedas utilizar mis servicios adecuadamente."
+  this.FB.enviaTexto(id, mensajeBienvenida)
+  .then(() => {
+    return this.FB.enviaAdjunto(id, imagenesBienvenida[0].payload, "image");
+  })
+  .catch((error) => console.log(error));
+  return this.UNI.creaUsuario(id);
+};
+/**
+ * Metodo para verificar si el usuario existia en la base de datos.
+ * @method haveUsuario
+ * @param {String} id
+ * @returns {Boolean}
+ */
+AcademiBot.prototype.haveUsuario = function (id) {
+  let usuario = this.UNI.getUsuario(id);
+  if (usuario) return true;
+  return false;
+};
+/**
+ * Homologo del metodo para obtener usuarios en universidad, cuando el proyecto crezca 
+ * se tendra que usar una estructura de acceso aleatorio para las distintas universidades
+ * Si no se encuentra el usuario en la universidad, se crea y devuelve una referencia a este
+ * @method getUsuario
+ * @param {String} id
+ * @returns {Usuario}
+ */
+AcademiBot.prototype.getUsuario = function (id) {
+  let usuario = this.UNI.getUsuario(id);
+  usuario = usuario ? usuario : this.creaUsuario(id);
+  return usuario;
+};
+/**
+ * Metodo para enviar memes en la carpeta, se necesita un rango dinamico para poder enviar, se empieza
+ * por defecto en 0,
+ * @method enviaMeme
+ * @param {Usuario} usuario
+ * @returns {Promise}
+ */
+AcademiBot.prototype.enviaMeme = function (usuario) {
+  const limiteSuperior = parseInt(process.env.limiteMeme) + 1;
+  if (!limiteSuperior) return ;
+  const key = `memes/${Math.floor(Math.random()*limiteSuperior)}.jpg`;
+  console.log("enviando meme " + key);
+  const imagen = new Archivo(key);
+  const urlFirmada = this.amazon.firmaUrls([imagen]);
+  return this.FB.enviaAdjuntos(usuario.id, urlFirmada);
+};
+/**
+ * Metodo para obtener una lista de cursos, y enviarla a un usuario si tiene una
+ * especialidad y si tiene un ciclo seleccionado.
+ * @method enviaCursos
+ * @param {Usuario} usuario
+ */
+AcademiBot.prototype.enviaCursos = function (usuario) {
+  let espec = usuario.getEspecialidad();
+  let id = usuario.id;
+  if (!espec) {
+    this.reaccionaSinEspecialidad(id);
+    return ;
+  }
+  let especialidad = this.UNI.getEspecialidad(espec);
+  let ciclo = usuario.getCiclo();
+  if (!ciclo) {
+    this.reaccionaSinCiclo(usuario)
+    return ;
+  }
+  const cursos = especialidad.getCursosDeCiclo(ciclo).map(curso => {
+    return {
+      title : curso.nombre.replace(/-/g, ' '),
+      botones : [
+        "Material " + curso.codigo,
+        "SetPeticion Curso " + curso.codigo
+      ]
+    }
+  });
+  if (!cursos) {
+    this.FB.enviaTexto("No dispongo de cursos para este ciclo.")
+    return ;
+  }
+  let parametros = Facebook.parametrizaCarrusel(Array.shuffle(cursos));
+  this.FB.enviaCarrusel(id, parametros);
+}
+/**
+ * Metodo para parsear un mensaje de un usuario y comprobar si es una peticion, devuelve 
+ * un objeto con las propiedades de esta peticion
+ * @method parseMensaje
+ * @param {Usuario} usuario
+ * @param {String} mensaje
+ * @returns {Object} si el mensaje era peticion
+ */
+AcademiBot.prototype.parseMensaje = function (usuario, mensaje) {
+  let especs = usuario.getEspecialidad();
+  // if (!especs) return false;
+  let especialidad = this.UNI.getEspecialidad(especs);
+  return especialidad.parse(mensaje, usuario.peticionActual);
+}
+/**
+ * Metodo para asignar una especialidad a un usuario
+ * @method setEspecialidad
+ * @param {Usuario} usuario
+ * @param {String} id identificador de la especialidad
+ */
+AcademiBot.prototype.setEspecialidad = function (usuario, id) {
+  let lista = this.UNI.getEspecialidadesId();
+  if (lista.includes(id)) {
+    usuario.setEspecialidad(id);
+  } else {
+    const mensajeDenegacion = "Especialidad NO valida";
+    this.FB.enviaTexto(usuario.id, mensajeDenegacion);
+  }
+}
+/**
+ * Metodo para guardar el estado actual de las facultades de UNI
+ * @method guardaFacultades
+ */
+AcademiBot.prototype.guardaFacultades = function () {
+  let key = "configuracion/facultades.json";
+  let facultades = this.UNI.getFacultadesObject().map(facultad => facultad.toJSON());
+  this.amazon.putObject(key, JSON.stringify(facultades));
+}
+/**
+ * Metodo para leer el archivo que contiene el estado actual de
+ * las facultades de UNI
+ * @method leeFacultades
+ * @returns {Promise}
+ */
+AcademiBot.prototype.leeFacultades = function () {
+  let key = "configuracion/facultades.json";
+  return this.amazon.getJSON(key);
+}
+/**
+ * Metodo para guardar el estado actual de los Usuarios
+ * @method guardaUsuarios
+ */
+AcademiBot.prototype.guardaUsuarios = async function () {
+  const key = "configuracion/usuarios.json";
+  const usuarios = this.UNI.getUsuarios().map(usuario => usuario.toJSON());
+  const ultimoSalvado = await this.leeUsuarios();
+  if (ultimoSalvado.length > usuarios.length) {
+    console.log("Ejecutando union de usuarios.");
+    this.FB.enviaTexto("2605137522848909", "REINICIO IRREGULAR!");
+    for (let usuario of ultimoSalvado) {
+      if (!usuarios.find((_usuario) => _usuario.id === usuario.id)) {
+        usuarios.push(usuario);
+      }
+    }
+  }
+  this.amazon.putObject(key, JSON.stringify(usuarios));
+}
+/**
+ * Metodo para leer el archivo que contiene el estado actual de los usuarios de UNI y los 
+ * devuelve en forma de un Objeto
+ * @method leeUsuarios
+ * @returns {Promise<{id:String,especialidad:String,ciclo:String,historial:String[],cantidadHistorica:number,peticionActual:Object}[]>}
+ */
+AcademiBot.prototype.leeUsuarios = function () {
+  let key = "configuracion/usuarios.json";
+  return this.amazon.getJSON(key);
+}
+/**
+ * Metodo para guardar el estado actual del archivador
+ * @method guardaArchivador
+ */
+AcademiBot.prototype.guardaArchivador = function () {
+  let key = "configuracion/archivador.json";
+  let archivos = this.archivos.toJSON();
+  this.amazon.putObject(key, JSON.stringify(archivos));
+}
+/**
+ * Metodo para leer el archivo que contiene el estado actual del archivador y los devuelve como objeto
+ * @method leeArchivador
+ * @returns {Promise}
+ */
+AcademiBot.prototype.leeArchivador = function () {
+  let key = "configuracion/archivador.json";
+  return this.amazon.getJSON(key);
+}
+/**
+ * Metodo par actualizar el estado actual de UNI, leyendo los archivos de la carpeta llamada configuracion 
+ * "facultades.json","usuarios.json" y "archivador.json", que contienen las configuraciones necesarias
+ * @method carga
+ */
+AcademiBot.prototype.carga = async function () {
+  console.log("Iniciando servicio...")
+  /* let datos = [this.leeFacultades(), this.leeUsuarios()];
+  Promise.all(datos)
+    .then(lista => this.cargaUniversidad(lista[0], lista[1])); */
+  let facultades = await this.leeFacultades();
+  let usuarios = await this.leeUsuarios();
+  let archivador = await this.leeArchivador();
+  this.cargaUniversidad(facultades, usuarios)
+  this.cargaArchivador(archivador);
+  console.log("Inicio completado");
+}
+/**
+ * Metodo para guardar el estado actual de todo el AcademiBot,
+ * se ve por conveniente no guardar las facultades, ya que realmente 
+ * no se afectan por ahora
+ * @method guarda
+ */
+AcademiBot.prototype.guarda = function () {
+  console.log("Intentando guardar...")
+  this.guardaUsuarios();
+  // this.guardaFacultades();
+  this.guardaArchivador();
+  console.log("Guardado exitoso")
+}
+/**
+ * Metodo para actualizar los directorios de las facultades basado
+ * en las subcarpetas de s3
+ * @method actualizaDirectorios
+ */
+AcademiBot.prototype.actualizaDirectorios = async function () {
+  let facultades = this.UNI.getFacultadesObject();
+  let JSONfacultades = [];
+  for (let facultad of facultades) {
+    let direcciones = await this.amazon.listaObjetos(facultad.id);
+    let directorio = Facultad.creaDirectorio(direcciones);
+    let JSONfacultad = facultad.toJSON();
+    JSONfacultad.directorio = directorio;
+    JSONfacultades.push(JSONfacultad);
+  }
+  this.UNI.cargaFacultades(JSONfacultades);
+  this.guardaFacultades();
+}
+/**
+ * Metodo para reaccionar ante la situacion en la que el usuario
+ * no posee Especialidad.
+ * @method reaccionaSinEspecialidad
+ * @param {String} id
+ * @param {String} [mensaje] posible asignacion de especialidad, del
+ * tipo "SetEspecialidad xxx"
+ * @returns {Promise}
+ */
+AcademiBot.prototype.reaccionaSinEspecialidad = function (id, mensaje) {
+  // Refactor: crear metodo separador para asignar especialidad
+  const comandoEspecialidad = "SetEspecialidad ";
+  let usuario = this.getUsuario(id);
+  let buscaAsignar = new RegExp(comandoEspecialidad).test(mensaje);
+  let lista = this.UNI.getEspecialidadesId();
+  if (buscaAsignar) {
+    let especialidadId = mensaje.substr(comandoEspecialidad.length);
+    if (lista.includes(especialidadId)) {
+      usuario.setEspecialidad(especialidadId);
+      return this.FB.enviaTexto(id, "Recibido");
+    } else {
+      const mensajeDenegacion = "Especialidad NO valida";
+      return this.FB.enviaTexto(id, mensajeDenegacion);
+    }
+  } else {
+    const botones = lista.map((id) => ["text",id, comandoEspecialidad + id]);
+    const parametros = Facebook.parametrizaQuickReply(botones);
+    const mensajePeticion = "Selecciona una especialidad";
+    let promesa = this.FB.enviaQuickReply(id, parametros, mensajePeticion);
+    return promesa;
+  }
+}
+/**
+ * Metodo para reaccionar ante la sitacion donde la peticion hecha es valida
+ * @method reaccionaPeticionValida
+ * @param {Usuario} usuario
+ * @param {Especialidad} especialidad especialidad del usuario
+ * @returns {Promise}
+ */
+AcademiBot.prototype.reaccionaPeticionValida = function (usuario, especialidad) {
+  let facultad = this.UNI.getFacultad(especialidad.id);
+  const peticion = usuario.getPeticion();
+  let rutas = facultad.getRutas(peticion, especialidad.id);
+  console.log(rutas);
+  let archivos = rutas.map((ruta) => this.archivos.getArchivo(ruta));
+  let urlsFirmadas = this.amazon.firmaUrls(archivos);
+  usuario.completaPeticion();
+  let promesa = this.FB.enviaAdjuntos(usuario.id, urlsFirmadas);
+  // Revisar esto cuidadosamente, puede que las promesas no se almacenen en el mismo orden en el que llegan
+  promesa
+  .then(respuestas => {
+    if (respuestas.length !== archivos.length) return ;
+    for (let i = 0; i < archivos.length; i++) {
+      if (respuestas[i].attachment_id) archivos[i].setAttachmentId(respuestas[i].attachment_id);
+    }
+  })
+  .finally(() => this.reaccionaPeticionNoValida(usuario, usuario.getPeticion(), especialidad, "¿Otra?"));
+  return promesa;
+}
+/**
+ * Metodo para reaccionar ante la situacion donde el usuario no tiene ciclo,
+ * a futuro puede encargarse de la asignacion de ciclos
+ * @method reaccionaSinCiclo
+ * @param {Usuario} usuario
+ * @param {String} [mensaje] mensaje enviado por usuario para asignar
+ * @returns {Promise}
+ */
+AcademiBot.prototype.reaccionaSinCiclo = function (usuario, mensaje) {
+  const comandoCiclo = "SetCiclo ";
+  let buscaAsignar = new RegExp(comandoCiclo).test(mensaje);
+  if (buscaAsignar) {
+    let ciclo = mensaje.substr(comandoCiclo.length);
+    usuario.setCiclo(ciclo);
+    return this.FB.enviaTexto(usuario.id, "Recibido");
+  }
+  let espec = usuario.getEspecialidad()
+  let especialidad = this.UNI.getEspecialidad(espec);
+  let botones = especialidad.ciclosDisponibles().map((ciclo) => ["text", ciclo, comandoCiclo + ciclo]);
+  const parametros = Facebook.parametrizaQuickReply(botones);
+  const mensajePeticion = "Elije un Ciclo";
+  return this.FB.enviaQuickReply(usuario.id, parametros, mensajePeticion);
+  // Todo: enviar ciclos, crear otro metodo solo para la asignacion de ciclo
+  
+}
+/**
+ * Metodo para reaccionar ante la situacion donde la peticion no sea
+ * valida
+ * @method reaccionaPeticionNoValida
+ * @param {Usuario} usuario usuario que no tiene peticion valida
+ * @param {Peticion} peticion peticion no valida
+ * @param {Especialidad} especialidad especialidad del usuario
+ * @param {String} [mensaje] mensaje, si no se especifica se envia por defecto
+ * @returns {Promise}
+ */
+AcademiBot.prototype.reaccionaPeticionNoValida = function (usuario, peticion, especialidad, mensaje) {
+  let comandoPeticion = "SetPeticion ";
+  const comandos = ["Carpeta ", " Archivo "];
+  // Si llegando a este punto la peticion no tiene curso ni carpeta no se puede hacer nada
+  if (peticion.esVacia()) return new Promise((resolve, reject) => resolve("Peticion vacia."));
+  
+  let necesario = especialidad.getDeDirectorio(peticion);
+  /**
+   * @type {String[][]}
+   */
+  let botones;
+  if (necesario.tipo === "carpeta") {
+    comandoPeticion += comandos[0];
+    mensaje = mensaje ? mensaje : "Selecciona alguna carpeta de " + peticion.getCursoNombre().replace(/-/g,' ');
+    botones = necesario.opciones.map((item) => ["text",item.replace(/-/g,' '), comandoPeticion + item]);
+  }
+  if (necesario.tipo === "archivo") {
+    comandoPeticion += comandos[1];
+    mensaje = mensaje ? mensaje : "Selecciona algún archivo de " + peticion.getCarpeta().replace(/-/g,' ');
+    botones = necesario.opciones.map((item) => ["text",item, comandoPeticion + item]).reverse();
+  }
+  
+  let parametros = Facebook.parametrizaQuickReply(botones);
+  return this.FB.enviaQuickReply(usuario.id, parametros, mensaje);
+};
+/**
+ * Metodo para procesar un comando que busca actualizar una peticion o solicitar 
+ * archivos, devuelve si la peticion cambio o no
+ * @method procesaPeticion
+ * @param {Usuario} usuario
+ * @param {String} peticionMensaje
+ * @returns {Boolean} si la peticion realmente cambió
+ */
+AcademiBot.prototype.procesaPeticion = function (usuario, peticionMensaje) {
+  console.log(peticionMensaje);
+  const comandos = ["Curso ", "Carpeta ", "Archivo "];
+  const expresiones = comandos.map(comando => new RegExp(comando));
+  const especialidad = this.UNI.getEspecialidad(usuario.getEspecialidad());
+  const peticion = usuario.getPeticion();
+  if (expresiones[0].test(peticionMensaje)) {
+    // Intencion de actualizar un curso
+    const curso = especialidad.comparaCurso(peticionMensaje.substr(comandos[0].length));
+    const anteriorCurso = peticion.getCursoNombre();
+    peticion.setCurso(curso);
+    this.reaccionaPeticionNoValida(usuario, peticion, especialidad);
+    return (anteriorCurso !== curso.nombre);
+  }
+  if (expresiones[1].test(peticionMensaje)) {
+    // Intencion de actualizar carpeta
+    const carpeta = peticionMensaje.substr(comandos[1].length)
+    const anteriorCarpeta = peticion.getCarpeta();
+    peticion.setCarpeta(carpeta);
+    this.reaccionaPeticionNoValida(usuario, peticion, especialidad);
+    return (anteriorCarpeta !== carpeta);
+  }
+  if (expresiones[2].test(peticionMensaje)) {
+    // Intencion de actualizar archivo
+    const curso = peticion.getCursoNombre();
+    const carpeta = peticion.getCarpeta();
+    const mensaje = peticionMensaje.substr(comandos[2].length);
+    const archivo = especialidad.comparaArchivo(curso, carpeta, mensaje);
+    const seccion = especialidad.comparaSeccion(true, mensaje);
+    peticion.setArchivo(archivo);
+    peticion.setSeccion(seccion);
+    this.reaccionaPeticionValida(usuario, especialidad);
+    return true;
+  }
+  return false;
+}
+/**
+ * Metodo para procesar una peticion por texto, no incurre en los errores de la anterior
+ * al usar expresiones regulares que pueden ser interpretadas de manera equivocada
+ * @method procesaPeticionTexto
+ * @param {Usuario} usuario
+ * @param {String} mensaje
+ * @returns {Boolean} si la peticion cambió
+ */
+AcademiBot.prototype.procesaPeticionTexto = function (usuario, mensaje) {
+  const especialidad = this.UNI.getEspecialidad(usuario.getEspecialidad());
+  const peticion = usuario.getPeticion();
+  const id = usuario.id;
+  const JSONpeticion = this.parseMensaje(usuario, mensaje);
+  const primeraCadena = peticion.toString();
+  peticion.cargaDesdeJSON(JSONpeticion);
+  /**
+   * 26-05-19: Para comprobar si la peticion se vio afectada se compara su 
+   * representacion como cadena antes y despues, pero si el mensaje contenia
+   * el mismo curso que ya se tenia entonces habra un falso negativo, considerar
+   * otros metodos.
+   */
+  const cambio = !(primeraCadena === peticion.toString());
+  if (peticion.esValida()) {
+    if (usuario.habilitado) {
+      this.reaccionaPeticionValida(usuario, especialidad);
+    } else {
+      usuario.desBan(15);
+      const mensajeDenegacion = "Se te ha impedido el uso de esa función por el momento.";
+      this.FB.enviaTexto(id, mensajeDenegacion)
+        .catch(error => console.error(error));
+    }
+  } else if (cambio) {
+    this.reaccionaPeticionNoValida(usuario, peticion, especialidad)
+      .catch(error => console.error(error));
+  }
+  return cambio;
+}
+/**
+ * Metodo para determinar si un postback contiene un comando predefinido, ya sea 
+ * para actualizar informacion del usuario o para definir una peticion
+ * @method procesaComando
+ * @param {Usuario} usuario usuario que envia el mensaje
+ * @param {String} mensaje mensaje enviado, se comparara para ver si es un comando
+ * @return {Boolean}
+ */
+AcademiBot.prototype.procesaComando = function (usuario, mensaje) {
+  const comandoTexto = ["SetPeticion ", "SetCiclo ", "SetEspecialidad ", "Cursos", "Empezar"];
+  const comandos = comandoTexto.map(comando => new RegExp(comando,'i'));
+  if (comandos[0].test(mensaje)) {
+    // Intencion de actualizar la peticion o solicitar un archivo
+    //const JSONpeticion = especialidad.parse());
+    try {
+      this.procesaPeticion(usuario, mensaje.substr(comandoTexto[0].length));
+    } catch (error) {
+      console.log(error);
+      usuario.peticionActual = new Peticion();
+      this.FB.enviaTexto(usuario.id, error.toString + "\nDebido a ese error se ha decidido reinciar tu peticion.");
+    }
+    return true;
+  }
+  if (comandos[1].test(mensaje)) {
+    // Intencion de actualizar el ciclo del usuario
+    this.reaccionaSinCiclo(usuario, mensaje);
+    this.enviaCursos(usuario);
+    return true;
+  }
+  if (comandos[2].test(mensaje)) {
+    // Intencion de actualizar la especialidad del usuario
+    let especialidadId = mensaje.substr(comandoTexto[2].length);
+    this.setEspecialidad(usuario, especialidadId);
+    this.FB.enviaTexto(usuario.id, "Recibido");
+    return true;
+  }
+  if (comandos[3].test(mensaje)) {
+    // Intencion de revisar la lista de cursos
+    this.enviaCursos(usuario);
+    return true;
+  }
+  if (comandos[4].test(mensaje)) {
+    // Explicacion: Al llamar al metodo getUsuario ya se le envia a este un
+    // mensaje de bienvenida, por lo que no hay que hacer nada aqui.
+    return true;
+  }
+  return false;
+}
+/**
+ * Metodo llamado al recibir un postback de parte de un usuario por medio de los
+ * botones de facebook, facilita la o
+ * @method recibePostback
+ * @param {String} id
+ * @param {String} mensaje
+ */
+AcademiBot.prototype.recibePostback = function (id, mensaje) {
+  // Refactor: crear arreglo de comandos, comparar el mensaje
+  let usuario = new Usuario();
+  if (this.haveUsuario(id)) {
+    usuario = this.getUsuario(id);
+  } else {
+    usuario = this.creaUsuario(id);
+    return ;
+  }
+  //let usuario = this.haveUsuario(id) ? this.getUsuario(id) : this.creaUsuario(id);
+  // si no existe el usuario lo crea  
+  let espec = usuario.getEspecialidad();
+  if (!espec) this.reaccionaSinEspecialidad(id, mensaje);
+  else this.procesaComando(usuario, mensaje);
+
+  // Todo: mensaje puede tener instrucciones para cambiar especialidad o ciclo, de ser asi llamar
+  // a los metodos correspondientes
+
+  // Todo: termina de crear el metodo que reacciona cuando no hay peticion
+}
+/**
+ * Metodo para procesar mensajes de texto por parte de los usuarios,
+ * dialogflow emitira una respuesta donde se consideran tres casos, el 
+ * caso en que la respuesta sea un comando, donde sea una peticion y
+ * donde no suceda ninguna de estas y sea texto plano
+ * @method recibeTexto
+ * @param {String} id
+ * @param {String} texto
+ */
+AcademiBot.prototype.recibeTexto = async function (id, texto) {
+  this.FB.marcaVisto(id);
+  /**
+   * @type {Usuario}
+   */
+  let usuario;
+  if (this.haveUsuario(id)) usuario = this.getUsuario(id);
+  else {
+    usuario = this.creaUsuario(id);
+    return ;
+  }
+  let respuesta = {texto:"",comando:""};
+  try {
+    respuesta = await this.dialogflow.procesaIntencion(texto, id);
+  } catch (error) {
+    console.log(error);
+    respuesta.texto = `${error.message}\nPor este motivo, no puedo darte una respuesta fluida.`;
+  }
+  if (respuesta.comando) {
+    const comando = respuesta.comando;
+    /**
+     * 26-05-19: Habilitados tres comandos: SetEspecialidad, SetCiclo, Cursos
+     */
+    if (comando === "SetEspecialidad") {
+      const especialidadId = respuesta.params.especialidad.stringValue;
+      this.setEspecialidad(usuario, especialidadId);
+      this.FB.enviaTexto(id, respuesta.texto);
+    }
+    else if (comando === "SetCiclo") {
+      if (!usuario.getEspecialidad()) return this.reaccionaSinEspecialidad();
+      const ciclo = respuesta.params.ciclo.stringValue;
+      const ciclos = this.UNI.getEspecialidad(usuario.getEspecialidad()).ciclosDisponibles();
+      if (!ciclos.includes(ciclo)) return this.FB.enviaTexto(usuario.id, "Ciclo no disponible.");
+      usuario.setCiclo(ciclo);
+      this.enviaCursos(usuario);
+      return ;
+    }
+    else this.procesaComando(usuario, comando);
+    return ;
+  }
+  if (respuesta.peticion) {
+    const peticion = respuesta.peticion;
+    /**
+     * 26-05-19: Se habilita la peticion de Meme, se piensa que a futuro se puede
+     * pedir notas de ORCE, calculos matematicos, musica o articulos de wikipedia
+     */
+    if (peticion === "Meme") {
+      this.enviaMeme(usuario);
+    }
+  }
+  let peticionCambio;
+  try {
+    peticionCambio = usuario.getEspecialidad() ? this.procesaPeticionTexto(usuario, texto.limpia()) : false;
+  } catch (error) {
+    console.log(error);
+    usuario.peticionActual = new Peticion();
+    this.FB.enviaTexto(usuario.id, error.message + "\nDebido a ese error se ha decidido reinciar tu peticion.");
+  }
+  let espec = usuario.getEspecialidad();
+  if (!espec) this.FB.enviaTexto(id, respuesta.texto);
+  else if (peticionCambio) {}
+  else this.FB.enviaTexto(id, respuesta.texto);
+}
+/**
+ * Metodo para procesar las urls de archivos
+ * @method procesaUrl
+ * @param {String} id usuario de FB
+ * @param {String[]} urls
+ */
+AcademiBot.prototype.procesaUrl = async function (id, urls) {
+  const data = await this.FB.getNames(id);
+  const user = JSON.parse(data);
+  for (const url of urls) {
+    const limpio = url.substr(0, url.indexOf('?'));
+    const separado = limpio.split('/');
+    let key = separado[separado.length - 1];
+    key = "submissions/" + user.name + '/' + key;
+    const buffer = await RequestPromise.get(url, {encoding:null});
+    this.amazon.putObject(key, buffer);
+  }
+  this.FB.enviaTexto(id, `Gracias ${user.name}.\nCon tu colaboración el proyecto seguirá creciendo.`);
+}
+module.exports = AcademiBot;
