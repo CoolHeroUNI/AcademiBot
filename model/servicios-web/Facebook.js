@@ -34,7 +34,7 @@ Facebook.prototype.profileRequest = function (messageData) {
     form: messageData
   };
   RequestPromise(params);
-}
+};
 /**
  * Metodo para enviar un carrusel con opciones a un usuario
  * https://developers.facebook.com/docs/messenger-platform/send-messages/template/generic
@@ -63,7 +63,7 @@ Facebook.prototype.enviaCarrusel = function (id, lista) {
     json
   };
   return RequestPromise(params);
-}
+};
 /**
  * Metodo para enviar QuickReply a un usuario 
  * https://developers.facebook.com/docs/messenger-platform/send-messages/quick-replies
@@ -88,7 +88,7 @@ Facebook.prototype.enviaQuickReply =  function (id, parametros, text) {
     }
   };
   return RequestPromise(params);
-}
+};
 /**
  * Metodo para enviar un mensaje de texto a un usuario identificado por id
  * https://developers.facebook.com/docs/messenger-platform/send-messages#sending_text
@@ -109,7 +109,7 @@ Facebook.prototype.enviaTexto = function (id, texto) {
     }
   };
   return RequestPromise(params);
-}
+};
 /**
  * Metodo para enviar una accion al usuario
  * @method enviaAccion
@@ -127,7 +127,7 @@ Facebook.prototype.enviaAccion = function (id, action) {
     }
   };
   RequestPromise(param);
-}
+};
 /**
  * Metodo para enviar la señal de visto dado un usuario identificado por id
  * https://developers.facebook.com/docs/messenger-platform/send-messages/sender-actions
@@ -136,7 +136,7 @@ Facebook.prototype.enviaAccion = function (id, action) {
  */
 Facebook.prototype.marcaVisto = function (id) {
   this.enviaAccion(id, "mark_seen");
-}
+};
 /**
  * Metodo para enviar la señal de typing on
  * @method marcaTypingOn
@@ -144,7 +144,7 @@ Facebook.prototype.marcaVisto = function (id) {
  */
 Facebook.prototype.marcaTypingOn = function (id) {
   this.enviaAccion(id, "typing_on");
-}
+};
 /**
  * Metodo para enviar la señal de typing off
  * @method marcaTypingOff
@@ -152,7 +152,7 @@ Facebook.prototype.marcaTypingOn = function (id) {
  */
 Facebook.prototype.marcaTypingOff = function (id) {
   this.enviaAccion(id,"typing_off");
-}
+};
 /**
  * Metodo para enviar adjuntos especificos a un usuario identificado por su id, devuelve 
  * un id para reutilizar el adjunto.
@@ -188,7 +188,7 @@ Facebook.prototype.enviaAdjunto = function (id, _payload, type) {
     }
   };
   return RequestPromise(params);
-}
+};
 /**
  * Metodo para enviar muchos adjuntos, el tipo no esta determinado, sino que se espera como 
  * paramentro
@@ -200,7 +200,7 @@ Facebook.prototype.enviaAdjunto = function (id, _payload, type) {
  */
 Facebook.prototype.enviaAdjuntos = async function (id, archivos, type) {
   const mensaje = "Error al enviar, reintentando...";
-  const err = "Intentalo de nuevo"
+  const err = "Intentalo de nuevo";
   let promesas = [];
   for (let archivo of archivos) {
     type = archivo.type ? archivo.type : type;
@@ -220,7 +220,7 @@ Facebook.prototype.enviaAdjuntos = async function (id, archivos, type) {
     promesas.push(promesa);
   }
   return Promise.all(promesas);
-}
+};
 /**
  * Metodo para enviar imagenes por medio de una url a un usuario identificado por su 
  * id, devuelve un id para reutilizar el archivo
@@ -230,8 +230,8 @@ Facebook.prototype.enviaAdjuntos = async function (id, archivos, type) {
  * @returns {Promise}
  */
 Facebook.prototype.enviaImagen = function (id, url) {
-  return this.enviaAdjunto(id, url, 'image');
-}
+  return this.enviaAdjunto(id, {url}, 'image');
+};
 /**
  * Metodo para enviar archivos por medio de una url a un usuario identificado por su id, 
  * devuelve un id para reutilizar el archivo
@@ -241,8 +241,8 @@ Facebook.prototype.enviaImagen = function (id, url) {
  * @returns {Promise}
  */
 Facebook.prototype.enviaArchivo = function (id, url) {
-  return this.enviaAdjunto(id, url, 'file');
-}
+  return this.enviaAdjunto(id, {url}, 'file');
+};
 /**
  * Metodo para obtener los nombres completos de un usuario 
  * por medio de su PPID,
@@ -259,9 +259,9 @@ Facebook.prototype.getNames = function (PPID) {
       access_token : this.token,
     },
     method : 'GET'
-  }
+  };
   return RequestPromise(params);
-}
+};
 /**
  * Metodo estatico dedicado a parametrizar una lista para QuickReply
  * @method parametrizaQuickReply
@@ -276,11 +276,11 @@ Facebook.parametrizaQuickReply = function (botones) {
       content_type:boton[0],
       title:boton[1],
       payload:boton[2]
-    }
+    };
     respuesta.push(param);
   }
   return respuesta;
-}
+};
 /**
  * Metodo estatico dedicado a parametrizar una lista para un carrusel
  * @method parametrizaCarrusel
@@ -289,23 +289,19 @@ Facebook.parametrizaQuickReply = function (botones) {
  * https://developers.facebook.com/docs/messenger-platform/send-messages/template/generic
  */
 Facebook.parametrizaCarrusel = function (elementos) {
-  /**
-   * @type {{title:String, buttons:{type:String,title:String,payload:String}[]}[]}
-   */
-  let parametros = elementos.map(elemento => {
+  return elementos.map(elemento => {
     return {
-      title : elemento.title,
-      buttons : [
+      title: elemento.title,
+      buttons: [
         {
-          type : "postback",
-          title : elemento.botones[0],
-          payload : elemento.botones[1]
+          type: "postback",
+          title: elemento.botones[0],
+          payload: elemento.botones[1]
         }
       ]
     }
-  })
-  return parametros;
-}
+  });
+};
 
 /**
  * @todo crear metodo que envie varias solicitudes a la graph API

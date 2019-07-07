@@ -1,4 +1,4 @@
-const dialogflow = require('dialogflow')
+const dialogflow = require('dialogflow');
 // Codigo de Español latinoamericano
 const CODIGO_LENGUAJE = "es";
 /**
@@ -49,10 +49,10 @@ DialogFlow.prototype.procesaIntencion = async function (texto, idSesion) {
         languageCode: CODIGO_LENGUAJE
       }
     }
-  }
+  };
   let respuesta = await this.sessionClient.detectIntent(peticion);
   return this.parseIntentResponse(respuesta[0]);
-}
+};
 /**
  * Metodo para obtener la informacion relevante de una respuesta de
  * DialogFlow
@@ -64,7 +64,7 @@ DialogFlow.prototype.parseIntentResponse = function (respuesta) {
   const salida = {
     params : {},
     texto: "",
-  }
+  };
   const fulfillmentMessages = respuesta.queryResult.fulfillmentMessages;
   if (!fulfillmentMessages) return salida;
   // Texto de respuesta
@@ -85,6 +85,6 @@ DialogFlow.prototype.parseIntentResponse = function (respuesta) {
   //if (!payload) return salida;
   //if (payload.fields && payload.fields.comando && payload.fields.comando.stringValue) salida.comando = payload.fields.comando.stringValue;
   return salida;
-}
+};
 
 module.exports = DialogFlow;

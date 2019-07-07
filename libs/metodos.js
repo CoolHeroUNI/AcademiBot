@@ -24,7 +24,7 @@ Array.shuffle = function (array, modify) {
     array[randomIndex] = temporaryValue;
   }
   return array;
-}
+};
 /**
  * Metodo de la clase array para obtener un elemento aleatorio
  * @method random
@@ -33,7 +33,7 @@ Array.shuffle = function (array, modify) {
 Array.prototype.random = function () {
   let rand = Math.random();
   return this[Math.floor(rand * this.length)];
-}
+};
 /**
  * Metodo para limpiar las cadenas de mayusculas y de tildes
  * @method limpia
@@ -42,7 +42,7 @@ Array.prototype.random = function () {
 String.prototype.limpia = function () {
   let texto = (" " + this).slice(1);
   let tildes = 'áàéèíìóòúüù';
-  let normales = 'aaeeiioouuu'
+  let normales = 'aaeeiioouuu';
   let aux = texto.toLowerCase();
   let res = '';
   for (let i = 0; i < aux.length; i++) {
@@ -55,7 +55,7 @@ String.prototype.limpia = function () {
     }
   }
   return res;
-}
+};
 const http = require("http");
 /**
  * Envia un ping a url con tiempo aleatorio entre 10-15 minutos

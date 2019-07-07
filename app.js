@@ -2,8 +2,8 @@
 // Librerias y polyfills
 const {randomPing} = require('./libs/metodos');
 
-const express = require('express')
-const bodyParser = require('body-parser')
+const express = require('express');
+const bodyParser = require('body-parser');
 // creacion de la aplicacion
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));

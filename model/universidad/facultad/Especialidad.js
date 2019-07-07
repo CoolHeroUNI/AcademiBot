@@ -1,4 +1,4 @@
-const Peticion = require('./Peticion')
+const Peticion = require('./Peticion');
 /**
  * Una clase que representa los elementos necesarios de una
  * especialidad, consta de un id que la distingue, una malla
@@ -106,7 +106,7 @@ Especialidad.prototype.getCursosDeCiclo = function (ciclo) {
   return this.malla
       .find(_ciclo => _ciclo.id === ciclo).cursos
       .filter((curso) => this.directorio[curso.nombre]);
-}
+};
 /**
  * Retorna un array de ids de los ciclos que tienen algun curso
  * @method ciclosDisponibles
@@ -118,7 +118,7 @@ Especialidad.prototype.ciclosDisponibles = function () {
     if (ciclo.cursos.length !== 0) ciclosDisponibles.push(ciclo.id)
   }
   return ciclosDisponibles;
-}
+};
 /**
  * Compara una cadena y determina el curso al que corresponde, 
  * utiliza la lista de cursos local, esto ahorra el tener que 
@@ -153,7 +153,7 @@ Especialidad.prototype.comparaCurso = function (mensaje) {
     }
   }
   return false;
-}
+};
 /**
  * Comprueba si una cadena esta en la lista de carpetas de un curso 
  * @method comparaCarpeta
@@ -185,7 +185,7 @@ Especialidad.prototype.comparaCarpeta = function (curso, mensaje) {
     }
   }
   return false;
-}
+};
 /**
  * Compara una cadena con los archivos dentro de la carpeta del curso buscado
  * @method comparaArchivo
@@ -195,8 +195,8 @@ Especialidad.prototype.comparaCarpeta = function (curso, mensaje) {
  * @return {String} ya sea si encaja o no
  */
 Especialidad.prototype.comparaArchivo = function (curso, carpeta, mensaje) {
-  if (!this.directorio[curso]) return false;
-  if (!this.directorio[curso][carpeta]) return false;
+  if (!this.directorio[curso]) return "";
+  if (!this.directorio[curso][carpeta]) return "";
   let archivos = this.directorio[curso][carpeta];
   for (let archivo of archivos) {
     archivo = archivo.substr(0, archivo.indexOf('.'));
@@ -212,7 +212,7 @@ Especialidad.prototype.comparaArchivo = function (curso, carpeta, mensaje) {
     if (comparativo.test(mensaje)) return construido;
   }
   return "";
-}
+};
 /**
  * Obtiene la seccion a la que se refiere una cadena
  * @method comparaSeccion
@@ -241,7 +241,7 @@ Especialidad.prototype.comparaSeccion = function (tieneArchivo, mensaje) {
     if (elementos[1] && /^[1-3][a-z]/i.test(elementos[1])) return elementos[1][1];
   }
   return "";
-}
+};
 /**
  * Compara una cadena y determina el curso, carpeta, archivo y seccion que
  * una instancia de {Peticion} tendria, de acuerdo a la malla curricular
@@ -251,7 +251,7 @@ Especialidad.prototype.comparaSeccion = function (tieneArchivo, mensaje) {
  * @return {Object} resultado objeto para construir peticion
  */
 Especialidad.prototype.parse = function (mensaje, peticion) {
-  console.log("Parseando mensaje: ",mensaje)
+  console.log("Parseando mensaje: ",mensaje);
   let resultado = {};
   // Compara el mensaje buscando curso, si no se obtiene de peticion
   let curso = this.comparaCurso(mensaje);
@@ -271,7 +271,7 @@ Especialidad.prototype.parse = function (mensaje, peticion) {
   if (seccion) resultado['seccion'] = seccion;
   console.log(resultado);
   return resultado;
-}
+};
 /**
  * Metodo para obtener las rutas a los archivos a partir de una peticion valida
  * @method getRutas
@@ -292,7 +292,7 @@ Especialidad.prototype.getRutas = function (peticion) {
     if (comparador.test(archivo)) resultados.push(`${curso}/${carpeta}/${archivo}`);
   }
   return resultados;
-}
+};
 /**
  * Metodo que determina lo que un usuario necesita para poder completar su peticion
  * @method getDeDirectorio
@@ -304,12 +304,10 @@ Especialidad.prototype.getDeDirectorio = function (peticion) {
   let carpeta = peticion.getCarpeta();
   if (!carpeta) {
     let carpetas = this.directorio[curso.nombre];
-    let resultado = {
-      tipo:"carpeta",
+    return {
+      tipo: "carpeta",
       opciones: Object.getOwnPropertyNames(carpetas)
     };
-
-    return resultado;
   }
   
   /**
@@ -320,7 +318,7 @@ Especialidad.prototype.getDeDirectorio = function (peticion) {
       /**
        * @type {String}
        */
-      let _archivo = archivo.substr(0,archivo.indexOf('.'))
+      let _archivo = archivo.substr(0,archivo.indexOf('.'));
       let items = _archivo.split('-');
       /**
        * primero debe ser el año de la prueba o puede ser el nombre completo de un 
@@ -341,14 +339,13 @@ Especialidad.prototype.getDeDirectorio = function (peticion) {
       return nombre;
     });
   // Se filtran los repetidos
-  let resultado = {
-    tipo:"archivo",
-    opciones:archivos.filter((archivo, index, self) => {
+  return {
+    tipo: "archivo",
+    opciones: archivos.filter((archivo, index, self) => {
       return self.indexOf(archivo) === index;
     })
   };
-  return resultado;
-}
+};
 /**
  * Metodo para guardar el estado de la facultad
  * @method toJSON
@@ -356,5 +353,5 @@ Especialidad.prototype.getDeDirectorio = function (peticion) {
  */
 Especialidad.prototype.toJSON = function () {
   return {id:this.id,malla:this.malla};
-}
+};
 module.exports = Especialidad;

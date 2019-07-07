@@ -1,6 +1,6 @@
-const Usuario = require('./facultad/Usuario')
-const Facultad = require('./facultad/Facultad')
-const Especialidad = require('./facultad/Especialidad')
+const Usuario = require('./facultad/Usuario');
+const Facultad = require('./facultad/Facultad');
+const Especialidad = require('./facultad/Especialidad');
 /**
  * Clase que representa el estudiantado de la
  * Universidad Nacional de Ingenieria y sus facultades, 
@@ -46,7 +46,7 @@ Universidad.prototype.cargaFacultades = function (_facultades) {
     map.set(facultad.id, new Facultad(facultad.id, facultad.especialidades, facultad.cursos, facultad.directorio));
   }
   this.facultades = map;
-}
+};
 /**
  * Metodo para cargar los usuarios desde un objetos
  * @method cargaUsuarios
@@ -65,7 +65,7 @@ Universidad.prototype.cargaUsuarios = function (_usuarios) {
     this.usuarios[usuario.id] = new Usuario(usuario);
   } */
   this.usuarios = map;
-}
+};
 /**
  * Metodo para crear un usuario de la universidad
  * @method creaUsuario
@@ -75,7 +75,7 @@ Universidad.prototype.cargaUsuarios = function (_usuarios) {
 Universidad.prototype.creaUsuario = function (id) {
   this.usuarios.set(id, new Usuario(id));
   return this.usuarios.get(id);
-}
+};
 /**
  * Metodo para obtener un usuario a partir de su id
  * @method getUsuario
@@ -84,7 +84,7 @@ Universidad.prototype.creaUsuario = function (id) {
  */
 Universidad.prototype.getUsuario = function (id) {
   return this.usuarios.get(id);
-}
+};
 /**
  * Metodo para obtener una especialidad a partir del id de esta 
  * especialidad
@@ -98,7 +98,7 @@ Universidad.prototype.getEspecialidad = function (id) {
     if (especialidad) return especialidad;
   }
 
-}
+};
 /**
  * Metodo para obtener una facultad a partir del id de una de sus
  * especialidades
@@ -112,34 +112,31 @@ Universidad.prototype.getFacultad = function (idEspecialidad) {
     if (especialidad) return facultad;
   }
 
-}
+};
 /**
  * Metodo para obtener una lista de los id de las facultades
  * @method getFacultadesId
  * @returns {String[]}
  */
 Universidad.prototype.getFacultadesId = function () {
-  let keys = Array.from(this.facultades.keys())
-  return keys;
-}
+  return Array.from(this.facultades.keys());
+};
 /**
  * Metodo para obtener todas las facultades en Array
  * @method getFacultadesObject
  * @returns {Facultad[]}
  */
 Universidad.prototype.getFacultadesObject = function () {
-  let facultades = Array.from(this.facultades.values());
-  return facultades;
-}
+  return Array.from(this.facultades.values());
+};
 /**
  * Metodo para obtener todos los usuarios en el registro
  * @method getUsuarios
  * @returns {Usuario[]}
  */
 Universidad.prototype.getUsuarios = function () {
-  let usuarios = Array.from(this.usuarios.values());
-  return usuarios;
-}
+  return Array.from(this.usuarios.values());
+};
 /**
  * Metodo para obtener las id de las especialidades
  * @method getEspecialidadesId
@@ -147,12 +144,8 @@ Universidad.prototype.getUsuarios = function () {
  */
 Universidad.prototype.getEspecialidadesId = function () {
   let facultades = this.getFacultadesObject();
-  /**
-   * @type {String[]}
-   */
-  let especialidades = facultades.flatMap(facultad => facultad.getEspecialidades());
-  return especialidades;
-}
+  return facultades.flatMap(facultad => facultad.getEspecialidades());
+};
 /**
  * @todo metodo para obtener una lista de facultades y hacerla 
  * notacion de objeto como Array JSON para guardar a archivo, de igual 

@@ -1,5 +1,5 @@
-const Especialidad = require('./Especialidad')
-const Peticion = require('./Peticion')
+const Especialidad = require('./Especialidad');
+const Peticion = require('./Peticion');
 /**
  * Una clase para representar las propiedades basicas de una facultad, consiste de un nombre 
  * o identificador, una lista de especialidades detalladas en su propio archivo
@@ -55,18 +55,19 @@ class Facultad {
  * tiempo de busqueda ---------------------------------------Hecho
  */
 Facultad.prototype.getEspecialidad = function (id) {
-  let especialidad = this.especialidades.get(id);
-  return especialidad;
-}
+  return this.especialidades.get(id);
+};
 /**
  * Getter para los ids de las especialidades
  * @method getEspecialidades
  * @return {String[]} contiene los id de las especialidades
  */
 Facultad.prototype.getEspecialidades = function () {
-  let especialidades = Array.from(this.especialidades.keys());
+
+  let especialidades;
+  especialidades = Array.from(this.especialidades.keys());
   return especialidades;
-}
+};
 /**
  * Metodo para obtener la ruta absoluta de los archivos de una especialidad, ej: 
  * "fiis/algebra-lineal/1pc/16-2-1.jpg",
@@ -78,9 +79,8 @@ Facultad.prototype.getEspecialidades = function () {
  */
 Facultad.prototype.getRutas = function (peticion, especialidad) {
   const id = this.id;
-  let rutasGlobales = this.especialidades.get(especialidad).getRutas(peticion).map(ruta => id + "/" + ruta);
-  return rutasGlobales;
-}
+  return this.especialidades.get(especialidad).getRutas(peticion).map(ruta => id + "/" + ruta);
+};
 /**
  * Metodo estatico para crear un directorio
  * @method creaDirectorio
@@ -98,7 +98,7 @@ Facultad.creaDirectorio = function (direcciones) {
     directorio[curso][carpeta].push(archivo);
   }
   return directorio;
-}
+};
 /**
  * Metodo para guardar el estado actual de la facultad
  * @method toJSON
@@ -106,7 +106,6 @@ Facultad.creaDirectorio = function (direcciones) {
  */
 Facultad.prototype.toJSON = function () {
   let _especialidades = Array.from(this.especialidades.values()).map(especialidad => especialidad.toJSON());
-  let json = {id:this.id,especialidades:_especialidades,cursos:this.cursos,directorio:this.directorio};
-  return json;
-}
+  return {id: this.id, especialidades: _especialidades, cursos: this.cursos, directorio: this.directorio};
+};
 module.exports = Facultad;

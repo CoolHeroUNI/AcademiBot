@@ -35,7 +35,7 @@ const muestra = async (req, res) => {
   } else {
     res.send("Clave incorrecta.")
   }
-}
+};
 
 router.get('/:clave/:peticion', muestra);
 module.exports = router;

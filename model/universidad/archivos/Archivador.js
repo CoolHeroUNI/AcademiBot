@@ -1,4 +1,4 @@
-const Archivo = require('./Archivo')
+const Archivo = require('./Archivo');
 /**
  * Clase encargada de almacenar y cargar los archivos que seran usados por
  * el ChatBot, asi como de generar las estructuras pertinentes para encontrar 
@@ -27,7 +27,7 @@ class Archivador {
 Archivador.prototype.creaArchivo = function (ruta) {
   this.archivos.set(ruta, new Archivo(ruta));
   return this.archivos.get(ruta);
-}
+};
 /**
  * Metodo para proporcionar un codigo de reusabilidad a un
  * archivo
@@ -37,7 +37,7 @@ Archivador.prototype.creaArchivo = function (ruta) {
  */
 Archivador.prototype.setReusabilidad = function (ruta, codigo) {
   this.archivos.get(ruta).setAttachmentId(codigo);
-}
+};
 /**
  * Metodo para cargar desde JSON
  * -12/05/19 Se opto por cargar todo el Objeto
@@ -55,7 +55,7 @@ Archivador.prototype.cargaArchivos = function (archivos) {
   for (let archivo of archivos) {
     this.archivos[archivo.ruta] = new Archivo(archivo.ruta).carga(archivo);
   } */
-}
+};
 /**
  * Metodo para obtener un Array de archivos simple
  * -05/12/19: Se opto por usar un Objeto de acceso aleatorio,
@@ -70,7 +70,7 @@ Archivador.prototype.toJSON = function () {
   });
   return valores; */
   return Array.from(this.archivos.entries()).map(elem => [elem[0], elem[1].toJSON()]);
-}
+};
 /**
  * Metodo para obtener un Objeto archivo a partir de su ruta
  * @method getArchivo
@@ -82,5 +82,5 @@ Archivador.prototype.getArchivo = function (ruta) {
   archivo = archivo ? archivo : this.creaArchivo(ruta);
   archivo.aumentaContador();
   return archivo;
-}
+};
 module.exports = Archivador;

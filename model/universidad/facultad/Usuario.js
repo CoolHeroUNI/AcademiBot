@@ -1,4 +1,4 @@
-const Peticion = require("./Peticion")
+const Peticion = require("./Peticion");
 /**
  * Una clase que representa los elementos importantes de un usuario
  * del ChatBot, como las peticiones que realiza y las limitaciones
@@ -77,7 +77,7 @@ Usuario.prototype.carga = function (_usuario) {
   this.cantidadHistorica = _usuario.cantidadHistorica;
   this.peticionActual = new Peticion(_usuario.peticionActual);
   return this;
-}
+};
 /**
  * Metodo para obtener una referencia a la peticion actual
  * @method getPeticion
@@ -85,7 +85,7 @@ Usuario.prototype.carga = function (_usuario) {
  */
 Usuario.prototype.getPeticion = function () {
   return this.peticionActual;
-}
+};
 /**
  * Reinicia el contador actual de peticiones y habilita al usuario para
  * realizar mas peticiones
@@ -94,7 +94,7 @@ Usuario.prototype.getPeticion = function () {
 Usuario.prototype.reiniciaContador = function () {
   this.cantidadPeticiones = 0;
   this.habilitado = true;
-}
+};
 /**
  * Añade la peticion actual a la lista de peticiones historicas, si hay
  * de 10, borra la mas antigua, reinicializa la peticion actual en una
@@ -108,7 +108,7 @@ Usuario.prototype.completaPeticion = function () {
   this.peticionActual = new Peticion(this.peticionActual);
   this.cantidadPeticiones++;
   this.cantidadHistorica++;
-}
+};
 /**
  * Actualiza el valor del ciclo al que pertenece el usuario
  * @method setCiclo
@@ -116,7 +116,7 @@ Usuario.prototype.completaPeticion = function () {
  */
 Usuario.prototype.setCiclo = function (ciclo) {
   this.ciclo = ciclo;
-}
+};
 /**
  * Actualiza el valor del identificador de la Especialidad
  * @method setEspecialidad
@@ -128,7 +128,7 @@ Usuario.prototype.setEspecialidad = function (especialidad) {
   this.especialidad = especialidad;
   this.ciclo = "";
   this.peticionActual = new Peticion();
-}
+};
 /**
  * Metodo para comprobar si tiene especialidad
  * @method tieneEspecialidad
@@ -136,7 +136,7 @@ Usuario.prototype.setEspecialidad = function (especialidad) {
  */
 Usuario.prototype.tieneEspecialidad = function () {
   return this.especialidad !== "";
-}
+};
 /**
  * Metodo para obtener el id de la especialidad
  * @method getEspecialidad
@@ -144,7 +144,7 @@ Usuario.prototype.tieneEspecialidad = function () {
  */
 Usuario.prototype.getEspecialidad = function () {
   return this.especialidad;
-}
+};
 /**
  * Metodo para obtener el ciclo del ususario
  * @method getCiclo
@@ -152,7 +152,7 @@ Usuario.prototype.getEspecialidad = function () {
  */
 Usuario.prototype.getCiclo = function () {
   return this.ciclo;
-}
+};
 /**
  * Si el usuario esta habilitado y excedio la cantidad de peticiones se
  * le revoca la facultad de realizar peticiones durante el tiempo indicado
@@ -164,7 +164,7 @@ Usuario.prototype.baneaSi = function (condicion) {
   if (condicion) {
     this.habilitado = false;
   }
-}
+};
 /**
  * Metodo para quitar el Ban a un usuario en un determinado momento
  * @method desBan
@@ -174,23 +174,22 @@ Usuario.prototype.desBan = function (tiempo) {
   tiempo = tiempo ? tiempo : Usuario.coolDown;
   let that = this;
   if (!this.habilitado) setTimeout(() => that.reiniciaContador(), tiempo);
-}
+};
 /**
  * Metodo para poder convertir al usuario a un Objeto simple
  * @method toJSON
  * @returns {Object}
  */
 Usuario.prototype.toJSON = function () {
-  let usuario = {
-    id : this.id,
-    especialidad :this.especialidad,
-    ciclo :this.ciclo,
-    historial :this.historial,
-    cantidadHistorica :this.cantidadHistorica,
-    peticionActual :this.peticionActual.toJSON()
-  }
-  return usuario;
-}
+  return {
+    id: this.id,
+    especialidad: this.especialidad,
+    ciclo: this.ciclo,
+    historial: this.historial,
+    cantidadHistorica: this.cantidadHistorica,
+    peticionActual: this.peticionActual.toJSON()
+  };
+};
 /**
  * Variable estatica para definir el limite de solicitudes que puede
  * completar un Usuario antes de ser penalizado.
@@ -211,7 +210,7 @@ Usuario.coolDown = 10; // Cooldown en segundos
  */
 Usuario.setCoolDown = function (tiempo) {
   Usuario.coolDown = tiempo;
-}
+};
 /**
  * Actualiza el valor del limite de peticiones
  * @static
@@ -220,7 +219,7 @@ Usuario.setCoolDown = function (tiempo) {
  */
 Usuario.setLimite = function (cantidad) {
   Usuario.limitePeticionEnTiempo = cantidad;
-}
+};
 /**
  * @todo temporizador personal para reiniciar el contador de examenes cada hora
  */

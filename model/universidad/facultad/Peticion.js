@@ -48,16 +48,15 @@ class Peticion {
  */
 Peticion.prototype.esVacia = function () {
   return (!this.getCursoNombre() && !this.getCarpeta());
-}
+};
 /**
  * Comprobacion de una peticion valida, que consta de curso, carpeta y archivo
  * @method esValida
  * @returns {Boolean} ya sea si es valida o no
  */
 Peticion.prototype.esValida = function () {
-  let valido = (this.curso.codigo !== "" && this.carpeta !== "" && this.archivo !== "");
-  return valido;
-}
+  return (this.curso.codigo !== "" && this.carpeta !== "" && this.archivo !== "");
+};
 /**
  * Getter para el codigo de la propiedad curso
  * @method getCursoCodigo
@@ -65,7 +64,7 @@ Peticion.prototype.esValida = function () {
  */
 Peticion.prototype.getCursoCodigo = function () {
   return this.curso.codigo;
-}
+};
 /**
  * Getter para el nombre de la propiedad curso
  * @method getCursoNombre
@@ -73,7 +72,7 @@ Peticion.prototype.getCursoCodigo = function () {
  */
 Peticion.prototype.getCursoNombre = function () {
   return this.curso.nombre;
-}
+};
 /**
  * Getter para el objeto curso, con propiedades nombre y codigo, si no existe retorna false
  * @method getCurso
@@ -82,7 +81,7 @@ Peticion.prototype.getCursoNombre = function () {
 Peticion.prototype.getCurso = function () {
   if (this.getCursoCodigo()) return this.curso;
   return false;
-}
+};
 /**
  * Getter para la propiedad carpeta
  * @method getCarpeta
@@ -90,7 +89,7 @@ Peticion.prototype.getCurso = function () {
  */
 Peticion.prototype.getCarpeta = function () {
   return this.carpeta;
-}
+};
 /**
  * Getter para la propiedad archivo
  * @method getArchivo
@@ -98,7 +97,7 @@ Peticion.prototype.getCarpeta = function () {
  */
 Peticion.prototype.getArchivo = function () {
   return this.archivo;
-}
+};
 /**
  * Getter para la propiedad seccion
  * @method getSeccion
@@ -106,7 +105,7 @@ Peticion.prototype.getArchivo = function () {
  */
 Peticion.prototype.getSeccion = function () {
   return this.seccion;
-}
+};
 /**
  * Setter para la propiedad curso, reinicia los valores de carpeta, archivo y seccion,
  * lanza un error si se intenta asignar un objeto no valido
@@ -120,7 +119,7 @@ Peticion.prototype.setCurso = function (curso) {
   } else {
     throw new Error("Objeto curso no valido")
   }
-}
+};
 /**
  * Setter para la propiedad carpeta, reinicia los valores de archivo y seccion,
  * lanza un error si no existe un curso al que asignar carpeta
@@ -134,7 +133,7 @@ Peticion.prototype.setCarpeta = function (nombre) {
   } else {
     throw new Error ("No es posible asignar una carpeta sin un curso.")
   }
-}
+};
 /**
  * Setter para la propiedad archivo, reinicia el valor de  seccion, lanza
  * error si no existe carpeta o curso
@@ -148,7 +147,7 @@ Peticion.prototype.setArchivo = function (nombre) {
   } else {
     throw new Error ("No es posible asignar un archivo sin una carpeta.")
   }
-}
+};
 /**
  * Setter para la propiedad seccion, lanza un error si no hay archivo
  * @method setSeccion
@@ -157,7 +156,7 @@ Peticion.prototype.setArchivo = function (nombre) {
 Peticion.prototype.setSeccion = function (codigo) {
   if (this.getArchivo()) this.seccion = codigo;
   else throw new Error("No se puede asignar seccion sin un archivo.")
-}
+};
 /**
  * Metodo para reiniciar el valor de carpeta, archivo y seccion a una cadena vacia
  * @method resetCarpeta
@@ -165,7 +164,7 @@ Peticion.prototype.setSeccion = function (codigo) {
 Peticion.prototype.resetCarpeta = function () {
   this.carpeta = "";
   this.resetArchivo();
-}
+};
 /**
  * Metodo para reiniciar el valor de archivo y seccion a una cadena vacia
  * @method resetArchivo
@@ -173,14 +172,14 @@ Peticion.prototype.resetCarpeta = function () {
 Peticion.prototype.resetArchivo = function () {
   this.archivo = "";
   this.resetSeccion();
-}
+};
 /**
  * Metodo para reiniciar el valor de seccion a una cadena vacia
  * @method resetSeccion
  */
 Peticion.prototype.resetSeccion = function () {
   this.seccion = "";
-}
+};
 /**
  * Metodo para llenar los campos con los de un objeto que contiene lo necesario
  * @method cargaDesdeJSON
@@ -192,7 +191,7 @@ Peticion.prototype.cargaDesdeJSON = function (peticion) {
   if (peticion.carpeta) this.setCarpeta(peticion.carpeta);
   if (peticion.archivo) this.setArchivo(peticion.archivo);
   if (peticion.seccion) this.setSeccion(peticion.seccion);
-}
+};
 /**
  * Metodo para convertir la peticion a una cadena, permite comparabilidad
  * @method toString
@@ -202,20 +201,19 @@ Peticion.prototype.toString = function () {
   let resultado = `${this.getCarpeta()} de ${this.getCursoNombre()} del ${this.getArchivo()}`;
   if (this.getSeccion()) resultado += ` ${this.getSeccion()}`;
   return resultado;
-}
+};
 /**
  * Metodo para convertir la peticion a Object que puede ser guardada
  * @method toJSON
  * @returns {{curso:{codigo:String,nombre:String},carpeta:String}}
  */
 Peticion.prototype.toJSON = function () {
-  let peticion = {
+  return {
     curso: {
       codigo: this.getCursoCodigo(),
       nombre: this.getCursoNombre()
-    }, 
+    },
     carpeta: this.getCarpeta()
   };
-  return peticion;
-}
+};
 module.exports = Peticion;

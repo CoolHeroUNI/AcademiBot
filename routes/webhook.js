@@ -18,7 +18,7 @@ const validaToken = (req, res) => {
   } else {
     res.send("Wrong token");
   }
-}
+};
 
 const procesaEventos = (req, res) => {
   const messaging_events = req.body.entry[0].messaging;
@@ -39,7 +39,7 @@ const procesaEventos = (req, res) => {
     }
   }
   res.sendStatus(200);
-}
+};
 
 const actualiza = async (req,res) => {
   const intentoClave = req.params.clave;
@@ -55,7 +55,7 @@ const actualiza = async (req,res) => {
   } else {
     res.send("Clave incorrecta.")
   }
-}
+};
 
 const muestraFacultades = (req,res) => {
   const intentoClave = req.params.clave;
@@ -67,7 +67,7 @@ const muestraFacultades = (req,res) => {
   } else {
     res.send("Clave incorrecta.")
   }
-}
+};
 
 const muestraUsuarios = (req,res) => {
   const intentoClave = req.params.clave;
@@ -78,7 +78,7 @@ const muestraUsuarios = (req,res) => {
   } else {
     res.send("Clave incorrecta.")
   }
-}
+};
 
 const muestraArchivador = (req,res) => {
   const intentoClave = req.params.clave;
@@ -89,7 +89,7 @@ const muestraArchivador = (req,res) => {
   } else {
     res.send("Clave incorrecta.")
   }
-}
+};
 router.get('/', validaToken);
 router.post('/', procesaEventos);
 router.get('/actualiza/:clave', actualiza);

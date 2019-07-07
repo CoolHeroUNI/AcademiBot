@@ -41,7 +41,7 @@ class Archivo {
  */
 Archivo.prototype.getAttachmentId = function () {
   return this.attachment_id;
-}
+};
 /**
  * Metodo para añadir el campo de attachment_id
  * @method setAttachmentId
@@ -49,7 +49,7 @@ Archivo.prototype.getAttachmentId = function () {
  */
 Archivo.prototype.setAttachmentId = function (id) {
   this.attachment_id = id;
-}
+};
 /**
  * Metodo para comprobar si se puede reusar el archivo mediante
  * la API de Facebook
@@ -58,7 +58,7 @@ Archivo.prototype.setAttachmentId = function (id) {
  */
 Archivo.prototype.esReusable = function () {
   return this.attachment_id !== "";
-}
+};
 /**
  * Metodo para cargar a partir de un objeto con propiedades
  * attachment_id y contador
@@ -70,7 +70,7 @@ Archivo.prototype.carga = function (archivo) {
   this.setAttachmentId(archivo.attachment_id);
   this.setContador(archivo.contador);
   return this;
-}
+};
 /**
  * Metodo para obtener la extension de un archivo
  * @method getExtension
@@ -78,7 +78,7 @@ Archivo.prototype.carga = function (archivo) {
  */
 Archivo.prototype.getExtension = function () {
   return this.extension;
-}
+};
 /**
  * Metodo para obtener la ruta
  * @method getRuta
@@ -86,7 +86,7 @@ Archivo.prototype.getExtension = function () {
  */
 Archivo.prototype.getRuta = function () {
   return this.ruta;
-}
+};
 /**
  * Metodo para obtener el contador de ocurrencias de solicitud
  * @method getContador
@@ -94,14 +94,14 @@ Archivo.prototype.getRuta = function () {
  */
 Archivo.prototype.getContador = function () {
   return this.contador;
-}
+};
 /**
  * Metodo que aumenta el contador de ocurrencias
  * @method aumentaContador
  */
 Archivo.prototype.aumentaContador = function () {
   this.contador++;
-}
+};
 /**
  * Metodo para establecer el contador en una cantidad anterior
  * @method setContador
@@ -109,7 +109,7 @@ Archivo.prototype.aumentaContador = function () {
  */
 Archivo.prototype.setContador = function (numero) {
   this.contador = numero;
-}
+};
 /**
  * Metodo para convertir el archivo a JSON obteniendo su
  * contador y attachment_id
@@ -117,12 +117,11 @@ Archivo.prototype.setContador = function (numero) {
  * @returns {{attachment_id:String,contador:Number}}
  */
 Archivo.prototype.toJSON = function () {
-  let objeto = {
-    attachment_id:this.attachment_id,
-    contador:this.getContador()
+  return {
+    attachment_id: this.attachment_id,
+    contador: this.getContador()
   };
-  return objeto;
-}
+};
 /**
  * Metodo que retorna el tipo de archivo
  * @method getType
@@ -140,5 +139,5 @@ Archivo.prototype.getType = function () {
   existe = extensionesVideo.includes(this.getExtension());
   if (existe) return 'video';
   return 'file';
-}
+};
 module.exports = Archivo;

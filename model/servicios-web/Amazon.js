@@ -1,5 +1,5 @@
-const AWS = require('aws-sdk')
-const Archivo = require('../universidad/archivos/Archivo')
+const AWS = require('aws-sdk');
+const Archivo = require('../universidad/archivos/Archivo');
 /**
  * clase dedicada al manejo de la base de datos, obtencion
  * de archivos de configuracion para cargar los usuarios y
@@ -16,6 +16,7 @@ const Archivo = require('../universidad/archivos/Archivo')
  */
 class Amazon {
   constructor(_accessKeyId, _secretAccessKey, _region, _nombre) {
+    // noinspection UnnecessaryLocalVariableJS
     let S3 = new AWS.S3({
       accessKeyId: _accessKeyId,
       secretAccessKey: _secretAccessKey,  
@@ -63,7 +64,7 @@ Amazon.prototype.firmaUrls = function (archivos) {
     respuesta.push({payload, extension, type});
   }
   return respuesta;
-}
+};
 /**
  * Metodo para listar todas las Keys bajo determinado prefijo
  * @method listaObjetos
@@ -93,7 +94,7 @@ Amazon.prototype.listaObjetos = async function (prefijo, continuationToken, prev
     return this.listaObjetos(prefijo, respuesta.ContinuationToken, resultado);
   }
   return resultado;
-}
+};
 /**
  * Metodo para obtener los objetos directamente debajo del prefijo
  * y hasta la siguiente aparicion de '/', pueden ser subcarpetas o
@@ -128,10 +129,10 @@ Amazon.prototype.listaObjetosDirectamenteBajo = async function (prefijo, continu
     }
   }
   if (respuesta.IsTruncated) {
-    return this.listaCarpetas(prefijo, respuesta.ContinuationToken, resultado);
+    return this.listaObjetosDirectamenteBajo(prefijo, respuesta.ContinuationToken, resultado);
   }
   return resultado;
-}
+};
 /**
  * Metodo para descargar un archivo dada su key (ruta),
  * no se valida, tener precaucion
@@ -143,10 +144,10 @@ Amazon.prototype.getObject = async function (key) {
   let param = {
     Bucket: this.bucketName,
     Key: key
-  }
+  };
   let data = await this.s3.getObject(param).promise();
   return data.Body;
-}
+};
 /**
  * Metodo para obtener un objeto tipo JSON desde un
  * archivo en S3, dada su key
@@ -157,7 +158,7 @@ Amazon.prototype.getObject = async function (key) {
 Amazon.prototype.getJSON = async function (key) {
   let buffer = await this.getObject(key);
   return JSON.parse(buffer.toString());
-}
+};
 /**
  * Metodo para subir archivos a una ruta especifica
  * @method putObject
@@ -169,7 +170,7 @@ Amazon.prototype.putObject = function (key, cuerpo) {
     Body: cuerpo,
     Bucket: this.bucketName,
     Key: key
-  }
+  };
   this.s3.putObject(param).promise();
-}
+};
 module.exports = Amazon;

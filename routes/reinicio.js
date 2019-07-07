@@ -25,7 +25,7 @@ const reincia = async (req, res) => {
   } else {
     res.send("Clave incorrecta.")
   }
-}
+};
 router.get("/:clave", reincia);
 
 module.exports = router;

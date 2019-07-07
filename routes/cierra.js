@@ -9,6 +9,6 @@ const cierra = (req, res) => {
   } else {
     res.send("Clave incorrecta.")
   }
-}
+};
 router.get('/:clave', cierra);
 module.exports = router;
