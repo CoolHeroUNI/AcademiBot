@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const middleware = require('../public/javascripts/middleware');
+const middleware = require('../src/middleware');
 
 router.get('/', middleware.unactiveSession, (req, res) => {
   res.render('login', {});
