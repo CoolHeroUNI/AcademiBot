@@ -1,0 +1,15 @@
+extends layout
+block content
+
+    div
+        iframe(src="https://cdn.pixabay.com/photo/2016/08/10/02/55/kitten-1582384_640.jpg", id="material", height=0, width=0)
+    div
+        form(action="./clasificacion", method="POST")
+            select(id="curso")
+            select(id="carpeta")
+            input(type="text", id="archivo")
+            input(type="submit", value="submit")
+    div
+        script.
+          let directorio = !{directorio};
+        script(src="/public/javascripts/dynamicDropDown.js")

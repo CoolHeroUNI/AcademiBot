@@ -1,0 +1,24 @@
+doctype html
+head
+    // HTML provisto por un tercero, gracias a quien corresponda
+    meta(charset='UTF-8')
+    title Login
+    link(href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet')
+    link(rel='stylesheet' href='../public/stylesheets/login.css')
+body.align
+.grid
+    h1(align='center') ADMIN
+    form.form.login(action='/login' method='POST')
+        .form__field
+            label(for='login__password')
+                svg.icon
+                    use(xmlns:xlink='http://www.w3.org/1999/xlink' xlink:href='#lock')
+                span.hidden Password
+            input#login__password.form__input(type='password' name='password' placeholder='Contraseña' required='')
+        .form__field
+            input(type='submit' value='Ingresar')
+svg.icons(xmlns='http://www.w3.org/2000/svg')
+    symbol#arrow-right(viewbox='0 0 1792 1792')
+        path(d='M1600 960q0 54-37 91l-651 651q-39 37-91 37-51 0-90-37l-75-75q-38-38-38-91t38-91l293-293H245q-52 0-84.5-37.5T128 1024V896q0-53 32.5-90.5T245 768h704L656 474q-38-36-38-90t38-90l75-75q38-38 90-38 53 0 91 38l651 651q37 35 37 90z')
+    symbol#lock(viewbox='0 0 1792 1792')
+        path(d='M640 768h512V576q0-106-75-181t-181-75-181 75-75 181v192zm832 96v576q0 40-28 68t-68 28H416q-40 0-68-28t-28-68V864q0-40 28-68t68-28h32V576q0-184 132-316t316-132 316 132 132 316v192h32q40 0 68 28t28 68z')

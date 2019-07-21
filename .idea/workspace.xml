@@ -1,29 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/Marco.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="Correccion de errores&#10;&#10;Se corrigieron ciertos errores de tipografia, se buscará añadir ahora un soporte para el administrador, facilitando la clasificacion de material a través de la pagina web">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/metodos.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/metodos.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/AcademiBot.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/AcademiBot.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/servicios-web/Amazon.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/servicios-web/Amazon.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/servicios-web/DialogFlow.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/servicios-web/DialogFlow.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/servicios-web/Facebook.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/servicios-web/Facebook.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/universidad/Universidad.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/universidad/Universidad.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/universidad/archivos/Archivador.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/universidad/archivos/Archivador.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/universidad/archivos/Archivo.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/universidad/archivos/Archivo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/universidad/facultad/Especialidad.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/universidad/facultad/Especialidad.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/universidad/facultad/Facultad.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/universidad/facultad/Facultad.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/universidad/facultad/Peticion.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/universidad/facultad/Peticion.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/universidad/facultad/Usuario.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/universidad/facultad/Usuario.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/cierra.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/cierra.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/inicio.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/inicio.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/muestra.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/muestra.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/reinicio.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/reinicio.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/webhook.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/webhook.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/metodos.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/metodos.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -37,37 +20,24 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/AcademiBot.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="348">
-              <caret line="165" column="70" lean-forward="true" selection-start-line="165" selection-start-column="70" selection-end-line="165" selection-end-column="70" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/servicios-web/DialogFlow.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="86" column="9" selection-start-line="86" selection-start-column="9" selection-end-line="86" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/servicios-web/Amazon.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="130" column="30" lean-forward="true" selection-start-line="130" selection-start-column="30" selection-end-line="130" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="395">
-              <caret line="28" column="30" lean-forward="true" selection-start-line="28" selection-start-column="30" selection-end-line="28" selection-end-column="30" />
+            <state relative-caret-position="484">
+              <caret line="55" column="3" selection-start-line="55" selection-start-column="3" selection-end-line="55" selection-end-column="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/clasificacion.pug">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/clasificacion.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="10" column="3" lean-forward="true" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
             </state>
           </provider>
         </entry>
@@ -81,52 +51,66 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/muestra.js">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/middleware.js">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/inicio.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="72">
+              <caret line="3" column="29" selection-start-line="3" selection-start-column="29" selection-end-line="3" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/routes/webhook.js">
+        <entry file="file://$PROJECT_DIR$/routes/login.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1627">
-              <caret line="93" column="7" selection-start-line="93" selection-start-column="7" selection-end-line="93" selection-end-column="7" />
+            <state relative-caret-position="216">
+              <caret line="9" column="60" selection-start-line="9" selection-start-column="60" selection-end-line="9" selection-end-column="60" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/universidad/facultad/Especialidad.js">
+        <entry file="file://$PROJECT_DIR$/.env_sample">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="199" column="49" lean-forward="true" selection-start-line="199" selection-start-column="49" selection-end-line="199" selection-end-column="49" />
+            <state relative-caret-position="332">
+              <caret line="21" selection-start-line="21" selection-end-line="21" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/servicios-web/Facebook.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
-              <caret line="240" column="21" lean-forward="true" selection-start-line="240" selection-start-column="21" selection-end-line="240" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/universidad/facultad/Facultad.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="65" selection-start-line="65" selection-end-line="65" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/universidad/Universidad.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="137" column="9" selection-start-line="137" selection-start-column="9" selection-end-line="137" selection-end-column="9" />
-            </state>
-          </provider>
+        <entry file="file://$PROJECT_DIR$/views/error.pug">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>DIALOGFLOW_PROJECT_ID</find>
+      <find>DIALOGFLOW_PRO</find>
+      <find>URL</find>
+    </findStrings>
+    <dirStrings>
+      <dir>C:\Users\Marco\WebstormProjects\AcademiBot</dir>
+    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -138,7 +122,6 @@
         <option value="$PROJECT_DIR$/model/universidad/archivos/Archivador.js" />
         <option value="$PROJECT_DIR$/model/servicios-web/DialogFlow.js" />
         <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/libs/metodos.js" />
         <option value="$PROJECT_DIR$/model/universidad/archivos/Archivo.js" />
         <option value="$PROJECT_DIR$/model/universidad/facultad/Peticion.js" />
@@ -149,15 +132,21 @@
         <option value="$PROJECT_DIR$/model/universidad/facultad/Especialidad.js" />
         <option value="$PROJECT_DIR$/model/universidad/facultad/Facultad.js" />
         <option value="$PROJECT_DIR$/model/servicios-web/Amazon.js" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/src/randomPing.js" />
+        <option value="$PROJECT_DIR$/src/metodos.js" />
+        <option value="$PROJECT_DIR$/.env_sample" />
+        <option value="$PROJECT_DIR$/views/clasificacion.pug" />
         <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/routes/clasificacion.js" />
+        <option value="$PROJECT_DIR$/routes/login.js" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="10" />
-    <option name="y" value="-23" />
-    <option name="width" value="1346" />
-    <option name="height" value="688" />
+    <option name="x" value="953" />
+    <option name="width" value="974" />
+    <option name="height" value="1047" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -176,7 +165,22 @@
             <path>
               <item name="AcademiBot" type="b2602c69:ProjectViewProjectNode" />
               <item name="AcademiBot" type="462c0819:PsiDirectoryNode" />
-              <item name="libs" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AcademiBot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AcademiBot" type="462c0819:PsiDirectoryNode" />
+              <item name="routes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AcademiBot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AcademiBot" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AcademiBot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AcademiBot" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -190,7 +194,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="12.2.0" />
     <property name="js.last.introduce.type" value="LET" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/routes" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -203,6 +207,18 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.spelling" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Marco\WebstormProjects\AcademiBot\routes" />
+      <recent name="C:\Users\Marco\WebstormProjects\AcademiBot" />
+      <recent name="C:\Users\Marco\WebstormProjects\AcademiBot\src" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Marco\WebstormProjects\AcademiBot\routes" />
+      <recent name="C:\Users\Marco\WebstormProjects\AcademiBot\views" />
+      <recent name="C:\Users\Marco\WebstormProjects\AcademiBot" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -230,7 +246,8 @@
       <workItem from="1560816154801" duration="2336000" />
       <workItem from="1560818527858" duration="112000" />
       <workItem from="1562536054514" duration="127000" />
-      <workItem from="1562536195506" duration="1976000" />
+      <workItem from="1562536195506" duration="5527000" />
+      <workItem from="1563694128021" duration="3346000" />
     </task>
     <task id="LOCAL-00001" summary="AcademiBot&#10;&#10;ChatBot diseñado por Marco Antonio Vela Rodriguez, director del área académica del Centro Cultural de Avanzada Tecnologica de la Facultad de Ingeniería Industrial y de Sistemas de la UNI.&#10;&#10;El proposito de AcademiBot es servir material de estudio de manera virtual a los estudiantes universitarios.">
       <created>1560817878924</created>
@@ -246,11 +263,18 @@
       <option name="project" value="LOCAL" />
       <updated>1560818348672</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Correccion de errores&#10;&#10;Se corrigieron ciertos errores de tipografia, se buscará añadir ahora un soporte para el administrador, facilitando la clasificacion de material a través de la pagina web">
+      <created>1562538358643</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1562538358643</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4551000" />
+    <option name="totallyTimeSpent" value="11448000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -262,15 +286,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="953" y="0" width="974" height="1047" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24973656" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3258547" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Inspection Results" sideWeight="0.49947312" visible="true" weight="0.32998884" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49947312" weight="0.32998884" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49947312" weight="0.32887402" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -279,9 +303,10 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49947312" weight="0.32887402" />
       <window_info anchor="bottom" id="Messages" order="9" weight="0.32991454" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50052685" side_tool="true" visible="true" weight="0.32998884" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49736565" weight="0.32887402" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5032051" side_tool="true" visible="true" weight="0.3322072" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49679488" visible="true" weight="0.3322072" />
       <window_info anchor="bottom" id="GraphQL" order="12" />
+      <window_info anchor="bottom" id="Inspection Results" order="13" sideWeight="0.49947312" visible="true" weight="0.32998884" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -294,7 +319,8 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="AcademiBot&#10;&#10;ChatBot diseñado por Marco Antonio Vela Rodriguez, director del área académica del Centro Cultural de Avanzada Tecnologica de la Facultad de Ingeniería Industrial y de Sistemas de la UNI.&#10;&#10;El proposito de AcademiBot es servir material de estudio de manera virtual a los estudiantes universitarios." />
-    <option name="LAST_COMMIT_MESSAGE" value="AcademiBot&#10;&#10;ChatBot diseñado por Marco Antonio Vela Rodriguez, director del área académica del Centro Cultural de Avanzada Tecnologica de la Facultad de Ingeniería Industrial y de Sistemas de la UNI.&#10;&#10;El proposito de AcademiBot es servir material de estudio de manera virtual a los estudiantes universitarios." />
+    <MESSAGE value="Correccion de errores&#10;&#10;Se corrigieron ciertos errores de tipografia, se buscará añadir ahora un soporte para el administrador, facilitando la clasificacion de material a través de la pagina web" />
+    <option name="LAST_COMMIT_MESSAGE" value="Correccion de errores&#10;&#10;Se corrigieron ciertos errores de tipografia, se buscará añadir ahora un soporte para el administrador, facilitando la clasificacion de material a través de la pagina web" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/node_modules/.gitignore" />
@@ -302,16 +328,6 @@
     <entry file="file://$PROJECT_DIR$/README.md" />
     <entry file="file://$PROJECT_DIR$/LICENSE" />
     <entry file="file://$PROJECT_DIR$/package.json" />
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="3" column="13" lean-forward="true" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libs/metodos.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/model/universidad/archivos/Archivo.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="259">
@@ -340,27 +356,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/AcademiBot.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
-          <caret line="165" column="70" lean-forward="true" selection-start-line="165" selection-start-column="70" selection-end-line="165" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/servicios-web/DialogFlow.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="86" column="9" selection-start-line="86" selection-start-column="9" selection-end-line="86" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/universidad/facultad/Especialidad.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="199" column="49" lean-forward="true" selection-start-line="199" selection-start-column="49" selection-end-line="199" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.es2015.iterable.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -368,31 +363,78 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/model/servicios-web/Amazon.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3120">
+          <caret line="130" column="30" lean-forward="true" selection-start-line="130" selection-start-column="30" selection-end-line="130" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/universidad/facultad/Especialidad.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4776">
+          <caret line="199" column="49" selection-start-line="199" selection-start-column="49" selection-end-line="199" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/model/universidad/facultad/Facultad.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
+        <state relative-caret-position="1560">
           <caret line="65" selection-start-line="65" selection-end-line="65" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/model/universidad/Universidad.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
+        <state relative-caret-position="3288">
           <caret line="137" column="9" selection-start-line="137" selection-start-column="9" selection-end-line="137" selection-end-column="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/servicios-web/Amazon.js">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="130" column="30" lean-forward="true" selection-start-line="130" selection-start-column="30" selection-end-line="130" selection-end-column="30" />
+        <state relative-caret-position="72">
+          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
+    <entry file="file://$PROJECT_DIR$/routes/webhook.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="395">
-          <caret line="28" column="30" lean-forward="true" selection-start-line="28" selection-start-column="30" selection-end-line="28" selection-end-column="30" />
+        <state relative-caret-position="864">
+          <caret line="36" column="43" selection-start-line="36" selection-start-column="43" selection-end-line="36" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/servicios-web/DialogFlow.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="792">
+          <caret line="42" column="58" selection-start-line="42" selection-start-column="58" selection-end-line="42" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/AcademiBot.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="75" column="51" selection-start-line="75" selection-start-column="51" selection-end-line="75" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/stylesheets/login.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-144" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/randomPing.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="29" selection-start-column="29" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/metodos.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-36">
+          <caret line="35" column="2" selection-start-line="35" selection-start-column="2" selection-end-line="35" selection-end-column="2" />
         </state>
       </provider>
     </entry>
@@ -403,10 +445,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/webhook.js">
+    <entry file="file://$PROJECT_DIR$/routes/muestra.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.env_sample">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1627">
-          <caret line="93" column="7" selection-start-line="93" selection-start-column="7" selection-end-line="93" selection-end-column="7" />
+        <state relative-caret-position="332">
+          <caret line="21" selection-start-line="21" selection-end-line="21" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/middleware.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/error.pug">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="55" column="3" selection-start-line="55" selection-start-column="3" selection-end-line="55" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/clasificacion.pug">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/clasificacion.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="10" column="3" lean-forward="true" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/inicio.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="3" column="29" selection-start-line="3" selection-start-column="29" selection-end-line="3" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="9" column="60" selection-start-line="9" selection-start-column="60" selection-end-line="9" selection-end-column="60" />
         </state>
       </provider>
     </entry>
