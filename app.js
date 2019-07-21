@@ -2,7 +2,7 @@
 // Librerias y polyfills
 require('./src/metodos');
 const randomPing = require('./src/randomPing');
-
+const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('express-session');
