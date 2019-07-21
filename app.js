@@ -6,6 +6,7 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+const createError = require('http-errors');
 // creacion de la aplicacion
 const app = express();
 // Definir puerto y
@@ -25,17 +26,19 @@ app.use(session({
   }
 }));
 // Importar rutas
-const inicio = require('./routes/inicio');
+const indexRoute = require('./routes/inicio');
 const webhookRoute = require('./routes/webhook');
-//const reinicioRoute = require('./routes/reinicio');
 const cierraRoute = require('./routes/cierra');
 const muestraRoute = require('./routes/muestra');
+const loginRoute = require('./routes/login');
+const clasificacionRoute = require('./routes/clasificacion');
 
-app.use('/', inicio);
+app.use('/', indexRoute);
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
 app.use('/webhook', webhookRoute);
-//app.use('/reinicio', reinicioRoute);
+app.use('/login', loginRoute);
+app.use('/clasificacion', clasificacionRoute);
 app.use('/cierra', cierraRoute);
 app.use('/muestra', muestraRoute);
 
