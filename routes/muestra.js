@@ -9,24 +9,17 @@ const muestra = async (req, res) => {
   if (intentoClave === claveSecreta) {
     const peticion = req.params.peticion;
     if (!peticion) res.send("Especifica un objeto a mostrar");
-    const amazondata = {
-      accessKeyId: process.env.AWS_ACCESS_KEY_ID, 
-      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY, 
-      region: "us-east-1", 
-      nombre: process.env.S3_BUCKET_NAME
-    };
-    const academibot = new AcademiBot(amazondata, "", "DONT USE");
     try {
       if (peticion === "facultades") {
-        const facultades = await academibot.leeFacultades();
+        const facultades = await AcademiBot.leeFacultades();
         res.json(facultades);
       }
       if (peticion === "usuarios") {
-        const usuarios = await academibot.leeUsuarios();
+        const usuarios = await AcademiBot.leeUsuarios();
         res.json(usuarios);
       }
       if (peticion === "archivador") {
-        const archivador = await academibot.leeArchivador();
+        const archivador = await AcademiBot.leeArchivador();
         res.json(archivador);
       }
     } catch (error) {
