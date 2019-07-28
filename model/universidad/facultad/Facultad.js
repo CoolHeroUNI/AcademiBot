@@ -91,7 +91,7 @@ Facultad.creaDirectorio = function (direcciones) {
   let directorio = {};
   for (let key of direcciones) {
     let lista = key.split('/');
-    const [facultad, curso, carpeta, archivo] = lista;
+    const [, curso, carpeta, archivo] = lista;
     if (!archivo || !~archivo.indexOf('.')) continue;
     if (!directorio[curso]) directorio[curso] = {};
     if (!directorio[curso][carpeta]) directorio[curso][carpeta] = [];

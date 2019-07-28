@@ -8,7 +8,8 @@ const amazondata = {
   nombre: process.env.S3_BUCKET_NAME
 };
 const academibot = new AcademiBot(amazondata, process.env.FACEBOOK_TOKEN);
-academibot.carga();
+academibot.carga()
+  .catch(e => console.log(e));
 // log cantidad de usuarios desde el reinicio
 const usuarios = new Set();
 
@@ -27,7 +28,8 @@ const procesaEventos = (req, res) => {
     usuarios.add(idUsuario);
     if (event.message && !event.message.sticker_id && event.message.attachments) {
       const urls = event.message.attachments.filter((elem) => (elem.payload && elem.payload.url)).map(elem => elem.payload.url);
-      academibot.procesaUrl(idUsuario, urls);
+      academibot.procesaUrl(idUsuario, urls)
+        .catch(e => console.log(e));
     } else if (event.postback && event.postback.payload) {
       academibot.recibePostback(idUsuario, event.postback.payload);
     } else if (event.message && event.message.quick_reply && event.message.quick_reply.payload) {
@@ -35,7 +37,8 @@ const procesaEventos = (req, res) => {
       academibot.recibePostback(idUsuario, payload);
     } else if (event.message && event.message.text) {
       const text = event.message.text;     
-      academibot.recibeTexto(idUsuario, text) 
+      academibot.recibeTexto(idUsuario, text)
+        .catch(e => console.log(e));
     }
   }
   res.sendStatus(200);
@@ -65,7 +68,7 @@ const muestraFacultades = (req,res) => {
     const facultades = academibot.UNI.getFacultadesObject();
     res.json(facultades);
   } else {
-    res.send("Clave incorrecta.")
+    res.send("Clave incorrecta.");
   }
 };
 

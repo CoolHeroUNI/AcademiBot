@@ -64,6 +64,8 @@ DialogFlow.prototype.parseIntentResponse = function (respuesta) {
   const salida = {
     params : {},
     texto: "",
+    comando: "",
+    peticion: ""
   };
   const fulfillmentMessages = respuesta.queryResult.fulfillmentMessages;
   if (!fulfillmentMessages) return salida;

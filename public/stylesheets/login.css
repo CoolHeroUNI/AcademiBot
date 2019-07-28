@@ -2,6 +2,7 @@
 
 /* helpers/align.css */
 
+/*noinspection ALL*/
 .align {
   -webkit-box-align: center;
       -ms-flex-align: center;
@@ -20,6 +21,7 @@
 
 /* helpers/grid.css */
 
+/*noinspection ALL*/
 .grid {
   margin-left: auto;
   margin-right: auto;
@@ -30,6 +32,7 @@
 
 /* helpers/hidden.css */
 
+/*noinspection ALL*/
 .hidden {
   border: 0;
   clip: rect(0 0 0 0);
@@ -43,10 +46,12 @@
 
 /* helpers/icon.css */
 
+/*noinspection ALL*/
 .icons {
   display: none;
 }
 
+/*noinspection ALL*/
 .icon {
   display: inline-block;
   fill: #606468;
@@ -71,6 +76,7 @@ html {
   height: 100%;
 }
 
+/*noinspection CssOverwrittenProperties,CssOverwrittenProperties*/
 body {
   background-color: #2c3338;
   color: #606468;
@@ -115,6 +121,7 @@ input[type='submit'] {
   cursor: pointer;
 }
 
+/*noinspection ALL*/
 .form {
   margin: -14px;
   margin: -0.875rem;
@@ -126,6 +133,7 @@ input[type='submit'] {
   width: 100%;
 }
 
+/*noinspection ALL*/
 .form__field {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -134,6 +142,7 @@ input[type='submit'] {
   margin: 0.875rem;
 }
 
+/*noinspection ALL*/
 .form__input {
   -webkit-box-flex: 1;
       -ms-flex: 1;
@@ -142,10 +151,12 @@ input[type='submit'] {
 
 /* modules/login.css */
 
+/*noinspection ALL*/
 .login {
   color: #eee;
 }
 
+/*noinspection CssOverwrittenProperties,CssOverwrittenProperties*/
 .login label,
 .login input[type='text'],
 .login input[type='password'],
@@ -155,6 +166,7 @@ input[type='submit'] {
   padding: 1rem;
 }
 
+/*noinspection CssOverwrittenProperties,CssOverwrittenProperties,CssOverwrittenProperties,CssOverwrittenProperties*/
 .login label {
   background-color: #363b41;
   border-bottom-right-radius: 0;
@@ -193,6 +205,7 @@ input[type='submit'] {
 
 /* modules/text.css */
 
+/*noinspection CssOverwrittenProperties,CssOverwrittenProperties,CssOverwrittenProperties,CssOverwrittenProperties*/
 p {
   margin-bottom: 24px;
   margin-bottom: 1.5rem;
@@ -200,10 +213,12 @@ p {
   margin-top: 1.5rem;
 }
 
+/*noinspection ALL*/
 .text--center {
   text-align: center;
 }
 @media screen and (max-width: 1000px) and (orientation:portrait) {
+  /*noinspection CssOverwrittenProperties,CssOverwrittenProperties,CssOverwrittenProperties,CssOverwrittenProperties*/
   .login label {
     background-color: #363b41;
     border-bottom-right-radius: 0;
@@ -213,10 +228,14 @@ p {
     padding-right: 20px;
     padding-right: 3rem;
   }
+
+  /*noinspection ALL*/
   .grid {
-    max-width: -webkit-fill-available;
+    max-width: max-content;
     width: 75%;
   }
+
+  /*noinspection CssOverwrittenProperties,CssOverwrittenProperties*/
   body {
     background-color: #2c3338;
     color: #606468;
@@ -229,6 +248,8 @@ p {
     margin: 0;
     min-height: 100vh;
   }
+
+  /*noinspection ALL*/
   .icon {
     height: 5em;
     width: 5em;

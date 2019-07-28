@@ -40,7 +40,7 @@ Facebook.prototype.profileRequest = function (messageData) {
  * https://developers.facebook.com/docs/messenger-platform/send-messages/template/generic
  * @method enviaCarrusel
  * @param {String} id
- * @param {{title:String, buttons:{type:String,title:String,payload:String,url:String}[]}[]} lista
+ * @param {{title:String, buttons:{type:String,title:String,payload:String,payload:String}[]}[]} lista
  * @returns {Promise}
  */
 Facebook.prototype.enviaCarrusel = function (id, lista) {
@@ -208,12 +208,14 @@ Facebook.prototype.enviaAdjuntos = async function (id, archivos, type) {
     try {
       await promesa;
     } catch (error) {
-      this.enviaTexto(id, mensaje);
+      this.enviaTexto(id, mensaje)
+        .catch(e => console.log(e));
       promesa = this.enviaAdjunto(id, archivo.payload, type);
       try {
         await promesa;
       } catch (error) {
-        this.enviaTexto(id, err);
+        this.enviaTexto(id, err)
+          .catch(e => console.log(e));
         console.log(error);
       }
     }
@@ -230,7 +232,7 @@ Facebook.prototype.enviaAdjuntos = async function (id, archivos, type) {
  * @returns {Promise}
  */
 Facebook.prototype.enviaImagen = function (id, url) {
-  return this.enviaAdjunto(id, {url}, 'image');
+  return this.enviaAdjunto(id, {url, attachment_id: ""}, 'image');
 };
 /**
  * Metodo para enviar archivos por medio de una url a un usuario identificado por su id, 
@@ -241,7 +243,7 @@ Facebook.prototype.enviaImagen = function (id, url) {
  * @returns {Promise}
  */
 Facebook.prototype.enviaArchivo = function (id, url) {
-  return this.enviaAdjunto(id, {url}, 'file');
+  return this.enviaAdjunto(id, {url, attachment_id: ""}, 'file');
 };
 /**
  * Metodo para obtener los nombres completos de un usuario 
@@ -250,7 +252,7 @@ Facebook.prototype.enviaArchivo = function (id, url) {
  * PUEDE PARSEAR CON JSON.parse()
  * @method getNames
  * @param {String} PPID
- * @returns {Promise<{name:String, id:String}>}
+ * @returns {Promise<String>}
  */
 Facebook.prototype.getNames = function (PPID) {
   const params = {

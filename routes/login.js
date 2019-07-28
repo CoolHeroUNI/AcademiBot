@@ -7,7 +7,7 @@ router.get('/', middleware.unactiveSession, (req, res) => {
 });
 router.post('/', (req, res) => {
   const pass = req.body.password;
-  if (!req.session.logged && pass == process.env.PROCESS_KEY) {
+  if (!req.session.logged && pass === process.env.PROCESS_KEY) {
     req.session.logged = true;
     console.log("logged in");
     res.redirect("/clasificacion")

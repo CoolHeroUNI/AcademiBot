@@ -18,6 +18,7 @@ const reincia = async (req, res) => {
       const facultades = await academibot.leeFacultades();
       academibot.UNI.cargaFacultades(facultades);
       academibot.actualizaDirectorios()
+        .catch(e => console.log(e));
     } catch (error) {
       res.send(error);
     }

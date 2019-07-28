@@ -44,7 +44,7 @@ class Especialidad {
           cursosPropiedad.push(found);
         } else {
           // Si no está en la lista, entonces no es consistente
-          throw new Error(`Error, codigo=${codigo} no se encuentra en la lista. id=${id}, ciclo=${ciclo.id}`);
+          throw new Error(`Error, codigo=${_curso.codigo} no se encuentra en la lista. id=${id}, ciclo=${ciclo.id}`);
         }
       }
     }

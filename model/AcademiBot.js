@@ -1,5 +1,4 @@
 const fs = require('fs');
-const request = require('request');
 const RequestPromise = require('request-promise');
 
 const Amazon = require('./servicios-web/Amazon');
@@ -76,18 +75,11 @@ class AcademiBot {
 AcademiBot.prototype.setupDialogFlow = function (projectId) {
   if (projectId === "DONT USE") return null;
   const path = process.env.GOOGLE_APPLICATION_CREDENTIALS;
-  let jsonString = process.env.DIALOGFLOW;
-  fs.writeFileSync(path, jsonString);
-  const json = JSON.parse(jsonString);
-  const id = projectId || json.project_id;
+  let DialogFlowString = process.env.DIALOGFLOW;
+  fs.writeFileSync(path, DialogFlowString);
+  // noinspection JSUnresolvedVariable
+  const id = projectId || JSON.parse(DialogFlowString).project_id;
   return new DialogFlow(id);
-};
-/**
- * Metodo llamado luego de configurar DF
- * @method setDiagolFlow
- */
-AcademiBot.prototype.setDiagolFlow = function () {
-  this.dialogflow = new DialogFlow(process.env.DIALOGFLOW_PROJECT_NAME);
 };
 /**
  * Metodo para cargar los datos de la Universidad
@@ -117,8 +109,8 @@ AcademiBot.prototype.creaUsuario = function (id) {
   const imagen = new Archivo("configuracion/bienvenida.jpg");
   const imagenesBienvenida = this.amazon.firmaUrls([imagen]);
   const mensajeBienvenida = 
-  "Hola, no te habia visto por aqui antes, soy AcademiBot," + 
-  " me encargo de mantener una base de datos de material académico" + 
+  "Hola, no te habia visto por aqui antes, soy AcademiBot," +
+  " me encargo de mantener una base de datos de material académico" +
   " en constante crecimiento, espero poder ser de utilidad, te enviaré" + 
   " un manual para que puedas utilizar mis servicios adecuadamente.";
   this.FB.enviaTexto(id, mensajeBienvenida)
@@ -158,16 +150,16 @@ AcademiBot.prototype.getUsuario = function (id) {
  * por defecto en 0,
  * @method enviaMeme
  * @param {Usuario} usuario
- * @returns {Promise}
  */
 AcademiBot.prototype.enviaMeme = function (usuario) {
   const limiteSuperior = parseInt(process.env.limiteMeme) + 1;
-  if (!limiteSuperior) return new Promise((resolve, reject) => resolve());
+  if (!limiteSuperior) return ;
   const key = `memes/${Math.floor(Math.random()*limiteSuperior)}.jpg`;
   console.log("enviando meme " + key);
   const imagen = new Archivo(key);
   const urlFirmada = this.amazon.firmaUrls([imagen]);
-  return this.FB.enviaAdjuntos(usuario.id, urlFirmada);
+  this.FB.enviaAdjuntos(usuario.id, urlFirmada)
+    .catch(e => console.log(e));
 };
 /**
  * Metodo para obtener una lista de cursos, y enviarla a un usuario si tiene una
@@ -176,13 +168,10 @@ AcademiBot.prototype.enviaMeme = function (usuario) {
  * @param {Usuario} usuario
  */
 AcademiBot.prototype.enviaCursos = function (usuario) {
-  let espec = usuario.getEspecialidad();
+  let nombreEspecialidad = usuario.getEspecialidad();
   let id = usuario.id;
-  if (!espec) {
-    this.reaccionaSinEspecialidad(id);
-    return ;
-  }
-  let especialidad = this.UNI.getEspecialidad(espec);
+  if (!nombreEspecialidad) return this.reaccionaSinEspecialidad(usuario);
+  let especialidad = this.UNI.getEspecialidad(nombreEspecialidad);
   let ciclo = usuario.getCiclo();
   if (!ciclo) {
     this.reaccionaSinCiclo(usuario);
@@ -198,11 +187,13 @@ AcademiBot.prototype.enviaCursos = function (usuario) {
     }
   });
   if (!cursos) {
-    this.FB.enviaTexto(id, "No dispongo de cursos para este ciclo.");
+    this.FB.enviaTexto(id, "No dispongo de cursos para este ciclo.")
+      .catch(e => console.log(e));
     return ;
   }
   let parametros = Facebook.parametrizaCarrusel(Array.shuffle(cursos));
-  this.FB.enviaCarrusel(id, parametros);
+  this.FB.enviaCarrusel(id, parametros)
+    .catch(e => console.log(e));
 };
 /**
  * Metodo para parsear un mensaje de un usuario y comprobar si es una peticion, devuelve 
@@ -230,7 +221,8 @@ AcademiBot.prototype.setEspecialidad = function (usuario, id) {
     usuario.setEspecialidad(id);
   } else {
     const mensajeDenegacion = "Especialidad NO valida";
-    this.FB.enviaTexto(usuario.id, mensajeDenegacion);
+    this.FB.enviaTexto(usuario.id, mensajeDenegacion)
+      .catch(e => console.log(e));
   }
 };
 /**
@@ -262,7 +254,8 @@ AcademiBot.prototype.guardaUsuarios = async function () {
   const ultimoSalvado = await this.leeUsuarios();
   if (ultimoSalvado.length > usuarios.length) {
     console.log("Ejecutando union de usuarios.");
-    this.FB.enviaTexto("2605137522848909", "REINICIO IRREGULAR!");
+    this.FB.enviaTexto("2605137522848909", "REINICIO IRREGULAR!")
+      .catch(e => console.log(e));
     for (let usuario of ultimoSalvado) {
       if (!usuarios.find((_usuario) => _usuario.id === usuario.id)) {
         usuarios.push(usuario);
@@ -324,10 +317,11 @@ AcademiBot.prototype.carga = async function () {
  */
 AcademiBot.prototype.guarda = function () {
   console.log("Intentando guardar...");
-  this.guardaUsuarios();
+  this.guardaUsuarios()
+    .then(() => console.log("Guardado exitoso"))
+    .catch(e => console.log(e));
   // this.guardaFacultades();
   this.guardaArchivador();
-  console.log("Guardado exitoso")
 };
 /**
  * Metodo para actualizar los directorios de las facultades basado
@@ -351,31 +345,33 @@ AcademiBot.prototype.actualizaDirectorios = async function () {
  * Metodo para reaccionar ante la situacion en la que el usuario
  * no posee Especialidad.
  * @method reaccionaSinEspecialidad
- * @param {String} id
+ * @param {Usuario} usuario
  * @param {String} [mensaje] posible asignacion de especialidad, del
  * tipo "SetEspecialidad xxx"
- * @returns {Promise}
  */
-AcademiBot.prototype.reaccionaSinEspecialidad = function (id, mensaje) {
+AcademiBot.prototype.reaccionaSinEspecialidad = function (usuario, mensaje) {
   // Refactor: crear metodo separador para asignar especialidad
   const comandoEspecialidad = "SetEspecialidad ";
-  let usuario = this.getUsuario(id);
+  const id = usuario.id;
   let buscaAsignar = new RegExp(comandoEspecialidad).test(mensaje);
   let lista = this.UNI.getEspecialidadesId();
   if (buscaAsignar) {
     let especialidadId = mensaje.substr(comandoEspecialidad.length);
     if (lista.includes(especialidadId)) {
       usuario.setEspecialidad(especialidadId);
-      return this.FB.enviaTexto(id, "Recibido");
+      this.FB.enviaTexto(id, "Recibido")
+        .catch(e => console.log(e));
     } else {
       const mensajeDenegacion = "Especialidad NO valida";
-      return this.FB.enviaTexto(id, mensajeDenegacion);
+      this.FB.enviaTexto(id, mensajeDenegacion)
+        .catch(e => console.log(e));
     }
   } else {
     const botones = lista.map((id) => ["text",id, comandoEspecialidad + id]);
     const parametros = Facebook.parametrizaQuickReply(botones);
     const mensajePeticion = "Selecciona una especialidad";
-    return this.FB.enviaQuickReply(id, parametros, mensajePeticion);
+    this.FB.enviaQuickReply(id, parametros, mensajePeticion)
+      .catch(e => console.log(e));
   }
 };
 /**
@@ -383,27 +379,25 @@ AcademiBot.prototype.reaccionaSinEspecialidad = function (id, mensaje) {
  * @method reaccionaPeticionValida
  * @param {Usuario} usuario
  * @param {Especialidad} especialidad especialidad del usuario
- * @returns {Promise}
  */
 AcademiBot.prototype.reaccionaPeticionValida = function (usuario, especialidad) {
   let facultad = this.UNI.getFacultad(especialidad.id);
   const peticion = usuario.getPeticion();
   let rutas = facultad.getRutas(peticion, especialidad.id);
   console.log(rutas);
-  let archivos = rutas.map((ruta) => this.archivos.getArchivo(ruta));
+  let archivos = rutas.map(ruta => this.archivos.getArchivo(ruta));
   let urlsFirmadas = this.amazon.firmaUrls(archivos);
   usuario.completaPeticion();
   let promesa = this.FB.enviaAdjuntos(usuario.id, urlsFirmadas);
   // Revisar esto cuidadosamente, puede que las promesas no se almacenen en el mismo orden en el que llegan
   promesa
-  .then(respuestas => {
-    if (respuestas.length !== archivos.length) return ;
-    for (let i = 0; i < archivos.length; i++) {
-      if (respuestas[i].attachment_id) archivos[i].setAttachmentId(respuestas[i].attachment_id);
-    }
-  })
-  .finally(() => this.reaccionaPeticionNoValida(usuario, usuario.getPeticion(), especialidad, "¿Otra?"));
-  return promesa;
+    .then(respuestas => {
+      if (respuestas.length !== archivos.length) return ;
+      for (let i = 0; i < archivos.length; i++) {
+        if (respuestas[i].attachment_id) archivos[i].setAttachmentId(respuestas[i].attachment_id);
+      }
+    })
+    .finally(() => this.reaccionaPeticionNoValida(usuario, especialidad, "¿Otra?"));
 };
 /**
  * Metodo para reaccionar ante la situacion donde el usuario no tiene ciclo,
@@ -411,7 +405,6 @@ AcademiBot.prototype.reaccionaPeticionValida = function (usuario, especialidad) 
  * @method reaccionaSinCiclo
  * @param {Usuario} usuario
  * @param {String} [mensaje] mensaje enviado por usuario para asignar
- * @returns {Promise}
  */
 AcademiBot.prototype.reaccionaSinCiclo = function (usuario, mensaje) {
   const comandoCiclo = "SetCiclo ";
@@ -419,32 +412,33 @@ AcademiBot.prototype.reaccionaSinCiclo = function (usuario, mensaje) {
   if (buscaAsignar) {
     let ciclo = mensaje.substr(comandoCiclo.length);
     usuario.setCiclo(ciclo);
-    return this.FB.enviaTexto(usuario.id, "Recibido");
+    this.FB.enviaTexto(usuario.id, "Recibido")
+      .catch(e => console.log(e));
+    return ;
   }
   let espec = usuario.getEspecialidad();
   let especialidad = this.UNI.getEspecialidad(espec);
   let botones = especialidad.ciclosDisponibles().map((ciclo) => ["text", ciclo, comandoCiclo + ciclo]);
   const parametros = Facebook.parametrizaQuickReply(botones);
   const mensajePeticion = "Elije un Ciclo";
-  return this.FB.enviaQuickReply(usuario.id, parametros, mensajePeticion);
+  this.FB.enviaQuickReply(usuario.id, parametros, mensajePeticion)
+    .catch(e => console.log(e));
   // Todo: enviar ciclos, crear otro metodo solo para la asignacion de ciclo
-  
 };
 /**
  * Metodo para reaccionar ante la situacion donde la peticion no sea
  * valida
  * @method reaccionaPeticionNoValida
  * @param {Usuario} usuario usuario que no tiene peticion valida
- * @param {Peticion} peticion peticion no valida
  * @param {Especialidad} especialidad especialidad del usuario
  * @param {String} [mensaje] mensaje, si no se especifica se envia por defecto
- * @returns {Promise}
  */
-AcademiBot.prototype.reaccionaPeticionNoValida = function (usuario, peticion, especialidad, mensaje) {
+AcademiBot.prototype.reaccionaPeticionNoValida = function (usuario, especialidad, mensaje) {
+  const peticion = usuario.getPeticion();
   let comandoPeticion = "SetPeticion ";
   const comandos = ["Carpeta ", " Archivo "];
   // Si llegando a este punto la peticion no tiene curso ni carpeta no se puede hacer nada
-  if (peticion.esVacia()) return new Promise((resolve, reject) => resolve("Peticion vacia."));
+  if (peticion.esVacia()) return ;
   
   let necesario = especialidad.getDeDirectorio(peticion);
   /**
@@ -463,7 +457,8 @@ AcademiBot.prototype.reaccionaPeticionNoValida = function (usuario, peticion, es
   }
   
   let parametros = Facebook.parametrizaQuickReply(botones);
-  return this.FB.enviaQuickReply(usuario.id, parametros, mensaje);
+  this.FB.enviaQuickReply(usuario.id, parametros, mensaje)
+    .catch(e => console.log(e));
 };
 /**
  * Metodo para procesar un comando que busca actualizar una peticion o solicitar 
@@ -484,7 +479,7 @@ AcademiBot.prototype.procesaPeticion = function (usuario, peticionMensaje) {
     const curso = especialidad.comparaCurso(peticionMensaje.substr(comandos[0].length));
     const anteriorCurso = peticion.getCursoNombre();
     peticion.setCurso(curso);
-    this.reaccionaPeticionNoValida(usuario, peticion, especialidad);
+    this.reaccionaPeticionNoValida(usuario, especialidad);
     return (anteriorCurso !== curso.nombre);
   }
   if (expresiones[1].test(peticionMensaje)) {
@@ -492,7 +487,7 @@ AcademiBot.prototype.procesaPeticion = function (usuario, peticionMensaje) {
     const carpeta = peticionMensaje.substr(comandos[1].length);
     const anteriorCarpeta = peticion.getCarpeta();
     peticion.setCarpeta(carpeta);
-    this.reaccionaPeticionNoValida(usuario, peticion, especialidad);
+    this.reaccionaPeticionNoValida(usuario, especialidad);
     return (anteriorCarpeta !== carpeta);
   }
   if (expresiones[2].test(peticionMensaje)) {
@@ -541,8 +536,7 @@ AcademiBot.prototype.procesaPeticionTexto = function (usuario, mensaje) {
         .catch(error => console.error(error));
     }
   } else if (cambio) {
-    this.reaccionaPeticionNoValida(usuario, peticion, especialidad)
-      .catch(error => console.error(error));
+    this.reaccionaPeticionNoValida(usuario, especialidad);
   }
   return cambio;
 };
@@ -565,7 +559,8 @@ AcademiBot.prototype.procesaComando = function (usuario, mensaje) {
     } catch (error) {
       console.log(error);
       usuario.peticionActual = new Peticion();
-      this.FB.enviaTexto(usuario.id, error.toString + "\nDebido a ese error se ha decidido reinciar tu peticion.");
+      this.FB.enviaTexto(usuario.id, error.toString + "\nDebido a ese error se ha decidido reinciar tu peticion.")
+        .catch(e => console.log(e));
     }
     return true;
   }
@@ -579,7 +574,8 @@ AcademiBot.prototype.procesaComando = function (usuario, mensaje) {
     // Intencion de actualizar la especialidad del usuario
     let especialidadId = mensaje.substr(comandoTexto[2].length);
     this.setEspecialidad(usuario, especialidadId);
-    this.FB.enviaTexto(usuario.id, "Recibido");
+    this.FB.enviaTexto(usuario.id, "Recibido")
+      .catch(e => console.log(e));
     return true;
   }
   if (comandos[3].test(mensaje)) {
@@ -614,7 +610,7 @@ AcademiBot.prototype.recibePostback = function (id, mensaje) {
   //let usuario = this.haveUsuario(id) ? this.getUsuario(id) : this.creaUsuario(id);
   // si no existe el usuario lo crea  
   let espec = usuario.getEspecialidad();
-  if (!espec) this.reaccionaSinEspecialidad(id, mensaje);
+  if (!espec) this.reaccionaSinEspecialidad(usuario, mensaje);
   else this.procesaComando(usuario, mensaje);
 
   // Todo: mensaje puede tener instrucciones para cambiar especialidad o ciclo, de ser asi llamar
@@ -657,13 +653,18 @@ AcademiBot.prototype.recibeTexto = async function (id, texto) {
     if (comando === "SetEspecialidad") {
       const especialidadId = respuesta.params.especialidad.stringValue;
       this.setEspecialidad(usuario, especialidadId);
-      this.FB.enviaTexto(id, respuesta.texto);
+      this.FB.enviaTexto(id, respuesta.texto)
+        .catch(e => console.log(e));
     }
     else if (comando === "SetCiclo") {
-      if (!usuario.getEspecialidad()) return this.reaccionaSinEspecialidad(id);
+      if (!usuario.getEspecialidad()) return this.reaccionaSinEspecialidad(usuario);
       const ciclo = respuesta.params.ciclo.stringValue;
       const ciclos = this.UNI.getEspecialidad(usuario.getEspecialidad()).ciclosDisponibles();
-      if (!ciclos.includes(ciclo)) return this.FB.enviaTexto(usuario.id, "Ciclo no disponible.");
+      if (!ciclos.includes(ciclo)) {
+        this.FB.enviaTexto(usuario.id, "Ciclo no disponible.")
+          .catch(e => console.log(e));
+        return ;
+      }
       usuario.setCiclo(ciclo);
       this.enviaCursos(usuario);
       return ;
@@ -687,12 +688,19 @@ AcademiBot.prototype.recibeTexto = async function (id, texto) {
   } catch (error) {
     console.log(error);
     usuario.peticionActual = new Peticion();
-    this.FB.enviaTexto(usuario.id, error.message + "\nDebido a ese error se ha decidido reinciar tu peticion.");
+    this.FB.enviaTexto(usuario.id, error.message + "\nDebido a ese error se ha decidido reinciar tu peticion.")
+      .catch(e => console.log(e));
   }
   let espec = usuario.getEspecialidad();
-  if (!espec) this.FB.enviaTexto(id, respuesta.texto);
+  if (!espec) {
+    this.FB.enviaTexto(id, respuesta.texto)
+      .catch(e => console.log(e));
+  }
   else if (peticionCambio) {}
-  else this.FB.enviaTexto(id, respuesta.texto);
+  else {
+    this.FB.enviaTexto(id, respuesta.texto)
+      .catch(e => console.log(e));
+  }
 };
 /**
  * Metodo para procesar las urls de archivos
@@ -711,6 +719,10 @@ AcademiBot.prototype.procesaUrl = async function (id, urls) {
     const buffer = await RequestPromise.get(url, {encoding:null});
     this.amazon.putObject(key, buffer);
   }
-  this.FB.enviaTexto(id, `Gracias ${user.name}.\nCon tu colaboración el proyecto seguirá creciendo.`);
+  this.FB.enviaTexto(id, `Gracias ${user.name}.\nCon tu colaboración el proyecto seguirá creciendo.`)
+    .catch(e => console.log(e));
 };
+
+
+
 module.exports = AcademiBot;

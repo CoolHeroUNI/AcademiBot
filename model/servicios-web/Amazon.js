@@ -59,7 +59,7 @@ Amazon.prototype.firmaUrls = function (archivos) {
       attachment_id : "",
       url : ""
     };
-    if (archivo.getAttachmentId()) payload.attachment_id = archivo.getAttachmentId();
+    if (archivo.esReusable()) payload.attachment_id = archivo.getAttachmentId();
     else payload.url = this.s3.getSignedUrl('getObject',params);
     respuesta.push({payload, extension, type});
   }
@@ -171,6 +171,7 @@ Amazon.prototype.putObject = function (key, cuerpo) {
     Bucket: this.bucketName,
     Key: key
   };
-  this.s3.putObject(param).promise();
+  this.s3.putObject(param).promise()
+    .catch(e => console.log(e));
 };
 module.exports = Amazon;

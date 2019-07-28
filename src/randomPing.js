@@ -9,5 +9,5 @@ function randomPing (url) {
     http.get(url);
     randomPing(url);
   }, tiempo);
-};
+}
 module.exports = randomPing;
