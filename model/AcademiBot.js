@@ -724,5 +724,14 @@ AcademiBot.prototype.procesaUrl = async function (id, urls) {
 };
 
 
+const amazondata = {
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  region: "us-east-1",
+  nombre: process.env.S3_BUCKET_NAME
+};
+const academibot = new AcademiBot(amazondata, process.env.FACEBOOK_TOKEN);
+academibot.carga()
+  .catch(e => console.log(e));
 
-module.exports = AcademiBot;
+module.exports = academibot;

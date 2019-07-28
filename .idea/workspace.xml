@@ -5,20 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/AcademiBot.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/AcademiBot.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/servicios-web/Amazon.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/servicios-web/Amazon.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/servicios-web/DialogFlow.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/servicios-web/DialogFlow.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/servicios-web/Facebook.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/servicios-web/Facebook.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/universidad/facultad/Especialidad.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/universidad/facultad/Especialidad.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/universidad/facultad/Facultad.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/universidad/facultad/Facultad.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/stylesheets/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/stylesheets/login.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/reinicio.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/reinicio.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/webhook.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/webhook.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/randomPing.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/randomPing.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/clasificacion.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/clasificacion.pug" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/login.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/login.pug" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -88,8 +75,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/model/AcademiBot.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="348">
-              <caret line="726" selection-start-line="726" selection-end-line="726" />
+            <state relative-caret-position="445">
+              <caret line="735" lean-forward="true" selection-start-line="735" selection-end-line="735" />
             </state>
           </provider>
         </entry>
@@ -288,7 +275,7 @@
       <workItem from="1563694128021" duration="4428000" />
       <workItem from="1564115942644" duration="3164000" />
       <workItem from="1564194543455" duration="8494000" />
-      <workItem from="1564288574577" duration="812000" />
+      <workItem from="1564288574577" duration="1685000" />
     </task>
     <task id="LOCAL-00001" summary="AcademiBot&#10;&#10;ChatBot diseñado por Marco Antonio Vela Rodriguez, director del área académica del Centro Cultural de Avanzada Tecnologica de la Facultad de Ingeniería Industrial y de Sistemas de la UNI.&#10;&#10;El proposito de AcademiBot es servir material de estudio de manera virtual a los estudiantes universitarios.">
       <created>1560817878924</created>
@@ -339,11 +326,18 @@
       <option name="project" value="LOCAL" />
       <updated>1563698430230</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Correccion de errores menores&#10;&#10;Mejora en la definicion de funciones y parametros, necesario para un correcto mantenimiento del codigo">
+      <created>1564289588467</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1564289588467</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25000000" />
+    <option name="totallyTimeSpent" value="25873000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -370,12 +364,12 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.18290599" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49947312" weight="0.32887402" />
+      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49894625" visible="true" weight="0.32887402" />
       <window_info anchor="bottom" id="Messages" order="9" weight="0.32991454" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5089568" side_tool="true" visible="true" weight="0.32998884" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49578503" weight="0.32887402" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50105375" side_tool="true" visible="true" weight="0.32887402" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49525815" weight="0.32887402" />
       <window_info anchor="bottom" id="GraphQL" order="12" />
-      <window_info anchor="bottom" id="Inspection Results" order="13" sideWeight="0.4910432" visible="true" weight="0.32998884" />
+      <window_info anchor="bottom" id="Inspection Results" order="13" sideWeight="0.4910432" weight="0.32998884" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -393,7 +387,8 @@
     <MESSAGE value="Added path&#10;&#10;Modulo path añadido, corrigiendo un error de ejecucion" />
     <MESSAGE value="Inclusion de las rutas&#10;&#10;Se incluyen las rutas y el manejo de errores http" />
     <MESSAGE value="Error en require&#10;&#10;Se corrige error en path al realizar require" />
-    <option name="LAST_COMMIT_MESSAGE" value="Error en require&#10;&#10;Se corrige error en path al realizar require" />
+    <MESSAGE value="Correccion de errores menores&#10;&#10;Mejora en la definicion de funciones y parametros, necesario para un correcto mantenimiento del codigo" />
+    <option name="LAST_COMMIT_MESSAGE" value="Correccion de errores menores&#10;&#10;Mejora en la definicion de funciones y parametros, necesario para un correcto mantenimiento del codigo" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/node_modules/.gitignore" />
@@ -598,8 +593,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/model/AcademiBot.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
-          <caret line="726" selection-start-line="726" selection-end-line="726" />
+        <state relative-caret-position="445">
+          <caret line="735" lean-forward="true" selection-start-line="735" selection-end-line="735" />
         </state>
       </provider>
     </entry>
