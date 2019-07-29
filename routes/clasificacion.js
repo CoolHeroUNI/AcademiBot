@@ -13,7 +13,7 @@ router.get('/', middleware.activeSession, (req, res) => {
       };
     });
 
-    res.render('collapsible', {facultades: JSON.stringify(facultades), Material:""});
+    res.render('clasificacion', {facultades: JSON.stringify(facultades), Material:""});
   })
 });
 

@@ -35,6 +35,7 @@ const clasificacionRoute = require('./routes/clasificacion');
 
 app.use('/', indexRoute);
 app.use('/public', express.static(path.join(__dirname, 'public')));
+app.use('/favicon.ico', express.static(path.join(__dirname, 'public/images/favicon.ico')));
 
 app.use('/webhook', webhookRoute);
 app.use('/login', loginRoute);
