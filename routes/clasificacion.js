@@ -5,8 +5,15 @@ const middleware = require('../src/middleware');
 
 router.get('/', middleware.activeSession, (req, res) => {
   request(process.env.URL + "webhook/muestra/facultades/"+process.env.PROCESS_KEY, (err, response, body) => {
-    const facultades = JSON.parse(body);
-    res.render('clasificacion', {directorio: JSON.stringify(facultades[0].directorio)});
+    const raw = JSON.parse(body);
+    const facultades = raw.map(facu => {
+      return {
+        id: facu.id,
+        directorio: facu.directorio
+      };
+    });
+
+    res.render('collapsible', {facultades: JSON.stringify(facultades), Material:""});
   })
 });
 

@@ -1,15 +1,48 @@
-extends layout
-block content
+doctype html
+head
+    title="Clasificador"
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    //link(rel='stylesheet' type='text/css' href='/public/stylesheets/login.css')
+    link(rel='stylesheet' type='text/css' href='/public/stylesheets/collapsible.css')
 
-    div
-        iframe(src="", id="material", height=0, width=0)
-    div
-        form(action="./clasificacion", method="POST")
+h2(align='center') Clasificador de material
+button.collapsible Material
+div.content
+    img(src= Material, id="material", class="center")
+button.collapsible Ruta
+div.content
+    form(action="./clasificacion", method="POST")
+        label Facultad:
+        div.form__field
+            select(id="facultad")
+        label Curso:
+        div.form__field
             select(id="curso")
+            input.opcional(type="text", id="curso_escrito", placeholder="Nuevo curso")
+        label Carpeta:
+        div.form__field
             select(id="carpeta")
-            input(type="text", id="archivo")
-            input(type="submit", value="submit")
-    div
-        script.
-          let directorio = !{directorio};
-        script(src="/public/javascripts/dynamicDropDown.js")
+            input.opcional(type="text", id="carpeta_escrita", placeholder="Nueva carpeta")
+        label Archivo:
+        div.form__field
+            input.form__input(type="text", id="archivo", placeholder="Nuevo archivo")
+            label -
+            input.form__input(type="number", id="archivo_pagina", value="1")
+            input.form__input.non__editable(type="text", id="extension", placeholder=".jpg", readonly=true)
+        div.form__field
+            input(type="submit", value="Cambiar ruta")
+script.
+    const coll = document.getElementsByClassName("collapsible");
+    for (let i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            let content = this.nextElementSibling;
+            if (content.style.maxHeight){
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        });
+    }
+    let facultades = !{facultades};
+script(src="/public/javascripts/dynamicDropDown.js")

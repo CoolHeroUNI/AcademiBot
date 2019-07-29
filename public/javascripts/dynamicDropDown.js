@@ -1,23 +1,34 @@
+function encuentraFacultad() {
+  return facultades[boxFacultad.selectedIndex];
+}
+
 function poblaCarpetas() {
-  let j = 0;
-  let curso = boxCurso.value;
+  const directorio = encuentraFacultad().directorio;
   boxCarpeta.options.length = 0;
-  for (let carpeta in directorio[curso]) {
-    if (directorio[curso].hasOwnProperty(carpeta)) {
-      boxCarpeta.options[j] = new Option(carpeta, carpeta);
-      j++;
-    }
+  const carpetas = Object.getOwnPropertyNames(directorio[boxCurso.value]);
+  for (let i = 0; i < carpetas.length; i++) {
+    boxCarpeta.options[i] = new Option(carpetas[i], carpetas[i]);
   }
+}
+
+function poblaCursos() {
+  const directorio = Object.getOwnPropertyNames(encuentraFacultad().directorio);
+  boxCurso.options.length = 0;
+  for (let i = 0; i < directorio.length; i++) {
+    boxCurso.options[i] = new Option(directorio[i], directorio[i]);
+  }
+  poblaCarpetas();
 }
 let material = document.getElementById("material");
 let boxCurso = document.getElementById("curso");
 let boxCarpeta = document.getElementById("carpeta");
-let i = 0;
-for (let curso in directorio) {
-  if (directorio.hasOwnProperty(curso)) {
-    boxCurso.options[i] = new Option(curso, curso);
-    i++;
-  }
+let boxFacultad = document.getElementById("facultad");
+
+
+for (let i = 0; i < facultades.length; i++) {
+  const facultad = facultades[i];
+  boxFacultad.options[i] = new Option(facultad.id, facultad.id);
 }
-poblaCarpetas();
+poblaCursos();
 boxCurso.onchange = poblaCarpetas;
+boxFacultad.onchange = poblaCursos;
