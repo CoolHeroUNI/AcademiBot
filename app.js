@@ -60,6 +60,6 @@ app.use(function(err, req, res, next) {
 });
 
 app.listen(app.get('port'), () => {
-  console.log("running");
+  console.log("running", require('os').hostname());
   randomPing(process.env.URL);
 });
