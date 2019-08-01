@@ -310,7 +310,7 @@ Bot.prototype.carga = async function () {
   console.log("Inicio completado");
 };
 /**
- * Metodo para guardar el estado actual de todo el AcademiBot,
+ * Metodo para guardar el estado actual de el AcademiBot,
  * se ve por conveniente no guardar las facultades, ya que realmente 
  * no se afectan por ahora
  * @method guarda

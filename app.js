@@ -26,7 +26,7 @@ app.use(session({
   }
 }));
 // Importar rutas
-const indexRoute = require('./routes/inicio');
+const indexRoute = require('./routes/index');
 const webhookRoute = require('./routes/webhook');
 const cierraRoute = require('./routes/cierra');
 const muestraRoute = require('./routes/muestra');
