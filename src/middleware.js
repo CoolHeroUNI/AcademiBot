@@ -3,6 +3,7 @@ const activeSession = (req, res, next) => {
     console.log("not allowed!");
     return res.redirect('/login');
   }
+  req.session.touch();
   next();
 };
 const unactiveSession = (req, res, next) => {

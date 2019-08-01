@@ -22,7 +22,7 @@ app.use(session({
   resave: true,
   saveUninitialized: true,
   cookie: {
-    maxAge: 1000*60*5
+    maxAge: 1000*60*1
   }
 }));
 // Importar rutas
