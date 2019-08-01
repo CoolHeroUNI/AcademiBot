@@ -48,7 +48,7 @@ button {
 }
 
 @media screen and (max-width: 1000px) and (orientation:portrait) {
-    .login {
-        width: 30%;
+    button {
+        width: auto;
     }
 }

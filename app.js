@@ -21,6 +21,7 @@ app.use(session({
   secret: process.env.COOKIE_SECRET,
   resave: true,
   saveUninitialized: true,
+  rolling: true,
   cookie: {
     maxAge: 1000*60*1
   }
