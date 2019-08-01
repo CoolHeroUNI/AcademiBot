@@ -14,7 +14,7 @@ router.post('/', (req, res) => {
   }
   else {
     console.log("incorrect pass");
-    res.redirect("/");
+    res.redirect("/login");
   }
 });
 module.exports = router;
