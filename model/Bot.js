@@ -19,9 +19,9 @@ const Facultad = require('./universidad/facultad/Facultad');
  * propios, esta clase debe ser considerada como una 
  * interfaz para simplificar el llamado de metodos entre
  * los modulos.
- * @class AcademiBot
+ * @class Bot
  */
-class AcademiBot {
+class Bot {
   /**
    * @constructor
    * @param {{accessKeyId:String, secretAccessKey:String, region:String, nombre:String}} amazonConfig
@@ -72,7 +72,7 @@ class AcademiBot {
  * @method setupDialogFlow
  * @param {String} projectId id del proyecto de
  */
-AcademiBot.prototype.setupDialogFlow = function (projectId) {
+Bot.prototype.setupDialogFlow = function (projectId) {
   if (projectId === "DONT USE") return null;
   const path = process.env.GOOGLE_APPLICATION_CREDENTIALS;
   let DialogFlowString = process.env.DIALOGFLOW;
@@ -87,7 +87,7 @@ AcademiBot.prototype.setupDialogFlow = function (projectId) {
  * @param {{id:String,especialidades:{id:String,malla:Object[]}[],directorio:Object,cursos:{codigo:String,nombre:String}[]}[]} facultades
  * @param {{id:String,especialidad:String,ciclo:String,historial:String[],cantidadHistorica:Number,peticionActual:{curso:{codigo:String,nombre:String},carpeta:String}}[]} usuarios
  */
-AcademiBot.prototype.cargaUniversidad = function (facultades, usuarios) {
+Bot.prototype.cargaUniversidad = function (facultades, usuarios) {
   this.UNI.cargaFacultades(facultades);
   this.UNI.cargaUsuarios(usuarios);
 };
@@ -96,7 +96,7 @@ AcademiBot.prototype.cargaUniversidad = function (facultades, usuarios) {
  * @method cargaArchivador
  * @param {[String,{attachment_id:String,contador:Number}][]} archivador
  */
-AcademiBot.prototype.cargaArchivador = function (archivador) {
+Bot.prototype.cargaArchivador = function (archivador) {
   this.archivos.cargaArchivos(archivador);
 };
 /**
@@ -105,7 +105,7 @@ AcademiBot.prototype.cargaArchivador = function (archivador) {
  * @param {String} id
  * @returns {Usuario}
  */
-AcademiBot.prototype.creaUsuario = function (id) {
+Bot.prototype.creaUsuario = function (id) {
   const imagen = new Archivo("configuracion/bienvenida.jpg");
   const imagenesBienvenida = this.amazon.firmaUrls([imagen]);
   const mensajeBienvenida = 
@@ -126,7 +126,7 @@ AcademiBot.prototype.creaUsuario = function (id) {
  * @param {String} id
  * @returns {Boolean}
  */
-AcademiBot.prototype.haveUsuario = function (id) {
+Bot.prototype.haveUsuario = function (id) {
   let usuario = this.UNI.getUsuario(id);
   // noinspection RedundantIfStatementJS
   if (usuario) return true;
@@ -140,7 +140,7 @@ AcademiBot.prototype.haveUsuario = function (id) {
  * @param {String} id
  * @returns {Usuario}
  */
-AcademiBot.prototype.getUsuario = function (id) {
+Bot.prototype.getUsuario = function (id) {
   let usuario = this.UNI.getUsuario(id);
   usuario = usuario ? usuario : this.creaUsuario(id);
   return usuario;
@@ -151,7 +151,7 @@ AcademiBot.prototype.getUsuario = function (id) {
  * @method enviaMeme
  * @param {Usuario} usuario
  */
-AcademiBot.prototype.enviaMeme = function (usuario) {
+Bot.prototype.enviaMeme = function (usuario) {
   const limiteSuperior = parseInt(process.env.limiteMeme) + 1;
   if (!limiteSuperior) return ;
   const key = `memes/${Math.floor(Math.random()*limiteSuperior)}.jpg`;
@@ -167,7 +167,7 @@ AcademiBot.prototype.enviaMeme = function (usuario) {
  * @method enviaCursos
  * @param {Usuario} usuario
  */
-AcademiBot.prototype.enviaCursos = function (usuario) {
+Bot.prototype.enviaCursos = function (usuario) {
   let nombreEspecialidad = usuario.getEspecialidad();
   let id = usuario.id;
   if (!nombreEspecialidad) return this.reaccionaSinEspecialidad(usuario);
@@ -203,7 +203,7 @@ AcademiBot.prototype.enviaCursos = function (usuario) {
  * @param {String} mensaje
  * @returns {Object} si el mensaje era peticion
  */
-AcademiBot.prototype.parseMensaje = function (usuario, mensaje) {
+Bot.prototype.parseMensaje = function (usuario, mensaje) {
   let especs = usuario.getEspecialidad();
   // if (!especs) return false;
   let especialidad = this.UNI.getEspecialidad(especs);
@@ -215,7 +215,7 @@ AcademiBot.prototype.parseMensaje = function (usuario, mensaje) {
  * @param {Usuario} usuario
  * @param {String} id identificador de la especialidad
  */
-AcademiBot.prototype.setEspecialidad = function (usuario, id) {
+Bot.prototype.setEspecialidad = function (usuario, id) {
   let lista = this.UNI.getEspecialidadesId();
   if (lista.includes(id)) {
     usuario.setEspecialidad(id);
@@ -229,7 +229,7 @@ AcademiBot.prototype.setEspecialidad = function (usuario, id) {
  * Metodo para guardar el estado actual de las facultades de UNI
  * @method guardaFacultades
  */
-AcademiBot.prototype.guardaFacultades = function () {
+Bot.prototype.guardaFacultades = function () {
   let key = "configuracion/facultades.json";
   let facultades = this.UNI.getFacultadesObject().map(facultad => facultad.toJSON());
   this.amazon.putObject(key, JSON.stringify(facultades));
@@ -240,7 +240,7 @@ AcademiBot.prototype.guardaFacultades = function () {
  * @method leeFacultades
  * @returns {Promise}
  */
-AcademiBot.prototype.leeFacultades = function () {
+Bot.prototype.leeFacultades = function () {
   let key = "configuracion/facultades.json";
   return this.amazon.getJSON(key);
 };
@@ -248,7 +248,7 @@ AcademiBot.prototype.leeFacultades = function () {
  * Metodo para guardar el estado actual de los Usuarios
  * @method guardaUsuarios
  */
-AcademiBot.prototype.guardaUsuarios = async function () {
+Bot.prototype.guardaUsuarios = async function () {
   const key = "configuracion/usuarios.json";
   const usuarios = this.UNI.getUsuarios().map(usuario => usuario.toJSON());
   const ultimoSalvado = await this.leeUsuarios();
@@ -270,7 +270,7 @@ AcademiBot.prototype.guardaUsuarios = async function () {
  * @method leeUsuarios
  * @returns {Promise<{id:String,especialidad:String,ciclo:String,historial:String[],cantidadHistorica:number,peticionActual:Object}[]>}
  */
-AcademiBot.prototype.leeUsuarios = function () {
+Bot.prototype.leeUsuarios = function () {
   let key = "configuracion/usuarios.json";
   return this.amazon.getJSON(key);
 };
@@ -278,7 +278,7 @@ AcademiBot.prototype.leeUsuarios = function () {
  * Metodo para guardar el estado actual del archivador
  * @method guardaArchivador
  */
-AcademiBot.prototype.guardaArchivador = function () {
+Bot.prototype.guardaArchivador = function () {
   let key = "configuracion/archivador.json";
   let archivos = this.archivos.toJSON();
   this.amazon.putObject(key, JSON.stringify(archivos));
@@ -288,7 +288,7 @@ AcademiBot.prototype.guardaArchivador = function () {
  * @method leeArchivador
  * @returns {Promise}
  */
-AcademiBot.prototype.leeArchivador = function () {
+Bot.prototype.leeArchivador = function () {
   let key = "configuracion/archivador.json";
   return this.amazon.getJSON(key);
 };
@@ -297,7 +297,7 @@ AcademiBot.prototype.leeArchivador = function () {
  * "facultades.json","usuarios.json" y "archivador.json", que contienen las configuraciones necesarias
  * @method carga
  */
-AcademiBot.prototype.carga = async function () {
+Bot.prototype.carga = async function () {
   console.log("Iniciando servicio...");
   /* let datos = [this.leeFacultades(), this.leeUsuarios()];
   Promise.all(datos)
@@ -315,7 +315,7 @@ AcademiBot.prototype.carga = async function () {
  * no se afectan por ahora
  * @method guarda
  */
-AcademiBot.prototype.guarda = function () {
+Bot.prototype.guarda = function () {
   console.log("Intentando guardar...");
   this.guardaUsuarios()
     .then(() => console.log("Guardado exitoso"))
@@ -328,7 +328,7 @@ AcademiBot.prototype.guarda = function () {
  * en las subcarpetas de s3
  * @method actualizaDirectorios
  */
-AcademiBot.prototype.actualizaDirectorios = async function () {
+Bot.prototype.actualizaDirectorios = async function () {
   let facultades = this.UNI.getFacultadesObject();
   let JSONfacultades = [];
   for (let facultad of facultades) {
@@ -349,7 +349,7 @@ AcademiBot.prototype.actualizaDirectorios = async function () {
  * @param {String} [mensaje] posible asignacion de especialidad, del
  * tipo "SetEspecialidad xxx"
  */
-AcademiBot.prototype.reaccionaSinEspecialidad = function (usuario, mensaje) {
+Bot.prototype.reaccionaSinEspecialidad = function (usuario, mensaje) {
   // Refactor: crear metodo separador para asignar especialidad
   const comandoEspecialidad = "SetEspecialidad ";
   const id = usuario.id;
@@ -380,7 +380,7 @@ AcademiBot.prototype.reaccionaSinEspecialidad = function (usuario, mensaje) {
  * @param {Usuario} usuario
  * @param {Especialidad} especialidad especialidad del usuario
  */
-AcademiBot.prototype.reaccionaPeticionValida = function (usuario, especialidad) {
+Bot.prototype.reaccionaPeticionValida = function (usuario, especialidad) {
   let facultad = this.UNI.getFacultad(especialidad.id);
   const peticion = usuario.getPeticion();
   let rutas = facultad.getRutas(peticion, especialidad.id);
@@ -406,7 +406,7 @@ AcademiBot.prototype.reaccionaPeticionValida = function (usuario, especialidad) 
  * @param {Usuario} usuario
  * @param {String} [mensaje] mensaje enviado por usuario para asignar
  */
-AcademiBot.prototype.reaccionaSinCiclo = function (usuario, mensaje) {
+Bot.prototype.reaccionaSinCiclo = function (usuario, mensaje) {
   const comandoCiclo = "SetCiclo ";
   let buscaAsignar = new RegExp(comandoCiclo).test(mensaje);
   if (buscaAsignar) {
@@ -433,7 +433,7 @@ AcademiBot.prototype.reaccionaSinCiclo = function (usuario, mensaje) {
  * @param {Especialidad} especialidad especialidad del usuario
  * @param {String} [mensaje] mensaje, si no se especifica se envia por defecto
  */
-AcademiBot.prototype.reaccionaPeticionNoValida = function (usuario, especialidad, mensaje) {
+Bot.prototype.reaccionaPeticionNoValida = function (usuario, especialidad, mensaje) {
   const peticion = usuario.getPeticion();
   let comandoPeticion = "SetPeticion ";
   const comandos = ["Carpeta ", " Archivo "];
@@ -468,7 +468,7 @@ AcademiBot.prototype.reaccionaPeticionNoValida = function (usuario, especialidad
  * @param {String} peticionMensaje
  * @returns {Boolean} si la peticion realmente cambió
  */
-AcademiBot.prototype.procesaPeticion = function (usuario, peticionMensaje) {
+Bot.prototype.procesaPeticion = function (usuario, peticionMensaje) {
   console.log(peticionMensaje);
   const comandos = ["Curso ", "Carpeta ", "Archivo "];
   const expresiones = comandos.map(comando => new RegExp(comando));
@@ -512,7 +512,7 @@ AcademiBot.prototype.procesaPeticion = function (usuario, peticionMensaje) {
  * @param {String} mensaje
  * @returns {Boolean} si la peticion cambió
  */
-AcademiBot.prototype.procesaPeticionTexto = function (usuario, mensaje) {
+Bot.prototype.procesaPeticionTexto = function (usuario, mensaje) {
   const especialidad = this.UNI.getEspecialidad(usuario.getEspecialidad());
   const peticion = usuario.getPeticion();
   const id = usuario.id;
@@ -548,7 +548,7 @@ AcademiBot.prototype.procesaPeticionTexto = function (usuario, mensaje) {
  * @param {String} mensaje mensaje enviado, se comparara para ver si es un comando
  * @return {Boolean}
  */
-AcademiBot.prototype.procesaComando = function (usuario, mensaje) {
+Bot.prototype.procesaComando = function (usuario, mensaje) {
   const comandoTexto = ["SetPeticion ", "SetCiclo ", "SetEspecialidad ", "Cursos", "Empezar"];
   const comandos = comandoTexto.map(comando => new RegExp(comando,'i'));
   if (comandos[0].test(mensaje)) {
@@ -598,7 +598,7 @@ AcademiBot.prototype.procesaComando = function (usuario, mensaje) {
  * @param {String} id
  * @param {String} mensaje
  */
-AcademiBot.prototype.recibePostback = function (id, mensaje) {
+Bot.prototype.recibePostback = function (id, mensaje) {
   // Refactor: crear arreglo de comandos, comparar el mensaje
   let usuario;
   if (this.haveUsuario(id)) {
@@ -627,7 +627,7 @@ AcademiBot.prototype.recibePostback = function (id, mensaje) {
  * @param {String} id
  * @param {String} texto
  */
-AcademiBot.prototype.recibeTexto = async function (id, texto) {
+Bot.prototype.recibeTexto = async function (id, texto) {
   this.FB.marcaVisto(id);
   /**
    * @type {Usuario}
@@ -708,7 +708,7 @@ AcademiBot.prototype.recibeTexto = async function (id, texto) {
  * @param {String} id usuario de FB
  * @param {String[]} urls
  */
-AcademiBot.prototype.procesaUrl = async function (id, urls) {
+Bot.prototype.procesaUrl = async function (id, urls) {
   const data = await this.FB.getNames(id);
   const user = JSON.parse(data);
   for (const url of urls) {
@@ -724,14 +724,6 @@ AcademiBot.prototype.procesaUrl = async function (id, urls) {
 };
 
 
-const amazondata = {
-  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  region: "us-east-1",
-  nombre: process.env.S3_BUCKET_NAME
-};
-const academibot = new AcademiBot(amazondata, process.env.FACEBOOK_TOKEN);
-academibot.carga()
-  .catch(e => console.log(e));
 
-module.exports = academibot;
+
+module.exports = Bot;

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const AcademiBot = require('../model/AcademiBot');
+const AcademiBot = require('../src/AcademiBot');
 
 // log cantidad de usuarios desde el reinicio
 const usuarios = new Set();
