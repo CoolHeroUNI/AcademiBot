@@ -3,7 +3,11 @@ const router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', {});
+  if (!req.session.logged) {
+    res.render('index', {});
+  } else {
+    res.render('hub', {});
+  }
 });
 
 module.exports = router;

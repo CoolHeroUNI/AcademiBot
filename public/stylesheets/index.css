@@ -23,7 +23,7 @@ body {
 .sticky + .content {
     padding-top: 102px;
 }
-.login {
+button {
     float: right;
     text-align: center;
     background-image: none;
