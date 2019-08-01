@@ -10,7 +10,7 @@ router.post('/', (req, res) => {
   if (!req.session.logged && pass === process.env.PROCESS_KEY) {
     req.session.logged = true;
     console.log("logged in");
-    res.redirect("/clasificacion")
+    res.redirect("/")
   }
   else {
     res.send("INCORRECTO");

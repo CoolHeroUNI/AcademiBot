@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const AcademiBot = require('../model/AcademiBot');
+const AcademiBot = require('../scr/AcademiBot');
 
 
 const muestra = async (req, res) => {

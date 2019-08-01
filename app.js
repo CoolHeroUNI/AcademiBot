@@ -22,11 +22,11 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
   cookie: {
-    maxAge: 1000*60
+    maxAge: 1000*60*5
   }
 }));
 // Importar rutas
-const indexRoute = require('./routes/inicio');
+const indexRoute = require('./routes/index');
 const webhookRoute = require('./routes/webhook');
 const cierraRoute = require('./routes/cierra');
 const muestraRoute = require('./routes/muestra');
