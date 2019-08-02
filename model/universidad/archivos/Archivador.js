@@ -63,7 +63,7 @@ Archivador.prototype.cargaArchivos = function (archivos) {
  * @returns {Archivo[]}
  */
 Archivador.prototype.toArray = function () {
-  return Array.from<Archivo>(this.archivos.values());
+  return Array.from(this.archivos.values());
 }
 /**
  * Metodo para obtener un Array de archivos simple
