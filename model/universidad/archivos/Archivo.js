@@ -80,7 +80,7 @@ Archivo.prototype.getExtension = function () {
   return this.extension;
 };
 /**
- * Metodo para obtener la ruta
+ * Metodo para obtener la ruta en S3
  * @method getRuta
  * @return {String}
  */
@@ -128,16 +128,18 @@ Archivo.prototype.toJSON = function () {
  * @returns {String}
  */
 Archivo.prototype.getType = function () {
-  let existe;
+  const extension = this.getExtension();
+  if (!extension)
+    return 'none';
   const extensionesImagenes = ["jpg","png","jpeg","bmp"];
-  existe = extensionesImagenes.includes(this.getExtension());
-  if (existe) return 'image';
+  if (extensionesImagenes.includes(extension))
+    return 'image';
   const extensionesAudio = ["mp3","wav","wma","ogg"];
-  existe = extensionesAudio.includes(this.getExtension());
-  if (existe) return 'audio';
+  if (extensionesAudio.includes(extension))
+    return 'audio';
   const extensionesVideo = ["webm","avi","mp4","flv","3gp"];
-  existe = extensionesVideo.includes(this.getExtension());
-  if (existe) return 'video';
+  if (extensionesVideo.includes(extension))
+    return 'video';
   return 'file';
 };
 module.exports = Archivo;

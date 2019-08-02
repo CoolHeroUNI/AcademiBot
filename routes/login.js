@@ -13,7 +13,8 @@ router.post('/', (req, res) => {
     res.redirect("/")
   }
   else {
-    res.send("INCORRECTO");
+    console.log("incorrect pass");
+    res.redirect("/login");
   }
 });
 module.exports = router;

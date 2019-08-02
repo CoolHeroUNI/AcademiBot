@@ -1,0 +1,13 @@
+.header {
+    padding-bottom: 4rem;
+}
+
+#Clasificador {
+    padding: auto;
+}
+
+@media screen and (max-width: 1000px) and (orientation:portrait) {
+    #Clasificador {
+        width: 40%;
+    }
+}

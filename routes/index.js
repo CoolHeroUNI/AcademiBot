@@ -6,6 +6,7 @@ router.get('/', function(req, res, next) {
   if (!req.session.logged) {
     res.render('index', {});
   } else {
+    req.session.touch();
     res.render('hub', {});
   }
 });

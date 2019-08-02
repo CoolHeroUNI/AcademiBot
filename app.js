@@ -19,8 +19,9 @@ app.use(bodyParser.json());
 app.use(session({
   name: "AcademiBot",
   secret: process.env.COOKIE_SECRET,
-  resave: false,
+  resave: true,
   saveUninitialized: true,
+  rolling: true,
   cookie: {
     maxAge: 1000*60*5
   }
