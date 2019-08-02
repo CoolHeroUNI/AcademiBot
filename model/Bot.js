@@ -375,7 +375,7 @@ Bot.prototype.obtieneArchivoDeEnvios = function (tipo) {
     let urlFirmada = this.amazon.firmaUrls([envio], 600)[0];
     if (urlFirmada) {
       respuesta.ruta = envio.getRuta();
-      respuesta.url = urlFirmada;
+      respuesta.url = urlFirmada.payload.url;
     }
   }
   return respuesta;
