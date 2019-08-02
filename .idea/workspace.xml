@@ -31,8 +31,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model/Bot.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="367" selection-start-line="367" selection-end-line="367" />
+            <state relative-caret-position="225">
+              <caret line="305" column="66" lean-forward="true" selection-start-line="305" selection-start-column="66" selection-end-line="305" selection-end-column="66" />
             </state>
           </provider>
         </entry>
@@ -40,8 +40,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model/servicios-web/Amazon.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="197" column="22" lean-forward="true" selection-start-line="197" selection-start-column="22" selection-end-line="197" selection-end-column="22" />
+            <state relative-caret-position="444">
+              <caret line="203" column="13" lean-forward="true" selection-start-line="203" selection-start-column="13" selection-end-line="203" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -58,8 +58,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/clasificacion.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="53">
-              <caret line="26" column="24" selection-start-line="26" selection-start-column="24" selection-end-line="26" selection-end-column="24" />
+            <state relative-caret-position="342">
+              <caret line="45" column="31" selection-start-line="45" selection-start-column="31" selection-end-line="45" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -81,8 +81,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/clasificacion.pug">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="349">
-              <caret line="28" column="72" selection-start-line="28" selection-start-column="72" selection-end-line="28" selection-end-column="72" />
+            <state relative-caret-position="383">
+              <caret line="36" column="64" selection-start-line="36" selection-start-column="64" selection-end-line="36" selection-end-column="64" />
             </state>
           </provider>
         </entry>
@@ -172,8 +172,8 @@
         <option value="$PROJECT_DIR$/model/universidad/archivos/Archivo.js" />
         <option value="$PROJECT_DIR$/model/servicios-web/Amazon.js" />
         <option value="$PROJECT_DIR$/public/stylesheets/clasificacion.css" />
-        <option value="$PROJECT_DIR$/views/clasificacion.pug" />
         <option value="$PROJECT_DIR$/model/Bot.js" />
+        <option value="$PROJECT_DIR$/views/clasificacion.pug" />
         <option value="$PROJECT_DIR$/routes/clasificacion.js" />
       </list>
     </option>
@@ -317,7 +317,7 @@
       <workItem from="1564416926023" duration="3330000" />
       <workItem from="1564456105971" duration="5688000" />
       <workItem from="1564507572462" duration="1004000" />
-      <workItem from="1564694604391" duration="21497000" />
+      <workItem from="1564694604391" duration="22149000" />
     </task>
     <task id="LOCAL-00001" summary="AcademiBot&#10;&#10;ChatBot diseñado por Marco Antonio Vela Rodriguez, director del área académica del Centro Cultural de Avanzada Tecnologica de la Facultad de Ingeniería Industrial y de Sistemas de la UNI.&#10;&#10;El proposito de AcademiBot es servir material de estudio de manera virtual a los estudiantes universitarios.">
       <created>1560817878924</created>
@@ -536,11 +536,32 @@
       <option name="project" value="LOCAL" />
       <updated>1564729213376</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Console log&#10;Solo en caso de un fallo sera necesario debugear">
+      <created>1564729418906</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1564729418906</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Error&#10;Clasificacion linea 35, texto sin terminar">
+      <created>1564729643327</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1564729643327</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Error&#10;Clasificacion linea 37, comilla adicional">
+      <created>1564729693642</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1564729693642</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="61938000" />
+    <option name="totallyTimeSpent" value="62590000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -595,9 +616,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Error en require&#10;&#10;Se corrige error en path al realizar require" />
-    <MESSAGE value="Correccion de errores menores&#10;&#10;Mejora en la definicion de funciones y parametros, necesario para un correcto mantenimiento del codigo" />
-    <MESSAGE value="Compartir referencia a AcademiBot&#10;&#10;Mediante este commit se busca preparar el camino para el panel de administracion, compartiendo la instancia de la clase AcademiBot entre todos los modulos" />
     <MESSAGE value="Preparacion para web de administracion&#10;&#10;Commit de preparacion para el desarrollo de web de administrador" />
     <MESSAGE value="Inclusion de web de clasificacion&#10;&#10;Se incluye la web de clasificacion de material de estudio, sera necesario ahora establecer la informacion en back-end" />
     <MESSAGE value="Inclusion de icono&#10;&#10;Se incluye el icono necesario, se corrige la vista de clasificacion" />
@@ -620,7 +638,10 @@
     <MESSAGE value="Clasificacion&#10;Se asegura que la ruta devuelva un resultado positivo" />
     <MESSAGE value="Interpolacion de variables&#10;Error en la interpolacion de variables entre pug y javascript, se busca solucion" />
     <MESSAGE value="Clasificador listo&#10;Prueba del clasificador de imagenes de material de estudio" />
-    <option name="LAST_COMMIT_MESSAGE" value="Clasificador listo&#10;Prueba del clasificador de imagenes de material de estudio" />
+    <MESSAGE value="Console log&#10;Solo en caso de un fallo sera necesario debugear" />
+    <MESSAGE value="Error&#10;Clasificacion linea 35, texto sin terminar" />
+    <MESSAGE value="Error&#10;Clasificacion linea 37, comilla adicional" />
+    <option name="LAST_COMMIT_MESSAGE" value="Error&#10;Clasificacion linea 37, comilla adicional" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/node_modules/.gitignore" />
@@ -852,27 +873,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/clasificacion.pug">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
-          <caret line="28" column="72" selection-start-line="28" selection-start-column="72" selection-end-line="28" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/servicios-web/Amazon.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="197" column="22" lean-forward="true" selection-start-line="197" selection-start-column="22" selection-end-line="197" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/Bot.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="367" selection-start-line="367" selection-end-line="367" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AcademiBot.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -890,10 +890,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/views/clasificacion.pug">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="383">
+          <caret line="36" column="64" selection-start-line="36" selection-start-column="64" selection-end-line="36" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/servicios-web/Amazon.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="444">
+          <caret line="203" column="13" lean-forward="true" selection-start-line="203" selection-start-column="13" selection-end-line="203" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/Bot.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="305" column="66" lean-forward="true" selection-start-line="305" selection-start-column="66" selection-end-line="305" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/routes/clasificacion.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="53">
-          <caret line="26" column="24" selection-start-line="26" selection-start-column="24" selection-end-line="26" selection-end-column="24" />
+        <state relative-caret-position="342">
+          <caret line="45" column="31" selection-start-line="45" selection-start-column="31" selection-end-line="45" selection-end-column="31" />
         </state>
       </provider>
     </entry>

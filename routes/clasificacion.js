@@ -43,8 +43,8 @@ router.post('/', middleware.activeSession, (req, res) => {
     AcademiBot.borraArchivo(req.body.ruta)
       .catch(e => console.log(e));
   }
-  AcademiBot.obtieneArchivoDeEnvios('image')
-    .then(() => res.redirect(req.originalUrl))
+  AcademiBot.cargaSubmissions()
+    .then(() => res.redirect("./clasificacion"))
     .catch(e => {
       console.log(e);
       res.render('error', {error:e});
