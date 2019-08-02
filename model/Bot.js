@@ -392,8 +392,19 @@ Bot.prototype.obtieneArchivoDeEnvios = async function (tipo) {
  * @returns {Promise<void>}
  */
 Bot.prototype.mueveArchivo = async function (origen, destino) {
-  this.amazon.mueve
-}
+  this.amazon.moveObject(origen, destino)
+    .catch(e => console.log(e));
+};
+/**
+ * Metodo para eliminar archivos
+ * @method borraArchivo
+ * @param {String} key
+ * @returns {Promise<void>}
+ */
+Bot.prototype.borraArchivo = async function (key) {
+  this.amazon.deleteObject(key)
+    .catch(e => console.log(e));
+};
 /**
  * Metodo para reaccionar ante la situacion en la que el usuario
  * no posee Especialidad.

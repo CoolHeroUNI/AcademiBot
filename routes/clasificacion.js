@@ -29,12 +29,24 @@ router.post('/', middleware.activeSession, (req, res) => {
   }
 
   if (action === 'move') {
-    console.log(req.body);
+    const origen = req.body.ruta;
+    const curso = req.body.curso_opcional ? req.body.curso_opcional : req.body.curso;
+    const carpeta = req.body.carpeta_opcional ? req.body.carpeta_opcional : req.body.carpeta;
+    const archivo = `${req.body.archivo}-${req.body.pagina}${req.body.extension}`;
+    const destino = `${req.body.facultad}/${curso}/${carpeta}/${archivo}`;
+    AcademiBot.mueveArchivo(origen, destino)
+      .catch(e => console.log(e));
   }
 
   if (action === 'delete') {
-    console.log(req.body);
+    AcademiBot.borraArchivo(req.body.ruta)
+      .catch(e => console.log(e));
   }
-  res.send("Fin :3");
+  AcademiBot.obtieneArchivoDeEnvios('image')
+    .then(() => res.redirect(req.originalUrl))
+    .catch(e => {
+      console.log(e);
+      res.render('error', {error:e});
+    });
 });
 module.exports = router;
