@@ -24,6 +24,7 @@ router.get('/', middleware.activeSession, (req, res) => {
 
 router.post('/', middleware.activeSession, (req, res) => {
   const action = req.query.action;
+  console.log(req.body);
   if (!action) {
     res.send(404);
   }
