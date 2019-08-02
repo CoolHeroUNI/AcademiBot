@@ -175,4 +175,34 @@ Amazon.prototype.putObject = function (key, cuerpo) {
   this.s3.putObject(param).promise()
     .catch(e => console.log(e));
 };
+
+/**
+ * Metodo para mover un objeto dentro del mismo Bucket
+ * @method moveObject
+ * @param {String} origen
+ * @param {String} destino
+ * @returns {Promise<PromiseResult<S3.DeleteObjectOutput, AWSError> | void>}
+ */
+Amazon.prototype.moveObject = function (origen, destino) {
+  let param = {
+    Bucket: this.bucketName,
+    CopySource: `/${this.bucketName}/${origen}`,
+    Key: destino
+  };
+  return this.s3.copyObject(param).promise()
+    .then(() => this.deleteObject(origen))
+    .catch(e => console.log(e));
+};
+/**
+ * Metodo para eliminar un Objeto en cierta ruta
+ * @param {String} key
+ * @returns {Promise<PromiseResult<S3.DeleteObjectOutput, AWSError>>}
+ */
+Amazon.prototype.deleteObject = function (key) {
+  let param = {
+    Bucket : this.bucketName,
+    Key : key
+  };
+  return this.s3.deleteObject(param).promise();
+};
 module.exports = Amazon;

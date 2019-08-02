@@ -103,6 +103,11 @@ input[type='submit'] {
     width: 40px;
 }
 
+#eliminar {
+    width: 100%;
+    color: #ff0a19;
+}
+
 @media screen and (max-width: 1000px) and (orientation:portrait) {
     #archivo_pagina {
         width: 20px;

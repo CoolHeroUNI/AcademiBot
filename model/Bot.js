@@ -385,6 +385,16 @@ Bot.prototype.obtieneArchivoDeEnvios = async function (tipo) {
   return respuesta;
 };
 /**
+ * Metodo para mover un archivo en S3 dentro del bucket
+ * @method mueveArchivo
+ * @param {String} origen
+ * @param {String} destino
+ * @returns {Promise<void>}
+ */
+Bot.prototype.mueveArchivo = async function (origen, destino) {
+  this.amazon.mueve
+}
+/**
  * Metodo para reaccionar ante la situacion en la que el usuario
  * no posee Especialidad.
  * @method reaccionaSinEspecialidad
