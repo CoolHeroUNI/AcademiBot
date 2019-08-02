@@ -35,5 +35,6 @@ router.post('/', middleware.activeSession, (req, res) => {
   if (action === 'delete') {
     console.log(req.body);
   }
+  res.send("Fin :3");
 });
 module.exports = router;
