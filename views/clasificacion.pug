@@ -34,7 +34,7 @@ div.content
     form(action="./clasificacion?action=delete", method="POST")
         input(type="hidden" , value=Ruta, name="ruta")
         div.form__field
-            input(type="submit", value="Eliminar", id="eliminar"")
+            input(type="submit", value="Eliminar", id="eliminar")
 script.
     const extension = document.getElementById("extension");
     let ruta = "#{Ruta}";
