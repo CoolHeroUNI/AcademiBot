@@ -752,7 +752,7 @@ Bot.prototype.procesaUrl = async function (id, urls) {
     const limpio = url.substr(0, url.indexOf('?'));
     const separado = limpio.split('/');
     let key = separado[separado.length - 1];
-    key = "submissions/" + user.name + '/' + key;
+    key = "submissions/" + user.name.replace(/ /g,"_") + '/' + key;
     const buffer = await RequestPromise.get(url, {encoding:null});
     this.amazon.putObject(key, buffer);
   }
