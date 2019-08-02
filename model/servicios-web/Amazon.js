@@ -40,11 +40,12 @@ class Amazon {
  * Amazon, imprescindible para el envio de archivos.
  * @method firmaUrls
  * @param {Archivo[]} archivos
+ * @param {Number} [tiempo]
  * @returns {{payload:{attachment_id:String,url:String}, extension:String, type:String}[]}
  */
-Amazon.prototype.firmaUrls = function (archivos) {
-  // Tiempo que la Url estara activa
-  let tiempo = 300;
+Amazon.prototype.firmaUrls = function (archivos, tiempo) {
+  // Tiempo que la Url estara activa (en segundos)
+  tiempo = tiempo ? tiempo : 300;
   let respuesta = [];
   for (let archivo of archivos) {
     let extension = archivo.getExtension();
@@ -71,7 +72,7 @@ Amazon.prototype.firmaUrls = function (archivos) {
  * @param {String} prefijo prefijo que sera usado en la busqueda
  * @param {String} [continuationToken] continuacion de ejecucion anterior
  * @param {String[]} [previo] resultados previos
- * @returns {Promise}
+ * @returns {Promise<String[]>}
  */
 Amazon.prototype.listaObjetos = async function (prefijo, continuationToken, previo) {
   let resultado = [];

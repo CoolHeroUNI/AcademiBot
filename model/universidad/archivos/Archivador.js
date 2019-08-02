@@ -29,6 +29,15 @@ Archivador.prototype.creaArchivo = function (ruta) {
   return this.archivos.get(ruta);
 };
 /**
+ * Metodo para eliminar archivos
+ * @method eliminaArchivo
+ * @param {String} ruta
+ * @returns {Boolean}
+ */
+Archivador.prototype.eliminaArchivo = function (ruta) {
+  return this.archivos.delete(ruta);
+}
+/**
  * Metodo para proporcionar un codigo de reusabilidad a un
  * archivo
  * @method setReusabilidad
@@ -45,17 +54,17 @@ Archivador.prototype.setReusabilidad = function (ruta, codigo) {
  * @param {[String,{attachment_id:String,contador:Number}][]} archivos
  */
 Archivador.prototype.cargaArchivos = function (archivos) {
-  let _archivos = archivos.map(dupla => [dupla[0], new Archivo(dupla[0]).carga(dupla[1])]);
+  let _archivos = archivos.map(archivo => [archivo[0], new Archivo(archivo[0]).carga(archivo[1])]);
   this.archivos = new Map(_archivos);
-  /* let rutas = Object.getOwnPropertyNames(archivos);
-  for (let ruta of rutas) {
-    this.archivos[ruta] = new Archivo(ruta).carga(archivos[ruta]);
-  } */
-  /* 
-  for (let archivo of archivos) {
-    this.archivos[archivo.ruta] = new Archivo(archivo.ruta).carga(archivo);
-  } */
 };
+/**
+ * Metodo que devuelve un Array con los elementos del Archivador
+ * @method toArray
+ * @returns {Archivo[]}
+ */
+Archivador.prototype.toArray = function () {
+  return Array.from<Archivo>(this.archivos.values());
+}
 /**
  * Metodo para obtener un Array de archivos simple
  * -05/12/19: Se opto por usar un Objeto de acceso aleatorio,
@@ -63,12 +72,6 @@ Archivador.prototype.cargaArchivos = function (archivos) {
  * @return {[String,{attachment_id:String,contador:Number}][]}
  */
 Archivador.prototype.toJSON = function () {
-  /* Se busca simplicidad
-  let that = this;
-  let valores = Object.keys(this.archivos).map(function (llave) {
-    return that.archivos[llave];
-  });
-  return valores; */
   return Array.from(this.archivos.entries()).map(elem => [elem[0], elem[1].toJSON()]);
 };
 /**

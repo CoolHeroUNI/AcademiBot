@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const request = require('request');
 const middleware = require('../src/middleware');
+const AcademiBot = require('../src/AcademiBot');
 
 router.get('/', middleware.activeSession, (req, res) => {
   request(process.env.URL + "webhook/muestra/facultades/"+process.env.PROCESS_KEY, (err, response, body) => {
@@ -12,8 +13,8 @@ router.get('/', middleware.activeSession, (req, res) => {
         directorio: facu.directorio
       };
     });
-
-    res.render('clasificacion', {facultades: JSON.stringify(facultades), Material:""});
+    const {ruta, url} = AcademiBot.obtieneArchivoDeEnvios('image');
+    res.render('clasificacion', {facultades: JSON.stringify(facultades), Material:url, Ruta:ruta});
   })
 });
 

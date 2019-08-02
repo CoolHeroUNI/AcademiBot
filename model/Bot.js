@@ -62,6 +62,11 @@ class Bot {
      * @property {DialogFlow} dialogflow
      */
     this.dialogflow = dialogflow;
+    /**
+     * Propiedad para almacenar los envios de parte de los usuarios
+     * @property {Archivador} submissions
+     */
+    this.submissions = new Archivador();
   }
 }
 
@@ -293,6 +298,17 @@ Bot.prototype.leeArchivador = function () {
   return this.amazon.getJSON(key);
 };
 /**
+ * Metodo para cargar las direcciones de los archivos enviados por los usuarios
+ * @method cargaSubmissions
+ * @returns {Promise}
+ */
+Bot.prototype.cargaSubmissions = async function () {
+  let direcciones = await this.amazon.listaObjetos('submissions');
+  for (let i = 0; i < direcciones.length; i++) {
+    this.submissions.creaArchivo(direcciones[i]);
+  }
+};
+/**
  * Metodo par actualizar el estado actual de UNI, leyendo los archivos de la carpeta llamada configuracion 
  * "facultades.json","usuarios.json" y "archivador.json", que contienen las configuraciones necesarias
  * @method carga
@@ -305,6 +321,8 @@ Bot.prototype.carga = async function () {
   let facultades = await this.leeFacultades();
   let usuarios = await this.leeUsuarios();
   let archivador = await this.leeArchivador();
+  this.cargaSubmissions()
+    .catch(e => console.log(e));
   this.cargaUniversidad(facultades, usuarios);
   this.cargaArchivador(archivador);
   console.log("Inicio completado");
@@ -340,6 +358,27 @@ Bot.prototype.actualizaDirectorios = async function () {
   }
   this.UNI.cargaFacultades(JSONfacultades);
   this.guardaFacultades();
+};
+/**
+ * Metodo para obtener la ruta y urlFirmada de un tipo de archivo en submissions
+ * @method obtieneArchivoDeEnvios
+ * @param {String} tipo
+ * @returns {{ruta:String,url:String}}
+ */
+Bot.prototype.obtieneArchivoDeEnvios = function (tipo) {
+  let envio = this.submissions.toArray().find(archivo => archivo.getType() === tipo);
+  let respuesta = {
+    ruta : "",
+    url : ""
+  }
+  if (envio) {
+    let urlFirmada = this.amazon.firmaUrls([envio], 600)[0];
+    if (urlFirmada) {
+      respuesta.ruta = envio.getRuta();
+      respuesta.url = urlFirmada;
+    }
+  }
+  return respuesta;
 };
 /**
  * Metodo para reaccionar ante la situacion en la que el usuario
@@ -423,7 +462,6 @@ Bot.prototype.reaccionaSinCiclo = function (usuario, mensaje) {
   const mensajePeticion = "Elije un Ciclo";
   this.FB.enviaQuickReply(usuario.id, parametros, mensajePeticion)
     .catch(e => console.log(e));
-  // Todo: enviar ciclos, crear otro metodo solo para la asignacion de ciclo
 };
 /**
  * Metodo para reaccionar ante la situacion donde la peticion no sea
@@ -599,7 +637,6 @@ Bot.prototype.procesaComando = function (usuario, mensaje) {
  * @param {String} mensaje
  */
 Bot.prototype.recibePostback = function (id, mensaje) {
-  // Refactor: crear arreglo de comandos, comparar el mensaje
   let usuario;
   if (this.haveUsuario(id)) {
     usuario = this.getUsuario(id);
@@ -613,10 +650,6 @@ Bot.prototype.recibePostback = function (id, mensaje) {
   if (!espec) this.reaccionaSinEspecialidad(usuario, mensaje);
   else this.procesaComando(usuario, mensaje);
 
-  // Todo: mensaje puede tener instrucciones para cambiar especialidad o ciclo, de ser asi llamar
-  // a los metodos correspondientes
-
-  // Todo: termina de crear el metodo que reacciona cuando no hay peticion
 };
 /**
  * Metodo para procesar mensajes de texto por parte de los usuarios,
