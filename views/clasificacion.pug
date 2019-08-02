@@ -37,7 +37,7 @@ div.content
             input(type="submit", value="Eliminar", id="eliminar", name="ruta")
 script.
     const extension = document.getElementById("extension");
-    let ruta = #{Ruta};
+    let ruta = "#{Ruta}";
     let index = ruta.indexOf(".");
     let ext = ~index ? ruta.substr(index) : "";
     extension.value = ext;
