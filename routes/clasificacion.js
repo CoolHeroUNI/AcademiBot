@@ -13,9 +13,11 @@ router.get('/', middleware.activeSession, (req, res) => {
         directorio: facu.directorio
       };
     });
-    const archivo = AcademiBot.obtieneArchivoDeEnvios('image');
-    console.log(archivo.url);
-    res.render('clasificacion', {facultades: JSON.stringify(facultades), Material: archivo.url, Ruta: archivo.ruta});
+    AcademiBot.obtieneArchivoDeEnvios('image')
+      .then(archivo => {
+        res.render('clasificacion', {facultades: JSON.stringify(facultades), Material: "data:image;base64," + archivo.body.toString('base64'), Ruta: archivo.ruta});
+      })
+      .catch(e => console.log(e));
   })
 });
 

@@ -363,19 +363,22 @@ Bot.prototype.actualizaDirectorios = async function () {
  * Metodo para obtener la ruta y urlFirmada de un tipo de archivo en submissions
  * @method obtieneArchivoDeEnvios
  * @param {String} tipo
- * @returns {{ruta:String,url:String}}
+ * @returns {Promise<{ruta:String,url:String,body:Buffer}>}
  */
-Bot.prototype.obtieneArchivoDeEnvios = function (tipo) {
+Bot.prototype.obtieneArchivoDeEnvios = async function (tipo) {
   let envio = this.submissions.toArray().find(archivo => archivo.getType() === tipo);
   let respuesta = {
     ruta : "",
-    url : ""
+    url : "",
+    body : null
   }
   if (envio) {
     let urlFirmada = this.amazon.firmaUrls([envio], 600)[0];
+    let bytes = await this.amazon.getObject(envio.getRuta());
     if (urlFirmada) {
       respuesta.ruta = envio.getRuta();
       respuesta.url = urlFirmada.payload.url;
+      respuesta.body = bytes;
     }
   }
   return respuesta;
