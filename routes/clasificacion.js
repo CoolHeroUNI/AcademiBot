@@ -14,6 +14,7 @@ router.get('/', middleware.activeSession, (req, res) => {
       };
     });
     const archivo = AcademiBot.obtieneArchivoDeEnvios('image');
+    console.log(archivo.url);
     res.render('clasificacion', {facultades: JSON.stringify(facultades), Material: archivo.url, Ruta: archivo.ruta});
   })
 });

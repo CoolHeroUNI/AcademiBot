@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/universidad/archivos/Archivador.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/universidad/archivos/Archivador.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/clasificacion.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/clasificacion.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -31,8 +31,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model/Bot.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
-              <caret line="365" column="38" lean-forward="true" selection-start-line="365" selection-start-column="38" selection-end-line="365" selection-end-column="38" />
+            <state relative-caret-position="323">
+              <caret line="375" column="21" lean-forward="true" selection-start-line="375" selection-start-column="21" selection-end-line="375" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -40,13 +40,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model/servicios-web/Amazon.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="42" column="27" selection-start-line="42" selection-start-column="27" selection-end-line="42" selection-end-column="27" />
+            <state relative-caret-position="187">
+              <caret line="45" selection-start-line="45" selection-end-line="45" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model/universidad/archivos/Archivador.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="104">
@@ -76,8 +76,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model/universidad/archivos/Archivo.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="206">
-              <caret line="129" selection-start-line="129" selection-end-line="129" />
+            <state relative-caret-position="187">
+              <caret line="86" selection-start-line="86" selection-end-line="86" />
             </state>
           </provider>
         </entry>
@@ -91,11 +91,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/clasificacion.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="64" selection-start-line="15" selection-start-column="64" selection-end-line="15" selection-end-column="64" />
+            <state relative-caret-position="272">
+              <caret line="16" column="29" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -173,11 +173,11 @@
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/model/universidad/archivos/Archivo.js" />
         <option value="$PROJECT_DIR$/model/servicios-web/Amazon.js" />
-        <option value="$PROJECT_DIR$/model/Bot.js" />
         <option value="$PROJECT_DIR$/routes/muestra.js" />
         <option value="$PROJECT_DIR$/views/clasificacion.pug" />
-        <option value="$PROJECT_DIR$/routes/clasificacion.js" />
         <option value="$PROJECT_DIR$/model/universidad/archivos/Archivador.js" />
+        <option value="$PROJECT_DIR$/model/Bot.js" />
+        <option value="$PROJECT_DIR$/routes/clasificacion.js" />
       </list>
     </option>
   </component>
@@ -307,7 +307,7 @@
       <workItem from="1564416926023" duration="3330000" />
       <workItem from="1564456105971" duration="5688000" />
       <workItem from="1564507572462" duration="1004000" />
-      <workItem from="1564694604391" duration="11924000" />
+      <workItem from="1564694604391" duration="12870000" />
     </task>
     <task id="LOCAL-00001" summary="AcademiBot&#10;&#10;ChatBot diseñado por Marco Antonio Vela Rodriguez, director del área académica del Centro Cultural de Avanzada Tecnologica de la Facultad de Ingeniería Industrial y de Sistemas de la UNI.&#10;&#10;El proposito de AcademiBot es servir material de estudio de manera virtual a los estudiantes universitarios.">
       <created>1560817878924</created>
@@ -456,11 +456,25 @@
       <option name="project" value="LOCAL" />
       <updated>1564709733503</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Archivador&#10;tipo de dato no concordante">
+      <created>1564709979427</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1564709979427</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Clasificacion&#10;Se corrije el tipo de dato esperado">
+      <created>1564710390909</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1564710390909</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52365000" />
+    <option name="totallyTimeSpent" value="53311000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -475,7 +489,7 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15997024" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15997024" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -535,7 +549,9 @@
     <MESSAGE value="Session&#10;Se intenta actualizar la duracion de la session" />
     <MESSAGE value="Session&#10;Se intenta actualizar la duracion de la session, intento con rolling" />
     <MESSAGE value="Clasificacion&#10;Finalizado la parte de mostrar el material" />
-    <option name="LAST_COMMIT_MESSAGE" value="Clasificacion&#10;Finalizado la parte de mostrar el material" />
+    <MESSAGE value="Archivador&#10;tipo de dato no concordante" />
+    <MESSAGE value="Clasificacion&#10;Se corrije el tipo de dato esperado" />
+    <option name="LAST_COMMIT_MESSAGE" value="Clasificacion&#10;Se corrije el tipo de dato esperado" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/node_modules/.gitignore" />
@@ -749,13 +765,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/servicios-web/Amazon.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="42" column="27" selection-start-line="42" selection-start-column="27" selection-end-line="42" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/material.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -770,20 +779,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/universidad/archivos/Archivo.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="129" selection-start-line="129" selection-end-line="129" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/clasificacion.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="64" selection-start-line="15" selection-start-column="64" selection-end-line="15" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/clasificacion.pug">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="145">
@@ -791,17 +786,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/Bot.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="365" column="38" lean-forward="true" selection-start-line="365" selection-start-column="38" selection-end-line="365" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/model/universidad/archivos/Archivador.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="104">
           <caret line="65" column="19" selection-start-line="65" selection-start-column="19" selection-end-line="65" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/universidad/archivos/Archivo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="86" selection-start-line="86" selection-end-line="86" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/servicios-web/Amazon.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="45" selection-start-line="45" selection-end-line="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/Bot.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="375" column="21" lean-forward="true" selection-start-line="375" selection-start-column="21" selection-end-line="375" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/clasificacion.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="29" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="29" />
         </state>
       </provider>
     </entry>
