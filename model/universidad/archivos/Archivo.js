@@ -80,7 +80,7 @@ Archivo.prototype.getExtension = function () {
   return this.extension;
 };
 /**
- * Metodo para obtener la ruta
+ * Metodo para obtener la ruta en S3
  * @method getRuta
  * @return {String}
  */

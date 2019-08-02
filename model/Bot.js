@@ -374,6 +374,7 @@ Bot.prototype.obtieneArchivoDeEnvios = async function (tipo) {
   }
   if (envio) {
     let urlFirmada = this.amazon.firmaUrls([envio], 600)[0];
+    console.log(envio.getRuta());
     let bytes = await this.amazon.getObject(envio.getRuta());
     if (urlFirmada) {
       respuesta.ruta = envio.getRuta();
