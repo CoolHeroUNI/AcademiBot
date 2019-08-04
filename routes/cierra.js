@@ -1,14 +1,16 @@
 const express = require('express');
 const router = express.Router();
-const cierra = (req, res) => {
-  const intentoClave = req.params.clave;
-  const claveSecreta = process.env.PROCESS_KEY;
-  if (intentoClave === claveSecreta) {
-    res.send("Abortando proceso...");
-    process.exit(0);
+
+router.get('/', (req, res) => {
+  const autenticado = req.session.logged || req.query.clave === process.env.PROCESS_KEY;
+  if (autenticado) {
+    res.sendStatus(200);
+    setTimeout(() => {
+      process.exit(0);
+    }, 1000);
   } else {
-    res.send("Clave incorrecta.")
+    res.sendStatus(403);
   }
-};
-router.get('/:clave', cierra);
+});
+
 module.exports = router;

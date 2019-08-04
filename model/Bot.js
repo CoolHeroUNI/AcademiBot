@@ -763,7 +763,8 @@ Bot.prototype.recibeTexto = async function (id, texto) {
   }
 };
 /**
- * Metodo para procesar las urls de archivos
+ * Metodo para procesar las urls de archivos, es necesario indicar el tipo de
+ * archivo para evitar conflictos con los servicios de facebook
  * @method procesaUrl
  * @param {String} id usuario de FB
  * @param {String[]} urls
