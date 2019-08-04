@@ -45,7 +45,7 @@ class Amazon {
  */
 Amazon.prototype.firmaUrls = function (archivos, tiempo) {
   // Tiempo que la Url estara activa (en segundos)
-  tiempo = tiempo ? tiempo : 300;
+  if (!tiempo) tiempo = 300;
   let respuesta = [];
   for (let archivo of archivos) {
     let extension = archivo.getExtension();

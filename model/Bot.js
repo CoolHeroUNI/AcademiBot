@@ -462,6 +462,7 @@ Bot.prototype.reaccionaPeticionValida = function (usuario, especialidad) {
         if (respuestas[i].attachment_id) archivos[i].setAttachmentId(respuestas[i].attachment_id);
       }
     })
+    .catch(e => console.log(e.message))
     .finally(() => this.reaccionaPeticionNoValida(usuario, especialidad, "¿Otra?"));
 };
 /**
