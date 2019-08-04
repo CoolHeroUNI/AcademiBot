@@ -165,15 +165,18 @@ Amazon.prototype.getJSON = async function (key) {
  * @method putObject
  * @param {String} key
  * @param {Buffer|String|ReadableStream} cuerpo
+ * @param {String} [mime] propiedad que indica content-type
  */
-Amazon.prototype.putObject = function (key, cuerpo) {
+Amazon.prototype.putObject = function (key, cuerpo, mime) {
   let param = {
     Body: cuerpo,
     Bucket: this.bucketName,
     Key: key
   };
-  this.s3.putObject(param).promise()
-    .catch(e => console.log(e));
+  if (mime) {
+    param.ContentType = mime;
+  }
+  return this.s3.putObject(param).promise();
 };
 
 /**

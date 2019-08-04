@@ -775,12 +775,20 @@ Bot.prototype.procesaUrl = async function (id, urls) {
     const limpio = url.substr(0, url.indexOf('?'));
     const separado = limpio.split('/');
     let key = separado[separado.length - 1];
-    key = "submissions/" + user.name.replace(/ /g,"_") + '/' + key;
-    const buffer = await RequestPromise.get(url, {encoding:null});
-    this.amazon.putObject(key, buffer);
+    key = "submissions/" + user.name.replace(/ /g, "_") + '/' + key;
+
+    RequestPromise.get(url, {encoding: null, resolveWithFullResponse: true})
+      .then((res) => {
+        const mime = res.headers["content-type"] ? res.headers["content-type"] : "application/octet-stream";
+        const body = res.body ? res.body : new Buffer("");
+        return this.amazon.putObject(key, body, mime);
+      })
+      .then(() => {
+        console.log(`Objeto colocado correctamente en: ${key}`);
+        return this.FB.enviaTexto(id, `Gracias ${user.name}.\nCon tu colaboración el proyecto seguirá creciendo.`)
+      })
+      .catch(e => console.log(e));
   }
-  this.FB.enviaTexto(id, `Gracias ${user.name}.\nCon tu colaboración el proyecto seguirá creciendo.`)
-    .catch(e => console.log(e));
 };
 
 
