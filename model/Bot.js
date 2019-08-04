@@ -452,6 +452,7 @@ Bot.prototype.reaccionaPeticionValida = function (usuario, especialidad) {
   let archivos = rutas.map(ruta => this.archivos.getArchivo(ruta));
   let urlsFirmadas = this.amazon.firmaUrls(archivos);
   usuario.completaPeticion();
+  console.log(urlsFirmadas);
   let promesa = this.FB.enviaAdjuntos(usuario.id, urlsFirmadas);
   // Revisar esto cuidadosamente, puede que las promesas no se almacenen en el mismo orden en el que llegan
   promesa
