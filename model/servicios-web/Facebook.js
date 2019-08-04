@@ -172,6 +172,8 @@ Facebook.prototype.enviaAdjunto = function (id, _payload, type) {
   else {
     payload = {url:_payload.url, is_reusable:true};
   }
+  console.log("HERE IS PAYLOAD");
+  console.log(payload);
   let messageData = { 
     attachment : {
       type,
