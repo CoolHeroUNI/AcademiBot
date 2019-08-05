@@ -4,7 +4,7 @@ const request = require('request');
 const middleware = require('../src/middleware');
 const AcademiBot = require('../src/AcademiBot');
 
-router.get('/', middleware.activeSession, (req, res) => {
+router.get('/', middleware.ensureAuth, (req, res) => {
   const facultades = AcademiBot.UNI.getFacultadesObject().map(facu => {
     return {
       id: facu.id,
@@ -22,7 +22,7 @@ router.get('/', middleware.activeSession, (req, res) => {
     .catch(e => console.log(e));
 });
 
-router.post('/', middleware.activeSession, (req, res) => {
+router.post('/', middleware.ensureAuth, (req, res) => {
   const action = req.query.action;
   console.log(req.body);
   if (!action) {
