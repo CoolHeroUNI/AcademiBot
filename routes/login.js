@@ -3,7 +3,11 @@ const router = express.Router();
 const middleware = require('../src/middleware');
 
 router.get('/', middleware.ensureNoAuth, (req, res) => {
-  req.session.returnTo =  req.query.redirect || req.session.returnTo || req.header('Referer');
+  if (req.query.redirect) {
+    req.session.returnTo = encodeURIComponent(req.query.redirect);
+  } else if (!req.session.returnTo && req.header('Referer')) {
+    req.session.returnTo = encodeURIComponent(req.header('Referer'));
+  }
   res.render('login', {});
 });
 router.post('/', middleware.ensureNoAuth, (req, res) => {
@@ -11,9 +15,10 @@ router.post('/', middleware.ensureNoAuth, (req, res) => {
   if (!req.session.logged && pass === process.env.PROCESS_KEY) {
     req.session.logged = true;
     console.log("logged in");
+    if (req.session.returnTo) req.session.returnTo = decodeURIComponent(req.session.returnTo)
     res.redirect(req.session.returnTo || '/');
-    delete res.session.returnTo;
-  }  else {
+    delete req.session.returnTo;
+  } else {
     console.log("incorrect pass");
     res.redirect("/login");
   }

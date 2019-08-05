@@ -1,8 +1,8 @@
 doctype html
 head
-    title="Clasificador"
+    title="Clasificador de material"
     meta(name='viewport' content='width=device-width, initial-scale=1')
-    link(rel='stylesheet' type='text/css' href='/public/stylesheets/clasificador.css')
+    link(rel='stylesheet' type='text/css' href='/public/stylesheets/collapsible.css')
 
 h2(align='center') Clasificador de material
 button.collapsible Material
@@ -10,7 +10,7 @@ div.content
     img(src= Material, id="material", class="center")
 button.collapsible Ruta
 div.content
-    form(action="./clasificacion?action=move", method="POST")
+    form(action="/admin/clasificador?action=move", method="POST")
         label Facultad:
         div.form__field
             select(id="facultad", name="facultad")
@@ -31,10 +31,11 @@ div.content
         input(type="hidden", name="ruta", value=Ruta)
         div.form__field
             input(type="submit", value="Cambiar ruta")
-    form(action="./clasificacion?action=delete", method="POST")
+    form(action="/admin/clasificador?action=delete", method="POST")
         input(type="hidden" , value=Ruta, name="ruta")
         div.form__field
             input(type="submit", value="Eliminar", id="eliminar")
+button(onclick="window.location='/'") 🏠
 script.
     const extension = document.getElementById("extension");
     let ruta = "#{Ruta}";

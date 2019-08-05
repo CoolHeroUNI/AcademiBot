@@ -1,7 +1,11 @@
 head
+  if titulo
+    title= titulo + " - AcademiBot"
+  else
+    title= "AcademiBot"
   link(rel='stylesheet' type='text/css' href='/public/stylesheets/index.css')
-
 div.header
+
   input#openSidebarMenu.openSidebarMenu(type='checkbox')
   label.sidebarIconToggle(for='openSidebarMenu')
     .spinner.diagonal.part-1
@@ -15,7 +19,10 @@ div.header
       li
         a(href='/', target='_self')               Inicio   🏠
       li
-        a(href='/login', target='_self')          Log in   📌
+        if !logged
+          a(href='/login', target='_self')        Log in   📌
+        else
+          a(href='/logout', target='_self')        Log out   📌
       li
         a(href='/?tab=amazon', target='_self')    Amazon   ☁️
       li
@@ -26,3 +33,5 @@ div.header
         a(href='/?tab=historia', target='_self')  Historia 📜
 .mainInner
   block content
+
+

@@ -23,7 +23,7 @@ app.use(session({
   saveUninitialized: true,
   rolling: true,
   cookie: {
-    maxAge: 1000*60*5
+    maxAge: 1000*60*30
   }
 }));
 // Importar rutas
@@ -31,6 +31,7 @@ const indexRoute = require('./routes/index');
 const webhookRoute = require('./routes/webhook');
 const cierraRoute = require('./routes/cierra');
 const loginRoute = require('./routes/login');
+const logoutRoute = require('./routes/logout');
 const adminRoute = require('./routes/admin');
 app.use('/', indexRoute);
 app.use('/public', express.static(path.join(__dirname, 'public')));
@@ -38,6 +39,7 @@ app.use('/favicon.ico', express.static(path.join(__dirname, 'public/images/favic
 app.use('/admin', adminRoute);
 app.use('/webhook', webhookRoute);
 app.use('/login', loginRoute);
+app.use('/logout', logoutRoute);
 app.use('/cierra', cierraRoute);
 
 // catch 404 and forward to error handler
