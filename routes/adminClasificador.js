@@ -1,10 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const request = require('request');
-const middleware = require('../src/middleware');
 const AcademiBot = require('../src/AcademiBot');
 
-router.get('/', middleware.ensureAuth, (req, res) => {
+router.get('/', (req, res) => {
   const facultades = AcademiBot.UNI.getFacultadesObject().map(facu => {
     return {
       id: facu.id,
@@ -13,7 +11,7 @@ router.get('/', middleware.ensureAuth, (req, res) => {
   });
   AcademiBot.obtieneArchivoDeEnvios('image')
     .then(archivo => {
-      res.render('clasificacion', {
+      res.render('adminClasificador', {
         facultades : JSON.stringify(facultades),
         Material : "data:image;base64," + archivo.body.toString('base64'),
         Ruta : archivo.ruta
@@ -22,7 +20,7 @@ router.get('/', middleware.ensureAuth, (req, res) => {
     .catch(e => console.log(e));
 });
 
-router.post('/', middleware.ensureAuth, (req, res) => {
+router.post('/', (req, res) => {
   const action = req.query.action;
   console.log(req.body);
   if (!action) {
@@ -44,6 +42,6 @@ router.post('/', middleware.ensureAuth, (req, res) => {
       .catch(e => console.log(e));
   }
   AcademiBot.submissions.eliminaArchivo(req.body.ruta);
-  res.redirect('/clasificacion');
+  res.redirect('/admin/clasificador');
 });
 module.exports = router;

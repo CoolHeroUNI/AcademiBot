@@ -1,0 +1,20 @@
+extends indexTemplate
+block content
+    h1 Selección de archivos de configuración
+    p Normalmente la copia local tiene mayor progreso que la copia de S3
+    div
+        h2 Facultades
+        p Archivos con la informacion de las facultades
+        button(onclick="window.location='/admin/muestra?peticion=facultades&ubicacion=local'", style="width:100%;margin-bottom:1rem") Local
+        button(onclick="window.location='/admin/muestra?peticion=facultades&ubicacion=S3'", style="width:100%") S3
+    div
+        h2 Archivador
+        p Archivos con la informacion del material solicitado
+        button(onclick="window.location='/admin/muestra?peticion=archivador&ubicacion=local'", style="width:100%;margin-bottom:1rem") Local
+        button(onclick="window.location='/admin/muestra?peticion=archivador&ubicacion=S3'", style="width:100%") S3
+    div
+        h2 Usuarios
+        p Archivos con la informacion de todos los usuarios
+        button(onclick="window.location='/admin/muestra?peticion=usuarios&ubicacion=local'", style="width:100%;margin-bottom:1rem") Local
+        button(onclick="window.location='/admin/muestra?peticion=usuarios&ubicacion=S3'", style="width:100%") S3
+
