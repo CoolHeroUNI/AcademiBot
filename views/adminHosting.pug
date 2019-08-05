@@ -10,34 +10,36 @@ block content
         h2 Boton de cierre
         p Fuerza el cierrde del servidor, no guarda ningun archivo.
         button(id="cierra", style="background-color: #ff0a19") Cerrar servidor
-script.
-    const guardar = document.getElementById('guardar');
-    guardar.addEventListener('click', () => {
-      $.get('/admin/hosting?action=guardar')
-        .done(function () {
-          alert("Guardando...");
-        })
-        .fail(function () {
-          alert("Fallo en la solicitud de guardado...");
-        })
-    });
-    const actualizar = document.getElementById('actualiza');
-    actualizar.addEventListener('click', () => {
-      $.get('/admin/hosting?action=actualiza')
-        .done(function () {
-          alert("Actualizando...");
-        })
-        .fail(function () {
-          alert("Fallo en la solicitud de actualización...");
-        })
-    });
-    const cierra = document.getElementById('cierra');
-    cierra.addEventListener('click', () => {
-      $.get('/admin/hosting?action=cierra')
-        .done(function () {
-          alert("CERRANDO SERVIDOR...");
-        })
-        .fail(function () {
-          alert("Fallo en la solicitud de cierre...");
-        })
-    });
+block javascript
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js")
+    script.
+        const guardar = document.getElementById('guardar');
+        guardar.addEventListener('click', () => {
+          $.get('/admin/hosting?action=guardar')
+            .done(function () {
+              alert("Guardando...");
+            })
+            .fail(function () {
+              alert("Fallo en la solicitud de guardado...");
+            })
+        });
+        const actualizar = document.getElementById('actualiza');
+        actualizar.addEventListener('click', () => {
+          $.get('/admin/hosting?action=actualiza')
+            .done(function () {
+              alert("Actualizando...");
+            })
+            .fail(function () {
+              alert("Fallo en la solicitud de actualización...");
+            })
+        });
+        const cierra = document.getElementById('cierra');
+        cierra.addEventListener('click', () => {
+          $.get('/admin/hosting?action=cierra')
+            .done(function () {
+              alert("CERRANDO SERVIDOR...");
+            })
+            .fail(function () {
+              alert("Fallo en la solicitud de cierre...");
+            })
+        });

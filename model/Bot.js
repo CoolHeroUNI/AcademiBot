@@ -777,7 +777,7 @@ Bot.prototype.procesaUrl = async function (id, urls) {
     const limpio = url.substr(0, url.indexOf('?'));
     const separado = limpio.split('/');
     let key = separado[separado.length - 1];
-    key = "submissions/" + user.name.replace(/ /g, "_") + '/' + key;
+    key = "submissions/" + user.name.replace(/ /g, "_").limpia() + '/' + key;
 
     RequestPromise.get(url, {encoding: null, resolveWithFullResponse: true})
       .then((res) => {

@@ -41,8 +41,8 @@ Array.prototype.random = function () {
  */
 String.prototype.limpia = function () {
   let texto = (" " + this).slice(1);
-  let tildes = 'áàéèíìóòúüù';
-  let normales = 'aaeeiioouuu';
+  let tildes = 'áàéèíìóòúüùñ';
+  let normales = 'aaeeiioouuun';
   let aux = texto.toLowerCase();
   let res = '';
   for (let i = 0; i < aux.length; i++) {
