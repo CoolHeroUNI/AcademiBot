@@ -23,7 +23,7 @@ div.content
     img#material.center(src=Material)
 button.collapsible Ruta
 div.content
-    form(action="/admin/clasificador?action=move", method="POST")
+    form(action=`/admin/clasificador?action=move&tipo=${Tipo}&page=${Pagina}`, method="POST")
         label Facultad:
         div.form__field
             select(id="facultad", name="facultad")
@@ -44,7 +44,7 @@ div.content
         input(type="hidden", name="ruta", value=Ruta)
         div.form__field
             input(type="submit", value="Cambiar ruta")
-    form(action="/admin/clasificador?action=delete", method="POST")
+    form(action="/admin/clasificador?action=delete&tipo=${Tipo}&page=${Pagina}", method="POST")
         input(type="hidden" , value=Ruta, name="ruta")
         div.form__field
             input(type="submit", value="Eliminar", id="eliminar")
