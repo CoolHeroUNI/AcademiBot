@@ -31,7 +31,7 @@ const indexRoute = require('./routes/index');
 const webhookRoute = require('./routes/webhook');
 const cierraRoute = require('./routes/cierra');
 const loginRoute = require('./routes/login');
-const logoutRoute = require('/routes/logout');
+const logoutRoute = require('./routes/logout');
 const adminRoute = require('./routes/admin');
 app.use('/', indexRoute);
 app.use('/public', express.static(path.join(__dirname, 'public')));
