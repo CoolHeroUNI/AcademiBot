@@ -1,16 +1,16 @@
-const activeSession = (req, res, next) => {
+const ensureAuth = (req, res, next) => {
   if (!req.session.logged) {
-    console.log("not allowed!");
-    return res.redirect('/login');
+    console.log("not allowed!")
+    return res.redirect(`/login?redirect=${req.originalUrl}`);
   }
   req.session.touch();
   next();
 };
-const unactiveSession = (req, res, next) => {
+const ensureNoAuth = (req, res, next) => {
   if (req.session.logged) {
     console.log("must be logged out");
     res.redirect('back');
   }
   next();
 };
-module.exports = {activeSession, unactiveSession};
+module.exports = {ensureAuth, ensureNoAuth};
