@@ -10,7 +10,7 @@ div.content
     div
         button(onclick=`window.location='/admin/clasificador?tipo=${Tipo}&page=${Pagina == 0 ? 0 : Pagina - 1}'`) Anterior ⬅
         button(onclick="window.location='/'") Inicio 🏠
-        button(onclick=`window.location='/admin/clasificador?tipo=${Tipo}&page=${Pagina + 1}'`) Siguiente ➡
+        button(onclick=`window.location='/admin/clasificador?tipo=${Tipo}&page=${parseInt(Pagina) + 1}'`) Siguiente ➡
     div
         button(onclick=`window.location='/admin/clasificador?tipo=image&page=0'`) Imagen
         button(onclick=`window.location='/admin/clasificador?tipo=audio&page=0'`) Audio
