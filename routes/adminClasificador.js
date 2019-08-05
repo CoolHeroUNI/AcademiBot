@@ -30,6 +30,8 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
+  const tipe = req.query.tipo || 'image';
+  const page = req.query.page || 0;
   const action = req.query.action;
   console.log(req.body);
   if (!action) {
@@ -51,6 +53,6 @@ router.post('/', (req, res) => {
       .catch(e => console.log(e));
   }
   AcademiBot.submissions.eliminaArchivo(req.body.ruta);
-  res.redirect('/admin/clasificador');
+  res.redirect(`/admin/clasificador?tipo=${tipe}&page=${page}`);
 });
 module.exports = router;
