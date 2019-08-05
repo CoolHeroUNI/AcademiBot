@@ -52,48 +52,14 @@ const actualiza = async (req,res) => {
   }
 };
 
-const muestraFacultades = (req,res) => {
-  const intentoClave = req.params.clave;
-  const claveSecreta = process.env.PROCESS_KEY;
 
-  if (intentoClave === claveSecreta) {
-    const facultades = AcademiBot.UNI.getFacultadesObject();
-    res.json(facultades);
-  } else {
-    res.send("Clave incorrecta.");
-  }
-};
-
-const muestraUsuarios = (req,res) => {
-  const intentoClave = req.params.clave;
-  const claveSecreta = process.env.PROCESS_KEY;
-  if (intentoClave === claveSecreta) {
-    const usuarios = AcademiBot.UNI.getUsuarios();
-    res.json(usuarios);
-  } else {
-    res.send("Clave incorrecta.")
-  }
-};
-
-const muestraArchivador = (req,res) => {
-  const intentoClave = req.params.clave;
-  const claveSecreta = process.env.PROCESS_KEY;
-  if (intentoClave === claveSecreta) {
-    const archivador = AcademiBot.archivos.toJSON();
-    res.json(archivador);
-  } else {
-    res.send("Clave incorrecta.")
-  }
-};
 router.get('/', validaToken);
 router.post('/', procesaEventos);
 router.get('/actualiza/:clave', actualiza);
-router.get('/muestra/usuarios/:clave', muestraUsuarios);
-router.get('/muestra/facultades/:clave', muestraFacultades);
-router.get('/muestra/archivador/:clave', muestraArchivador);
 
 process.on("SIGTERM", () => {
   AcademiBot.guarda();
+  console.log("Ha sido un dia productivo, he servido a " + usuarios.length + " personas.");
   setTimeout(() => {
     process.exit(0);
   }, 4000);
