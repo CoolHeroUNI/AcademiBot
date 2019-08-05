@@ -1,6 +1,9 @@
 head
+  if titulo
+    title= titulo + " - AcademiBot"
+else
+    title= "AcademiBot"
   link(rel='stylesheet' type='text/css' href='/public/stylesheets/index.css')
-
 div.header
 
   input#openSidebarMenu.openSidebarMenu(type='checkbox')

@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
   const logged =  req.session.logged;
 
   if (!peticion || !ubicacion) {
-    return res.render('adminMuestra', {logged});
+    return res.render('adminMuestra', {logged, titulo:"Archivos"});
   } else if (peticion === "facultades") {
     if (ubicacion === "local") {
       res.json(AcademiBot.UNI.getFacultadesObject());
