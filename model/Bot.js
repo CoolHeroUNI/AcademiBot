@@ -261,6 +261,7 @@ Bot.prototype.guardaUsuarios = async function () {
     console.log("Ejecutando union de usuarios.");
     this.FB.enviaTexto("2605137522848909", "REINICIO IRREGULAR!")
       .catch(e => console.log(e));
+    // añade a tods los usuarios que estan en el ultimo salvado y que no estan en el nuevo
     for (let usuario of ultimoSalvado) {
       if (!usuarios.find((_usuario) => _usuario.id === usuario.id)) {
         usuarios.push(usuario);
