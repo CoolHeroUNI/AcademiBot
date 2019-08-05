@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/login.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -37,11 +37,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/login.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="133" selection-start-line="5" selection-start-column="133" selection-end-line="5" selection-end-column="133" />
+            <state relative-caret-position="153">
+              <caret line="9" column="3" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/logout.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="20" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -49,13 +58,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
+            <state relative-caret-position="245">
               <caret line="17" column="31" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="31" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="221">
@@ -69,15 +78,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="187">
               <caret line="11" column="37" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/indexTemplate.pug">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="213">
-              <caret line="21" column="58" selection-start-line="21" selection-start-column="58" selection-end-line="21" selection-end-column="58" />
             </state>
           </provider>
         </entry>
@@ -189,12 +189,12 @@
         <option value="$PROJECT_DIR$/views/amazon.pug" />
         <option value="$PROJECT_DIR$/routes/webhook.js" />
         <option value="$PROJECT_DIR$/src/middleware.js" />
-        <option value="$PROJECT_DIR$/routes/login.js" />
         <option value="$PROJECT_DIR$/views/indexTemplate.pug" />
         <option value="$PROJECT_DIR$/routes/logout.js" />
         <option value="$PROJECT_DIR$/routes/adminMuestra.js" />
         <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/routes/login.js" />
       </list>
     </option>
   </component>
@@ -324,21 +324,7 @@
       <workItem from="1564507572462" duration="1004000" />
       <workItem from="1564694604391" duration="22149000" />
       <workItem from="1564927340932" duration="27465000" />
-      <workItem from="1565017039800" duration="2719000" />
-    </task>
-    <task id="LOCAL-00010" summary="Preparacion para web de administracion&#10;&#10;Commit de preparacion para el desarrollo de web de administrador">
-      <created>1564329049319</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1564329049319</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Inclusion de web de clasificacion&#10;&#10;Se incluye la web de clasificacion de material de estudio, sera necesario ahora establecer la informacion en back-end">
-      <created>1564418158823</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1564418158823</updated>
+      <workItem from="1565017039800" duration="3503000" />
     </task>
     <task id="LOCAL-00012" summary="Inclusion de icono&#10;&#10;Se incluye el icono necesario, se corrige la vista de clasificacion">
       <created>1564419285036</created>
@@ -669,11 +655,25 @@
       <option name="project" value="LOCAL" />
       <updated>1565019602544</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="Solicitud de ruta incorrecta&#10;Error en la solicitud de ruta en el archivo principal">
+      <created>1565019810562</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1565019810564</updated>
+    </task>
+    <task id="LOCAL-00060" summary="Error en la ruta de retorno de login&#10;Se encodificaba equivocadamente las rutas nulas&#10;Se corrigio tambien un error de tipografia que pudo generar un problema a futuro, eliminando ahora las rutas de redireccion de las cookies">
+      <created>1565020251133</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1565020251134</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="105194000" />
+    <option name="totallyTimeSpent" value="105978000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -730,8 +730,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="RELOAD_CONTEXT" value="false" />
-    <MESSAGE value="Clasificacion&#10;Se asegura que la ruta devuelva un resultado positivo" />
-    <MESSAGE value="Interpolacion de variables&#10;Error en la interpolacion de variables entre pug y javascript, se busca solucion" />
     <MESSAGE value="Clasificador listo&#10;Prueba del clasificador de imagenes de material de estudio" />
     <MESSAGE value="Console log&#10;Solo en caso de un fallo sera necesario debugear" />
     <MESSAGE value="Error&#10;Clasificacion linea 35, texto sin terminar" />
@@ -755,7 +753,9 @@
     <MESSAGE value="Middleware to avoid double loggin in" />
     <MESSAGE value="Url encoding&#10;Se vio conveniente utilizar codificacion para la url de redireccion, para poder redirigir a urls que tambien tienen parametros" />
     <MESSAGE value="Soporte para Logout&#10;Se añadio una ruta especifica para cerrar la sesion" />
-    <option name="LAST_COMMIT_MESSAGE" value="Soporte para Logout&#10;Se añadio una ruta especifica para cerrar la sesion" />
+    <MESSAGE value="Solicitud de ruta incorrecta&#10;Error en la solicitud de ruta en el archivo principal" />
+    <MESSAGE value="Error en la ruta de retorno de login&#10;Se encodificaba equivocadamente las rutas nulas&#10;Se corrigio tambien un error de tipografia que pudo generar un problema a futuro, eliminando ahora las rutas de redireccion de las cookies" />
+    <option name="LAST_COMMIT_MESSAGE" value="Error en la ruta de retorno de login&#10;Se encodificaba equivocadamente las rutas nulas&#10;Se corrigio tambien un error de tipografia que pudo generar un problema a futuro, eliminando ahora las rutas de redireccion de las cookies" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/model/universidad/facultad/Especialidad.js">
@@ -971,13 +971,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/logout.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="20" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/indexTemplate.pug">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="213">
@@ -1027,24 +1020,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/login.js">
+    <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="133" selection-start-line="5" selection-start-column="133" selection-end-line="5" selection-end-column="133" />
+        <state relative-caret-position="221">
+          <caret line="31" column="47" selection-start-line="31" selection-start-column="47" selection-end-line="31" selection-end-column="47" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
+        <state relative-caret-position="245">
           <caret line="17" column="31" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
+    <entry file="file://$PROJECT_DIR$/routes/logout.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="31" column="47" selection-start-line="31" selection-start-column="47" selection-end-line="31" selection-end-column="47" />
+        <state relative-caret-position="102">
+          <caret line="6" column="20" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="3" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
         </state>
       </provider>
     </entry>

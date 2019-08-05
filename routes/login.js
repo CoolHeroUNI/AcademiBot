@@ -3,7 +3,11 @@ const router = express.Router();
 const middleware = require('../src/middleware');
 
 router.get('/', middleware.ensureNoAuth, (req, res) => {
-  req.session.returnTo =  encodeURIComponent(req.query.redirect) || req.session.returnTo || encodeURIComponent(req.header('Referer'));
+  if (req.query.redirect) {
+    req.session.returnTo = encodeURIComponent(req.query.redirect);
+  } else if (!req.session.returnTo && req.header('Referer')) {
+    req.session.returnTo = encodeURIComponent(req.header('Referer'));
+  }
   res.render('login', {});
 });
 router.post('/', middleware.ensureNoAuth, (req, res) => {
