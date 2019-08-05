@@ -1,0 +1,27 @@
+doctype html
+head
+    title="Administrador Facebook"
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    link(rel='stylesheet' type='text/css' href='/public/stylesheets/collapsible.css')
+
+h2(align='center') Administrador de Facebook
+button.collapsible Mensaje global
+div.content
+    p Proximamente gestor de mensajes globales
+button.collapsible Buscador de usuarios
+div.content
+    p Proximamente buscador de usuarios
+button(onclick="window.location='/'") 🏠
+script.
+  const coll = document.getElementsByClassName("collapsible");
+  for (let i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      let content = this.nextElementSibling;
+      if (content.style.maxHeight){
+        content.style.maxHeight = null;
+      } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+      }
+    });
+  }
