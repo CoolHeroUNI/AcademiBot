@@ -6,10 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/clasificacion.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/clasificacion.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/middleware.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/middleware.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/index.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/index.pug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/stylesheets/hub.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/stylesheets/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/stylesheets/login.css" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -22,7 +20,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/login.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="238">
@@ -32,19 +30,28 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/login.pug">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="9" column="40" lean-forward="true" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/stylesheets/login.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1277">
-              <caret line="251" column="2" selection-start-line="251" selection-start-column="2" selection-end-line="251" selection-end-column="2" />
+            <state relative-caret-position="461">
+              <caret line="254" selection-start-line="254" selection-end-line="254" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/stylesheets/hub.css">
+        <entry file="file://$PROJECT_DIR$/views/clasificacion.pug">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2">
-              <caret line="40" column="9" selection-start-line="40" selection-start-column="9" selection-end-line="40" selection-end-column="9" />
+            <state relative-caret-position="136">
+              <caret line="8" column="11" lean-forward="true" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -90,15 +97,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="119">
               <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="79" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/clasificacion.pug">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="11" lean-forward="true" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -156,7 +154,6 @@
         <option value="$PROJECT_DIR$/src/metodos.js" />
         <option value="$PROJECT_DIR$/.env_sample" />
         <option value="$PROJECT_DIR$/views/login.pug" />
-        <option value="$PROJECT_DIR$/public/stylesheets/login.css" />
         <option value="$PROJECT_DIR$/src/randomPing.js" />
         <option value="$PROJECT_DIR$/model/universidad/facultad/Facultad.js" />
         <option value="$PROJECT_DIR$/model/servicios-web/DialogFlow.js" />
@@ -190,6 +187,7 @@
         <option value="$PROJECT_DIR$/views/index.pug" />
         <option value="$PROJECT_DIR$/src/middleware.js" />
         <option value="$PROJECT_DIR$/routes/login.js" />
+        <option value="$PROJECT_DIR$/public/stylesheets/login.css" />
       </list>
     </option>
   </component>
@@ -342,7 +340,7 @@
       <workItem from="1564456105971" duration="5688000" />
       <workItem from="1564507572462" duration="1004000" />
       <workItem from="1564694604391" duration="22149000" />
-      <workItem from="1564927340932" duration="18870000" />
+      <workItem from="1564927340932" duration="20045000" />
     </task>
     <task id="LOCAL-00001" summary="AcademiBot&#10;&#10;ChatBot diseñado por Marco Antonio Vela Rodriguez, director del área académica del Centro Cultural de Avanzada Tecnologica de la Facultad de Ingeniería Industrial y de Sistemas de la UNI.&#10;&#10;El proposito de AcademiBot es servir material de estudio de manera virtual a los estudiantes universitarios.">
       <created>1560817878924</created>
@@ -645,11 +643,18 @@
       <option name="project" value="LOCAL" />
       <updated>1564965392314</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="Web redireccion">
+      <created>1564967529463</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1564967529463</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="91632000" />
+    <option name="totallyTimeSpent" value="92807000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -679,7 +684,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49702382" weight="0.29787233" />
       <window_info anchor="bottom" id="Messages" order="9" weight="0.32991454" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5029762" side_tool="true" weight="0.29787233" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4947313" visible="true" weight="0.32733223" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4947313" weight="0.32733223" />
       <window_info anchor="bottom" id="GraphQL" order="12" />
       <window_info anchor="bottom" id="Inspection Results" order="13" sideWeight="0.4910432" weight="0.32998884" />
       <window_info anchor="bottom" id="TypeScript" order="14" />
@@ -706,7 +711,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="RELOAD_CONTEXT" value="false" />
-    <MESSAGE value="Session y login&#10;Se opta por hacer que la sesion se renueve al hacer cualquier peticion" />
     <MESSAGE value="Clasificacion&#10;Se añadio la solicitud POST a clasificacion para empezar a desarrollar la clasificacion de material" />
     <MESSAGE value="Hub&#10;Se corrigio el diseño de Hub" />
     <MESSAGE value="Session&#10;Se intenta actualizar la duracion de la session" />
@@ -731,7 +735,8 @@
     <MESSAGE value="Mime&#10;Se intenta corregir el error por falta de tipo de contenido colocando el mismo tipo recibido de parte de facebook." />
     <MESSAGE value="Web&#10;Se trabaja en el desarrollo de la pagina web, modificando direcciones antiguas para evitar cobros no deseados y un mejor rendimiento" />
     <MESSAGE value="StyleSheet&#10;error en la referencia a la hoja de estilo index, se referia por error a admin" />
-    <option name="LAST_COMMIT_MESSAGE" value="StyleSheet&#10;error en la referencia a la hoja de estilo index, se referia por error a admin" />
+    <MESSAGE value="Web redireccion" />
+    <option name="LAST_COMMIT_MESSAGE" value="Web redireccion" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/node_modules/http-errors/index.js">
@@ -927,13 +932,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/login.pug">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="10" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/stylesheets/index.css">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -964,13 +962,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/clasificacion.pug">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="11" lean-forward="true" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/stylesheets/clasificacion.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1870">
@@ -978,22 +969,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/stylesheets/login.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1277">
-          <caret line="251" column="2" selection-start-line="251" selection-start-column="2" selection-end-line="251" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/stylesheets/index.css">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/stylesheets/hub.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2">
-          <caret line="40" column="9" selection-start-line="40" selection-start-column="9" selection-end-line="40" selection-end-column="9" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/stylesheets/index.css">
       <provider selected="true" editor-type-id="text-editor" />
@@ -1044,6 +1021,34 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="14" column="32" lean-forward="true" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/stylesheets/hub.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2">
+          <caret line="40" column="9" selection-start-line="40" selection-start-column="9" selection-end-line="40" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/clasificacion.pug">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="11" lean-forward="true" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/login.pug">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="40" lean-forward="true" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/stylesheets/login.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="461">
+          <caret line="254" selection-start-line="254" selection-end-line="254" />
         </state>
       </provider>
     </entry>
