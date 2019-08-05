@@ -1,8 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const clasificadorRoute = require('./clasificador');
-router.use('/clasificador', clasificadorRoute);
+const middleware = require('../src/middleware');
 
+const clasificadorRoute = require('./adminClasificador');
+const facebookRoute = require('./adminFacebook');
+
+router.use(middleware.ensureAuth);
+router.use('/clasificador', clasificadorRoute);
+router.use('/facebook', facebookRoute);
 
 
 

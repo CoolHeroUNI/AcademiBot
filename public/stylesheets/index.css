@@ -36,9 +36,9 @@ body {
     margin-left: 2rem;
 }
 .mainInner div {
+    width: 100%;
     display:table-cell;
     vertical-align: middle;
-    letter-spacing: 1.25px;
     
 }
 #sidebarMenu {

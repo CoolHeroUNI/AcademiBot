@@ -1,9 +1,10 @@
 extends indexTemplate
 block content
-    h2 Amazon Web Services
-    p AcademiBot hace uso de AWS para almacenar el material de estudio.
-    p La principal herramienta que utiliza es #[a(href="https://s3.console.aws.amazon.com", target='_blank') S3].
-    h2 Clasificador de material
-    p Las donaciones de los usuarios son muy importantes, por lo que si tienes la contraseña de administrador puedes acceder al clasificador de material.
-    button(onclick="window.location='/admin/clasificador'") Clasificar material
+    div
+        h2 Amazon Web Services
+        p Hago uso de AWS para almacenar el material de estudio, archivos de configuracion y otros.
+        p La principal herramienta que utiliza es #[a(href="https://s3.console.aws.amazon.com", target='_blank') S3].
+        h2 Clasificador de material
+        p Las donaciones de los usuarios son muy importantes, por lo que si tienes privilegios de administrador puedes acceder al clasificador de material para ordenarlas.
+        button(onclick="window.location='/admin/clasificador'") Clasificar material
 
