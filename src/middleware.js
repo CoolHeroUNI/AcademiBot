@@ -9,7 +9,7 @@ const ensureAuth = (req, res, next) => {
 const ensureNoAuth = (req, res, next) => {
   if (req.session.logged) {
     console.log("must be logged out");
-    res.redirect('back');
+    return res.redirect('/');
   }
   next();
 };
