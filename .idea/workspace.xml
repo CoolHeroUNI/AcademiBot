@@ -4,10 +4,7 @@
     <option name="GROUP_BY_SEVERITY" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/adminClasificador.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/adminClasificador.js" afterDir="false" />
-    </list>
+    <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -37,11 +34,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/model/Bot.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-83">
-              <caret line="368" selection-start-line="368" selection-end-line="368" />
+            <state relative-caret-position="172">
+              <caret line="380" column="26" lean-forward="true" selection-start-line="380" selection-start-column="26" selection-end-line="380" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -87,7 +84,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/adminClasificador.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="222">
@@ -187,10 +184,10 @@
         <option value="$PROJECT_DIR$/views/adminHosting.pug" />
         <option value="$PROJECT_DIR$/routes/adminHosting.js" />
         <option value="$PROJECT_DIR$/src/metodos.js" />
-        <option value="$PROJECT_DIR$/model/Bot.js" />
         <option value="$PROJECT_DIR$/views/adminClasificador.pug" />
         <option value="$PROJECT_DIR$/routes/adminMuestra.js" />
         <option value="$PROJECT_DIR$/routes/adminClasificador.js" />
+        <option value="$PROJECT_DIR$/model/Bot.js" />
       </list>
     </option>
   </component>
@@ -344,21 +341,7 @@
       <workItem from="1564507572462" duration="1004000" />
       <workItem from="1564694604391" duration="22149000" />
       <workItem from="1564927340932" duration="27465000" />
-      <workItem from="1565017039800" duration="15792000" />
-    </task>
-    <task id="LOCAL-00026" summary="Log de ruta de S3">
-      <created>1564722171581</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1564722171581</updated>
-    </task>
-    <task id="LOCAL-00027" summary="Error en S3&#10;Utilizar claves con espacios genera un error al intentar obtener el objeto, se reemplazaran por _ en todas las ocurrencias">
-      <created>1564723344474</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1564723344474</updated>
+      <workItem from="1565017039800" duration="16040000" />
     </task>
     <task id="LOCAL-00028" summary="Clasificacion&#10;Listos metodos en Amazon para eliminar y mover objetos, se probara ahora la pagina web de clasificacion">
       <created>1564727606632</created>
@@ -689,11 +672,25 @@
       <option name="project" value="LOCAL" />
       <updated>1565035116022</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL-00075" summary="Error en clasificador de material">
+      <created>1565035616940</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1565035616940</updated>
+    </task>
+    <task id="LOCAL-00076" summary="Error en indices de arreglo&#10;Se soluciono un error en los indices de los arreglos">
+      <created>1565035845710</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1565035845710</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="118267000" />
+    <option name="totallyTimeSpent" value="118515000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -750,8 +747,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="RELOAD_CONTEXT" value="false" />
-    <MESSAGE value="Routeo&#10;Intento de colocar ruta dentro de otra ruta" />
-    <MESSAGE value="Routeo&#10;Se coloco la ruta del administrador en el archivo principal" />
     <MESSAGE value="Nombre de ruta clasificador&#10;Se cambio el nombre de la ruta del clasificador" />
     <MESSAGE value="Ruta de configuracion&#10;Colocada la ruta de configuracion" />
     <MESSAGE value="Error en nombre&#10;Se llamo por accidente a la vista equivocada" />
@@ -775,7 +770,9 @@
     <MESSAGE value="No enviar doble respuesta&#10;se envio una doble respuesta en adminHosting" />
     <MESSAGE value="Error en los nombres de claves S3&#10;Una vez más, nombres con caracteres fuera del abecedario ocasionan problemas, por lo que se utiliza el metodo limpia para encargarse de eso." />
     <MESSAGE value="Clasificador de imagenes&#10;Se añadio soporte para buscar diferentes archivos" />
-    <option name="LAST_COMMIT_MESSAGE" value="Clasificador de imagenes&#10;Se añadio soporte para buscar diferentes archivos" />
+    <MESSAGE value="Error en clasificador de material" />
+    <MESSAGE value="Error en indices de arreglo&#10;Se soluciono un error en los indices de los arreglos" />
+    <option name="LAST_COMMIT_MESSAGE" value="Error en indices de arreglo&#10;Se soluciono un error en los indices de los arreglos" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/routes/inicio.js" />
@@ -1041,13 +1038,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/Bot.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-83">
-          <caret line="368" selection-start-line="368" selection-end-line="368" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/adminMuestra.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="128">
@@ -1090,6 +1080,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="222">
           <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/Bot.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="380" column="26" lean-forward="true" selection-start-line="380" selection-start-column="26" selection-end-line="380" selection-end-column="26" />
         </state>
       </provider>
     </entry>
