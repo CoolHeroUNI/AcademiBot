@@ -9,9 +9,10 @@ router.get('/', (req, res) => {
    */
   const peticion = req.query.peticion;
   const ubicacion = req.query.ubicacion;
+  const logged =  req.session.logged;
 
   if (!peticion || !ubicacion) {
-    return res.render('adminMuestra', {});
+    return res.render('adminMuestra', {logged});
   } else if (peticion === "facultades") {
     if (ubicacion === "local") {
       res.json(AcademiBot.UNI.getFacultadesObject());
@@ -37,7 +38,6 @@ router.get('/', (req, res) => {
         .catch(e => res.render('error', e));
     }
   }
-
 });
 
 module.exports = router;
