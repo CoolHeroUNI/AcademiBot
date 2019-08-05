@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/routes/webhook.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/webhook.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/adminHosting.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/adminHosting.pug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/Bot.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Bot.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/metodos.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/metodos.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -20,15 +21,6 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/adminClasificador.pug">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-289">
-              <caret line="7" selection-start-line="7" selection-end-line="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/middleware.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="34">
@@ -38,19 +30,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/adminFacebook.pug">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="22" lean-forward="true" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/adminHosting.pug">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="12" column="82" selection-start-line="12" selection-start-column="82" selection-end-line="12" selection-end-column="82" />
+            <state relative-caret-position="82">
+              <caret line="11" column="78" selection-start-line="11" selection-start-column="78" selection-end-line="11" selection-end-column="78" />
             </state>
           </provider>
         </entry>
@@ -85,8 +68,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/adminHosting.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="3" lean-forward="true" selection-start-line="19" selection-start-column="3" selection-end-line="19" selection-end-column="3" />
+            <state relative-caret-position="136">
+              <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -100,11 +83,29 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/model/Bot.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="349" selection-start-line="349" selection-end-line="349" />
+            <state relative-caret-position="122">
+              <caret line="779" column="77" lean-forward="true" selection-start-line="779" selection-start-column="77" selection-end-line="779" selection-end-column="77" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/adminClasificador.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-282">
+              <caret line="2" selection-start-line="2" selection-end-line="2" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/metodos.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="126">
+              <caret line="45" column="32" lean-forward="true" selection-start-line="45" selection-start-column="32" selection-end-line="45" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -144,7 +145,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/model/universidad/facultad/Facultad.js" />
         <option value="$PROJECT_DIR$/model/servicios-web/DialogFlow.js" />
         <option value="$PROJECT_DIR$/model/universidad/facultad/Especialidad.js" />
         <option value="$PROJECT_DIR$/model/AcademiBot.js" />
@@ -189,12 +189,13 @@
         <option value="$PROJECT_DIR$/views/adminClasificador.pug" />
         <option value="$PROJECT_DIR$/views/adminMuestra.pug" />
         <option value="$PROJECT_DIR$/src/middleware.js" />
-        <option value="$PROJECT_DIR$/model/Bot.js" />
-        <option value="$PROJECT_DIR$/routes/adminHosting.js" />
         <option value="$PROJECT_DIR$/views/adminFacebook.pug" />
         <option value="$PROJECT_DIR$/views/indexTemplate.pug" />
         <option value="$PROJECT_DIR$/routes/webhook.js" />
         <option value="$PROJECT_DIR$/views/adminHosting.pug" />
+        <option value="$PROJECT_DIR$/routes/adminHosting.js" />
+        <option value="$PROJECT_DIR$/src/metodos.js" />
+        <option value="$PROJECT_DIR$/model/Bot.js" />
       </list>
     </option>
   </component>
@@ -217,6 +218,11 @@
             <path>
               <item name="AcademiBot" type="b2602c69:ProjectViewProjectNode" />
               <item name="AcademiBot" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AcademiBot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AcademiBot" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="AcademiBot" type="b2602c69:ProjectViewProjectNode" />
@@ -324,21 +330,7 @@
       <workItem from="1564507572462" duration="1004000" />
       <workItem from="1564694604391" duration="22149000" />
       <workItem from="1564927340932" duration="27465000" />
-      <workItem from="1565017039800" duration="10880000" />
-    </task>
-    <task id="LOCAL-00022" summary="Archivador&#10;tipo de dato no concordante">
-      <created>1564709979427</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1564709979427</updated>
-    </task>
-    <task id="LOCAL-00023" summary="Clasificacion&#10;Se corrije el tipo de dato esperado">
-      <created>1564710390909</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1564710390909</updated>
+      <workItem from="1565017039800" duration="12047000" />
     </task>
     <task id="LOCAL-00024" summary="Url firmada&#10;Problema con la URL firmada y html">
       <created>1564711009970</created>
@@ -669,11 +661,25 @@
       <option name="project" value="LOCAL" />
       <updated>1565027535816</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="Importar jquery">
+      <created>1565028034309</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1565028034309</updated>
+    </task>
+    <task id="LOCAL-00072" summary="No enviar doble respuesta&#10;se envio una doble respuesta en adminHosting">
+      <created>1565028253474</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1565028253474</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="113355000" />
+    <option name="totallyTimeSpent" value="114522000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -730,8 +736,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="RELOAD_CONTEXT" value="false" />
-    <MESSAGE value="Web&#10;Se trabaja en el desarrollo de la pagina web, modificando direcciones antiguas para evitar cobros no deseados y un mejor rendimiento" />
-    <MESSAGE value="StyleSheet&#10;error en la referencia a la hoja de estilo index, se referia por error a admin" />
     <MESSAGE value="Web redireccion" />
     <MESSAGE value="Diseño CSS&#10;Se modifico el juego de colores a escala de azules y grises" />
     <MESSAGE value="Routeo&#10;Intento de colocar ruta dentro de otra ruta" />
@@ -755,7 +759,9 @@
     <MESSAGE value="Mejora estetica boton inicio" />
     <MESSAGE value="Error en pug&#10;se coloco un bloque especifico para codigo" />
     <MESSAGE value="No ejecucion de acciones" />
-    <option name="LAST_COMMIT_MESSAGE" value="No ejecucion de acciones" />
+    <MESSAGE value="Importar jquery" />
+    <MESSAGE value="No enviar doble respuesta&#10;se envio una doble respuesta en adminHosting" />
+    <option name="LAST_COMMIT_MESSAGE" value="No enviar doble respuesta&#10;se envio una doble respuesta en adminHosting" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/routes/inicio.js" />
@@ -846,13 +852,6 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/public/stylesheets/hub.css" />
-    <entry file="file://$PROJECT_DIR$/src/metodos.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="32" column="16" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/stylesheets/login.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4318">
@@ -947,13 +946,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/adminClasificador.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-386">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/indexAmazon.pug">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -1010,13 +1002,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/Bot.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="349" selection-start-line="349" selection-end-line="349" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/adminFacebook.pug">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -1059,17 +1044,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/adminHosting.js">
+    <entry file="file://$PROJECT_DIR$/views/adminHosting.pug">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="3" lean-forward="true" selection-start-line="19" selection-start-column="3" selection-end-line="19" selection-end-column="3" />
+        <state relative-caret-position="82">
+          <caret line="11" column="78" selection-start-line="11" selection-start-column="78" selection-end-line="11" selection-end-column="78" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/adminHosting.pug">
+    <entry file="file://$PROJECT_DIR$/routes/adminHosting.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="12" column="82" selection-start-line="12" selection-start-column="82" selection-end-line="12" selection-end-column="82" />
+        <state relative-caret-position="136">
+          <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/adminClasificador.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-282">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/metodos.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="45" column="32" lean-forward="true" selection-start-line="45" selection-start-column="32" selection-end-line="45" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/Bot.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="122">
+          <caret line="779" column="77" lean-forward="true" selection-start-line="779" selection-start-column="77" selection-end-line="779" selection-end-column="77" />
         </state>
       </provider>
     </entry>
