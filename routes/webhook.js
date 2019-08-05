@@ -59,7 +59,7 @@ router.get('/actualiza/:clave', actualiza);
 
 process.on("SIGTERM", () => {
   AcademiBot.guarda();
-  console.log("Ha sido un dia productivo, he servido a " + usuarios.length + " personas.");
+  console.log("Ha sido un dia productivo, he servido a " + usuarios.size + " personas.");
   setTimeout(() => {
     process.exit(0);
   }, 4000);
