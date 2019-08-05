@@ -364,7 +364,7 @@ Bot.prototype.actualizaDirectorios = async function () {
  * Metodo para obtener la ruta y urlFirmada de un tipo de archivo en submissions
  * @method obtieneArchivoDeEnvios
  * @param {String} tipo
- * @returns {Promise<{ruta:String,url:String,body:Buffer}>}
+ * @returns {Promise<{ruta:String,url:String,body:Buffer,indice:Number}>}
  */
 Bot.prototype.obtieneArchivoDeEnvios = async function (tipo, index) {
   let envio = this.submissions.toArray().filter(archivo => archivo.getType() === tipo);
@@ -384,7 +384,8 @@ Bot.prototype.obtieneArchivoDeEnvios = async function (tipo, index) {
           resolve({
             ruta: envio.getRuta(),
             url: urlFirmada.payload.url,
-            body: bytes
+            body: bytes,
+            indice: index
           })
         })
         .catch(e => reject(e));
