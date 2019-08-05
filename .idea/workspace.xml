@@ -6,12 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/stylesheets/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/stylesheets/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/muestra.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/adminMuestra.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/amazon.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/amazon.pug" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/muestra.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/adminMuestra.pug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/adminMuestra.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/adminMuestra.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -27,8 +22,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/adminMuestra.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="663">
-              <caret line="39" column="3" selection-start-line="39" selection-start-column="3" selection-end-line="39" selection-end-column="3" />
+            <state relative-caret-position="92">
+              <caret line="12" column="2" selection-start-line="12" selection-start-column="2" selection-end-line="12" selection-end-column="2" />
             </state>
           </provider>
         </entry>
@@ -145,7 +140,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/node_modules/.gitignore" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/libs/metodos.js" />
         <option value="$PROJECT_DIR$/model/universidad/facultad/Peticion.js" />
@@ -196,6 +190,7 @@
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/routes/admin.js" />
         <option value="$PROJECT_DIR$/views/amazon.pug" />
+        <option value="$PROJECT_DIR$/routes/adminMuestra.js" />
       </list>
     </option>
   </component>
@@ -349,13 +344,6 @@
       <workItem from="1564507572462" duration="1004000" />
       <workItem from="1564694604391" duration="22149000" />
       <workItem from="1564927340932" duration="27465000" />
-    </task>
-    <task id="LOCAL-00001" summary="AcademiBot&#10;&#10;ChatBot diseñado por Marco Antonio Vela Rodriguez, director del área académica del Centro Cultural de Avanzada Tecnologica de la Facultad de Ingeniería Industrial y de Sistemas de la UNI.&#10;&#10;El proposito de AcademiBot es servir material de estudio de manera virtual a los estudiantes universitarios.">
-      <created>1560817878924</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1560817878924</updated>
     </task>
     <task id="LOCAL-00002" summary="AcademiBot&#10;&#10;ChatBot diseñado por Marco Antonio Vela Rodriguez, director del área académica del Centro Cultural de Avanzada Tecnologica de la Facultad de Ingeniería Industrial y de Sistemas de la UNI.&#10;&#10;El proposito de AcademiBot es servir material de estudio de manera virtual a los estudiantes universitarios.">
       <created>1560818348672</created>
@@ -686,11 +674,25 @@
       <option name="project" value="LOCAL" />
       <updated>1564970811386</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="Ruta de configuracion&#10;Colocada la ruta de configuracion">
+      <created>1564982308442</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1564982308442</updated>
+    </task>
+    <task id="LOCAL-00050" summary="Error en nombre&#10;Se llamo por accidente a la vista equivocada">
+      <created>1564982484509</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1564982484510</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="100720000" />
+    <option name="totallyTimeSpent" value="101227000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -710,7 +712,7 @@
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4947313" visible="true" weight="0.3289689" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4947313" weight="0.3289689" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49947312" weight="0.32887402" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -720,7 +722,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49702382" weight="0.29787233" />
       <window_info anchor="bottom" id="Messages" order="9" weight="0.32991454" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5029762" side_tool="true" weight="0.29787233" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4947313" weight="0.32569557" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4947313" visible="true" weight="0.32569557" />
       <window_info anchor="bottom" id="GraphQL" order="12" />
       <window_info anchor="bottom" id="Inspection Results" order="13" sideWeight="0.4910432" weight="0.32998884" />
       <window_info anchor="bottom" id="TypeScript" order="14" />
@@ -747,8 +749,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="RELOAD_CONTEXT" value="false" />
-    <MESSAGE value="Clasificacion&#10;Finalizado la parte de mostrar el material" />
-    <MESSAGE value="Archivador&#10;tipo de dato no concordante" />
     <MESSAGE value="Clasificacion&#10;Se corrije el tipo de dato esperado" />
     <MESSAGE value="Url firmada&#10;Problema con la URL firmada y html" />
     <MESSAGE value="Base 64 image&#10;Se opto por utilizar la codificacion de base 64, esto facilitara la descarga de los propios datos a futuro" />
@@ -772,7 +772,9 @@
     <MESSAGE value="Routeo&#10;Intento de colocar ruta dentro de otra ruta" />
     <MESSAGE value="Routeo&#10;Se coloco la ruta del administrador en el archivo principal" />
     <MESSAGE value="Nombre de ruta clasificador&#10;Se cambio el nombre de la ruta del clasificador" />
-    <option name="LAST_COMMIT_MESSAGE" value="Nombre de ruta clasificador&#10;Se cambio el nombre de la ruta del clasificador" />
+    <MESSAGE value="Ruta de configuracion&#10;Colocada la ruta de configuracion" />
+    <MESSAGE value="Error en nombre&#10;Se llamo por accidente a la vista equivocada" />
+    <option name="LAST_COMMIT_MESSAGE" value="Error en nombre&#10;Se llamo por accidente a la vista equivocada" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/model/universidad/facultad/Especialidad.js">
@@ -1053,8 +1055,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/adminMuestra.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="39" column="3" selection-start-line="39" selection-start-column="3" selection-end-line="39" selection-end-column="3" />
+        <state relative-caret-position="92">
+          <caret line="12" column="2" selection-start-line="12" selection-start-column="2" selection-end-line="12" selection-end-column="2" />
         </state>
       </provider>
     </entry>

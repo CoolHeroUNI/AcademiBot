@@ -10,7 +10,10 @@ router.get('/', (req, res) => {
   const peticion = req.query.peticion;
   const ubicacion = req.query.ubicacion;
   const autenticado = req.query.clave === process.env.PROCESS_KEY;
-  if (peticion === "facultades") {
+
+  if (!peticion || !ubicacion) {
+    return res.render('adminMuestra', {});
+  } else if (peticion === "facultades") {
     if (ubicacion === "local") {
       res.json(AcademiBot.UNI.getFacultadesObject());
     } else if (ubicacion === "S3" && autenticado) {
@@ -35,10 +38,7 @@ router.get('/', (req, res) => {
         .catch(e => res.render('error', e));
     }
   }
-  if (!peticion || !ubicacion) {
-    return res.render('adminMuestra', {});
-  }
-  res.sendStatus(404);
+
 });
 
 module.exports = router;
