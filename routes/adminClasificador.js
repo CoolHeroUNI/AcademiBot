@@ -3,21 +3,27 @@ const router = express.Router();
 const AcademiBot = require('../src/AcademiBot');
 
 router.get('/', (req, res) => {
-  const facultades = AcademiBot.UNI.getFacultadesObject().map(facu => {
-    return {
-      id: facu.id,
-      directorio: facu.directorio
-    };
-  });
-  AcademiBot.obtieneArchivoDeEnvios('image')
+  const tipe = req.query.tipo || 'image';
+  const page = req.query.page || 0;
+
+  AcademiBot.obtieneArchivoDeEnvios(tipe, page)
     .then(archivo => {
+      const facultades = AcademiBot.UNI.getFacultadesObject().map(facu => {
+        return {
+          id: facu.id,
+          directorio: facu.directorio
+        };
+      });
       res.render('adminClasificador', {
         facultades : JSON.stringify(facultades),
         Material : "data:image;base64," + archivo.body.toString('base64'),
-        Ruta : archivo.ruta
+        Ruta : archivo.ruta,
+        Tipo : tipe,
+        Pagina : page
       });
     })
-    .catch(e => console.log(e));
+    .catch(e => res.render('error', e));
+
 });
 
 router.post('/', (req, res) => {

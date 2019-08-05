@@ -5,10 +5,22 @@ head
     link(rel='stylesheet' type='text/css' href='/public/stylesheets/collapsible.css')
 
 h2(align='center') Clasificador de material
-button(onclick="window.location='/'") Inicio 🏠
+button.collapsible Botones
+div.content
+    div
+        button(onclick=`window.location=/admin/clasificador?tipo=${Tipo}&page=${Pagina == 0 ? 0 : Pagina - 1}`) Anterior ⬅
+        button(onclick="window.location='/'") Inicio 🏠
+        button(onclick=`window.location=/admin/clasificador?tipo=${Tipo}&page=${Pagina + 1}`) Siguiente ➡
+    div
+        button(onclick=`window.location=/admin/clasificador?tipo=image&page=0`) Imagen
+        button(onclick=`window.location=/admin/clasificador?tipo=audio&page=0`) Audio
+        button(onclick=`window.location=/admin/clasificador?tipo=video&page=0`) Video
+        button(onclick=`window.location=/admin/clasificador?tipo=file&page=0`) Archivo
+        button(onclick=`window.location=/admin/clasificador?tipo=none&page=0`) None
 button.collapsible Material
 div.content
-    img(src= Material, id="material", class="center")
+    p.center #{Ruta}
+    img#material.center(src=Material)
 button.collapsible Ruta
 div.content
     form(action="/admin/clasificador?action=move", method="POST")

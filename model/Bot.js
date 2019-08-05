@@ -366,24 +366,28 @@ Bot.prototype.actualizaDirectorios = async function () {
  * @param {String} tipo
  * @returns {Promise<{ruta:String,url:String,body:Buffer}>}
  */
-Bot.prototype.obtieneArchivoDeEnvios = async function (tipo) {
-  let envio = this.submissions.toArray().find(archivo => archivo.getType() === tipo);
-  let respuesta = {
-    ruta : "",
-    url : "",
-    body : null
-  }
-  if (envio) {
-    let urlFirmada = this.amazon.firmaUrls([envio], 600)[0];
-    console.log(envio.getRuta());
-    let bytes = await this.amazon.getObject(envio.getRuta());
-    if (urlFirmada) {
-      respuesta.ruta = envio.getRuta();
-      respuesta.url = urlFirmada.payload.url;
-      respuesta.body = bytes;
+Bot.prototype.obtieneArchivoDeEnvios = async function (tipo, index) {
+  let envio = this.submissions.toArray().filter(archivo => archivo.getType() === tipo);
+
+  return new Promise((resolve, reject) => {
+    if (!envio) {
+      reject(new Error("No existen envios que cumplan dichas especificaciones"));
+    } else {
+      if (index >= envio.length) index = envio.length - 1;
+      if (index < 0) index = 0;
+      let urlFirmada = this.amazon.firmaUrls([envio[0]], 600)[0];
+      console.log(envio.getRuta());
+      this.amazon.getObject(envio.getRuta())
+        .then((bytes) => {
+          resolve({
+            ruta: envio.getRuta(),
+            url: urlFirmada.payload.url,
+            body: bytes
+          })
+        })
+        .catch(e => reject(e));
     }
-  }
-  return respuesta;
+  });
 };
 /**
  * Metodo para mover un archivo en S3 dentro del bucket
