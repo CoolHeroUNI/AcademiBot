@@ -9,14 +9,13 @@ router.get('/', (req, res) => {
    */
   const peticion = req.query.peticion;
   const ubicacion = req.query.ubicacion;
-  const autenticado = req.query.clave === process.env.PROCESS_KEY;
 
   if (!peticion || !ubicacion) {
     return res.render('adminMuestra', {});
   } else if (peticion === "facultades") {
     if (ubicacion === "local") {
       res.json(AcademiBot.UNI.getFacultadesObject());
-    } else if (ubicacion === "S3" && autenticado) {
+    } else if (ubicacion === "S3") {
       AcademiBot.leeFacultades()
         .then(facultades => res.json(facultades))
         .catch(e => res.render('error', e));
@@ -24,7 +23,7 @@ router.get('/', (req, res) => {
   } else if (peticion === "usuarios") {
     if (ubicacion === "local") {
       res.json(AcademiBot.UNI.getUsuarios().map(usuario => usuario.toJSON()));
-    } else if (ubicacion === "S3" && autenticado) {
+    } else if (ubicacion === "S3") {
       AcademiBot.leeUsuarios()
         .then(usuarios => res.json(usuarios))
         .catch(e => res.render('error', e));
@@ -32,7 +31,7 @@ router.get('/', (req, res) => {
   } else if (peticion === "archivador") {
     if (ubicacion === "local") {
       res.json(AcademiBot.archivos.toJSON());
-    } else if (ubicacion === "S3" && autenticado) {
+    } else if (ubicacion === "S3") {
       AcademiBot.leeArchivador()
         .then(archivos => res.json(archivos))
         .catch(e => res.render('error', e));
