@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
         Material : "data:image;base64," + archivo.body.toString('base64'),
         Ruta : archivo.ruta,
         Tipo : tipe,
-        Pagina : page
+        Pagina : archivo.indice
       });
     })
     .catch(error => {
