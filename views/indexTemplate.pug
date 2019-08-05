@@ -1,0 +1,29 @@
+head
+  link(rel='stylesheet' type='text/css' href='/public/stylesheets/admin.css')
+
+div.header
+  input#openSidebarMenu.openSidebarMenu(type='checkbox')
+  label.sidebarIconToggle(for='openSidebarMenu')
+    .spinner.diagonal.part-1
+    .spinner.horizontal
+    .spinner.diagonal.part-2
+  #sidebarMenu
+    ul.sidebarMenuInner
+      li
+        | AcademiBot
+        a(href='https://github.com/MarcoVela', target='_blank', id='personal') Marco Vela
+      li
+        a(href='/', target='_self')               Inicio   🏠
+      li
+        a(href='/login', target='_self')          Log in   📌
+      li
+        a(href='/?tab=amazon', target='_self')    Amazon   ☁️
+      li
+        a(href='/?tab=facebook', target='_self')  Facebook 👍
+      li
+        a(href='/?tab=hosting', target='_self')   Hosting  🏢
+      li
+        a(href='/?tab=historia', target='_self')  Historia 📜
+.mainInner
+  div
+    block content
