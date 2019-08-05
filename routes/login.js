@@ -11,8 +11,7 @@ router.post('/', (req, res) => {
     req.session.logged = true;
     console.log("logged in");
     res.redirect("/")
-  }
-  else {
+  }  else {
     console.log("incorrect pass");
     res.redirect("/login");
   }

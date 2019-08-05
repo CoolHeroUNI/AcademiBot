@@ -45,7 +45,7 @@ class Amazon {
  */
 Amazon.prototype.firmaUrls = function (archivos, tiempo) {
   // Tiempo que la Url estara activa (en segundos)
-  tiempo = tiempo ? tiempo : 300;
+  if (!tiempo) tiempo = 300;
   let respuesta = [];
   for (let archivo of archivos) {
     let extension = archivo.getExtension();
@@ -165,15 +165,18 @@ Amazon.prototype.getJSON = async function (key) {
  * @method putObject
  * @param {String} key
  * @param {Buffer|String|ReadableStream} cuerpo
+ * @param {String} [mime] propiedad que indica content-type
  */
-Amazon.prototype.putObject = function (key, cuerpo) {
+Amazon.prototype.putObject = function (key, cuerpo, mime) {
   let param = {
     Body: cuerpo,
     Bucket: this.bucketName,
     Key: key
   };
-  this.s3.putObject(param).promise()
-    .catch(e => console.log(e));
+  if (mime) {
+    param.ContentType = mime;
+  }
+  return this.s3.putObject(param).promise();
 };
 
 /**
@@ -181,7 +184,7 @@ Amazon.prototype.putObject = function (key, cuerpo) {
  * @method moveObject
  * @param {String} origen
  * @param {String} destino
- * @returns {Promise<PromiseResult<S3.DeleteObjectOutput, AWSError> | void>}
+ * @returns {Promise<PromiseResult<S3.DeleteObjectOutput, AWSError>>}
  */
 Amazon.prototype.moveObject = function (origen, destino) {
   let param = {
@@ -190,8 +193,7 @@ Amazon.prototype.moveObject = function (origen, destino) {
     Key: destino
   };
   return this.s3.copyObject(param).promise()
-    .then(() => this.deleteObject(origen))
-    .catch(e => console.log(e));
+    .then(() => this.deleteObject(origen));
 };
 /**
  * Metodo para eliminar un Objeto en cierta ruta

@@ -1,54 +1,223 @@
-body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+@import url('https://fonts.googleapis.com/css?family=Varela+Round');
+html, body {
+    overflow-x: hidden;
+    height: 100%;
 }
-.top-container {
-    background-color: #f1f1f1;
-    padding: 30px;
-    text-align: center;
+body {
+    background: rgb(235, 237, 240);
+    padding: 0;
+    margin: 0;
+    font-family: 'Varela Round', sans-serif;
 }
 .header {
-    padding: 10px 16px;
-    background: #555;
-    color: #f1f1f1;
-}
-.content {
-    padding: 16px;
-}
-.sticky {
-    position: fixed;
-    top: 0;
+    display: block;
+    margin: 0 auto;
     width: 100%;
+    max-width: 100%;
+    box-shadow: none;
+    background-color: rgb(13, 34, 139);
+    position: fixed;
+    height: 60px!important;
+    overflow: hidden;
+    z-index: 10;
 }
-.sticky + .content {
-    padding-top: 102px;
+.main {
+    margin: 0 auto;
+    display: block;
+    height: 100%;
+    margin-top: 60px;
+}
+.mainInner {
+    padding: auto;
+    height: 100%;
+    width: 100%;
+    text-align: justify;
+    margin-top: 80px;
+    margin-left: 2rem;
+}
+.mainInner div {
+    display:table-cell;
+    vertical-align: middle;
+    letter-spacing: 1.25px;
+    
+}
+#sidebarMenu {
+    height: 100%;
+    position: fixed;
+    left: 0;
+    width: 250px;
+    margin-top: 60px;
+    transform: translateX(-250px);
+    transition: transform 250ms ease-in-out;
+    background: linear-gradient(180deg, rgb(13, 34, 139) 0%, rgb(80, 204, 235) 100%);
+}
+.sidebarMenuInner{
+    margin:0;
+    padding:0;
+    border-top: 1px solid rgba(255, 255, 255, 0.10);
+}
+.sidebarMenuInner li{
+    list-style: none;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 20px;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+}
+#personal {
+    display: block;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.50);
+}
+.sidebarMenuInner li a{
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+input[type="checkbox"]:checked ~ #sidebarMenu {
+    transform: translateX(0);
+}
+
+input[type=checkbox] {
+    transition: all 0.3s;
+    box-sizing: border-box;
+    display: none;
+}
+.sidebarIconToggle {
+    transition: all 0.3s;
+    box-sizing: border-box;
+    cursor: pointer;
+    position: absolute;
+    z-index: 99;
+    height: 100%;
+    width: 100%;
+    top: 22px;
+    left: 15px;
+    height: 22px;
+    width: 22px;
+}
+.spinner {
+    transition: all 0.3s;
+    box-sizing: border-box;
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background-color: #fff;
+}
+.horizontal {
+    transition: all 0.3s;
+    box-sizing: border-box;
+    position: relative;
+    float: left;
+    margin-top: 3px;
+}
+.diagonal.part-1 {
+    position: relative;
+    transition: all 0.3s;
+    box-sizing: border-box;
+    float: left;
+}
+.diagonal.part-2 {
+    transition: all 0.3s;
+    box-sizing: border-box;
+    position: relative;
+    float: left;
+    margin-top: 3px;
+}
+input[type=checkbox]:checked ~ .sidebarIconToggle > .horizontal {
+    transition: all 0.3s;
+    box-sizing: border-box;
+    opacity: 0;
+}
+input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-1 {
+    transition: all 0.3s;
+    box-sizing: border-box;
+    transform: rotate(135deg);
+    margin-top: 8px;
+}
+input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
+    transition: all 0.3s;
+    box-sizing: border-box;
+    transform: rotate(-135deg);
+    margin-top: -9px;
 }
 button {
-    float: right;
-    text-align: center;
-    background-image: none;
     border: 0;
-    max-width: -webkit-fill-available;
     align-content: center;
-    width: 10%;
     outline: 0;
     -webkit-transition: background-color 0.3s;
     transition: background-color 0.3s;
     cursor: pointer;
-    border-radius: 0.5rem;
-    padding: 0.4rem;
-    margin-right: 3rem;
-    background-color: #ea4c88;
-    color: #eee;
-    font-weight: 200;
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    font: inherit;
+    background-color: rgb(33, 27, 128);
+    color: rgb(255, 255, 255);
+    font-weight: bold;
     text-transform: uppercase;
+    letter-spacing: 1px;
 }
-.login:hover {
-    background-color: #d44179;
+button:hover {
+    background-color: rgb(0, 160, 209);
 }
-
-@media screen and (max-width: 1000px) and (orientation:portrait) {
-    button {
-        width: auto;
+@media screen and (max-width: 1200px) and (orientation:portrait) {
+    .header {
+        height: 145px!important;
+    }
+    .main, #sidebarMenu {
+        margin-top: 145px;
+    }
+    .mainInner {
+        max-width: fit-content;
+        width: 95%;
+        font-size: 2em;
+        text-align: justify;
+        margin-top: 165px;
+    }
+    .sidebarIconToggle {
+        top: 30px;
+        left: 40px;
+        height: 66px;
+        width: 66px;
+    }
+    .spinner {
+        height: 8px;
+    }
+    .diagonal.part-1 {
+        margin-top: 20px;
+    }
+    .horizontal, .diagonal.part-2 {
+        margin-top: 10px;
+    }
+    input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
+        transition: all 0.3s;
+        box-sizing: border-box;
+        transform: rotate(-135deg);
+        margin-top: -25px;
+    }
+    input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-1 {
+        transition: all 0.3s;
+        box-sizing: border-box;
+        transform: rotate(135deg);
+        margin-top: 20px;
+    }
+    
+    .sidebarMenuInner {
+        font-size: 2.75rem;
+        letter-spacing: 1.5px;
+    }
+    #personal {
+        font-size: 1.75rem;
+    }
+    .sidebarMenuInner li {
+        padding: 40px 20px;
+    }
+    #sideBarMenu {
+        width: 400px;
+        transform: translateX(-400px);
     }
 }

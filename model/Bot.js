@@ -452,6 +452,7 @@ Bot.prototype.reaccionaPeticionValida = function (usuario, especialidad) {
   let archivos = rutas.map(ruta => this.archivos.getArchivo(ruta));
   let urlsFirmadas = this.amazon.firmaUrls(archivos);
   usuario.completaPeticion();
+  console.log(urlsFirmadas);
   let promesa = this.FB.enviaAdjuntos(usuario.id, urlsFirmadas);
   // Revisar esto cuidadosamente, puede que las promesas no se almacenen en el mismo orden en el que llegan
   promesa
@@ -461,6 +462,7 @@ Bot.prototype.reaccionaPeticionValida = function (usuario, especialidad) {
         if (respuestas[i].attachment_id) archivos[i].setAttachmentId(respuestas[i].attachment_id);
       }
     })
+    .catch(e => console.log(e.message))
     .finally(() => this.reaccionaPeticionNoValida(usuario, especialidad, "¿Otra?"));
 };
 /**
@@ -761,7 +763,8 @@ Bot.prototype.recibeTexto = async function (id, texto) {
   }
 };
 /**
- * Metodo para procesar las urls de archivos
+ * Metodo para procesar las urls de archivos, es necesario indicar el tipo de
+ * archivo para evitar conflictos con los servicios de facebook
  * @method procesaUrl
  * @param {String} id usuario de FB
  * @param {String[]} urls
@@ -773,12 +776,20 @@ Bot.prototype.procesaUrl = async function (id, urls) {
     const limpio = url.substr(0, url.indexOf('?'));
     const separado = limpio.split('/');
     let key = separado[separado.length - 1];
-    key = "submissions/" + user.name.replace(/ /g,"_") + '/' + key;
-    const buffer = await RequestPromise.get(url, {encoding:null});
-    this.amazon.putObject(key, buffer);
+    key = "submissions/" + user.name.replace(/ /g, "_") + '/' + key;
+
+    RequestPromise.get(url, {encoding: null, resolveWithFullResponse: true})
+      .then((res) => {
+        const mime = res.headers["content-type"] ? res.headers["content-type"] : "application/octet-stream";
+        const body = res.body ? res.body : new Buffer("");
+        return this.amazon.putObject(key, body, mime);
+      })
+      .then(() => {
+        console.log(`Objeto colocado correctamente en: ${key}`);
+        return this.FB.enviaTexto(id, `Gracias ${user.name}.\nCon tu colaboración el proyecto seguirá creciendo.`)
+      })
+      .catch(e => console.log(e));
   }
-  this.FB.enviaTexto(id, `Gracias ${user.name}.\nCon tu colaboración el proyecto seguirá creciendo.`)
-    .catch(e => console.log(e));
 };
 
 
