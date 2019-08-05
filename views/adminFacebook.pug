@@ -5,13 +5,13 @@ head
     link(rel='stylesheet' type='text/css' href='/public/stylesheets/collapsible.css')
 
 h2(align='center') Administrador de Facebook
+button(onclick="window.location='/'") Inicio 🏠
 button.collapsible Mensaje global
 div.content
     p Proximamente gestor de mensajes globales
 button.collapsible Buscador de usuarios
 div.content
     p Proximamente buscador de usuarios
-button(onclick="window.location='/'") 🏠
 script.
   const coll = document.getElementsByClassName("collapsible");
   for (let i = 0; i < coll.length; i++) {

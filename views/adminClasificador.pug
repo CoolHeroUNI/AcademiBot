@@ -5,6 +5,7 @@ head
     link(rel='stylesheet' type='text/css' href='/public/stylesheets/collapsible.css')
 
 h2(align='center') Clasificador de material
+button(onclick="window.location='/'") Inicio 🏠
 button.collapsible Material
 div.content
     img(src= Material, id="material", class="center")
@@ -35,7 +36,7 @@ div.content
         input(type="hidden" , value=Ruta, name="ruta")
         div.form__field
             input(type="submit", value="Eliminar", id="eliminar")
-button(onclick="window.location='/'") 🏠
+
 script.
     const extension = document.getElementById("extension");
     let ruta = "#{Ruta}";
