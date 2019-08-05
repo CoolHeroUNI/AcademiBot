@@ -34,10 +34,9 @@ router.post('/', (req, res) => {
   const page = req.query.page || 0;
   const action = req.query.action;
   console.log(req.body);
-  if (!action) {
-    res.send(404);
+  if (!action || !req.body.ruta) {
+    return res.send(404);
   }
-
   if (action === 'move') {
     const origen = req.body.ruta;
     const curso = req.body.curso_opcional ? req.body.curso_opcional : req.body.curso;
@@ -45,14 +44,25 @@ router.post('/', (req, res) => {
     const archivo = `${req.body.archivo}-${req.body.pagina}${req.body.extension}`;
     const destino = `${req.body.facultad}/${curso}/${carpeta}/${archivo}`;
     AcademiBot.mueveArchivo(origen, destino)
-      .catch(e => console.log(e));
+      .then(() => {
+        AcademiBot.submissions.eliminaArchivo(req.body.ruta);
+        res.redirect(`/admin/clasificador?tipo=${tipe}&page=${page}`);
+      })
+      .catch(e => {
+        console.log(e);
+        res.render('error', e);
+      });
+  } else if (action === 'delete') {
+    AcademiBot.borraArchivo(req.body.ruta)
+      .then(() => {
+        AcademiBot.submissions.eliminaArchivo(req.body.ruta);
+        res.redirect(`/admin/clasificador?tipo=${tipe}&page=${page}`);
+      })
+      .catch(e => {
+        console.log(e);
+        res.render('error', e);
+      });
   }
 
-  if (action === 'delete') {
-    AcademiBot.borraArchivo(req.body.ruta)
-      .catch(e => console.log(e));
-  }
-  AcademiBot.submissions.eliminaArchivo(req.body.ruta);
-  res.redirect(`/admin/clasificador?tipo=${tipe}&page=${page}`);
 });
 module.exports = router;

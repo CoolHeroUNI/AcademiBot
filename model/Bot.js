@@ -406,11 +406,10 @@ Bot.prototype.mueveArchivo = async function (origen, destino) {
  * Metodo para eliminar archivos
  * @method borraArchivo
  * @param {String} key
- * @returns {Promise<void>}
+ * @returns {Promise<PromiseResult<S3.DeleteObjectOutput, AWSError>>}
  */
-Bot.prototype.borraArchivo = async function (key) {
-  this.amazon.deleteObject(key)
-    .catch(e => console.log(e));
+Bot.prototype.borraArchivo = function (key) {
+  return this.amazon.deleteObject(key);
 };
 /**
  * Metodo para reaccionar ante la situacion en la que el usuario

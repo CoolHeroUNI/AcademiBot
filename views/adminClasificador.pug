@@ -19,7 +19,7 @@ div.content
         button(onclick=`window.location='/admin/clasificador?tipo=none&page=0'`) None
 button.collapsible Material
 div.content
-    p.center #{Ruta}
+    p #{Ruta}
     img#material.center(src=Material)
 button.collapsible Ruta
 div.content
@@ -44,7 +44,7 @@ div.content
         input(type="hidden", name="ruta", value=Ruta)
         div.form__field
             input(type="submit", value="Cambiar ruta")
-    form(action="/admin/clasificador?action=delete&tipo=${Tipo}&page=${Pagina}", method="POST")
+    form(action=`/admin/clasificador?action=delete&tipo=${Tipo}&page=${Pagina}`, method="POST")
         input(type="hidden" , value=Ruta, name="ruta")
         div.form__field
             input(type="submit", value="Eliminar", id="eliminar")
