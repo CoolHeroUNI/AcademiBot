@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const clasificacionRoute = require('./clasificacion');
-router.use('/clasificacion', clasificacionRoute);
+const clasificadorRoute = require('./clasificador');
+router.use('/clasificador', clasificadorRoute);
 
 
 
