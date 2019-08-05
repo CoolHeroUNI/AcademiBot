@@ -17,9 +17,10 @@ router.get('/', (req, res) => {
     setTimeout(() => {
       process.exit(0);
     }, 1000);
+  } else {
+    res.render('adminHosting', {logged, titulo:"Hosting"});
   }
 
-  res.render('adminHosting', {logged, titulo:"Hosting"});
 });
 
 
