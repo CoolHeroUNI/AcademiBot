@@ -32,7 +32,6 @@ const webhookRoute = require('./routes/webhook');
 const cierraRoute = require('./routes/cierra');
 const muestraRoute = require('./routes/muestra');
 const loginRoute = require('./routes/login');
-const clasificacionRoute = require('./routes/clasificacion');
 
 app.use('/', indexRoute);
 app.use('/public', express.static(path.join(__dirname, 'public')));
@@ -40,7 +39,6 @@ app.use('/favicon.ico', express.static(path.join(__dirname, 'public/images/favic
 
 app.use('/webhook', webhookRoute);
 app.use('/login', loginRoute);
-app.use('/clasificacion', clasificacionRoute);
 app.use('/cierra', cierraRoute);
 app.use('/muestra', muestraRoute);
 

@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const request = require('request');
 const middleware = require('../src/middleware');
 const AcademiBot = require('../src/AcademiBot');
 
@@ -44,6 +43,6 @@ router.post('/', middleware.ensureAuth, (req, res) => {
       .catch(e => console.log(e));
   }
   AcademiBot.submissions.eliminaArchivo(req.body.ruta);
-  res.redirect('/clasificacion');
+  res.redirect('/admin/clasificacion');
 });
 module.exports = router;
