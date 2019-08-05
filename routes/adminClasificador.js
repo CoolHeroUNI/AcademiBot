@@ -22,7 +22,10 @@ router.get('/', (req, res) => {
         Pagina : page
       });
     })
-    .catch(e => res.render('error', e));
+    .catch(error => {
+      res.render('error', error)
+      console.log(error)
+    });
 
 });
 
