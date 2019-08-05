@@ -8,15 +8,15 @@ h2(align='center') Clasificador de material
 button.collapsible Botones
 div.content
     div
-        button(onclick=`window.location=/admin/clasificador?tipo=${Tipo}&page=${Pagina == 0 ? 0 : Pagina - 1}`) Anterior ⬅
+        button(onclick=`window.location='/admin/clasificador?tipo=${Tipo}&page=${Pagina == 0 ? 0 : Pagina - 1}'`) Anterior ⬅
         button(onclick="window.location='/'") Inicio 🏠
-        button(onclick=`window.location=/admin/clasificador?tipo=${Tipo}&page=${Pagina + 1}`) Siguiente ➡
+        button(onclick=`window.location='/admin/clasificador?tipo=${Tipo}&page=${Pagina + 1}'`) Siguiente ➡
     div
-        button(onclick=`window.location=/admin/clasificador?tipo=image&page=0`) Imagen
-        button(onclick=`window.location=/admin/clasificador?tipo=audio&page=0`) Audio
-        button(onclick=`window.location=/admin/clasificador?tipo=video&page=0`) Video
-        button(onclick=`window.location=/admin/clasificador?tipo=file&page=0`) Archivo
-        button(onclick=`window.location=/admin/clasificador?tipo=none&page=0`) None
+        button(onclick=`window.location='/admin/clasificador?tipo=image&page=0'`) Imagen
+        button(onclick=`window.location='/admin/clasificador?tipo=audio&page=0'`) Audio
+        button(onclick=`window.location='/admin/clasificador?tipo=video&page=0'`) Video
+        button(onclick=`window.location='/admin/clasificador?tipo=file&page=0'`) Archivo
+        button(onclick=`window.location='/admin/clasificador?tipo=none&page=0'`) None
 button.collapsible Material
 div.content
     p.center #{Ruta}
