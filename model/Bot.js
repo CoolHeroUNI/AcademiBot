@@ -375,12 +375,12 @@ Bot.prototype.obtieneArchivoDeEnvios = async function (tipo, index) {
     } else {
       if (index >= envio.length) index = envio.length - 1;
       if (index < 0) index = 0;
-      let urlFirmada = this.amazon.firmaUrls([envio[0]], 600)[0];
-      console.log(envio.getRuta());
+      let urlFirmada = this.amazon.firmaUrls([envio[index]], 600)[0];
+      console.log(envio[index].getRuta());
       this.amazon.getObject(envio.getRuta())
         .then((bytes) => {
           resolve({
-            ruta: envio.getRuta(),
+            ruta: envio[index].getRuta(),
             url: urlFirmada.payload.url,
             body: bytes
           })
