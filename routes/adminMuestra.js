@@ -36,7 +36,7 @@ router.get('/', (req, res) => {
     }
   }
   if (!peticion || !ubicacion) {
-    return res.render('muestra', {});
+    return res.render('adminMuestra', {});
   }
   res.sendStatus(404);
 });
