@@ -11,9 +11,10 @@ router.post('/', middleware.ensureNoAuth, (req, res) => {
   if (!req.session.logged && pass === process.env.PROCESS_KEY) {
     req.session.logged = true;
     console.log("logged in");
-    res.redirect(decodeURIComponent(req.session.returnTo) || '/');
-    delete res.session.returnTo;
-  }  else {
+    if (req.session.returnTo) req.session.returnTo = decodeURIComponent(req.session.returnTo)
+    res.redirect(req.session.returnTo || '/');
+    delete req.session.returnTo;
+  } else {
     console.log("incorrect pass");
     res.redirect("/login");
   }
