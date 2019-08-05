@@ -30,7 +30,6 @@ app.use(session({
 const indexRoute = require('./routes/index');
 const webhookRoute = require('./routes/webhook');
 const cierraRoute = require('./routes/cierra');
-const muestraRoute = require('./routes/muestra');
 const loginRoute = require('./routes/login');
 const adminRoute = require('./routes/admin');
 app.use('/', indexRoute);
@@ -40,7 +39,6 @@ app.use('/admin', adminRoute);
 app.use('/webhook', webhookRoute);
 app.use('/login', loginRoute);
 app.use('/cierra', cierraRoute);
-app.use('/muestra', muestraRoute);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
