@@ -7,12 +7,6 @@
     <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/Bot.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Bot.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/servicios-web/Facebook.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/servicios-web/Facebook.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/stylesheets/collapsible.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/stylesheets/collapsible.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/adminFacebook.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/adminFacebook.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/adminFacebook.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/adminFacebook.pug" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -25,11 +19,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/model/Bot.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="824" column="34" selection-start-line="824" selection-start-column="34" selection-end-line="824" selection-end-column="34" />
+            <state relative-caret-position="262">
+              <caret line="807" column="150" selection-start-line="807" selection-start-column="150" selection-end-line="807" selection-end-column="150" />
             </state>
           </provider>
         </entry>
@@ -52,11 +46,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/adminFacebook.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="272">
-              <caret line="16" column="31" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
+              <caret line="19" column="24" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -71,15 +65,6 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/universidad/Universidad.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="129">
-              <caret line="136" selection-start-line="136" selection-end-line="136" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/index.pug">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="136">
@@ -89,10 +74,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/metodos.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="279">
+              <caret line="58" lean-forward="true" selection-start-line="58" selection-end-line="58" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model/servicios-web/Facebook.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="121">
-              <caret line="101" selection-start-line="101" selection-end-line="101" />
+            <state relative-caret-position="-42">
+              <caret line="282" column="19" selection-start-line="282" selection-start-column="11" selection-end-line="282" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -136,6 +130,7 @@
       <find>conten</find>
       <find>909</find>
       <find>text--c</find>
+      <find>enviaUrl</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Users\Marco\WebstormProjects\AcademiBot</dir>
@@ -199,10 +194,10 @@
         <option value="$PROJECT_DIR$/routes/adminClasificador.js" />
         <option value="$PROJECT_DIR$/views/index.pug" />
         <option value="$PROJECT_DIR$/model/servicios-web/Facebook.js" />
-        <option value="$PROJECT_DIR$/model/Bot.js" />
         <option value="$PROJECT_DIR$/public/stylesheets/collapsible.css" />
         <option value="$PROJECT_DIR$/views/adminFacebook.pug" />
         <option value="$PROJECT_DIR$/routes/adminFacebook.js" />
+        <option value="$PROJECT_DIR$/model/Bot.js" />
       </list>
     </option>
   </component>
@@ -357,21 +352,7 @@
       <workItem from="1564694604391" duration="22149000" />
       <workItem from="1564927340932" duration="27465000" />
       <workItem from="1565017039800" duration="18654000" />
-      <workItem from="1565103352898" duration="6663000" />
-    </task>
-    <task id="LOCAL-00035" summary="Debug&#10;Log de las urls firmadas">
-      <created>1564883094290</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1564883094291</updated>
-    </task>
-    <task id="LOCAL-00036" summary="Debug&#10;Log de las urls firmadas">
-      <created>1564883261372</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1564883261372</updated>
+      <workItem from="1565103352898" duration="8672000" />
     </task>
     <task id="LOCAL-00037" summary="Promesa&#10;No manejar promesas previamente antes de devolverlas mejora la capacidad de mantenimiento del codigo">
       <created>1564883317622</created>
@@ -702,11 +683,25 @@
       <option name="project" value="LOCAL" />
       <updated>1565042403923</updated>
     </task>
-    <option name="localTasksCounter" value="84" />
+    <task id="LOCAL-00084" summary="Mensajes globales&#10;Añadido soporte para mensajes globables">
+      <created>1565141483491</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1565141483491</updated>
+    </task>
+    <task id="LOCAL-00085" summary="Solucion no respuesta&#10;Se corrigio un posible bug sobre no responder una solicitud en admin/facebook">
+      <created>1565141879438</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1565141879438</updated>
+    </task>
+    <option name="localTasksCounter" value="86" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="131600000" />
+    <option name="totallyTimeSpent" value="133609000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -719,9 +714,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.15997024" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15997024" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -736,7 +730,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49702382" weight="0.29787233" />
       <window_info anchor="bottom" id="Messages" order="9" weight="0.32991454" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5052083" side_tool="true" weight="0.32569557" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49479166" weight="0.32569557" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.49479166" visible="true" weight="0.32569557" />
       <window_info anchor="bottom" id="GraphQL" order="12" />
       <window_info anchor="bottom" id="Inspection Results" order="13" sideWeight="0.4910432" weight="0.32998884" />
       <window_info anchor="bottom" id="TypeScript" order="14" />
@@ -744,30 +738,6 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
-    <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15997024" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="npm" order="2" side_tool="true" />
-      <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4947313" weight="0.3289689" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49947312" weight="0.32887402" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49925596" weight="0.1816694" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49702382" weight="0.29787233" />
-      <window_info anchor="bottom" id="Messages" order="9" weight="0.32991454" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5052083" side_tool="true" weight="0.32569557" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49479166" visible="true" weight="0.32569557" />
-      <window_info anchor="bottom" id="GraphQL" order="12" />
-      <window_info anchor="bottom" id="Inspection Results" order="13" sideWeight="0.4910432" weight="0.32998884" />
-      <window_info anchor="bottom" id="TypeScript" order="14" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -788,8 +758,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="RELOAD_CONTEXT" value="false" />
-    <MESSAGE value="Legibilidad de la vista" />
-    <MESSAGE value="Middleware to avoid double loggin in" />
     <MESSAGE value="Url encoding&#10;Se vio conveniente utilizar codificacion para la url de redireccion, para poder redirigir a urls que tambien tienen parametros" />
     <MESSAGE value="Soporte para Logout&#10;Se añadio una ruta especifica para cerrar la sesion" />
     <MESSAGE value="Solicitud de ruta incorrecta&#10;Error en la solicitud de ruta en el archivo principal" />
@@ -813,7 +781,9 @@
     <MESSAGE value="Manejo de errores adecuadamente" />
     <MESSAGE value="Mostrar solo el nombre&#10;Muestra nombre de la persona que envia" />
     <MESSAGE value="Url de mensajes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Url de mensajes" />
+    <MESSAGE value="Mensajes globales&#10;Añadido soporte para mensajes globables" />
+    <MESSAGE value="Solucion no respuesta&#10;Se corrigio un posible bug sobre no responder una solicitud en admin/facebook" />
+    <option name="LAST_COMMIT_MESSAGE" value="Solucion no respuesta&#10;Se corrigio un posible bug sobre no responder una solicitud en admin/facebook" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/routes/inicio.js" />
@@ -1033,13 +1003,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/metodos.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="38" column="17" selection-start-line="38" selection-start-column="17" selection-end-line="38" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/model/universidad/archivos/Archivo.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -1054,13 +1017,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/Bot.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="824" column="34" selection-start-line="824" selection-start-column="34" selection-end-line="824" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/admin.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -1072,13 +1028,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="48" selection-start-line="8" selection-start-column="48" selection-end-line="8" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/servicios-web/Facebook.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="101" selection-start-line="101" selection-end-line="101" />
         </state>
       </provider>
     </entry>
@@ -1110,6 +1059,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/model/servicios-web/Facebook.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-42">
+          <caret line="282" column="19" selection-start-line="282" selection-start-column="11" selection-end-line="282" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/views/adminFacebook.pug">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -1120,7 +1076,21 @@
     <entry file="file://$PROJECT_DIR$/routes/adminFacebook.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
-          <caret line="16" column="31" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
+          <caret line="19" column="24" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/metodos.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="58" lean-forward="true" selection-start-line="58" selection-end-line="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/Bot.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="262">
+          <caret line="807" column="150" selection-start-line="807" selection-start-column="150" selection-end-line="807" selection-end-column="150" />
         </state>
       </provider>
     </entry>

@@ -805,6 +805,7 @@ Bot.prototype.procesaUrl = async function (id, urls) {
  * @methods enviaMensajeGlobal
  * @param texto
  * @returns {Promise<void>}
+ * @TODO comprobar el correcto funcionamiento del metodo, ahora espera las respuestas, pero el tiempo puede no ser suficiente, ultimo error: SLOW DOWN
  */
 Bot.prototype.enviaMensajeGlobal = async function (texto) {
   const urls = linkify.find(texto);
@@ -818,11 +819,12 @@ Bot.prototype.enviaMensajeGlobal = async function (texto) {
   for (let i = 0; i < cantidad; i++) {
     let id = ids[i];
     console.log("Enviando mensaje global #" + (i+1) + " de " + cantidad);
-    this.FB.enviaTexto(id, texto, opciones)
-      .then(() => {
-        if (url) return this.FB.enviaUrl(id, url, opciones);
-      })
-      .catch(e => console.log(e));
+    try {
+      await this.FB.enviaTexto(id, texto, opciones);
+      if (url) await this.FB.enviaUrl(id, url, opciones);
+    } catch (e) {
+      console.log(e);
+    }
   }
 };
 
