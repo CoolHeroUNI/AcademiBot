@@ -16,6 +16,8 @@ router.post('/', (req, res) => {
         console.log(e);
         res.render('error', e);
       })
+  } else {
+    res.sendStatus(404);
   }
 });
 
