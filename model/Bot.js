@@ -1,5 +1,6 @@
 const fs = require('fs');
 const RequestPromise = require('request-promise');
+const linkify = require('linkifyjs');
 
 const Amazon = require('./servicios-web/Amazon');
 const Facebook = require('./servicios-web/Facebook');
@@ -798,7 +799,32 @@ Bot.prototype.procesaUrl = async function (id, urls) {
       .catch(e => console.log(e));
   }
 };
-
+/**
+ * Metodo para enviar un mensaje global que contenga texto y una
+ * sola url que sera enviada como una vista previa.
+ * @methods enviaMensajeGlobal
+ * @param texto
+ * @returns {Promise<void>}
+ */
+Bot.prototype.enviaMensajeGlobal = async function (texto) {
+  const urls = linkify.find(texto);
+  const ids = this.UNI.getUsuarios().map(usuario => usuario.id);
+  const opciones = {
+    messaging_type: "MESSAGE_TAG",
+    tag: "NON_PROMOTIONAL_SUBSCRIPTION"
+  };
+  const url = urls ? urls[0].value : undefined;
+  const cantidad = ids.length;
+  for (let i = 0; i < cantidad; i++) {
+    let id = ids[i];
+    console.log("Enviando mensaje global #" + (i+1) + " de " + cantidad);
+    this.FB.enviaTexto(id, texto, opciones)
+      .then(() => {
+        if (url) return this.FB.enviaUrl(id, url, opciones);
+      })
+      .catch(e => console.log(e));
+  }
+};
 
 
 

@@ -90,23 +90,33 @@ Facebook.prototype.enviaQuickReply =  function (id, parametros, text) {
   return RequestPromise(params);
 };
 /**
- * Metodo para enviar un mensaje de texto a un usuario identificado por id
+ * Metodo para enviar un mensaje de texto a un usuario identificado por id,
+ * recibe opciones adicionales.
  * https://developers.facebook.com/docs/messenger-platform/send-messages#sending_text
  * @method enviaTexto
  * @param {String} id
  * @param {String} texto
+ * @param {Object} [opciones]
  * @returns {Promise}
  */
-Facebook.prototype.enviaTexto = function (id, texto) {
+Facebook.prototype.enviaTexto = function (id, texto, opciones) {
+  let json = {
+    messaging_type : "RESPONSE",
+    recipient : {id},
+    message : {text: texto},
+  };
+  if (opciones) {
+    for (let opcion in opciones) {
+      if (opciones.hasOwnProperty(opcion)) {
+        json[opcion] = opciones[opcion];
+      }
+    }
+  }
   let params = {
     uri: "https://graph.facebook.com/v3.3/me/messages",
     qs : {access_token : this.token},
     method: "POST",
-    json: {
-      messaging_type : "RESPONSE",
-      recipient : {id: id},
-      message : {text: texto},
-    }
+    json
   };
   return RequestPromise(params);
 };
@@ -263,6 +273,44 @@ Facebook.prototype.getNames = function (PPID) {
       access_token : this.token,
     },
     method : 'GET'
+  };
+  return RequestPromise(params);
+};
+/**
+ * Metodo para enviar una vista previa de una Url a un usuario,
+ * recibe un parametro adicional de opciones para modificar la solicitud
+ * a gusto.
+ * @method enviaUrl
+ * @param {String} id
+ * @param {String} url
+ * @param {Object} opciones
+ */
+Facebook.prototype.enviaUrl = function (id, url, opciones) {
+  let json = {
+    messaging_type : "RESPONSE",
+    recipient : {id},
+    message : {
+      attachment : {
+        type : "template",
+        payload : {
+          template_type : "open_graph",
+          elements : [{url}]
+        }
+      }
+    },
+  };
+  if (opciones) {
+    for (let opcion in opciones) {
+      if (opciones.hasOwnProperty(opcion)) {
+        json[opcion] = opciones[opcion];
+      }
+    }
+  }
+  let params = {
+    uri: "https://graph.facebook.com/v3.3/me/messages",
+    qs : {access_token : this.token},
+    method: "POST",
+    json
   };
   return RequestPromise(params);
 };
