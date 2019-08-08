@@ -323,7 +323,7 @@ Bot.prototype.cargaMemes = async function () {
   for (let i = 0; i < direcciones.length; i++) {
     this.memes.creaArchivo(direcciones[i]);
   }
-}
+};
 /**
  * Metodo par actualizar el estado actual de UNI, leyendo los archivos de la carpeta llamada configuracion 
  * "facultades.json","usuarios.json" y "archivador.json", que contienen las configuraciones necesarias
@@ -339,6 +339,7 @@ Bot.prototype.carga = async function () {
   let archivador = await this.leeArchivador();
   this.cargaSubmissions()
     .catch(e => console.log(e));
+  await this.cargaMemes();
   this.cargaUniversidad(facultades, usuarios);
   this.cargaArchivador(archivador);
   console.log("Inicio completado");
