@@ -131,7 +131,7 @@ Bot.prototype.creaUsuario = function (id) {
   this.FB.getNames(id)
   .then((nombre) => usuario.setNombre(nombre))
   .catch((error) => console.log(error));
-
+  return usuario;
 };
 /**
  * Metodo para verificar si el usuario existia en la base de datos.
