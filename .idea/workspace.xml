@@ -4,9 +4,7 @@
     <option name="GROUP_BY_SEVERITY" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/model/Bot.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Bot.js" afterDir="false" />
-    </list>
+    <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -21,8 +19,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/model/Bot.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-678">
-              <caret line="101" column="22" selection-start-line="101" selection-start-column="22" selection-end-line="101" selection-end-column="22" />
+            <state relative-caret-position="17">
+              <caret line="335" column="65" selection-start-line="335" selection-start-column="65" selection-end-line="335" selection-end-column="65" />
             </state>
           </provider>
         </entry>
@@ -199,8 +197,8 @@
         <option value="$PROJECT_DIR$/routes/adminFacebook.js" />
         <option value="$PROJECT_DIR$/model/universidad/archivos/Archivador.js" />
         <option value="$PROJECT_DIR$/model/universidad/facultad/Usuario.js" />
-        <option value="$PROJECT_DIR$/model/Bot.js" />
         <option value="$PROJECT_DIR$/model/universidad/facultad/Especialidad.js" />
+        <option value="$PROJECT_DIR$/model/Bot.js" />
       </list>
     </option>
   </component>
@@ -358,13 +356,6 @@
       <workItem from="1565103352898" duration="9289000" />
       <workItem from="1565242142305" duration="2361000" />
       <workItem from="1565300301398" duration="1235000" />
-    </task>
-    <task id="LOCAL-00040" summary="Mime&#10;Se intenta corregir el error por falta de tipo de contenido colocando el mismo tipo recibido de parte de facebook.">
-      <created>1564894465246</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1564894465246</updated>
     </task>
     <task id="LOCAL-00041" summary="Web&#10;Se trabaja en el desarrollo de la pagina web, modificando direcciones antiguas para evitar cobros no deseados y un mejor rendimiento">
       <created>1564930967926</created>
@@ -702,11 +693,18 @@
       <option name="project" value="LOCAL" />
       <updated>1565244038538</updated>
     </task>
-    <option name="localTasksCounter" value="89" />
+    <task id="LOCAL-00089" summary="Error&#10;Los memes no se cargaban al comienzo, pudiendo ocasionar errores.">
+      <created>1565302735769</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1565302735769</updated>
+    </task>
+    <option name="localTasksCounter" value="90" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="138608000" />
+    <option name="totallyTimeSpent" value="139120000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -719,6 +717,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15997024" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -763,7 +762,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="RELOAD_CONTEXT" value="false" />
-    <MESSAGE value="Solicitud de ruta incorrecta&#10;Error en la solicitud de ruta en el archivo principal" />
     <MESSAGE value="Error en la ruta de retorno de login&#10;Se encodificaba equivocadamente las rutas nulas&#10;Se corrigio tambien un error de tipografia que pudo generar un problema a futuro, eliminando ahora las rutas de redireccion de las cookies" />
     <MESSAGE value="Error en la ruta de retorno de login&#10;Se encodificaba equivocadamente parametros no definidos" />
     <MESSAGE value="Titulos&#10;Se agrego titulos en las rutas" />
@@ -788,7 +786,8 @@
     <MESSAGE value="Solucion no respuesta&#10;Se corrigio un posible bug sobre no responder una solicitud en admin/facebook" />
     <MESSAGE value="SLOW DOWN&#10;Excedi el limite de llamadas a la API de facebook, se propone esperar un poco entre mensaje y mensaje" />
     <MESSAGE value="Nombres usuarios&#10;Se añadio soporte a los nombres de usuario de parte de Facebook, se buscará nombrar a todos los usuarios que utilicen el bot" />
-    <option name="LAST_COMMIT_MESSAGE" value="Nombres usuarios&#10;Se añadio soporte a los nombres de usuario de parte de Facebook, se buscará nombrar a todos los usuarios que utilicen el bot" />
+    <MESSAGE value="Error&#10;Los memes no se cargaban al comienzo, pudiendo ocasionar errores." />
+    <option name="LAST_COMMIT_MESSAGE" value="Error&#10;Los memes no se cargaban al comienzo, pudiendo ocasionar errores." />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/.gitignore">
@@ -1113,8 +1112,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/model/Bot.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-678">
-          <caret line="101" column="22" selection-start-line="101" selection-start-column="22" selection-end-line="101" selection-end-column="22" />
+        <state relative-caret-position="17">
+          <caret line="335" column="65" selection-start-line="335" selection-start-column="65" selection-end-line="335" selection-end-column="65" />
         </state>
       </provider>
     </entry>
