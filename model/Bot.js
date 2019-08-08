@@ -68,6 +68,11 @@ class Bot {
      * @property {Archivador} submissions
      */
     this.submissions = new Archivador();
+    /**
+     * Propiedad para almacenar los memes para enviar a los usuarios
+     * @property {Archivador} memes
+     */
+    this.memes = new Archivador();
   }
 }
 
@@ -120,11 +125,13 @@ Bot.prototype.creaUsuario = function (id) {
   " en constante crecimiento, espero poder ser de utilidad, te enviaré" + 
   " un manual para que puedas utilizar mis servicios adecuadamente.";
   this.FB.enviaTexto(id, mensajeBienvenida)
-  .then(() => {
-    return this.FB.enviaAdjunto(id, imagenesBienvenida[0].payload, "image");
-  })
+  .then(() => this.FB.enviaAdjunto(id, imagenesBienvenida[0].payload, "image"))
   .catch((error) => console.log(error));
-  return this.UNI.creaUsuario(id);
+  const usuario = this.UNI.creaUsuario(id);
+  this.FB.getNames(id)
+  .then((nombre) => usuario.setNombre(nombre))
+  .catch((error) => console.log(error));
+
 };
 /**
  * Metodo para verificar si el usuario existia en la base de datos.
@@ -158,12 +165,8 @@ Bot.prototype.getUsuario = function (id) {
  * @param {Usuario} usuario
  */
 Bot.prototype.enviaMeme = function (usuario) {
-  const limiteSuperior = parseInt(process.env.limiteMeme) + 1;
-  if (!limiteSuperior) return ;
-  const key = `memes/${Math.floor(Math.random()*limiteSuperior)}.jpg`;
-  console.log("enviando meme " + key);
-  const imagen = new Archivo(key);
-  const urlFirmada = this.amazon.firmaUrls([imagen]);
+  const meme = this.memes.toArray().random();
+  const urlFirmada = this.amazon.firmaUrls([meme]);
   this.FB.enviaAdjuntos(usuario.id, urlFirmada)
     .catch(e => console.log(e));
 };
@@ -302,7 +305,7 @@ Bot.prototype.leeArchivador = function () {
 /**
  * Metodo para cargar las direcciones de los archivos enviados por los usuarios
  * @method cargaSubmissions
- * @returns {Promise}
+ * @returns {Promise<void>}
  */
 Bot.prototype.cargaSubmissions = async function () {
   let direcciones = await this.amazon.listaObjetos('submissions');
@@ -310,6 +313,17 @@ Bot.prototype.cargaSubmissions = async function () {
     this.submissions.creaArchivo(direcciones[i]);
   }
 };
+/**
+ * Metodo para cargar las direcciones de los memes para servir a los usuarios
+ * @method cargaMemes
+ * @returns {Promise<void>}
+ */
+Bot.prototype.cargaMemes = async function () {
+  let direcciones = await this.amazon.listaObjetos('memes');
+  for (let i = 0; i < direcciones.length; i++) {
+    this.memes.creaArchivo(direcciones[i]);
+  }
+}
 /**
  * Metodo par actualizar el estado actual de UNI, leyendo los archivos de la carpeta llamada configuracion 
  * "facultades.json","usuarios.json" y "archivador.json", que contienen las configuraciones necesarias

@@ -19,6 +19,14 @@ class Archivador {
   }
 }
 /**
+ * Metodo que devuelve el tamaño del archivador
+ * @method size
+ * @returns {number}
+ */
+Archivador.prototype.size = function () {
+  return this.archivos.size;
+};
+/**
  * Metodo para añadir un archivo y devuelve una referencia a este
  * @method creaArchivo
  * @param {String} ruta

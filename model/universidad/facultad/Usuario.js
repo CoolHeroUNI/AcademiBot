@@ -19,6 +19,12 @@ class Usuario {
      */
     this.id = id;
     /**
+     * Nombre del usuario
+     * @property name
+     * @type {string}
+     */
+    this.nombre = "";
+    /**
      * Id de la Especialidad, se usará para ubicar al Usuario en la 
      * Especialidad correcta, y asi ofrecer el material adecuadamente
      * @property {String} especialidad 
@@ -64,19 +70,29 @@ class Usuario {
     this.habilitado = true;
   }
 }
+
 /**
  * Metodo para cargar al usuario a partir de un objeto usuario
  * @method carga
- * @param {{id:String,especialidad:String,ciclo:String,historial:String[],cantidadHistorica:Number,peticionActual:{curso:{codigo:String,nombre:String},carpeta:String}}} _usuario
+ * @param {{nombre:String,id:String,especialidad:String,ciclo:String,historial:String[],cantidadHistorica:Number,peticionActual:{curso:{codigo:String,nombre:String},carpeta:String}}} _usuario
  * @returns {Usuario} referencia this
  */
 Usuario.prototype.carga = function (_usuario) {
+  this.nombre = _usuario.nombre;
   this.especialidad = _usuario.especialidad;
   this.ciclo = _usuario.ciclo;
   this.historial = _usuario.historial;
   this.cantidadHistorica = _usuario.cantidadHistorica;
   this.peticionActual = new Peticion(_usuario.peticionActual);
   return this;
+};
+/**
+ * Metodo para asignar el nombre al usuario de acuerdo a facebook
+ * @method setNombre
+ * @param nombre
+ */
+Usuario.prototype.setNombre = function (nombre) {
+  this.nombre = nombre;
 };
 /**
  * Metodo para obtener una referencia a la peticion actual
@@ -183,6 +199,7 @@ Usuario.prototype.desBan = function (tiempo) {
 Usuario.prototype.toJSON = function () {
   return {
     id: this.id,
+    nombre: this.nombre,
     especialidad: this.especialidad,
     ciclo: this.ciclo,
     historial: this.historial,
