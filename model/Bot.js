@@ -141,9 +141,7 @@ Bot.prototype.creaUsuario = function (id) {
  */
 Bot.prototype.haveUsuario = function (id) {
   let usuario = this.UNI.getUsuario(id);
-  // noinspection RedundantIfStatementJS
-  if (usuario) return true;
-  return false;
+  return !!usuario;
 };
 /**
  * Homologo del metodo para obtener usuarios en universidad, cuando el proyecto crezca 
@@ -446,7 +444,8 @@ Bot.prototype.reaccionaSinEspecialidad = function (usuario, mensaje) {
     let especialidadId = mensaje.substr(comandoEspecialidad.length);
     if (lista.includes(especialidadId)) {
       usuario.setEspecialidad(especialidadId);
-      this.FB.enviaTexto(id, "Recibido")
+      if (!usuario.getCiclo()) this.reaccionaSinCiclo(usuario);
+      else this.FB.enviaTexto(id, "Genial, ahora puedes pedir material.")
         .catch(e => console.log(e));
     } else {
       const mensajeDenegacion = "Especialidad NO valida";
@@ -501,7 +500,7 @@ Bot.prototype.reaccionaSinCiclo = function (usuario, mensaje) {
   if (buscaAsignar) {
     let ciclo = mensaje.substr(comandoCiclo.length);
     usuario.setCiclo(ciclo);
-    this.FB.enviaTexto(usuario.id, "Recibido")
+    this.FB.enviaTexto(usuario.id, "Genial, ahora puedes pedir algun curso.")
       .catch(e => console.log(e));
     return ;
   }
@@ -605,15 +604,7 @@ Bot.prototype.procesaPeticionTexto = function (usuario, mensaje) {
   const peticion = usuario.getPeticion();
   const id = usuario.id;
   const JSONpeticion = this.parseMensaje(usuario, mensaje);
-  const primeraCadena = peticion.toString();
-  peticion.cargaDesdeJSON(JSONpeticion);
-  /**
-   * 26-05-19: Para comprobar si la peticion se vio afectada se compara su 
-   * representacion como cadena antes y despues, pero si el mensaje contenia
-   * el mismo curso que ya se tenia entonces habra un falso negativo, considerar
-   * otros metodos.
-   */
-  const cambio = !(primeraCadena === peticion.toString());
+  const cambio = Object.getOwnPropertyNames(JSONpeticion).length > 0;
   if (peticion.esValida()) {
     if (usuario.habilitado) {
       this.reaccionaPeticionValida(usuario, especialidad);
@@ -662,7 +653,8 @@ Bot.prototype.procesaComando = function (usuario, mensaje) {
     // Intencion de actualizar la especialidad del usuario
     let especialidadId = mensaje.substr(comandoTexto[2].length);
     this.setEspecialidad(usuario, especialidadId);
-    this.FB.enviaTexto(usuario.id, "Recibido")
+    if (!usuario.getCiclo()) this.reaccionaSinCiclo(usuario);
+    else  this.FB.enviaTexto(usuario.id, "Genial, pide algo ahora.")
       .catch(e => console.log(e));
     return true;
   }
@@ -687,13 +679,8 @@ Bot.prototype.procesaComando = function (usuario, mensaje) {
  * @param {String} mensaje
  */
 Bot.prototype.recibePostback = function (id, mensaje) {
-  let usuario;
-  if (this.haveUsuario(id)) {
-    usuario = this.getUsuario(id);
-  } else {
-    usuario = this.creaUsuario(id);
-    return ;
-  }
+  if (!this.haveUsuario(id)) return this.creaUsuario(id);
+  const usuario = this.getUsuario(id);
   //let usuario = this.haveUsuario(id) ? this.getUsuario(id) : this.creaUsuario(id);
   // si no existe el usuario lo crea  
   let espec = usuario.getEspecialidad();
@@ -712,16 +699,12 @@ Bot.prototype.recibePostback = function (id, mensaje) {
  */
 Bot.prototype.recibeTexto = async function (id, texto) {
   this.FB.marcaVisto(id);
-  /**
-   * @type {Usuario}
-   */
-  let usuario;
-  if (this.haveUsuario(id)) usuario = this.getUsuario(id);
-  else {
-    usuario = this.creaUsuario(id);
-    return ;
-  }
-  let respuesta = {texto:"",comando:""};
+  if (!this.haveUsuario(id)) return this.creaUsuario(id);
+  const usuario = this.getUsuario(id);
+  let respuesta = {
+    texto: "",
+    comando: ""
+  };
   try {
     respuesta = await this.dialogflow.procesaIntencion(texto, id);
   } catch (error) {
@@ -738,21 +721,19 @@ Bot.prototype.recibeTexto = async function (id, texto) {
       this.setEspecialidad(usuario, especialidadId);
       this.FB.enviaTexto(id, respuesta.texto)
         .catch(e => console.log(e));
-    }
-    else if (comando === "SetCiclo") {
+    } else if (comando === "SetCiclo") {
       if (!usuario.getEspecialidad()) return this.reaccionaSinEspecialidad(usuario);
       const ciclo = respuesta.params.ciclo.stringValue;
       const ciclos = this.UNI.getEspecialidad(usuario.getEspecialidad()).ciclosDisponibles();
-      if (!ciclos.includes(ciclo)) {
-        this.FB.enviaTexto(usuario.id, "Ciclo no disponible.")
+      if (ciclos.includes(ciclo)) {
+        usuario.setCiclo(ciclo);
+        this.enviaCursos(usuario);
+      } else {
+        this.enviaTexto(usuario.id, "Ciclo no disponible.")
           .catch(e => console.log(e));
-        return ;
       }
-      usuario.setCiclo(ciclo);
-      this.enviaCursos(usuario);
       return ;
-    }
-    else this.procesaComando(usuario, comando);
+    } else this.procesaComando(usuario, comando);
     return ;
   }
   if (respuesta.peticion) {

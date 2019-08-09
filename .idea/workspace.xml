@@ -4,7 +4,10 @@
     <option name="GROUP_BY_SEVERITY" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="" />
+    <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/Bot.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Bot.js" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -19,8 +22,53 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/model/Bot.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="335" column="65" selection-start-line="335" selection-start-column="65" selection-end-line="335" selection-end-column="65" />
+            <state relative-caret-position="213">
+              <caret line="656" column="66" selection-start-line="656" selection-start-column="66" selection-end-line="656" selection-end-column="66" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-236">
+              <caret line="25" column="22" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/adminMuestra.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="200">
+              <caret line="21" column="16" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/adminMuestra.pug">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="167">
+              <caret line="10" column="21" lean-forward="true" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.env_sample">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="181">
+              <caret line="16" column="75" selection-start-line="16" selection-start-column="75" selection-end-line="16" selection-end-column="75" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/model/servicios-web/DialogFlow.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-534">
+              <caret line="41" selection-start-line="41" selection-end-line="41" />
             </state>
           </provider>
         </entry>
@@ -46,53 +94,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model/universidad/facultad/Especialidad.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5287">
-              <caret line="356" selection-start-line="356" selection-end-line="356" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/stylesheets/collapsible.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="27" selection-start-line="27" selection-end-line="27" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/index.pug">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="48" selection-start-line="8" selection-start-column="48" selection-end-line="8" selection-end-column="48" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/metodos.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="986">
-              <caret line="58" selection-start-line="58" selection-end-line="58" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/servicios-web/Facebook.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="313" column="4" selection-start-line="313" selection-start-column="4" selection-end-line="313" selection-end-column="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/adminClasificador.pug">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="748">
-              <caret line="44" column="8" selection-start-line="44" selection-start-column="8" selection-end-line="45" selection-end-column="54" />
+            <state relative-caret-position="17">
+              <caret line="256" selection-start-line="256" selection-end-line="257" />
             </state>
           </provider>
         </entry>
@@ -132,6 +135,11 @@
       <find>creaUsu</find>
       <find>toJ</find>
       <find>guardaU</find>
+      <find>reacc</find>
+      <find>getUsuar</find>
+      <find>Procesa</find>
+      <find>SetEs</find>
+      <find>&quot;Recibido&quot;</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Users\Marco\WebstormProjects\AcademiBot</dir>
@@ -148,7 +156,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/model/AcademiBot.js" />
         <option value="$PROJECT_DIR$/routes/reinicio.js" />
         <option value="$PROJECT_DIR$/views/collapsible.pug" />
         <option value="$PROJECT_DIR$/routes/inicio.js" />
@@ -179,14 +186,12 @@
         <option value="$PROJECT_DIR$/views/indexHosting.pug" />
         <option value="$PROJECT_DIR$/views/indexAmazon.pug" />
         <option value="$PROJECT_DIR$/views/indexHistoria.pug" />
-        <option value="$PROJECT_DIR$/views/adminMuestra.pug" />
         <option value="$PROJECT_DIR$/src/middleware.js" />
         <option value="$PROJECT_DIR$/views/indexTemplate.pug" />
         <option value="$PROJECT_DIR$/routes/webhook.js" />
         <option value="$PROJECT_DIR$/views/adminHosting.pug" />
         <option value="$PROJECT_DIR$/routes/adminHosting.js" />
         <option value="$PROJECT_DIR$/routes/adminMuestra.js" />
-        <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/views/adminClasificador.pug" />
         <option value="$PROJECT_DIR$/src/metodos.js" />
         <option value="$PROJECT_DIR$/routes/adminClasificador.js" />
@@ -198,6 +203,9 @@
         <option value="$PROJECT_DIR$/model/universidad/archivos/Archivador.js" />
         <option value="$PROJECT_DIR$/model/universidad/facultad/Usuario.js" />
         <option value="$PROJECT_DIR$/model/universidad/facultad/Especialidad.js" />
+        <option value="$PROJECT_DIR$/.env_sample" />
+        <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/views/adminMuestra.pug" />
         <option value="$PROJECT_DIR$/model/Bot.js" />
       </list>
     </option>
@@ -356,34 +364,6 @@
       <workItem from="1565103352898" duration="9289000" />
       <workItem from="1565242142305" duration="2361000" />
       <workItem from="1565300301398" duration="1235000" />
-    </task>
-    <task id="LOCAL-00041" summary="Web&#10;Se trabaja en el desarrollo de la pagina web, modificando direcciones antiguas para evitar cobros no deseados y un mejor rendimiento">
-      <created>1564930967926</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1564930967926</updated>
-    </task>
-    <task id="LOCAL-00042" summary="Web&#10;Se trabaja en el desarrollo de la pagina web, modificando direcciones antiguas para evitar cobros no deseados y un mejor rendimiento">
-      <created>1564965160727</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1564965160727</updated>
-    </task>
-    <task id="LOCAL-00043" summary="StyleSheet&#10;error en la referencia a la hoja de estilo index, se referia por error a admin">
-      <created>1564965392314</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1564965392314</updated>
-    </task>
-    <task id="LOCAL-00044" summary="Web redireccion">
-      <created>1564967529463</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1564967529463</updated>
     </task>
     <task id="LOCAL-00045" summary="Diseño CSS&#10;Se modifico el juego de colores a escala de azules y grises">
       <created>1564969811068</created>
@@ -700,11 +680,39 @@
       <option name="project" value="LOCAL" />
       <updated>1565302735769</updated>
     </task>
-    <option name="localTasksCounter" value="90" />
+    <task id="LOCAL-00090" summary="Error&#10;Los memes no se cargaban al comienzo, pudiendo ocasionar errores.">
+      <created>1565303290425</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1565303290425</updated>
+    </task>
+    <task id="LOCAL-00091" summary="Logica peticiones&#10;Se soluciono un error antiguo, las peticiones se consideraban cambiadas cuando su representacion de cadena nueva era diferente a la antigua, pero esto daba falsos negativos cuando se queria pedir el mismo curso o misma carpeta, por lo que ahora se comprueba si existe un objeto que alterara la peticion de cualquier forma, aunque esta sea la misma al final.">
+      <created>1565388133020</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1565388133021</updated>
+    </task>
+    <task id="LOCAL-00092" summary="Seleccion de carrera&#10;Cuando un nuevo usuario se registre se le pedira automaticamente seleccionar un ciclo">
+      <created>1565388404794</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1565388404794</updated>
+    </task>
+    <task id="LOCAL-00093" summary="Descarga">
+      <created>1565391666912</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1565391666962</updated>
+    </task>
+    <option name="localTasksCounter" value="94" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="139120000" />
+    <option name="totallyTimeSpent" value="148218000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -719,7 +727,7 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15997024" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15997024" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -733,8 +741,8 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49702382" weight="0.29787233" />
       <window_info anchor="bottom" id="Messages" order="9" weight="0.32991454" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5052083" side_tool="true" weight="0.32569557" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.49479166" visible="true" weight="0.32569557" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50595236" side_tool="true" weight="0.32569557" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4940476" visible="true" weight="0.32569557" />
       <window_info anchor="bottom" id="GraphQL" order="12" />
       <window_info anchor="bottom" id="Inspection Results" order="13" sideWeight="0.4910432" weight="0.32998884" />
       <window_info anchor="bottom" id="TypeScript" order="14" />
@@ -762,9 +770,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="RELOAD_CONTEXT" value="false" />
-    <MESSAGE value="Error en la ruta de retorno de login&#10;Se encodificaba equivocadamente las rutas nulas&#10;Se corrigio tambien un error de tipografia que pudo generar un problema a futuro, eliminando ahora las rutas de redireccion de las cookies" />
-    <MESSAGE value="Error en la ruta de retorno de login&#10;Se encodificaba equivocadamente parametros no definidos" />
-    <MESSAGE value="Titulos&#10;Se agrego titulos en las rutas" />
     <MESSAGE value="Pestañas&#10;Se completo el desarrollo de las pestañas." />
     <MESSAGE value="Ruta de facebook y boton inicio&#10;Se completo la ruta de facebook y la inclusion de un boton de inicio en las rutas de administrador" />
     <MESSAGE value="Indentation&#10;Error de identacion en plantilla de inicio" />
@@ -787,19 +792,12 @@
     <MESSAGE value="SLOW DOWN&#10;Excedi el limite de llamadas a la API de facebook, se propone esperar un poco entre mensaje y mensaje" />
     <MESSAGE value="Nombres usuarios&#10;Se añadio soporte a los nombres de usuario de parte de Facebook, se buscará nombrar a todos los usuarios que utilicen el bot" />
     <MESSAGE value="Error&#10;Los memes no se cargaban al comienzo, pudiendo ocasionar errores." />
-    <option name="LAST_COMMIT_MESSAGE" value="Error&#10;Los memes no se cargaban al comienzo, pudiendo ocasionar errores." />
+    <MESSAGE value="Logica peticiones&#10;Se soluciono un error antiguo, las peticiones se consideraban cambiadas cuando su representacion de cadena nueva era diferente a la antigua, pero esto daba falsos negativos cuando se queria pedir el mismo curso o misma carpeta, por lo que ahora se comprueba si existe un objeto que alterara la peticion de cualquier forma, aunque esta sea la misma al final." />
+    <MESSAGE value="Seleccion de carrera&#10;Cuando un nuevo usuario se registre se le pedira automaticamente seleccionar un ciclo" />
+    <MESSAGE value="Descarga" />
+    <option name="LAST_COMMIT_MESSAGE" value="Descarga" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/LICENSE">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.es2015.iterable.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -918,13 +916,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/adminMuestra.pug">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="72" selection-start-line="3" selection-start-column="72" selection-end-line="3" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/indexHosting.pug">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -970,24 +961,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/adminMuestra.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="16" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/adminHosting.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="21" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
         </state>
       </provider>
     </entry>
@@ -1089,13 +1066,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/universidad/facultad/Especialidad.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5287">
-          <caret line="356" selection-start-line="356" selection-end-line="356" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/model/universidad/facultad/Facultad.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -1110,10 +1080,52 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/Bot.js">
+    <entry file="file://$PROJECT_DIR$/model/servicios-web/DialogFlow.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-534">
+          <caret line="41" selection-start-line="41" selection-end-line="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.env_sample">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="16" column="75" selection-start-line="16" selection-start-column="75" selection-end-line="16" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/universidad/facultad/Especialidad.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
-          <caret line="335" column="65" selection-start-line="335" selection-start-column="65" selection-end-line="335" selection-end-column="65" />
+          <caret line="256" selection-start-line="256" selection-end-line="257" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-236">
+          <caret line="25" column="22" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/adminMuestra.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="21" column="16" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/adminMuestra.pug">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="10" column="21" lean-forward="true" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/Bot.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="656" column="66" selection-start-line="656" selection-start-column="66" selection-end-line="656" selection-end-column="66" />
         </state>
       </provider>
     </entry>
