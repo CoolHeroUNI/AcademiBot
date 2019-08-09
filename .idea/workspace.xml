@@ -4,10 +4,8 @@
     <option name="GROUP_BY_SEVERITY" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="Error&#10;Los memes no se cargaban al comienzo, pudiendo ocasionar errores.">
-      <change beforePath="$PROJECT_DIR$/.env_sample" beforeDir="false" afterPath="$PROJECT_DIR$/.env_sample" afterDir="false" />
+    <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/Bot.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Bot.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -24,8 +22,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/model/Bot.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="127">
-              <caret line="605" column="66" selection-start-line="605" selection-start-column="66" selection-end-line="605" selection-end-column="66" />
+            <state relative-caret-position="229">
+              <caret line="654" column="61" selection-start-line="654" selection-start-column="61" selection-end-line="654" selection-end-column="61" />
             </state>
           </provider>
         </entry>
@@ -140,6 +138,7 @@
       <find>reacc</find>
       <find>getUsuar</find>
       <find>Procesa</find>
+      <find>SetEs</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Users\Marco\WebstormProjects\AcademiBot</dir>
@@ -364,13 +363,6 @@
       <workItem from="1565103352898" duration="9289000" />
       <workItem from="1565242142305" duration="2361000" />
       <workItem from="1565300301398" duration="1235000" />
-    </task>
-    <task id="LOCAL-00042" summary="Web&#10;Se trabaja en el desarrollo de la pagina web, modificando direcciones antiguas para evitar cobros no deseados y un mejor rendimiento">
-      <created>1564965160727</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1564965160727</updated>
     </task>
     <task id="LOCAL-00043" summary="StyleSheet&#10;error en la referencia a la hoja de estilo index, se referia por error a admin">
       <created>1564965392314</created>
@@ -708,11 +700,18 @@
       <option name="project" value="LOCAL" />
       <updated>1565303290425</updated>
     </task>
-    <option name="localTasksCounter" value="91" />
+    <task id="LOCAL-00091" summary="Logica peticiones&#10;Se soluciono un error antiguo, las peticiones se consideraban cambiadas cuando su representacion de cadena nueva era diferente a la antigua, pero esto daba falsos negativos cuando se queria pedir el mismo curso o misma carpeta, por lo que ahora se comprueba si existe un objeto que alterara la peticion de cualquier forma, aunque esta sea la misma al final.">
+      <created>1565388133020</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1565388133021</updated>
+    </task>
+    <option name="localTasksCounter" value="92" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="145049000" />
+    <option name="totallyTimeSpent" value="145393000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -770,7 +769,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="RELOAD_CONTEXT" value="false" />
-    <MESSAGE value="Error en la ruta de retorno de login&#10;Se encodificaba equivocadamente las rutas nulas&#10;Se corrigio tambien un error de tipografia que pudo generar un problema a futuro, eliminando ahora las rutas de redireccion de las cookies" />
     <MESSAGE value="Error en la ruta de retorno de login&#10;Se encodificaba equivocadamente parametros no definidos" />
     <MESSAGE value="Titulos&#10;Se agrego titulos en las rutas" />
     <MESSAGE value="Pestañas&#10;Se completo el desarrollo de las pestañas." />
@@ -795,7 +793,8 @@
     <MESSAGE value="SLOW DOWN&#10;Excedi el limite de llamadas a la API de facebook, se propone esperar un poco entre mensaje y mensaje" />
     <MESSAGE value="Nombres usuarios&#10;Se añadio soporte a los nombres de usuario de parte de Facebook, se buscará nombrar a todos los usuarios que utilicen el bot" />
     <MESSAGE value="Error&#10;Los memes no se cargaban al comienzo, pudiendo ocasionar errores." />
-    <option name="LAST_COMMIT_MESSAGE" value="Error&#10;Los memes no se cargaban al comienzo, pudiendo ocasionar errores." />
+    <MESSAGE value="Logica peticiones&#10;Se soluciono un error antiguo, las peticiones se consideraban cambiadas cuando su representacion de cadena nueva era diferente a la antigua, pero esto daba falsos negativos cuando se queria pedir el mismo curso o misma carpeta, por lo que ahora se comprueba si existe un objeto que alterara la peticion de cualquier forma, aunque esta sea la misma al final." />
+    <option name="LAST_COMMIT_MESSAGE" value="Logica peticiones&#10;Se soluciono un error antiguo, las peticiones se consideraban cambiadas cuando su representacion de cadena nueva era diferente a la antigua, pero esto daba falsos negativos cuando se queria pedir el mismo curso o misma carpeta, por lo que ahora se comprueba si existe un objeto que alterara la peticion de cualquier forma, aunque esta sea la misma al final." />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.es2015.iterable.d.ts">
@@ -1124,8 +1123,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/model/Bot.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="605" column="66" selection-start-line="605" selection-start-column="66" selection-end-line="605" selection-end-column="66" />
+        <state relative-caret-position="229">
+          <caret line="654" column="61" selection-start-line="654" selection-start-column="61" selection-end-line="654" selection-end-column="61" />
         </state>
       </provider>
     </entry>

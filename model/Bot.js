@@ -652,7 +652,8 @@ Bot.prototype.procesaComando = function (usuario, mensaje) {
     // Intencion de actualizar la especialidad del usuario
     let especialidadId = mensaje.substr(comandoTexto[2].length);
     this.setEspecialidad(usuario, especialidadId);
-    this.FB.enviaTexto(usuario.id, "Recibido")
+    if (!usuario.getCiclo()) this.reaccionaSinCiclo(usuario);
+    else  this.FB.enviaTexto(usuario.id, "Recibido")
       .catch(e => console.log(e));
     return true;
   }
