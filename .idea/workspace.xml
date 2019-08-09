@@ -22,8 +22,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/model/Bot.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="229">
-              <caret line="654" column="61" selection-start-line="654" selection-start-column="61" selection-end-line="654" selection-end-column="61" />
+            <state relative-caret-position="213">
+              <caret line="656" column="66" selection-start-line="656" selection-start-column="66" selection-end-line="656" selection-end-column="66" />
             </state>
           </provider>
         </entry>
@@ -31,8 +31,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="251">
+            <state relative-caret-position="-236">
               <caret line="25" column="22" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/adminMuestra.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="200">
+              <caret line="21" column="16" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/adminMuestra.pug">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="167">
+              <caret line="10" column="21" lean-forward="true" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -83,24 +101,6 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/servicios-web/Facebook.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="313" column="4" selection-start-line="313" selection-start-column="4" selection-end-line="313" selection-end-column="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/adminClasificador.pug">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="748">
-              <caret line="44" column="8" selection-start-line="44" selection-start-column="8" selection-end-line="45" selection-end-column="54" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/adminClasificador.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="357">
@@ -139,6 +139,7 @@
       <find>getUsuar</find>
       <find>Procesa</find>
       <find>SetEs</find>
+      <find>&quot;Recibido&quot;</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Users\Marco\WebstormProjects\AcademiBot</dir>
@@ -185,7 +186,6 @@
         <option value="$PROJECT_DIR$/views/indexHosting.pug" />
         <option value="$PROJECT_DIR$/views/indexAmazon.pug" />
         <option value="$PROJECT_DIR$/views/indexHistoria.pug" />
-        <option value="$PROJECT_DIR$/views/adminMuestra.pug" />
         <option value="$PROJECT_DIR$/src/middleware.js" />
         <option value="$PROJECT_DIR$/views/indexTemplate.pug" />
         <option value="$PROJECT_DIR$/routes/webhook.js" />
@@ -205,6 +205,7 @@
         <option value="$PROJECT_DIR$/model/universidad/facultad/Especialidad.js" />
         <option value="$PROJECT_DIR$/.env_sample" />
         <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/views/adminMuestra.pug" />
         <option value="$PROJECT_DIR$/model/Bot.js" />
       </list>
     </option>
@@ -363,20 +364,6 @@
       <workItem from="1565103352898" duration="9289000" />
       <workItem from="1565242142305" duration="2361000" />
       <workItem from="1565300301398" duration="1235000" />
-    </task>
-    <task id="LOCAL-00043" summary="StyleSheet&#10;error en la referencia a la hoja de estilo index, se referia por error a admin">
-      <created>1564965392314</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1564965392314</updated>
-    </task>
-    <task id="LOCAL-00044" summary="Web redireccion">
-      <created>1564967529463</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1564967529463</updated>
     </task>
     <task id="LOCAL-00045" summary="Diseño CSS&#10;Se modifico el juego de colores a escala de azules y grises">
       <created>1564969811068</created>
@@ -707,11 +694,25 @@
       <option name="project" value="LOCAL" />
       <updated>1565388133021</updated>
     </task>
-    <option name="localTasksCounter" value="92" />
+    <task id="LOCAL-00092" summary="Seleccion de carrera&#10;Cuando un nuevo usuario se registre se le pedira automaticamente seleccionar un ciclo">
+      <created>1565388404794</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1565388404794</updated>
+    </task>
+    <task id="LOCAL-00093" summary="Descarga">
+      <created>1565391666912</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1565391666962</updated>
+    </task>
+    <option name="localTasksCounter" value="94" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="145393000" />
+    <option name="totallyTimeSpent" value="148218000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -726,12 +727,12 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15997024" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15997024" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info active="true" anchor="bottom" id="Find" order="1" sideWeight="0.4947313" visible="true" weight="0.3289689" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4947313" weight="0.3289689" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49947312" weight="0.32887402" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -741,7 +742,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49702382" weight="0.29787233" />
       <window_info anchor="bottom" id="Messages" order="9" weight="0.32991454" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50595236" side_tool="true" weight="0.32569557" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4940476" weight="0.32569557" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4940476" visible="true" weight="0.32569557" />
       <window_info anchor="bottom" id="GraphQL" order="12" />
       <window_info anchor="bottom" id="Inspection Results" order="13" sideWeight="0.4910432" weight="0.32998884" />
       <window_info anchor="bottom" id="TypeScript" order="14" />
@@ -769,8 +770,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="RELOAD_CONTEXT" value="false" />
-    <MESSAGE value="Error en la ruta de retorno de login&#10;Se encodificaba equivocadamente parametros no definidos" />
-    <MESSAGE value="Titulos&#10;Se agrego titulos en las rutas" />
     <MESSAGE value="Pestañas&#10;Se completo el desarrollo de las pestañas." />
     <MESSAGE value="Ruta de facebook y boton inicio&#10;Se completo la ruta de facebook y la inclusion de un boton de inicio en las rutas de administrador" />
     <MESSAGE value="Indentation&#10;Error de identacion en plantilla de inicio" />
@@ -794,7 +793,9 @@
     <MESSAGE value="Nombres usuarios&#10;Se añadio soporte a los nombres de usuario de parte de Facebook, se buscará nombrar a todos los usuarios que utilicen el bot" />
     <MESSAGE value="Error&#10;Los memes no se cargaban al comienzo, pudiendo ocasionar errores." />
     <MESSAGE value="Logica peticiones&#10;Se soluciono un error antiguo, las peticiones se consideraban cambiadas cuando su representacion de cadena nueva era diferente a la antigua, pero esto daba falsos negativos cuando se queria pedir el mismo curso o misma carpeta, por lo que ahora se comprueba si existe un objeto que alterara la peticion de cualquier forma, aunque esta sea la misma al final." />
-    <option name="LAST_COMMIT_MESSAGE" value="Logica peticiones&#10;Se soluciono un error antiguo, las peticiones se consideraban cambiadas cuando su representacion de cadena nueva era diferente a la antigua, pero esto daba falsos negativos cuando se queria pedir el mismo curso o misma carpeta, por lo que ahora se comprueba si existe un objeto que alterara la peticion de cualquier forma, aunque esta sea la misma al final." />
+    <MESSAGE value="Seleccion de carrera&#10;Cuando un nuevo usuario se registre se le pedira automaticamente seleccionar un ciclo" />
+    <MESSAGE value="Descarga" />
+    <option name="LAST_COMMIT_MESSAGE" value="Descarga" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.es2015.iterable.d.ts">
@@ -915,13 +916,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/adminMuestra.pug">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="72" selection-start-line="3" selection-start-column="72" selection-end-line="3" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/indexHosting.pug">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -964,13 +958,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="166">
           <caret line="202" selection-start-line="202" selection-end-line="202" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/adminMuestra.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="16" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
         </state>
       </provider>
     </entry>
@@ -1107,13 +1094,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="25" column="22" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/model/universidad/facultad/Especialidad.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -1121,10 +1101,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-236">
+          <caret line="25" column="22" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/adminMuestra.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="21" column="16" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/adminMuestra.pug">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="10" column="21" lean-forward="true" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/model/Bot.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="654" column="61" selection-start-line="654" selection-start-column="61" selection-end-line="654" selection-end-column="61" />
+        <state relative-caret-position="213">
+          <caret line="656" column="66" selection-start-line="656" selection-start-column="66" selection-end-line="656" selection-end-column="66" />
         </state>
       </provider>
     </entry>

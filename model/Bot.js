@@ -444,7 +444,8 @@ Bot.prototype.reaccionaSinEspecialidad = function (usuario, mensaje) {
     let especialidadId = mensaje.substr(comandoEspecialidad.length);
     if (lista.includes(especialidadId)) {
       usuario.setEspecialidad(especialidadId);
-      this.FB.enviaTexto(id, "Recibido")
+      if (!usuario.getCiclo()) this.reaccionaSinCiclo(usuario);
+      else this.FB.enviaTexto(id, "Genial, ahora puedes pedir material.")
         .catch(e => console.log(e));
     } else {
       const mensajeDenegacion = "Especialidad NO valida";
@@ -499,7 +500,7 @@ Bot.prototype.reaccionaSinCiclo = function (usuario, mensaje) {
   if (buscaAsignar) {
     let ciclo = mensaje.substr(comandoCiclo.length);
     usuario.setCiclo(ciclo);
-    this.FB.enviaTexto(usuario.id, "Recibido")
+    this.FB.enviaTexto(usuario.id, "Genial, ahora puedes pedir algun curso.")
       .catch(e => console.log(e));
     return ;
   }
@@ -653,7 +654,7 @@ Bot.prototype.procesaComando = function (usuario, mensaje) {
     let especialidadId = mensaje.substr(comandoTexto[2].length);
     this.setEspecialidad(usuario, especialidadId);
     if (!usuario.getCiclo()) this.reaccionaSinCiclo(usuario);
-    else  this.FB.enviaTexto(usuario.id, "Recibido")
+    else  this.FB.enviaTexto(usuario.id, "Genial, pide algo ahora.")
       .catch(e => console.log(e));
     return true;
   }
@@ -678,13 +679,8 @@ Bot.prototype.procesaComando = function (usuario, mensaje) {
  * @param {String} mensaje
  */
 Bot.prototype.recibePostback = function (id, mensaje) {
-  let usuario;
-  if (this.haveUsuario(id)) {
-    usuario = this.getUsuario(id);
-  } else {
-    usuario = this.creaUsuario(id);
-    return ;
-  }
+  if (!this.haveUsuario(id)) return this.creaUsuario(id);
+  const usuario = this.getUsuario(id);
   //let usuario = this.haveUsuario(id) ? this.getUsuario(id) : this.creaUsuario(id);
   // si no existe el usuario lo crea  
   let espec = usuario.getEspecialidad();
