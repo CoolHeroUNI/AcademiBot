@@ -92,7 +92,7 @@ Amazon.prototype.listaObjetos = async function (prefijo, continuationToken, prev
     resultado.push(contenido.Key);
   }
   if (respuesta.IsTruncated) {
-    return this.listaObjetos(prefijo, respuesta.ContinuationToken, resultado);
+    return this.listaObjetos(prefijo, respuesta.NextContinuationToken, resultado);
   }
   return resultado;
 };
@@ -130,7 +130,7 @@ Amazon.prototype.listaObjetosDirectamenteBajo = async function (prefijo, continu
     }
   }
   if (respuesta.IsTruncated) {
-    return this.listaObjetosDirectamenteBajo(prefijo, respuesta.ContinuationToken, resultado);
+    return this.listaObjetosDirectamenteBajo(prefijo, respuesta.NextContinuationToken, resultado);
   }
   return resultado;
 };
