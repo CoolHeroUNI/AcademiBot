@@ -605,6 +605,9 @@ Bot.prototype.procesaPeticionTexto = function (usuario, mensaje) {
   const id = usuario.id;
   const JSONpeticion = this.parseMensaje(usuario, mensaje);
   const cambio = Object.getOwnPropertyNames(JSONpeticion).length > 0;
+  peticion.cargaDesdeJSON(JSONpeticion);
+  console.log(JSONpeticion);
+  console.log(cambio);
   if (peticion.esValida()) {
     if (usuario.habilitado) {
       this.reaccionaPeticionValida(usuario, especialidad);
@@ -746,7 +749,7 @@ Bot.prototype.recibeTexto = async function (id, texto) {
       this.enviaMeme(usuario);
     }
   }
-  let peticionCambio;
+  let peticionCambio = false;
   try {
     peticionCambio = usuario.getEspecialidad() ? this.procesaPeticionTexto(usuario, texto.limpia()) : false;
   } catch (error) {
@@ -759,9 +762,9 @@ Bot.prototype.recibeTexto = async function (id, texto) {
   if (!espec) {
     this.FB.enviaTexto(id, respuesta.texto)
       .catch(e => console.log(e));
+    return false;
   }
-  else if (peticionCambio) {}
-  else {
+  if (!peticionCambio) {
     this.FB.enviaTexto(id, respuesta.texto)
       .catch(e => console.log(e));
   }
