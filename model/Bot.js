@@ -128,8 +128,11 @@ Bot.prototype.creaUsuario = function (id) {
   .then(() => this.FB.enviaAdjunto(id, imagenesBienvenida[0].payload, "image"))
   .catch((error) => console.log(error));
   const usuario = this.UNI.creaUsuario(id);
-  this.FB.getNames(id)
-  .then((nombre) => usuario.setNombre(nombre))
+  this.FB.getUserInfo(id)
+  .then(info => {
+    info = JSON.parse(info)
+    usuario.setNombre(info.name)
+  })
   .catch((error) => console.log(error));
   return usuario;
 };
@@ -193,7 +196,8 @@ Bot.prototype.enviaCursos = function (usuario) {
       ]
     }
   });
-  if (!cursos) {
+  console.log(cursos);
+  if (cursos.length === 0) {
     this.FB.enviaTexto(id, "No dispongo de cursos para este ciclo.")
       .catch(e => console.log(e));
     return ;
@@ -392,7 +396,6 @@ Bot.prototype.obtieneArchivoDeEnvios = async function (tipo, index) {
       envio = envio[index];
       let urlFirmada = this.amazon.firmaUrls([envio], 600)[0];
 
-      console.log(envio.getRuta());
       this.amazon.getObject(envio.getRuta())
         .then((bytes) => {
           resolve({
@@ -470,11 +473,9 @@ Bot.prototype.reaccionaPeticionValida = function (usuario, especialidad) {
   let facultad = this.UNI.getFacultad(especialidad.id);
   const peticion = usuario.getPeticion();
   let rutas = facultad.getRutas(peticion, especialidad.id);
-  console.log(rutas);
   let archivos = rutas.map(ruta => this.archivos.getArchivo(ruta));
   let urlsFirmadas = this.amazon.firmaUrls(archivos);
   usuario.completaPeticion();
-  console.log(urlsFirmadas);
   let promesa = this.FB.enviaAdjuntos(usuario.id, urlsFirmadas);
   // Revisar esto cuidadosamente, puede que las promesas no se almacenen en el mismo orden en el que llegan
   promesa
@@ -556,7 +557,6 @@ Bot.prototype.reaccionaPeticionNoValida = function (usuario, especialidad, mensa
  * @returns {Boolean} si la peticion realmente cambió
  */
 Bot.prototype.procesaPeticion = function (usuario, peticionMensaje) {
-  console.log(peticionMensaje);
   const comandos = ["Curso ", "Carpeta ", "Archivo "];
   const expresiones = comandos.map(comando => new RegExp(comando));
   const especialidad = this.UNI.getEspecialidad(usuario.getEspecialidad());
@@ -606,8 +606,6 @@ Bot.prototype.procesaPeticionTexto = function (usuario, mensaje) {
   const JSONpeticion = this.parseMensaje(usuario, mensaje);
   const cambio = Object.getOwnPropertyNames(JSONpeticion).length > 0;
   peticion.cargaDesdeJSON(JSONpeticion);
-  console.log(JSONpeticion);
-  console.log(cambio);
   if (peticion.esValida()) {
     if (usuario.habilitado) {
       this.reaccionaPeticionValida(usuario, especialidad);
@@ -777,7 +775,7 @@ Bot.prototype.recibeTexto = async function (id, texto) {
  * @param {String[]} urls
  */
 Bot.prototype.procesaUrl = async function (id, urls) {
-  const data = await this.FB.getNames(id);
+  const data = await this.FB.getUserInfo(id);
   const user = JSON.parse(data);
   for (const url of urls) {
     const limpio = url.substr(0, url.indexOf('?'));
