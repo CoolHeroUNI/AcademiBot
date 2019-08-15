@@ -262,11 +262,11 @@ Facebook.prototype.enviaArchivo = function (id, url) {
  * por medio de su PPID,
  * CABE ACLARAR QUE ESTE METODO DEVUELVE UNA STRING, QUE SE 
  * PUEDE PARSEAR CON JSON.parse()
- * @method getNames
+ * @method getUserInfo
  * @param {String} PPID
  * @returns {Promise<String>}
  */
-Facebook.prototype.getNames = function (PPID) {
+Facebook.prototype.getUserInfo = function (PPID) {
   const params = {
     uri: `https://graph.facebook.com/v3.3/${PPID}?fields=name`,
     qs : {

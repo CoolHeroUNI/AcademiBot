@@ -128,8 +128,11 @@ Bot.prototype.creaUsuario = function (id) {
   .then(() => this.FB.enviaAdjunto(id, imagenesBienvenida[0].payload, "image"))
   .catch((error) => console.log(error));
   const usuario = this.UNI.creaUsuario(id);
-  this.FB.getNames(id)
-  .then((nombre) => usuario.setNombre(nombre))
+  this.FB.getUserInfo(id)
+  .then(info => {
+    info = JSON.parse(info)
+    usuario.setNombre(info.name)
+  })
   .catch((error) => console.log(error));
   return usuario;
 };
@@ -772,7 +775,7 @@ Bot.prototype.recibeTexto = async function (id, texto) {
  * @param {String[]} urls
  */
 Bot.prototype.procesaUrl = async function (id, urls) {
-  const data = await this.FB.getNames(id);
+  const data = await this.FB.getUserInfo(id);
   const user = JSON.parse(data);
   for (const url of urls) {
     const limpio = url.substr(0, url.indexOf('?'));
