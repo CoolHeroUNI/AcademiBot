@@ -814,6 +814,7 @@ Bot.prototype.enviaMensajeGlobal = async function (texto) {
   };
   const url = urls ? urls[0].value : undefined;
   const cantidad = ids.length;
+  texto.replace(url,'');
   for (let i = 0; i < cantidad; i++) {
     let id = ids[i];
     console.log("Enviando mensaje global #" + (i+1) + " de " + cantidad);
