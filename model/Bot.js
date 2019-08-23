@@ -820,7 +820,7 @@ Bot.prototype.enviaMensajeGlobal = async function (texto) {
     let id = ids[i];
     if (i % 10 === 0) console.log("Enviando mensaje global #" + (i+1) + " de " + cantidad);
     try {
-      await this.FB.enviaTexto(id, texto, opciones);
+      if (texto.length > 0) await this.FB.enviaTexto(id, texto, opciones);
       if (url) await this.FB.enviaUrl(id, url, opciones);
     } catch (e) {
       console.log(e);

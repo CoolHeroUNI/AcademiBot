@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/Bot.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Bot.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -120,14 +121,7 @@
       <workItem from="1565992760407" duration="1212000" />
       <workItem from="1566425186722" duration="2023000" />
       <workItem from="1566588578897" duration="990000" />
-      <workItem from="1566601141658" duration="2109000" />
-    </task>
-    <task id="LOCAL-00052" summary="Quitar autenticacion&#10;Se quito la autenticacion por medio de Query, ahora es unicamente por cookies">
-      <created>1564983173342</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1564983173342</updated>
+      <workItem from="1566601141658" duration="2376000" />
     </task>
     <task id="LOCAL-00053" summary="Quitar autenticacion&#10;Se quito la autenticacion por medio de Query, ahora es unicamente por cookies">
       <created>1564983215819</created>
@@ -465,7 +459,14 @@
       <option name="project" value="LOCAL" />
       <updated>1566603024714</updated>
     </task>
-    <option name="localTasksCounter" value="101" />
+    <task id="LOCAL-00101" summary="CODE-URLs&#10;Se remueven las URLs de los textos a enviarse globalmente, dejando solo las vistas previas">
+      <created>1566603787374</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1566603787374</updated>
+    </task>
+    <option name="localTasksCounter" value="102" />
     <servers />
   </component>
   <component name="TodoView">
