@@ -121,14 +121,7 @@
       <workItem from="1565992760407" duration="1212000" />
       <workItem from="1566425186722" duration="2023000" />
       <workItem from="1566588578897" duration="990000" />
-      <workItem from="1566601141658" duration="976000" />
-    </task>
-    <task id="LOCAL-00050" summary="Error en nombre&#10;Se llamo por accidente a la vista equivocada">
-      <created>1564982484509</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1564982484510</updated>
+      <workItem from="1566601141658" duration="1447000" />
     </task>
     <task id="LOCAL-00051" summary="Error en logica&#10;La logica de las rutas permitia envio doble de paginas">
       <created>1564982795236</created>
@@ -466,7 +459,14 @@
       <option name="project" value="LOCAL" />
       <updated>1566588867761</updated>
     </task>
-    <option name="localTasksCounter" value="99" />
+    <task id="LOCAL-00099" summary="CODE-URLs&#10;Se remueven las URLs de los textos a enviarse globalmente, dejando solo las vistas previas">
+      <created>1566602570120</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1566602570121</updated>
+    </task>
+    <option name="localTasksCounter" value="100" />
     <servers />
   </component>
   <component name="TodoView">
@@ -510,7 +510,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="RELOAD_CONTEXT" value="false" />
-    <MESSAGE value="No ejecucion de acciones" />
     <MESSAGE value="Importar jquery" />
     <MESSAGE value="No enviar doble respuesta&#10;se envio una doble respuesta en adminHosting" />
     <MESSAGE value="Error en los nombres de claves S3&#10;Una vez más, nombres con caracteres fuera del abecedario ocasionan problemas, por lo que se utiliza el metodo limpia para encargarse de eso." />
@@ -535,6 +534,7 @@
     <MESSAGE value="Error envio respuesta ciclo no valido" />
     <MESSAGE value="Error nombres usuario&#10;Error por no parsear la cadena de nombres de los usuarios al crear un nuevo usuario" />
     <MESSAGE value="Solucion subida y seleccion de ciclo&#10;Resueltos problemas de subida de datos donde se enviaban mensajes duplicados&#10;Resuelto un error de tipografia donde no se respondia ante la seleccion erronea de un ciclo" />
-    <option name="LAST_COMMIT_MESSAGE" value="Solucion subida y seleccion de ciclo&#10;Resueltos problemas de subida de datos donde se enviaban mensajes duplicados&#10;Resuelto un error de tipografia donde no se respondia ante la seleccion erronea de un ciclo" />
+    <MESSAGE value="CODE-URLs&#10;Se remueven las URLs de los textos a enviarse globalmente, dejando solo las vistas previas" />
+    <option name="LAST_COMMIT_MESSAGE" value="CODE-URLs&#10;Se remueven las URLs de los textos a enviarse globalmente, dejando solo las vistas previas" />
   </component>
 </project>
