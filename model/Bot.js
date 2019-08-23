@@ -730,7 +730,7 @@ Bot.prototype.recibeTexto = async function (id, texto) {
         usuario.setCiclo(ciclo);
         this.enviaCursos(usuario);
       } else {
-        this.enviaTexto(usuario.id, "Ciclo no disponible.")
+        this.FB.enviaTexto(usuario.id, "Ciclo no disponible.")
           .catch(e => console.log(e));
       }
       return ;
@@ -791,10 +791,11 @@ Bot.prototype.procesaUrl = async function (id, urls) {
       })
       .then(() => {
         console.log(`Objeto colocado correctamente en: ${key}`);
-        return this.FB.enviaTexto(id, `Gracias ${user.name}.\nCon tu colaboración el proyecto seguirá creciendo.`)
       })
       .catch(e => console.log(e));
   }
+  this.FB.enviaTexto(id, `Gracias ${user.name}.\nCon tu colaboración el proyecto seguirá creciendo.`)
+    .catch(e => console.log(e));
 };
 /**
  * Metodo para enviar un mensaje global que contenga texto y una

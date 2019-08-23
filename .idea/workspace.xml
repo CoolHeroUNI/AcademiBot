@@ -4,10 +4,9 @@
     <option name="GROUP_BY_SEVERITY" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="Error nombres usuario&#10;Error por no parsear la cadena de nombres de los usu">
+    <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/Bot.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Bot.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/servicios-web/Facebook.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/servicios-web/Facebook.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -118,14 +117,10 @@
       <workItem from="1565681170512" duration="2368000" />
       <workItem from="1565767541089" duration="416000" />
       <workItem from="1565768235514" duration="17000" />
-      <workItem from="1565891242981" duration="845000" />
-    </task>
-    <task id="LOCAL-00048" summary="Nombre de ruta clasificador&#10;Se cambio el nombre de la ruta del clasificador">
-      <created>1564970811386</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1564970811386</updated>
+      <workItem from="1565891242981" duration="940000" />
+      <workItem from="1565992760407" duration="1212000" />
+      <workItem from="1566425186722" duration="2023000" />
+      <workItem from="1566588578897" duration="211000" />
     </task>
     <task id="LOCAL-00049" summary="Ruta de configuracion&#10;Colocada la ruta de configuracion">
       <created>1564982308442</created>
@@ -463,7 +458,14 @@
       <option name="project" value="LOCAL" />
       <updated>1565741645304</updated>
     </task>
-    <option name="localTasksCounter" value="97" />
+    <task id="LOCAL-00097" summary="Error nombres usuario&#10;Error por no parsear la cadena de nombres de los usuarios al crear un nuevo usuario">
+      <created>1565892125787</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1565892125788</updated>
+    </task>
+    <option name="localTasksCounter" value="98" />
     <servers />
   </component>
   <component name="TodoView">
@@ -495,7 +497,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -505,7 +509,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="RELOAD_CONTEXT" value="false" />
-    <MESSAGE value="Mejora estetica boton inicio" />
     <MESSAGE value="Error en pug&#10;se coloco un bloque especifico para codigo" />
     <MESSAGE value="No ejecucion de acciones" />
     <MESSAGE value="Importar jquery" />
@@ -530,6 +533,7 @@
     <MESSAGE value="ARREGLO PRIORITARIO&#10;Posible bug en la clase Amazon, se utilizo incorrectamente ContinuationToken en lugar de NextContinuationToken, originando un bucle infinito." />
     <MESSAGE value="ARREGLO IMPORTANTE&#10;Error en la logica de las peticiones, se presume que se elimino equivocadamente cierta parte del codigo fundamental para procesar peticiones." />
     <MESSAGE value="Error envio respuesta ciclo no valido" />
-    <option name="LAST_COMMIT_MESSAGE" value="Error envio respuesta ciclo no valido" />
+    <MESSAGE value="Error nombres usuario&#10;Error por no parsear la cadena de nombres de los usuarios al crear un nuevo usuario" />
+    <option name="LAST_COMMIT_MESSAGE" value="Error nombres usuario&#10;Error por no parsear la cadena de nombres de los usuarios al crear un nuevo usuario" />
   </component>
 </project>
