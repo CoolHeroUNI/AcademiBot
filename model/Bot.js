@@ -818,7 +818,16 @@ Bot.prototype.enviaMensajeGlobal = async function (texto) {
   console.log(texto);
   for (let i = 0; i < cantidad; i++) {
     let id = ids[i];
-    if (i % 10 === 0) console.log("Enviando mensaje global #" + (i+1) + " de " + cantidad);
+    if (i % 50 === 0) {
+      console.log("Stopping for 1m 30s...")
+      await new Promise((resolve,reject) => {
+        setTimeout(() => {
+          console.log("Timeout ended, resuming...")
+          resolve(1);
+        }, 1000*90);
+      })
+    }
+    console.log("Enviando mensaje global #" + (i+1) + " de " + cantidad);
     try {
       if (texto.length > 0) await this.FB.enviaTexto(id, texto, opciones);
       if (url) await this.FB.enviaUrl(id, url, opciones);
