@@ -816,15 +816,15 @@ Bot.prototype.enviaMensajeGlobal = async function (texto) {
   const cantidad = ids.length;
   texto = texto.replace(url,'');
   console.log(texto);
-  for (let i = 0; i < cantidad; i++) {
+  for (let i = 150; i < cantidad; i++) {
     let id = ids[i];
-    if (i % 50 === 0) {
-      console.log("Stopping for 1m 30s...")
+    if (i % 3 === 0) {
+      console.log("Stopping for 15s...")
       await new Promise((resolve,reject) => {
         setTimeout(() => {
           console.log("Timeout ended, resuming...")
           resolve(1);
-        }, 1000*90);
+        }, 1000*(Math.random()*5+1));
       })
     }
     console.log("Enviando mensaje global #" + (i+1) + " de " + cantidad);
