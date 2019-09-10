@@ -7,7 +7,7 @@
     <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/Bot.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Bot.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/adminFacebook.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/adminFacebook.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/servicios-web/Amazon.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/servicios-web/Amazon.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,7 +38,7 @@
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="javascript.nodejs.core.library.configured.version" value="12.6.0" />
+    <property name="javascript.nodejs.core.library.configured.version" value="12.10.0" />
     <property name="js.last.introduce.type" value="LET" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/public/stylesheets" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
@@ -123,6 +123,8 @@
       <workItem from="1566425186722" duration="2023000" />
       <workItem from="1566588578897" duration="990000" />
       <workItem from="1566601141658" duration="4954000" />
+      <workItem from="1567954353805" duration="803000" />
+      <workItem from="1568072666368" duration="5254000" />
     </task>
     <task id="LOCAL-00057" summary="Url encoding&#10;Se vio conveniente utilizar codificacion para la url de redireccion, para poder redirigir a urls que tambien tienen parametros">
       <created>1565018011556</created>

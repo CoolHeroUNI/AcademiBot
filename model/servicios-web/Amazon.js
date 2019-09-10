@@ -184,7 +184,7 @@ Amazon.prototype.putObject = function (key, cuerpo, mime) {
  * @method moveObject
  * @param {String} origen
  * @param {String} destino
- * @returns {Promise<PromiseResult<S3.DeleteObjectOutput, AWSError>>}
+ * @returns {Promise}
  */
 Amazon.prototype.moveObject = function (origen, destino) {
   let param = {
@@ -192,13 +192,12 @@ Amazon.prototype.moveObject = function (origen, destino) {
     CopySource: `/${this.bucketName}/${origen}`,
     Key: destino
   };
-  return this.s3.copyObject(param).promise()
-    .then(() => this.deleteObject(origen));
+  return this.s3.copyObject(param).promise();
 };
 /**
  * Metodo para eliminar un Objeto en cierta ruta
  * @param {String} key
- * @returns {Promise<PromiseResult<S3.DeleteObjectOutput, AWSError>>}
+ * @returns {Promise}
  */
 Amazon.prototype.deleteObject = function (key) {
   let param = {
