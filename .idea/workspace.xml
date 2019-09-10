@@ -4,10 +4,9 @@
     <option name="GROUP_BY_SEVERITY" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
+    <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="Correccion&#10;Envio de mensajes globales separados en subgrupos">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/Bot.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Bot.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/servicios-web/Amazon.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/servicios-web/Amazon.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -124,14 +123,7 @@
       <workItem from="1566588578897" duration="990000" />
       <workItem from="1566601141658" duration="4954000" />
       <workItem from="1567954353805" duration="803000" />
-      <workItem from="1568072666368" duration="5254000" />
-    </task>
-    <task id="LOCAL-00057" summary="Url encoding&#10;Se vio conveniente utilizar codificacion para la url de redireccion, para poder redirigir a urls que tambien tienen parametros">
-      <created>1565018011556</created>
-      <option name="number" value="00057" />
-      <option name="presentableId" value="LOCAL-00057" />
-      <option name="project" value="LOCAL" />
-      <updated>1565018011557</updated>
+      <workItem from="1568072666368" duration="6307000" />
     </task>
     <task id="LOCAL-00058" summary="Soporte para Logout&#10;Se añadio una ruta especifica para cerrar la sesion">
       <created>1565019602544</created>
@@ -469,7 +461,14 @@
       <option name="project" value="LOCAL" />
       <updated>1566606054629</updated>
     </task>
-    <option name="localTasksCounter" value="106" />
+    <task id="LOCAL-00106" summary="Correccion&#10;Mostrar errores de mejor manera para evitar llenar la pantalla">
+      <created>1568158757553</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1568158757553</updated>
+    </task>
+    <option name="localTasksCounter" value="107" />
     <servers />
   </component>
   <component name="TodoView">
@@ -513,7 +512,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="RELOAD_CONTEXT" value="false" />
-    <MESSAGE value="Clasificador de imagenes&#10;Se añadio soporte para buscar diferentes archivos" />
     <MESSAGE value="Error en clasificador de material" />
     <MESSAGE value="Error en indices de arreglo&#10;Se soluciono un error en los indices de los arreglos" />
     <MESSAGE value="Botones&#10;Se arreglo la ruta de redireccion de los botones" />
@@ -538,6 +536,7 @@
     <MESSAGE value="URL&#10;se elimina el texto de las URLs" />
     <MESSAGE value="Mensajes globales&#10;Para el envio de mensajes globales se espera 1m 30s por cada 50 usuarios" />
     <MESSAGE value="Correccion&#10;Espera de 1-5 segundos por cada 3 personas, importante que esto es unicamente para arreglar el problema de CODE" />
-    <option name="LAST_COMMIT_MESSAGE" value="Correccion&#10;Espera de 1-5 segundos por cada 3 personas, importante que esto es unicamente para arreglar el problema de CODE" />
+    <MESSAGE value="Correccion&#10;Mostrar errores de mejor manera para evitar llenar la pantalla" />
+    <option name="LAST_COMMIT_MESSAGE" value="Correccion&#10;Mostrar errores de mejor manera para evitar llenar la pantalla" />
   </component>
 </project>
