@@ -807,29 +807,40 @@ Bot.prototype.procesaUrl = async function (id, urls) {
  */
 Bot.prototype.enviaMensajeGlobal = async function (texto) {
   const urls = linkify.find(texto);
+  const longitudSublistas = 50, tiempoEspera = 1000*60*7.5;
+  const listas = [];
   const ids = this.UNI.getUsuarios().map(usuario => usuario.id);
+  const longitudTotal = ids.length;
+  const wait = function (time) {
+    return new Promise((res, rej) => {
+      console.log("Tiempo fuera! esperando " + time + " milisegundos.");
+      setTimeout(() => res(1), time);
+    })
+  };
+  while (ids.length > 0) {
+    listas.push(ids.splice(0, longitudSublistas));
+  }
   const opciones = {
     messaging_type: "MESSAGE_TAG",
     tag: "NON_PROMOTIONAL_SUBSCRIPTION"
   };
   const url = urls ? urls[0].value : undefined;
-  const cantidad = ids.length;
   texto = texto.replace(url,'');
-  console.log(texto);
-  for (let i = 0; i < cantidad; i++) {
-    let id = ids[i];
-    await new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(1);
-      }, 1000*5);
-    });
-    console.log("Enviando mensaje global #" + (i+1) + " de " + cantidad);
-    try {
-      if (texto.length > 0) await this.FB.enviaTexto(id, texto, opciones);
-      if (url) await this.FB.enviaUrl(id, url, opciones);
-    } catch (e) {
-      console.log({error: e['error']['message'], codigo: e['error']['code']});
+  console.log("Mensaje global: " + texto);
+
+  for (let usuarios of listas) {
+    for (let i = 0; i < usuarios.length; i++) {
+      let id = usuarios[i];
+      console.log("Enviando mensaje global #"+ (i + 1) + " de " + (longitudTotal));
+      try {
+        if (texto.length > 0) await this.FB.enviaTexto(id, texto, opciones);
+        if (url) await this.FB.enviaUrl(id, url, opciones);
+      } catch (e) {
+        console.log({error: e['error']['message'], codigo: e['error']['code']});
+      }
+      await wait(500);
     }
+    await wait(tiempoEspera);
   }
 };
 
