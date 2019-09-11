@@ -126,14 +126,14 @@ Bot.prototype.creaUsuario = function (id) {
   " un manual para que puedas utilizar mis servicios adecuadamente.";
   this.FB.enviaTexto(id, mensajeBienvenida)
     .then(() => this.FB.enviaAdjunto(id, imagenesBienvenida[0].payload, "image"))
-    .catch(e => console.log({error: e['error']['message'], codigo: e['error']['code']}));
+    .catch(e => console.log({error: e['message'], codigo: e['code']}));
   const usuario = this.UNI.creaUsuario(id);
   this.FB.getUserInfo(id)
     .then(info => {
       info = JSON.parse(info)
       usuario.setNombre(info.name)
     })
-    .catch(e => console.log({error: e['error']['message'], codigo: e['error']['code']}));
+    .catch(e => console.log({error: e['message'], codigo: e['code']}));
   return usuario;
 };
 /**
@@ -169,7 +169,7 @@ Bot.prototype.enviaMeme = function (usuario) {
   const meme = this.memes.toArray().random();
   const urlFirmada = this.amazon.firmaUrls([meme]);
   this.FB.enviaAdjuntos(usuario.id, urlFirmada)
-    .catch(e => console.log({error: e['error']['message'], codigo: e['error']['code']}));
+    .catch(e => console.log({error: e['message'], codigo: e['code']}));
 };
 /**
  * Metodo para obtener una lista de cursos, y enviarla a un usuario si tiene una
@@ -199,12 +199,12 @@ Bot.prototype.enviaCursos = function (usuario) {
   console.log(cursos);
   if (cursos.length === 0) {
     this.FB.enviaTexto(id, "No dispongo de cursos para este ciclo.")
-       .catch(e => console.log({error: e['error']['message'], codigo: e['error']['code']}));
+       .catch(e => console.log({error: e['message'], codigo: e['code']}));
     return ;
   }
   let parametros = Facebook.parametrizaCarrusel(Array.shuffle(cursos));
   this.FB.enviaCarrusel(id, parametros)
-     .catch(e => console.log({error: e['error']['message'], codigo: e['error']['code']}));
+     .catch(e => console.log({error: e['message'], codigo: e['code']}));
 };
 /**
  * Metodo para parsear un mensaje de un usuario y comprobar si es una peticion, devuelve 
@@ -233,7 +233,7 @@ Bot.prototype.setEspecialidad = function (usuario, id) {
   } else {
     const mensajeDenegacion = "Especialidad NO valida";
     this.FB.enviaTexto(usuario.id, mensajeDenegacion)
-      .catch(e => console.log({error: e['error']['message'], codigo: e['error']['code']}));
+      .catch(e => console.log({error: e['message'], codigo: e['code']}));
   }
 };
 /**
@@ -266,7 +266,7 @@ Bot.prototype.guardaUsuarios = async function () {
   if (ultimoSalvado.length > usuarios.length) {
     console.log("Ejecutando union de usuarios.");
     this.FB.enviaTexto("2605137522848909", "REINICIO IRREGULAR!")
-      .catch(e => console.log({error: e['error']['message'], codigo: e['error']['code']}));
+      .catch(e => console.log({error: e['message'], codigo: e['code']}));
     // añade a tods los usuarios que estan en el ultimo salvado y que no estan en el nuevo
     for (let usuario of ultimoSalvado) {
       if (!usuarios.find((_usuario) => _usuario.id === usuario.id)) {
@@ -449,18 +449,18 @@ Bot.prototype.reaccionaSinEspecialidad = function (usuario, mensaje) {
       usuario.setEspecialidad(especialidadId);
       if (!usuario.getCiclo()) this.reaccionaSinCiclo(usuario);
       else this.FB.enviaTexto(id, "Genial, ahora puedes pedir material.")
-        .catch(e => console.log({error: e['error']['message'], codigo: e['error']['code']}));
+        .catch(e => console.log({error: e['message'], codigo: e['code']}));
     } else {
       const mensajeDenegacion = "Especialidad NO valida";
       this.FB.enviaTexto(id, mensajeDenegacion)
-        .catch(e => console.log({error: e['error']['message'], codigo: e['error']['code']}));
+        .catch(e => console.log({error: e['message'], codigo: e['code']}));
     }
   } else {
     const botones = lista.map((id) => ["text",id, comandoEspecialidad + id]);
     const parametros = Facebook.parametrizaQuickReply(botones);
     const mensajePeticion = "Selecciona una especialidad";
     this.FB.enviaQuickReply(id, parametros, mensajePeticion)
-      .catch(e => console.log({error: e['error']['message'], codigo: e['error']['code']}));
+      .catch(e => console.log({error: e['message'], codigo: e['code']}));
   }
 };
 /**
@@ -485,7 +485,7 @@ Bot.prototype.reaccionaPeticionValida = function (usuario, especialidad) {
         if (respuestas[i].attachment_id) archivos[i].setAttachmentId(respuestas[i].attachment_id);
       }
     })
-    .catch(e => console.log({error: e['error']['message'], codigo: e['error']['code']}))
+    .catch(e => console.log({error: e['message'], codigo: e['code']}))
     .finally(() => this.reaccionaPeticionNoValida(usuario, especialidad, "¿Otra?"));
 };
 /**
@@ -502,7 +502,7 @@ Bot.prototype.reaccionaSinCiclo = function (usuario, mensaje) {
     let ciclo = mensaje.substr(comandoCiclo.length);
     usuario.setCiclo(ciclo);
     this.FB.enviaTexto(usuario.id, "Genial, ahora puedes pedir algun curso.")
-      .catch(e => console.log({error: e['error']['message'], codigo: e['error']['code']}));
+      .catch(e => console.log({error: e['message'], codigo: e['code']}));
     return ;
   }
   let espec = usuario.getEspecialidad();
@@ -511,7 +511,7 @@ Bot.prototype.reaccionaSinCiclo = function (usuario, mensaje) {
   const parametros = Facebook.parametrizaQuickReply(botones);
   const mensajePeticion = "Elije un Ciclo";
   this.FB.enviaQuickReply(usuario.id, parametros, mensajePeticion)
-    .catch(e => console.log({error: e['error']['message'], codigo: e['error']['code']}));
+    .catch(e => console.log({error: e['message'], codigo: e['code']}));
 };
 /**
  * Metodo para reaccionar ante la situacion donde la peticion no sea
@@ -546,7 +546,7 @@ Bot.prototype.reaccionaPeticionNoValida = function (usuario, especialidad, mensa
   
   let parametros = Facebook.parametrizaQuickReply(botones);
   this.FB.enviaQuickReply(usuario.id, parametros, mensaje)
-    .catch(e => console.log({error: e['error']['message'], codigo: e['error']['code']}));
+    .catch(e => console.log({error: e['message'], codigo: e['code']}));
 };
 /**
  * Metodo para procesar un comando que busca actualizar una peticion o solicitar 
@@ -613,7 +613,7 @@ Bot.prototype.procesaPeticionTexto = function (usuario, mensaje) {
       usuario.desBan(15);
       const mensajeDenegacion = "Se te ha impedido el uso de esa función por el momento.";
       this.FB.enviaTexto(id, mensajeDenegacion)
-          .catch(e => console.log({error: e['error']['message'], codigo: e['error']['code']}));
+          .catch(e => console.log({error: e['message'], codigo: e['code']}));
     }
   } else if (cambio) {
     this.reaccionaPeticionNoValida(usuario, especialidad);
@@ -640,7 +640,7 @@ Bot.prototype.procesaComando = function (usuario, mensaje) {
       console.log(error);
       usuario.peticionActual = new Peticion();
       this.FB.enviaTexto(usuario.id, error.toString() + "\nDebido a ese error se ha decidido reinciar tu peticion.")
-        .catch(e => console.log({error: e['error']['message'], codigo: e['error']['code']}));
+        .catch(e => console.log({error: e['message'], codigo: e['code']}));
     }
     return true;
   }
@@ -656,7 +656,7 @@ Bot.prototype.procesaComando = function (usuario, mensaje) {
     this.setEspecialidad(usuario, especialidadId);
     if (!usuario.getCiclo()) this.reaccionaSinCiclo(usuario);
     else this.FB.enviaTexto(usuario.id, "Genial, pide algo ahora.")
-      .catch(e => console.log({error: e['error']['message'], codigo: e['error']['code']}));
+      .catch(e => console.log({error: e['message'], codigo: e['code']}));
     return true;
   }
   if (comandos[3].test(mensaje)) {
@@ -721,7 +721,7 @@ Bot.prototype.recibeTexto = async function (id, texto) {
       const especialidadId = respuesta.params.especialidad.stringValue;
       this.setEspecialidad(usuario, especialidadId);
       this.FB.enviaTexto(id, respuesta.texto)
-        .catch(e => console.log({error: e['error']['message'], codigo: e['error']['code']}));
+        .catch(e => console.log({error: e['message'], codigo: e['code']}));
     } else if (comando === "SetCiclo") {
       if (!usuario.getEspecialidad()) return this.reaccionaSinEspecialidad(usuario);
       const ciclo = respuesta.params.ciclo.stringValue;
@@ -731,7 +731,7 @@ Bot.prototype.recibeTexto = async function (id, texto) {
         this.enviaCursos(usuario);
       } else {
         this.FB.enviaTexto(usuario.id, "Ciclo no disponible.")
-          .catch(e => console.log({error: e['error']['message'], codigo: e['error']['code']}));
+          .catch(e => console.log({error: e['message'], codigo: e['code']}));
       }
       return ;
     } else this.procesaComando(usuario, comando);
@@ -754,17 +754,17 @@ Bot.prototype.recibeTexto = async function (id, texto) {
     console.log(error);
     usuario.peticionActual = new Peticion();
     this.FB.enviaTexto(usuario.id, error.message + "\nDebido a ese error se ha decidido reinciar tu peticion.")
-        .catch(e => console.log({error: e['error']['message'], codigo: e['error']['code']}));
+        .catch(e => console.log({error: e['message'], codigo: e['code']}));
   }
   let espec = usuario.getEspecialidad();
   if (!espec) {
     this.FB.enviaTexto(id, respuesta.texto)
-        .catch(e => console.log({error: e['error']['message'], codigo: e['error']['code']}));
+        .catch(e => console.log({error: e['message'], codigo: e['code']}));
     return false;
   }
   if (!peticionCambio) {
     this.FB.enviaTexto(id, respuesta.texto)
-        .catch(e => console.log({error: e['error']['message'], codigo: e['error']['code']}));
+        .catch(e => console.log({error: e['message'], codigo: e['code']}));
   }
 };
 /**
@@ -795,7 +795,7 @@ Bot.prototype.procesaUrl = async function (id, urls) {
       .catch(e => console.log(e));
   }
   this.FB.enviaTexto(id, `Gracias ${user.name}.\nCon tu colaboración el proyecto seguirá creciendo.`)
-      .catch(e => console.log({error: e['error']['message'], codigo: e['error']['code']}));
+      .catch(e => console.log({error: e['message'], codigo: e['code']}));
 };
 /**
  * Metodo para enviar un mensaje global que contenga texto y una
@@ -828,15 +828,16 @@ Bot.prototype.enviaMensajeGlobal = async function (texto) {
   texto = texto.replace(url,'');
   console.log("Mensaje global: " + texto);
 
-  for (let usuarios of listas) {
+  for (let k = 0; k < listas.length; k++) {
+    let usuarios = listas[k];
     for (let i = 0; i < usuarios.length; i++) {
       let id = usuarios[i];
-      console.log("Enviando mensaje global #"+ (i + 1) + " de " + (longitudTotal));
+      console.log("Enviando mensaje global #"+ (i + 1 + k*longitudSublistas) + " de " + (longitudTotal));
       try {
         if (texto.length > 0) await this.FB.enviaTexto(id, texto, opciones);
         if (url) await this.FB.enviaUrl(id, url, opciones);
       } catch (e) {
-        console.log({error: e['error']['message'], codigo: e['error']['code']});
+        console.log({error: e['message'], codigo: e['code']});
       }
       await wait(500);
     }
