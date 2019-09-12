@@ -46,8 +46,8 @@ block javascript
               alert("Fallo en la solicitud de cierre...");
             })
         });
-        const cierra = document.getElementById('zip');
-        cierra.addEventListener('click', () => {
+        const zip = document.getElementById('zip');
+        zip.addEventListener('click', () => {
             $.get('/admin/hosting?action=zip')
                 .done(function () {
                     alert("Generando zip");
