@@ -177,7 +177,7 @@ Amazon.prototype.putObject = function (key, cuerpo, mime, size) {
   if (mime) {
     param.ContentType = mime;
   }
-  if (size) {
+  if (size !== undefined) {
     param.ContentLength = size;
   }
   return this.s3.putObject(param).promise();

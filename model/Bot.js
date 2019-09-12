@@ -686,18 +686,30 @@ Bot.prototype.compressFiles = async function () {
     let id = facultad.id;
     for (let curso in facultad.directorio) {
       for (let carpeta in facultad.directorio[curso]) {
+        let pesoTotal = 0, n = 0;
+        let bufs = [];
         if (!facultad.directorio[curso].hasOwnProperty(carpeta)) continue;
         const output = new stream.PassThrough();
-        let a = output._read()
         let comprimido = archiver('zip', {
           comment : `${carpeta} de ${curso} de la ${id}.`,
           zlib: {level : 9}
         });
         output.on('close', () => console.log(comprimido.pointer() + " data added."));
-        output.on('end', () => console.log("Data drained"));
+        output.on('end', () => {
+          let buffer = Buffer.concat(bufs);
+          if (buffer.length || n === 0 || pesoTotal === 0) {
+            let zipKey = `${id}/${curso}/${carpeta}/${carpeta}-todos.zip`;
+            this.amazon.putObject(zipKey, buffer, 'application/zip')
+                .then(() => {
+                  this.archivos.eliminaArchivo(zipKey); //Evitar redundancia en archivos locales
+                  console.log(zipKey + " finalizado")
+                })
+                .catch(e => console.log(e));
+          }
+        });
         comprimido.on('error', e => console.log("Error en comprimido"));
         comprimido.pipe(output);
-        let pesoTotal = 0, n = 0;
+        output.on('data', data => bufs.push(data));
         for (let archivo of facultad.directorio[curso][carpeta]) {
           if (pesoTotal*(n+1) > LIMITE*n || comprimido.pointer() > LIMITE) break; // Estimacion de peso adicional de un archivo adicional
           let key = `${id}/${curso}/${carpeta}/${archivo}`;
@@ -705,21 +717,20 @@ Bot.prototype.compressFiles = async function () {
           if (file.extension === 'zip' || file.extension === 'rar') continue;
           let data = await this.amazon.getObject(key);
           if (pesoTotal + data.ContentLength < LIMITE) {
-            comprimido.append(data.Body, {name : archivo, prefix : `${carpeta}-`});
+            comprimido.append(data.Body, {name : archivo});
           }
           n++;
           pesoTotal += data.ContentLength;
         }
         comprimido.finalize();
-        if (n === 0) continue;
-        let zipKey = `${id}/${curso}/${carpeta}/todos.zip`;
+        /**let zipKey = `${id}/${curso}/${carpeta}/todos.zip`;
 
         this.amazon.putObject(zipKey, output, 'application/zip', comprimido.pointer())
             .then(() => {
               this.archivos.eliminaArchivo(zipKey); //Evitar redundancia en archivos locales
               console.log(zipKey + " finalizado")
             })
-            .catch(e => console.log(e));
+            .catch(e => console.log(e));**/
       }
     }
   }

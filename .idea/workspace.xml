@@ -129,14 +129,7 @@
       <workItem from="1568165020094" duration="26000" />
       <workItem from="1568235417860" duration="4908000" />
       <workItem from="1568262527721" duration="5052000" />
-      <workItem from="1568300072217" duration="6992000" />
-    </task>
-    <task id="LOCAL-00070" summary="No ejecucion de acciones">
-      <created>1565027535816</created>
-      <option name="number" value="00070" />
-      <option name="presentableId" value="LOCAL-00070" />
-      <option name="project" value="LOCAL" />
-      <updated>1565027535816</updated>
+      <workItem from="1568300072217" duration="8155000" />
     </task>
     <task id="LOCAL-00071" summary="Importar jquery">
       <created>1565028034309</created>
@@ -474,7 +467,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568305276521</updated>
     </task>
-    <option name="localTasksCounter" value="119" />
+    <task id="LOCAL-00119" summary="Content Length">
+      <created>1568307108155</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1568307108156</updated>
+    </task>
+    <option name="localTasksCounter" value="120" />
     <servers />
   </component>
   <component name="TodoView">
@@ -518,7 +518,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="RELOAD_CONTEXT" value="false" />
-    <MESSAGE value="Error&#10;Los memes no se cargaban al comienzo, pudiendo ocasionar errores." />
     <MESSAGE value="Logica peticiones&#10;Se soluciono un error antiguo, las peticiones se consideraban cambiadas cuando su representacion de cadena nueva era diferente a la antigua, pero esto daba falsos negativos cuando se queria pedir el mismo curso o misma carpeta, por lo que ahora se comprueba si existe un objeto que alterara la peticion de cualquier forma, aunque esta sea la misma al final." />
     <MESSAGE value="Seleccion de carrera&#10;Cuando un nuevo usuario se registre se le pedira automaticamente seleccionar un ciclo" />
     <MESSAGE value="Descarga" />
@@ -543,6 +542,7 @@
     <MESSAGE value="Panel" />
     <MESSAGE value="Stream Fix&#10;Se intenta realizar arreglos con Streams para poder subir archivos correctamente.&#10;Ademas se impide la subida de zips Vacios" />
     <MESSAGE value="Unexpected token&#10;throw" />
-    <option name="LAST_COMMIT_MESSAGE" value="Unexpected token&#10;throw" />
+    <MESSAGE value="Content Length" />
+    <option name="LAST_COMMIT_MESSAGE" value="Content Length" />
   </component>
 </project>
