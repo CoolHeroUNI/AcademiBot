@@ -128,14 +128,7 @@
       <workItem from="1568165020094" duration="26000" />
       <workItem from="1568235417860" duration="4908000" />
       <workItem from="1568262527721" duration="5052000" />
-      <workItem from="1568300072217" duration="12724000" />
-    </task>
-    <task id="LOCAL-00075" summary="Error en clasificador de material">
-      <created>1565035616940</created>
-      <option name="number" value="00075" />
-      <option name="presentableId" value="LOCAL-00075" />
-      <option name="project" value="LOCAL" />
-      <updated>1565035616940</updated>
+      <workItem from="1568300072217" duration="13337000" />
     </task>
     <task id="LOCAL-00076" summary="Error en indices de arreglo&#10;Se soluciono un error en los indices de los arreglos">
       <created>1565035845710</created>
@@ -473,7 +466,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568311837187</updated>
     </task>
-    <option name="localTasksCounter" value="124" />
+    <task id="LOCAL-00124" summary="Error de nombres&#10;accidentalmente se crearon carpetas adicionales con solo la ultima palabra despues de los guiones.">
+      <created>1568312909895</created>
+      <option name="number" value="00124" />
+      <option name="presentableId" value="LOCAL-00124" />
+      <option name="project" value="LOCAL" />
+      <updated>1568312909895</updated>
+    </task>
+    <option name="localTasksCounter" value="125" />
     <servers />
   </component>
   <component name="TodoView">
@@ -517,7 +517,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="RELOAD_CONTEXT" value="false" />
-    <MESSAGE value="ARREGLO IMPORTANTE&#10;Error en la logica de las peticiones, se presume que se elimino equivocadamente cierta parte del codigo fundamental para procesar peticiones." />
     <MESSAGE value="Error envio respuesta ciclo no valido" />
     <MESSAGE value="Error nombres usuario&#10;Error por no parsear la cadena de nombres de los usuarios al crear un nuevo usuario" />
     <MESSAGE value="Solucion subida y seleccion de ciclo&#10;Resueltos problemas de subida de datos donde se enviaban mensajes duplicados&#10;Resuelto un error de tipografia donde no se respondia ante la seleccion erronea de un ciclo" />
@@ -542,6 +541,7 @@
     <MESSAGE value="Condicion de creacion de zip&#10;Accidentalmente se crearon zips vacios, se actualiza la condicion de creacion" />
     <MESSAGE value="Nombre de archivos&#10;Para ser muy especificos se generan nombres de archivos descriptivos" />
     <MESSAGE value="Limite de quickReplies&#10;Se limitaron las quickReplies a 10, evitando asi posibles errores futuros" />
-    <option name="LAST_COMMIT_MESSAGE" value="Limite de quickReplies&#10;Se limitaron las quickReplies a 10, evitando asi posibles errores futuros" />
+    <MESSAGE value="Error de nombres&#10;accidentalmente se crearon carpetas adicionales con solo la ultima palabra despues de los guiones." />
+    <option name="LAST_COMMIT_MESSAGE" value="Error de nombres&#10;accidentalmente se crearon carpetas adicionales con solo la ultima palabra despues de los guiones." />
   </component>
 </project>
