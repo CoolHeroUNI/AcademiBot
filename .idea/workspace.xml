@@ -4,11 +4,7 @@
     <option name="GROUP_BY_SEVERITY" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/Bot.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Bot.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/servicios-web/Amazon.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/servicios-web/Amazon.js" afterDir="false" />
-    </list>
+    <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,14 +125,7 @@
       <workItem from="1568165020094" duration="26000" />
       <workItem from="1568235417860" duration="4908000" />
       <workItem from="1568262527721" duration="5052000" />
-      <workItem from="1568300072217" duration="8155000" />
-    </task>
-    <task id="LOCAL-00071" summary="Importar jquery">
-      <created>1565028034309</created>
-      <option name="number" value="00071" />
-      <option name="presentableId" value="LOCAL-00071" />
-      <option name="project" value="LOCAL" />
-      <updated>1565028034309</updated>
+      <workItem from="1568300072217" duration="8478000" />
     </task>
     <task id="LOCAL-00072" summary="No enviar doble respuesta&#10;se envio una doble respuesta en adminHosting">
       <created>1565028253474</created>
@@ -474,7 +463,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568307108156</updated>
     </task>
-    <option name="localTasksCounter" value="120" />
+    <task id="LOCAL-00120" summary="Buffer&#10;Se hace pipe al stream hacia un buffer que sera el que se subira a S3">
+      <created>1568308296686</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1568308296686</updated>
+    </task>
+    <option name="localTasksCounter" value="121" />
     <servers />
   </component>
   <component name="TodoView">
@@ -518,7 +514,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="RELOAD_CONTEXT" value="false" />
-    <MESSAGE value="Logica peticiones&#10;Se soluciono un error antiguo, las peticiones se consideraban cambiadas cuando su representacion de cadena nueva era diferente a la antigua, pero esto daba falsos negativos cuando se queria pedir el mismo curso o misma carpeta, por lo que ahora se comprueba si existe un objeto que alterara la peticion de cualquier forma, aunque esta sea la misma al final." />
     <MESSAGE value="Seleccion de carrera&#10;Cuando un nuevo usuario se registre se le pedira automaticamente seleccionar un ciclo" />
     <MESSAGE value="Descarga" />
     <MESSAGE value="ARREGLO PRIORITARIO&#10;Posible bug en la clase Amazon, se utilizo incorrectamente ContinuationToken en lugar de NextContinuationToken, originando un bucle infinito." />
@@ -543,6 +538,7 @@
     <MESSAGE value="Stream Fix&#10;Se intenta realizar arreglos con Streams para poder subir archivos correctamente.&#10;Ademas se impide la subida de zips Vacios" />
     <MESSAGE value="Unexpected token&#10;throw" />
     <MESSAGE value="Content Length" />
-    <option name="LAST_COMMIT_MESSAGE" value="Content Length" />
+    <MESSAGE value="Buffer&#10;Se hace pipe al stream hacia un buffer que sera el que se subira a S3" />
+    <option name="LAST_COMMIT_MESSAGE" value="Buffer&#10;Se hace pipe al stream hacia un buffer que sera el que se subira a S3" />
   </component>
 </project>

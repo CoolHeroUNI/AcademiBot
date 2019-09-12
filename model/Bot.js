@@ -697,7 +697,7 @@ Bot.prototype.compressFiles = async function () {
         output.on('close', () => console.log(comprimido.pointer() + " data added."));
         output.on('end', () => {
           let buffer = Buffer.concat(bufs);
-          if (buffer.length || n === 0 || pesoTotal === 0) {
+          if (buffer.length > 0 && n > 0 && pesoTotal > 0) {
             let zipKey = `${id}/${curso}/${carpeta}/${carpeta}-todos.zip`;
             this.amazon.putObject(zipKey, buffer, 'application/zip')
                 .then(() => {
