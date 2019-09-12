@@ -397,11 +397,11 @@ Bot.prototype.obtieneArchivoDeEnvios = async function (tipo, index) {
       let urlFirmada = this.amazon.firmaUrls([envio], 600)[0];
 
       this.amazon.getObject(envio.getRuta())
-        .then((bytes) => {
+        .then(data => {
           resolve({
             ruta: envio.getRuta(),
             url: urlFirmada.payload.url,
-            body: bytes,
+            body: data.Body,
             indice: index
           })
         })
