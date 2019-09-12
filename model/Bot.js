@@ -413,11 +413,12 @@ Bot.prototype.obtieneArchivoDeEnvios = async function (tipo, index) {
 /**
  * Metodo para mover un archivo en S3 dentro del bucket
  * @method mueveArchivo
- * @param {String} origen
- * @param {String} destino
+ * @param {String} origen Key de origen
+ * @param {String} destino Key de destino
  * @returns {Promise<void>}
  */
 Bot.prototype.mueveArchivo = async function (origen, destino) {
+  this.archivador.eliminaArchivo(destino); //Elimina la redundancia del archivo anterior contra una nueva copia
   this.amazon.moveObject(origen, destino)
     .catch(e => console.log(e));
 };
