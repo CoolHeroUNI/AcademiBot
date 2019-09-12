@@ -717,7 +717,7 @@ Bot.prototype.compressFiles = async function () {
           if (file.extension === 'zip' || file.extension === 'rar') continue;
           let data = await this.amazon.getObject(key);
           if (pesoTotal + data.ContentLength < LIMITE) {
-            comprimido.append(data.Body, {name : archivo});
+            comprimido.append(data.Body, {name : `${id}_${curso}_${carpeta}_${archivo}`});
           }
           n++;
           pesoTotal += data.ContentLength;
