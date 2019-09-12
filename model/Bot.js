@@ -703,6 +703,9 @@ Bot.prototype.compressFiles = async function () {
         comprimido.finalize();
         let zipKey = `${id}/${curso}/${carpeta}/todos.zip`;
         this.amazon.putObject(zipKey, comprimido, 'application/zip')
+            .then(() => {
+              this.archivador.eliminaArchivo(zipKey); //Evitar redundancia en archivos locales
+            })
             .catch(e => console.log(e));
       }
     }

@@ -5,14 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/Bot.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Bot.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/servicios-web/Amazon.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/servicios-web/Amazon.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/universidad/facultad/Facultad.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/universidad/facultad/Facultad.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/webhook.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/webhook.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/adminHosting.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/adminHosting.pug" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -134,14 +127,7 @@
       <workItem from="1568165020094" duration="26000" />
       <workItem from="1568235417860" duration="4908000" />
       <workItem from="1568262527721" duration="5052000" />
-      <workItem from="1568300072217" duration="1588000" />
-    </task>
-    <task id="LOCAL-00061" summary="Error en la ruta de retorno de login&#10;Se encodificaba equivocadamente parametros no definidos">
-      <created>1565020660035</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1565020660038</updated>
+      <workItem from="1568300072217" duration="1875000" />
     </task>
     <task id="LOCAL-00062" summary="Titulos&#10;Se agrego titulos en las rutas">
       <created>1565021187953</created>
@@ -479,7 +465,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568262637166</updated>
     </task>
-    <option name="localTasksCounter" value="110" />
+    <task id="LOCAL-00110" summary="Creacion de comprimidos&#10;Usando el modulo Archiver se implementa una opcion para comprimir el contenido de todos los examenes bajo una carpeta.&#10;Pros: Al subir el comprimido a AWS S3 se puede utilizar el caché de Facebook para evitar realizar varias solicitudes de descarga, menor tiempo de descarga&#10;Contra: Duplica efectivamente la cantidad de almacenamiento en S3">
+      <created>1568301876762</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1568301876763</updated>
+    </task>
+    <option name="localTasksCounter" value="111" />
     <servers />
   </component>
   <component name="TodoView">
@@ -523,7 +516,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="RELOAD_CONTEXT" value="false" />
-    <MESSAGE value="Cookies&#10;Se observa la posibilidad de utilizar las cookies para mejorar los tiempos de carga de la pagina" />
     <MESSAGE value="Manejo de errores adecuadamente" />
     <MESSAGE value="Mostrar solo el nombre&#10;Muestra nombre de la persona que envia" />
     <MESSAGE value="Url de mensajes" />
@@ -548,6 +540,7 @@
     <MESSAGE value="Correccion&#10;Envio de mensajes globales separados en subgrupos, probando separacion por 500ms entre persona y persona y 7.5 minutos entre subgrupo y subgrupo." />
     <MESSAGE value="Funciona&#10;El funcionamiento de la distribucion del metodo fue comprobado para 500ms entre persona y persona y 7.5 minutos entre grupos de 50 personas.&#10;Se muestran mensajes de error de forma adecuada" />
     <MESSAGE value="Promesas Amazon&#10;Se modificaron los metodos de Amazon para devolver los archivos en lugar de solo el buffer&#10;Se planea incluir un metodo para generar zip de las prácticas" />
-    <option name="LAST_COMMIT_MESSAGE" value="Promesas Amazon&#10;Se modificaron los metodos de Amazon para devolver los archivos en lugar de solo el buffer&#10;Se planea incluir un metodo para generar zip de las prácticas" />
+    <MESSAGE value="Creacion de comprimidos&#10;Usando el modulo Archiver se implementa una opcion para comprimir el contenido de todos los examenes bajo una carpeta.&#10;Pros: Al subir el comprimido a AWS S3 se puede utilizar el caché de Facebook para evitar realizar varias solicitudes de descarga, menor tiempo de descarga&#10;Contra: Duplica efectivamente la cantidad de almacenamiento en S3" />
+    <option name="LAST_COMMIT_MESSAGE" value="Creacion de comprimidos&#10;Usando el modulo Archiver se implementa una opcion para comprimir el contenido de todos los examenes bajo una carpeta.&#10;Pros: Al subir el comprimido a AWS S3 se puede utilizar el caché de Facebook para evitar realizar varias solicitudes de descarga, menor tiempo de descarga&#10;Contra: Duplica efectivamente la cantidad de almacenamiento en S3" />
   </component>
 </project>
