@@ -700,6 +700,8 @@ Bot.prototype.compressFiles = async function () {
           if (pesoTotal + data.ContentLength < LIMITE) {
             comprimido.append(data.Body, {name : archivo, prefix : `${carpeta}-`});
           }
+          n++;
+          pesoTotal += data.ContentLength;
         }
         comprimido.finalize();
         let zipKey = `${id}/${curso}/${carpeta}/todos.zip`;

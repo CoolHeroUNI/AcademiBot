@@ -17,6 +17,11 @@ router.get('/', (req, res) => {
     setTimeout(() => {
       process.exit(0);
     }, 1000);
+  } else if (action === 'zip') {
+    res.sendStatus(200);
+    AcademiBot.compressFiles()
+        .then(() => console.log("Compresion exitosa!"))
+        .catch(e => console.log(e))
   } else {
     res.render('adminHosting', {logged, titulo:"Hosting"});
   }

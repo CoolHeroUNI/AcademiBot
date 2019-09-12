@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/model/Bot.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Bot.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/adminHosting.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/adminHosting.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/adminHosting.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/adminHosting.pug" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -127,14 +129,7 @@
       <workItem from="1568165020094" duration="26000" />
       <workItem from="1568235417860" duration="4908000" />
       <workItem from="1568262527721" duration="5052000" />
-      <workItem from="1568300072217" duration="2146000" />
-    </task>
-    <task id="LOCAL-00063" summary="Pestañas&#10;Se completo el desarrollo de las pestañas.">
-      <created>1565022387964</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1565022387964</updated>
+      <workItem from="1568300072217" duration="2391000" />
     </task>
     <task id="LOCAL-00064" summary="Ruta de facebook y boton inicio&#10;Se completo la ruta de facebook y la inclusion de un boton de inicio en las rutas de administrador">
       <created>1565023235178</created>
@@ -472,7 +467,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568302006240</updated>
     </task>
-    <option name="localTasksCounter" value="112" />
+    <task id="LOCAL-00112" summary="Eliminacion de redundancia&#10;Para evitar que Facebook reenvie un archivo antiguo que tiene el mismo nombre, cada vez que se actualice el estado de un zip, su correspondiente entrada se elimina del archivador.">
+      <created>1568302250975</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1568302250975</updated>
+    </task>
+    <option name="localTasksCounter" value="113" />
     <servers />
   </component>
   <component name="TodoView">

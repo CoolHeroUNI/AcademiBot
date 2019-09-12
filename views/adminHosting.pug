@@ -8,7 +8,8 @@ block content
         p Boton que actualiza el archivo de configuracion de las facultades, util luego de clasificar material.
         button(id="actualiza") Actualizar
         h2 Creacion de comprimidos
-        p Boton que creará archivos comprimidos para todas las carpetas
+        p Boton que creará archivos comprimidos para TODAS las carpetas
+        button(id="zip") Crear Zip
         h2 Boton de cierre
         p Fuerza el cierrde del servidor, no guarda ningun archivo.
         button(id="cierra", style="background-color: #ff0a19") Cerrar servidor
@@ -44,4 +45,14 @@ block javascript
             .fail(function () {
               alert("Fallo en la solicitud de cierre...");
             })
+        });
+        const cierra = document.getElementById('zip');
+        cierra.addEventListener('click', () => {
+            $.get('/admin/hosting?action=zip')
+                .done(function () {
+                    alert("Generando zip");
+                })
+                .fail(function () {
+                    alert("Fallo en la solicitud de cierre...");
+                })
         });
