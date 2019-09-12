@@ -165,6 +165,7 @@ Amazon.prototype.getJSON = async function (key) {
  * @param {String} key
  * @param {Buffer|String|ReadableStream} cuerpo
  * @param {String} [mime] propiedad que indica content-type
+ * @returns {Promise<S3.PutObjectOutput>}
  */
 Amazon.prototype.putObject = function (key, cuerpo, mime) {
   let param = {

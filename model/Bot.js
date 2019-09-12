@@ -1,6 +1,7 @@
 const fs = require('fs');
 const RequestPromise = require('request-promise');
 const linkify = require('linkifyjs');
+const archiver = require('archiver');
 
 const Amazon = require('./servicios-web/Amazon');
 const Facebook = require('./servicios-web/Facebook');
@@ -671,6 +672,42 @@ Bot.prototype.procesaComando = function (usuario, mensaje) {
     return true;
   }
   return false;
+};
+/**
+ * Metodo para comprimir archivos dentro de las subcarpetasdel Bot
+ * @method compressFiles
+ */
+Bot.prototype.compressFiles = async function () {
+  let facultades = this.UNI.getFacultadesObject();
+  const LIMITE = 25000000 - 5000000; // Limite de facebook - factor de correccion
+  for (let facultad of facultades) {
+    let id = facultad.id;
+    for (let curso in facultad.directorio) {
+      for (let carpeta in facultad.directorio[curso]) {
+        if (!facultad.directorio[curso].hasOwnProperty(carpeta)) continue;
+        let comprimido = archiver('zip', {
+          comment : `${carpeta} de ${curso} de la ${id}.`,
+          zlib: {level : 9}
+        });
+        let pesoTotal = 0, n = 0;
+        for (let archivo of facultad.directorio[curso][carpeta]) {
+          if (pesoTotal*(n+1) > LIMITE*n || comprimido.pointer() > LIMITE) break; // Estimacion de peso adicional de un archivo adicional
+          let key = `${id}/${curso}/${carpeta}/${archivo}`;
+          let file = this.archivador.getArchivo(key);
+          if (file.extension === 'zip' || file.extension === 'rar') continue;
+          let data = await this.amazon.getObject(key);
+          if (pesoTotal + data.ContentLength < LIMITE) {
+            comprimido.append(data.Body, {name : archivo, prefix : `${carpeta}-`});
+          }
+        }
+        comprimido.finalize();
+        let zipKey = `${id}/${curso}/${carpeta}/todos.zip`;
+        this.amazon.putObject(zipKey, comprimido, 'application/zip')
+            .catch(e => console.log(e));
+      }
+    }
+  }
+
 };
 /**
  * Metodo llamado al recibir un postback de parte de un usuario por medio de los

@@ -63,7 +63,6 @@ Facultad.prototype.getEspecialidad = function (id) {
  * @return {String[]} contiene los id de las especialidades
  */
 Facultad.prototype.getEspecialidades = function () {
-
   let especialidades;
   especialidades = Array.from(this.especialidades.keys());
   return especialidades;

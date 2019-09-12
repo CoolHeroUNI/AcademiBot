@@ -8,6 +8,11 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/Bot.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Bot.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/servicios-web/Amazon.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/servicios-web/Amazon.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/universidad/facultad/Facultad.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/universidad/facultad/Facultad.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/webhook.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/webhook.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/adminHosting.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/adminHosting.pug" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -128,13 +133,8 @@
       <workItem from="1568072666368" duration="8638000" />
       <workItem from="1568165020094" duration="26000" />
       <workItem from="1568235417860" duration="4908000" />
-    </task>
-    <task id="LOCAL-00060" summary="Error en la ruta de retorno de login&#10;Se encodificaba equivocadamente las rutas nulas&#10;Se corrigio tambien un error de tipografia que pudo generar un problema a futuro, eliminando ahora las rutas de redireccion de las cookies">
-      <created>1565020251133</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
-      <option name="project" value="LOCAL" />
-      <updated>1565020251134</updated>
+      <workItem from="1568262527721" duration="5052000" />
+      <workItem from="1568300072217" duration="1588000" />
     </task>
     <task id="LOCAL-00061" summary="Error en la ruta de retorno de login&#10;Se encodificaba equivocadamente parametros no definidos">
       <created>1565020660035</created>
@@ -472,7 +472,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568164719510</updated>
     </task>
-    <option name="localTasksCounter" value="109" />
+    <task id="LOCAL-00109" summary="Promesas Amazon&#10;Se modificaron los metodos de Amazon para devolver los archivos en lugar de solo el buffer&#10;Se planea incluir un metodo para generar zip de las prácticas">
+      <created>1568262637166</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1568262637166</updated>
+    </task>
+    <option name="localTasksCounter" value="110" />
     <servers />
   </component>
   <component name="TodoView">
@@ -516,7 +523,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="RELOAD_CONTEXT" value="false" />
-    <MESSAGE value="Botones&#10;Se arreglo la ruta de redireccion de los botones" />
     <MESSAGE value="Cookies&#10;Se observa la posibilidad de utilizar las cookies para mejorar los tiempos de carga de la pagina" />
     <MESSAGE value="Manejo de errores adecuadamente" />
     <MESSAGE value="Mostrar solo el nombre&#10;Muestra nombre de la persona que envia" />
@@ -541,6 +547,7 @@
     <MESSAGE value="Correccion&#10;Mostrar errores de mejor manera para evitar llenar la pantalla" />
     <MESSAGE value="Correccion&#10;Envio de mensajes globales separados en subgrupos, probando separacion por 500ms entre persona y persona y 7.5 minutos entre subgrupo y subgrupo." />
     <MESSAGE value="Funciona&#10;El funcionamiento de la distribucion del metodo fue comprobado para 500ms entre persona y persona y 7.5 minutos entre grupos de 50 personas.&#10;Se muestran mensajes de error de forma adecuada" />
-    <option name="LAST_COMMIT_MESSAGE" value="Funciona&#10;El funcionamiento de la distribucion del metodo fue comprobado para 500ms entre persona y persona y 7.5 minutos entre grupos de 50 personas.&#10;Se muestran mensajes de error de forma adecuada" />
+    <MESSAGE value="Promesas Amazon&#10;Se modificaron los metodos de Amazon para devolver los archivos en lugar de solo el buffer&#10;Se planea incluir un metodo para generar zip de las prácticas" />
+    <option name="LAST_COMMIT_MESSAGE" value="Promesas Amazon&#10;Se modificaron los metodos de Amazon para devolver los archivos en lugar de solo el buffer&#10;Se planea incluir un metodo para generar zip de las prácticas" />
   </component>
 </project>
