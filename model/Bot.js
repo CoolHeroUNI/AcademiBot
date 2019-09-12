@@ -701,7 +701,7 @@ Bot.prototype.compressFiles = async function () {
           let condicionLimite = buffer.length < LIMITE && n > 2;
           if (condicionExistencia && condicionLimite) {
             let nueva = carpeta.split('-');
-            nueva = nueva[carpeta.length - 1];
+            nueva = nueva[nueva.length - 1];
             let filename = `${nueva}_todos.zip`;
             let zipKey = `${id}/${curso}/${carpeta}/${filename}`;
             this.amazon.putObject(zipKey, buffer, 'application/zip')
