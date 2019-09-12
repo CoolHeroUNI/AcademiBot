@@ -4,11 +4,7 @@
     <option name="GROUP_BY_SEVERITY" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/model/Bot.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Bot.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/adminHosting.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/adminHosting.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/adminHosting.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/adminHosting.pug" afterDir="false" />
-    </list>
+    <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,21 +125,7 @@
       <workItem from="1568165020094" duration="26000" />
       <workItem from="1568235417860" duration="4908000" />
       <workItem from="1568262527721" duration="5052000" />
-      <workItem from="1568300072217" duration="2391000" />
-    </task>
-    <task id="LOCAL-00064" summary="Ruta de facebook y boton inicio&#10;Se completo la ruta de facebook y la inclusion de un boton de inicio en las rutas de administrador">
-      <created>1565023235178</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1565023235178</updated>
-    </task>
-    <task id="LOCAL-00065" summary="Indentation&#10;Error de identacion en plantilla de inicio">
-      <created>1565023414961</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1565023414961</updated>
+      <workItem from="1568300072217" duration="2787000" />
     </task>
     <task id="LOCAL-00066" summary="Indentation&#10;Error de identacion en plantilla de inicio">
       <created>1565023545060</created>
@@ -474,7 +456,21 @@
       <option name="project" value="LOCAL" />
       <updated>1568302250975</updated>
     </task>
-    <option name="localTasksCounter" value="113" />
+    <task id="LOCAL-00113" summary="Logica de subida&#10;Error prevenido en la logica de subida, donde no se acumulaban los pesos ni aumentaba el contador">
+      <created>1568302530206</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1568302530206</updated>
+    </task>
+    <task id="LOCAL-00114" summary="Log">
+      <created>1568302589899</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1568302589899</updated>
+    </task>
+    <option name="localTasksCounter" value="115" />
     <servers />
   </component>
   <component name="TodoView">
@@ -518,8 +514,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="RELOAD_CONTEXT" value="false" />
-    <MESSAGE value="Mostrar solo el nombre&#10;Muestra nombre de la persona que envia" />
-    <MESSAGE value="Url de mensajes" />
     <MESSAGE value="Mensajes globales&#10;Añadido soporte para mensajes globables" />
     <MESSAGE value="Solucion no respuesta&#10;Se corrigio un posible bug sobre no responder una solicitud en admin/facebook" />
     <MESSAGE value="SLOW DOWN&#10;Excedi el limite de llamadas a la API de facebook, se propone esperar un poco entre mensaje y mensaje" />
@@ -543,6 +537,8 @@
     <MESSAGE value="Promesas Amazon&#10;Se modificaron los metodos de Amazon para devolver los archivos en lugar de solo el buffer&#10;Se planea incluir un metodo para generar zip de las prácticas" />
     <MESSAGE value="Creacion de comprimidos&#10;Usando el modulo Archiver se implementa una opcion para comprimir el contenido de todos los examenes bajo una carpeta.&#10;Pros: Al subir el comprimido a AWS S3 se puede utilizar el caché de Facebook para evitar realizar varias solicitudes de descarga, menor tiempo de descarga&#10;Contra: Duplica efectivamente la cantidad de almacenamiento en S3" />
     <MESSAGE value="Eliminacion de redundancia&#10;Para evitar que Facebook reenvie un archivo antiguo que tiene el mismo nombre, cada vez que se actualice el estado de un zip, su correspondiente entrada se elimina del archivador." />
-    <option name="LAST_COMMIT_MESSAGE" value="Eliminacion de redundancia&#10;Para evitar que Facebook reenvie un archivo antiguo que tiene el mismo nombre, cada vez que se actualice el estado de un zip, su correspondiente entrada se elimina del archivador." />
+    <MESSAGE value="Logica de subida&#10;Error prevenido en la logica de subida, donde no se acumulaban los pesos ni aumentaba el contador" />
+    <MESSAGE value="Log" />
+    <option name="LAST_COMMIT_MESSAGE" value="Log" />
   </component>
 </project>

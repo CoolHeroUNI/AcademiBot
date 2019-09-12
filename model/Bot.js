@@ -46,7 +46,7 @@ class Bot {
     /**
      * Propiedad para guardar los archivos y leerlos de 
      * forma eficiente
-     * @property {Archivador} archivador
+     * @property {Archivador} archivos
      */
     this.archivos = new Archivador();
     /**
@@ -418,7 +418,7 @@ Bot.prototype.obtieneArchivoDeEnvios = async function (tipo, index) {
  * @returns {Promise<void>}
  */
 Bot.prototype.mueveArchivo = async function (origen, destino) {
-  this.archivador.eliminaArchivo(destino); //Elimina la redundancia del archivo anterior contra una nueva copia
+  this.archivos.eliminaArchivo(destino); //Elimina la redundancia del archivo anterior contra una nueva copia
   this.amazon.moveObject(origen, destino)
     .catch(e => console.log(e));
 };
@@ -694,7 +694,7 @@ Bot.prototype.compressFiles = async function () {
         for (let archivo of facultad.directorio[curso][carpeta]) {
           if (pesoTotal*(n+1) > LIMITE*n || comprimido.pointer() > LIMITE) break; // Estimacion de peso adicional de un archivo adicional
           let key = `${id}/${curso}/${carpeta}/${archivo}`;
-          let file = this.archivador.getArchivo(key);
+          let file = this.archivos.getArchivo(key);
           if (file.extension === 'zip' || file.extension === 'rar') continue;
           let data = await this.amazon.getObject(key);
           if (pesoTotal + data.ContentLength < LIMITE) {
@@ -707,7 +707,7 @@ Bot.prototype.compressFiles = async function () {
         let zipKey = `${id}/${curso}/${carpeta}/todos.zip`;
         this.amazon.putObject(zipKey, comprimido, 'application/zip')
             .then(() => {
-              this.archivador.eliminaArchivo(zipKey); //Evitar redundancia en archivos locales
+              this.archivos.eliminaArchivo(zipKey); //Evitar redundancia en archivos locales
               console.log(zipKey + " finalizado")
             })
             .catch(e => console.log(e));
