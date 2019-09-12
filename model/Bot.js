@@ -708,6 +708,7 @@ Bot.prototype.compressFiles = async function () {
         this.amazon.putObject(zipKey, comprimido, 'application/zip')
             .then(() => {
               this.archivador.eliminaArchivo(zipKey); //Evitar redundancia en archivos locales
+              console.log(zipKey + " finalizado")
             })
             .catch(e => console.log(e));
       }
