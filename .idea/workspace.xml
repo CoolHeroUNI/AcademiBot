@@ -4,9 +4,10 @@
     <option name="GROUP_BY_SEVERITY" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="Funciona&#10;El funcionamiento de la distribucion del metodo fue comprobado para 500ms entre persona y persona y 7.5 minutos entre grupos de 50 personas.&#10;Se corrig">
+    <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/Bot.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Bot.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/servicios-web/Facebook.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/servicios-web/Facebook.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -53,6 +54,7 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Other File Types" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2019.2.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -123,112 +125,11 @@
       <workItem from="1566588578897" duration="990000" />
       <workItem from="1566601141658" duration="4954000" />
       <workItem from="1567954353805" duration="803000" />
-      <workItem from="1568072666368" duration="8357000" />
-    </task>
-    <task id="LOCAL-00059" summary="Solicitud de ruta incorrecta&#10;Error en la solicitud de ruta en el archivo principal">
-      <created>1565019810562</created>
-      <option name="number" value="00059" />
-      <option name="presentableId" value="LOCAL-00059" />
-      <option name="project" value="LOCAL" />
-      <updated>1565019810564</updated>
-    </task>
-    <task id="LOCAL-00060" summary="Error en la ruta de retorno de login&#10;Se encodificaba equivocadamente las rutas nulas&#10;Se corrigio tambien un error de tipografia que pudo generar un problema a futuro, eliminando ahora las rutas de redireccion de las cookies">
-      <created>1565020251133</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
-      <option name="project" value="LOCAL" />
-      <updated>1565020251134</updated>
-    </task>
-    <task id="LOCAL-00061" summary="Error en la ruta de retorno de login&#10;Se encodificaba equivocadamente parametros no definidos">
-      <created>1565020660035</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1565020660038</updated>
-    </task>
-    <task id="LOCAL-00062" summary="Titulos&#10;Se agrego titulos en las rutas">
-      <created>1565021187953</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
-      <option name="project" value="LOCAL" />
-      <updated>1565021187955</updated>
-    </task>
-    <task id="LOCAL-00063" summary="Pestañas&#10;Se completo el desarrollo de las pestañas.">
-      <created>1565022387964</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1565022387964</updated>
-    </task>
-    <task id="LOCAL-00064" summary="Ruta de facebook y boton inicio&#10;Se completo la ruta de facebook y la inclusion de un boton de inicio en las rutas de administrador">
-      <created>1565023235178</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1565023235178</updated>
-    </task>
-    <task id="LOCAL-00065" summary="Indentation&#10;Error de identacion en plantilla de inicio">
-      <created>1565023414961</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1565023414961</updated>
-    </task>
-    <task id="LOCAL-00066" summary="Indentation&#10;Error de identacion en plantilla de inicio">
-      <created>1565023545060</created>
-      <option name="number" value="00066" />
-      <option name="presentableId" value="LOCAL-00066" />
-      <option name="project" value="LOCAL" />
-      <updated>1565023545061</updated>
-    </task>
-    <task id="LOCAL-00067" summary="Mejora estetica boton inicio">
-      <created>1565023866251</created>
-      <option name="number" value="00067" />
-      <option name="presentableId" value="LOCAL-00067" />
-      <option name="project" value="LOCAL" />
-      <updated>1565023866251</updated>
-    </task>
-    <task id="LOCAL-00068" summary="Mejora estetica boton inicio">
-      <created>1565026907719</created>
-      <option name="number" value="00068" />
-      <option name="presentableId" value="LOCAL-00068" />
-      <option name="project" value="LOCAL" />
-      <updated>1565026907719</updated>
-    </task>
-    <task id="LOCAL-00069" summary="Error en pug&#10;se coloco un bloque especifico para codigo">
-      <created>1565027351537</created>
-      <option name="number" value="00069" />
-      <option name="presentableId" value="LOCAL-00069" />
-      <option name="project" value="LOCAL" />
-      <updated>1565027351537</updated>
-    </task>
-    <task id="LOCAL-00070" summary="No ejecucion de acciones">
-      <created>1565027535816</created>
-      <option name="number" value="00070" />
-      <option name="presentableId" value="LOCAL-00070" />
-      <option name="project" value="LOCAL" />
-      <updated>1565027535816</updated>
-    </task>
-    <task id="LOCAL-00071" summary="Importar jquery">
-      <created>1565028034309</created>
-      <option name="number" value="00071" />
-      <option name="presentableId" value="LOCAL-00071" />
-      <option name="project" value="LOCAL" />
-      <updated>1565028034309</updated>
-    </task>
-    <task id="LOCAL-00072" summary="No enviar doble respuesta&#10;se envio una doble respuesta en adminHosting">
-      <created>1565028253474</created>
-      <option name="number" value="00072" />
-      <option name="presentableId" value="LOCAL-00072" />
-      <option name="project" value="LOCAL" />
-      <updated>1565028253474</updated>
-    </task>
-    <task id="LOCAL-00073" summary="Error en los nombres de claves S3&#10;Una vez más, nombres con caracteres fuera del abecedario ocasionan problemas, por lo que se utiliza el metodo limpia para encargarse de eso.">
-      <created>1565029209048</created>
-      <option name="number" value="00073" />
-      <option name="presentableId" value="LOCAL-00073" />
-      <option name="project" value="LOCAL" />
-      <updated>1565029209048</updated>
+      <workItem from="1568072666368" duration="8638000" />
+      <workItem from="1568165020094" duration="26000" />
+      <workItem from="1568235417860" duration="4908000" />
+      <workItem from="1568262527721" duration="5052000" />
+      <workItem from="1568300072217" duration="11622000" />
     </task>
     <task id="LOCAL-00074" summary="Clasificador de imagenes&#10;Se añadio soporte para buscar diferentes archivos">
       <created>1565035116022</created>
@@ -468,7 +369,112 @@
       <option name="project" value="LOCAL" />
       <updated>1568159809277</updated>
     </task>
-    <option name="localTasksCounter" value="108" />
+    <task id="LOCAL-00108" summary="Funciona&#10;El funcionamiento de la distribucion del metodo fue comprobado para 500ms entre persona y persona y 7.5 minutos entre grupos de 50 personas.&#10;Se muestran mensajes de error de forma adecuada">
+      <created>1568164719510</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
+      <option name="project" value="LOCAL" />
+      <updated>1568164719510</updated>
+    </task>
+    <task id="LOCAL-00109" summary="Promesas Amazon&#10;Se modificaron los metodos de Amazon para devolver los archivos en lugar de solo el buffer&#10;Se planea incluir un metodo para generar zip de las prácticas">
+      <created>1568262637166</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1568262637166</updated>
+    </task>
+    <task id="LOCAL-00110" summary="Creacion de comprimidos&#10;Usando el modulo Archiver se implementa una opcion para comprimir el contenido de todos los examenes bajo una carpeta.&#10;Pros: Al subir el comprimido a AWS S3 se puede utilizar el caché de Facebook para evitar realizar varias solicitudes de descarga, menor tiempo de descarga&#10;Contra: Duplica efectivamente la cantidad de almacenamiento en S3">
+      <created>1568301876762</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1568301876763</updated>
+    </task>
+    <task id="LOCAL-00111" summary="Eliminacion de redundancia&#10;Para evitar que Facebook reenvie un archivo antiguo que tiene el mismo nombre, cada vez que se actualice el estado de un zip, su correspondiente entrada se elimina del archivador.">
+      <created>1568302006240</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1568302006240</updated>
+    </task>
+    <task id="LOCAL-00112" summary="Eliminacion de redundancia&#10;Para evitar que Facebook reenvie un archivo antiguo que tiene el mismo nombre, cada vez que se actualice el estado de un zip, su correspondiente entrada se elimina del archivador.">
+      <created>1568302250975</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1568302250975</updated>
+    </task>
+    <task id="LOCAL-00113" summary="Logica de subida&#10;Error prevenido en la logica de subida, donde no se acumulaban los pesos ni aumentaba el contador">
+      <created>1568302530206</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1568302530206</updated>
+    </task>
+    <task id="LOCAL-00114" summary="Log">
+      <created>1568302589899</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1568302589899</updated>
+    </task>
+    <task id="LOCAL-00115" summary="Archivador -&gt; archivos">
+      <created>1568303033677</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1568303033677</updated>
+    </task>
+    <task id="LOCAL-00116" summary="Panel">
+      <created>1568303238221</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1568303238222</updated>
+    </task>
+    <task id="LOCAL-00117" summary="Stream Fix&#10;Se intenta realizar arreglos con Streams para poder subir archivos correctamente.&#10;Ademas se impide la subida de zips Vacios">
+      <created>1568305048732</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1568305048732</updated>
+    </task>
+    <task id="LOCAL-00118" summary="Unexpected token&#10;throw">
+      <created>1568305276521</created>
+      <option name="number" value="00118" />
+      <option name="presentableId" value="LOCAL-00118" />
+      <option name="project" value="LOCAL" />
+      <updated>1568305276521</updated>
+    </task>
+    <task id="LOCAL-00119" summary="Content Length">
+      <created>1568307108155</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1568307108156</updated>
+    </task>
+    <task id="LOCAL-00120" summary="Buffer&#10;Se hace pipe al stream hacia un buffer que sera el que se subira a S3">
+      <created>1568308296686</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1568308296686</updated>
+    </task>
+    <task id="LOCAL-00121" summary="Condicion de creacion de zip&#10;Accidentalmente se crearon zips vacios, se actualiza la condicion de creacion">
+      <created>1568308662999</created>
+      <option name="number" value="00121" />
+      <option name="presentableId" value="LOCAL-00121" />
+      <option name="project" value="LOCAL" />
+      <updated>1568308662999</updated>
+    </task>
+    <task id="LOCAL-00122" summary="Nombre de archivos&#10;Para ser muy especificos se generan nombres de archivos descriptivos">
+      <created>1568308815904</created>
+      <option name="number" value="00122" />
+      <option name="presentableId" value="LOCAL-00122" />
+      <option name="project" value="LOCAL" />
+      <updated>1568308815904</updated>
+    </task>
+    <option name="localTasksCounter" value="123" />
     <servers />
   </component>
   <component name="TodoView">
@@ -512,20 +518,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="RELOAD_CONTEXT" value="false" />
-    <MESSAGE value="Error en indices de arreglo&#10;Se soluciono un error en los indices de los arreglos" />
-    <MESSAGE value="Botones&#10;Se arreglo la ruta de redireccion de los botones" />
-    <MESSAGE value="Cookies&#10;Se observa la posibilidad de utilizar las cookies para mejorar los tiempos de carga de la pagina" />
-    <MESSAGE value="Manejo de errores adecuadamente" />
-    <MESSAGE value="Mostrar solo el nombre&#10;Muestra nombre de la persona que envia" />
-    <MESSAGE value="Url de mensajes" />
-    <MESSAGE value="Mensajes globales&#10;Añadido soporte para mensajes globables" />
-    <MESSAGE value="Solucion no respuesta&#10;Se corrigio un posible bug sobre no responder una solicitud en admin/facebook" />
-    <MESSAGE value="SLOW DOWN&#10;Excedi el limite de llamadas a la API de facebook, se propone esperar un poco entre mensaje y mensaje" />
-    <MESSAGE value="Nombres usuarios&#10;Se añadio soporte a los nombres de usuario de parte de Facebook, se buscará nombrar a todos los usuarios que utilicen el bot" />
-    <MESSAGE value="Error&#10;Los memes no se cargaban al comienzo, pudiendo ocasionar errores." />
-    <MESSAGE value="Logica peticiones&#10;Se soluciono un error antiguo, las peticiones se consideraban cambiadas cuando su representacion de cadena nueva era diferente a la antigua, pero esto daba falsos negativos cuando se queria pedir el mismo curso o misma carpeta, por lo que ahora se comprueba si existe un objeto que alterara la peticion de cualquier forma, aunque esta sea la misma al final." />
-    <MESSAGE value="Seleccion de carrera&#10;Cuando un nuevo usuario se registre se le pedira automaticamente seleccionar un ciclo" />
-    <MESSAGE value="Descarga" />
     <MESSAGE value="ARREGLO PRIORITARIO&#10;Posible bug en la clase Amazon, se utilizo incorrectamente ContinuationToken en lugar de NextContinuationToken, originando un bucle infinito." />
     <MESSAGE value="ARREGLO IMPORTANTE&#10;Error en la logica de las peticiones, se presume que se elimino equivocadamente cierta parte del codigo fundamental para procesar peticiones." />
     <MESSAGE value="Error envio respuesta ciclo no valido" />
@@ -537,6 +529,20 @@
     <MESSAGE value="Correccion&#10;Espera de 1-5 segundos por cada 3 personas, importante que esto es unicamente para arreglar el problema de CODE" />
     <MESSAGE value="Correccion&#10;Mostrar errores de mejor manera para evitar llenar la pantalla" />
     <MESSAGE value="Correccion&#10;Envio de mensajes globales separados en subgrupos, probando separacion por 500ms entre persona y persona y 7.5 minutos entre subgrupo y subgrupo." />
-    <option name="LAST_COMMIT_MESSAGE" value="Correccion&#10;Envio de mensajes globales separados en subgrupos, probando separacion por 500ms entre persona y persona y 7.5 minutos entre subgrupo y subgrupo." />
+    <MESSAGE value="Funciona&#10;El funcionamiento de la distribucion del metodo fue comprobado para 500ms entre persona y persona y 7.5 minutos entre grupos de 50 personas.&#10;Se muestran mensajes de error de forma adecuada" />
+    <MESSAGE value="Promesas Amazon&#10;Se modificaron los metodos de Amazon para devolver los archivos en lugar de solo el buffer&#10;Se planea incluir un metodo para generar zip de las prácticas" />
+    <MESSAGE value="Creacion de comprimidos&#10;Usando el modulo Archiver se implementa una opcion para comprimir el contenido de todos los examenes bajo una carpeta.&#10;Pros: Al subir el comprimido a AWS S3 se puede utilizar el caché de Facebook para evitar realizar varias solicitudes de descarga, menor tiempo de descarga&#10;Contra: Duplica efectivamente la cantidad de almacenamiento en S3" />
+    <MESSAGE value="Eliminacion de redundancia&#10;Para evitar que Facebook reenvie un archivo antiguo que tiene el mismo nombre, cada vez que se actualice el estado de un zip, su correspondiente entrada se elimina del archivador." />
+    <MESSAGE value="Logica de subida&#10;Error prevenido en la logica de subida, donde no se acumulaban los pesos ni aumentaba el contador" />
+    <MESSAGE value="Log" />
+    <MESSAGE value="Archivador -&gt; archivos" />
+    <MESSAGE value="Panel" />
+    <MESSAGE value="Stream Fix&#10;Se intenta realizar arreglos con Streams para poder subir archivos correctamente.&#10;Ademas se impide la subida de zips Vacios" />
+    <MESSAGE value="Unexpected token&#10;throw" />
+    <MESSAGE value="Content Length" />
+    <MESSAGE value="Buffer&#10;Se hace pipe al stream hacia un buffer que sera el que se subira a S3" />
+    <MESSAGE value="Condicion de creacion de zip&#10;Accidentalmente se crearon zips vacios, se actualiza la condicion de creacion" />
+    <MESSAGE value="Nombre de archivos&#10;Para ser muy especificos se generan nombres de archivos descriptivos" />
+    <option name="LAST_COMMIT_MESSAGE" value="Nombre de archivos&#10;Para ser muy especificos se generan nombres de archivos descriptivos" />
   </component>
 </project>

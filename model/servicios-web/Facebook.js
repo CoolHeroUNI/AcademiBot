@@ -323,7 +323,9 @@ Facebook.prototype.enviaUrl = function (id, url, opciones) {
  */
 Facebook.parametrizaQuickReply = function (botones) {
   let respuesta = [];
-  for (let boton of botones) {
+  let limite = 10 > botones.length ? botones.length : 10;
+  for (let i = 0; i < limite; i++) {
+    let boton = botones[i];
     let param = {
       content_type:boton[0],
       title:boton[1],

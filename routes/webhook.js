@@ -14,6 +14,7 @@ const validaToken = (req, res) => {
 };
 
 const procesaEventos = (req, res) => {
+  res.sendStatus(200);
   const messaging_events = req.body.entry[0].messaging;
   for (const event of messaging_events) {
     const idUsuario = event.sender.id;
@@ -33,7 +34,6 @@ const procesaEventos = (req, res) => {
         .catch(e => console.log(e));
     }
   }
-  res.sendStatus(200);
 };
 
 const actualiza = async (req,res) => {

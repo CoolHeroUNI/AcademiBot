@@ -7,6 +7,9 @@ block content
         h2 Boton de Actualizacion
         p Boton que actualiza el archivo de configuracion de las facultades, util luego de clasificar material.
         button(id="actualiza") Actualizar
+        h2 Creacion de comprimidos
+        p Boton que creará archivos comprimidos para TODAS las carpetas
+        button(id="zip") Crear Zip
         h2 Boton de cierre
         p Fuerza el cierrde del servidor, no guarda ningun archivo.
         button(id="cierra", style="background-color: #ff0a19") Cerrar servidor
@@ -17,7 +20,7 @@ block javascript
         guardar.addEventListener('click', () => {
           $.get('/admin/hosting?action=guardar')
             .done(function () {
-              alert("Guardando...");
+              alert("Guardado");
             })
             .fail(function () {
               alert("Fallo en la solicitud de guardado...");
@@ -27,7 +30,7 @@ block javascript
         actualizar.addEventListener('click', () => {
           $.get('/admin/hosting?action=actualiza')
             .done(function () {
-              alert("Actualizando...");
+              alert("Actualizado");
             })
             .fail(function () {
               alert("Fallo en la solicitud de actualización...");
@@ -42,4 +45,14 @@ block javascript
             .fail(function () {
               alert("Fallo en la solicitud de cierre...");
             })
+        });
+        const zip = document.getElementById('zip');
+        zip.addEventListener('click', () => {
+            $.get('/admin/hosting?action=zip')
+                .done(function () {
+                    alert("Generando zip");
+                })
+                .fail(function () {
+                    alert("Fallo en la solicitud de cierre...");
+                })
         });

@@ -61,7 +61,7 @@ Amazon.prototype.firmaUrls = function (archivos, tiempo) {
       url : ""
     };
     if (archivo.esReusable()) payload.attachment_id = archivo.getAttachmentId();
-    else payload.url = this.s3.getSignedUrl('getObject',params);
+    else payload.url = this.s3.getSignedUrl('getObject', params);
     respuesta.push({payload, extension, type});
   }
   return respuesta;
@@ -139,15 +139,14 @@ Amazon.prototype.listaObjetosDirectamenteBajo = async function (prefijo, continu
  * no se valida, tener precaucion
  * @method getObject
  * @param {String} key
- * @returns {Buffer}
+ * @returns {Promise<S3.Types.GetObjectOutput>}
  */
-Amazon.prototype.getObject = async function (key) {
+Amazon.prototype.getObject = function (key) {
   let param = {
     Bucket: this.bucketName,
     Key: key
   };
-  let data = await this.s3.getObject(param).promise();
-  return data.Body;
+  return this.s3.getObject(param).promise();
 };
 /**
  * Metodo para obtener un objeto tipo JSON desde un
@@ -157,17 +156,19 @@ Amazon.prototype.getObject = async function (key) {
  * @returns {Promise}
  */
 Amazon.prototype.getJSON = async function (key) {
-  let buffer = await this.getObject(key);
-  return JSON.parse(buffer.toString());
+  let data = await this.getObject(key);
+  return JSON.parse(data.Body.toString());
 };
 /**
  * Metodo para subir archivos a una ruta especifica
  * @method putObject
  * @param {String} key
- * @param {Buffer|String|ReadableStream} cuerpo
+ * @param {Buffer|String|Readable|ReadableStream} cuerpo
  * @param {String} [mime] propiedad que indica content-type
+ * @param {Number} [size] propiedad que indica el tamano
+ * @returns {Promise<S3.PutObjectOutput>}
  */
-Amazon.prototype.putObject = function (key, cuerpo, mime) {
+Amazon.prototype.putObject = function (key, cuerpo, mime, size) {
   let param = {
     Body: cuerpo,
     Bucket: this.bucketName,
@@ -175,6 +176,9 @@ Amazon.prototype.putObject = function (key, cuerpo, mime) {
   };
   if (mime) {
     param.ContentType = mime;
+  }
+  if (size !== undefined) {
+    param.ContentLength = size;
   }
   return this.s3.putObject(param).promise();
 };
