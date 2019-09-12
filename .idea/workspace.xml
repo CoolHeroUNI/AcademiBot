@@ -4,7 +4,13 @@
     <option name="GROUP_BY_SEVERITY" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="" />
+    <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/Bot.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Bot.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/servicios-web/Amazon.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/servicios-web/Amazon.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,14 +131,7 @@
       <workItem from="1568165020094" duration="26000" />
       <workItem from="1568235417860" duration="4908000" />
       <workItem from="1568262527721" duration="5052000" />
-      <workItem from="1568300072217" duration="3110000" />
-    </task>
-    <task id="LOCAL-00067" summary="Mejora estetica boton inicio">
-      <created>1565023866251</created>
-      <option name="number" value="00067" />
-      <option name="presentableId" value="LOCAL-00067" />
-      <option name="project" value="LOCAL" />
-      <updated>1565023866251</updated>
+      <workItem from="1568300072217" duration="4903000" />
     </task>
     <task id="LOCAL-00068" summary="Mejora estetica boton inicio">
       <created>1565026907719</created>
@@ -470,7 +469,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568303033677</updated>
     </task>
-    <option name="localTasksCounter" value="116" />
+    <task id="LOCAL-00116" summary="Panel">
+      <created>1568303238221</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1568303238222</updated>
+    </task>
+    <option name="localTasksCounter" value="117" />
     <servers />
   </component>
   <component name="TodoView">
@@ -514,7 +520,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="RELOAD_CONTEXT" value="false" />
-    <MESSAGE value="Solucion no respuesta&#10;Se corrigio un posible bug sobre no responder una solicitud en admin/facebook" />
     <MESSAGE value="SLOW DOWN&#10;Excedi el limite de llamadas a la API de facebook, se propone esperar un poco entre mensaje y mensaje" />
     <MESSAGE value="Nombres usuarios&#10;Se añadio soporte a los nombres de usuario de parte de Facebook, se buscará nombrar a todos los usuarios que utilicen el bot" />
     <MESSAGE value="Error&#10;Los memes no se cargaban al comienzo, pudiendo ocasionar errores." />
@@ -539,6 +544,7 @@
     <MESSAGE value="Logica de subida&#10;Error prevenido en la logica de subida, donde no se acumulaban los pesos ni aumentaba el contador" />
     <MESSAGE value="Log" />
     <MESSAGE value="Archivador -&gt; archivos" />
-    <option name="LAST_COMMIT_MESSAGE" value="Archivador -&gt; archivos" />
+    <MESSAGE value="Panel" />
+    <option name="LAST_COMMIT_MESSAGE" value="Panel" />
   </component>
 </project>

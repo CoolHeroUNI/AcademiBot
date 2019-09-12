@@ -2,6 +2,7 @@ const fs = require('fs');
 const RequestPromise = require('request-promise');
 const linkify = require('linkifyjs');
 const archiver = require('archiver');
+const stream = require('stream');
 
 const Amazon = require('./servicios-web/Amazon');
 const Facebook = require('./servicios-web/Facebook');
@@ -686,10 +687,15 @@ Bot.prototype.compressFiles = async function () {
     for (let curso in facultad.directorio) {
       for (let carpeta in facultad.directorio[curso]) {
         if (!facultad.directorio[curso].hasOwnProperty(carpeta)) continue;
+        const output = new stream.PassThrough();
         let comprimido = archiver('zip', {
           comment : `${carpeta} de ${curso} de la ${id}.`,
           zlib: {level : 9}
         });
+        output.on('close', () => console.log(comprimido.pointer() + " data added."));
+        output.on('end', () => console.log("Data drained"));
+        comprimido.on('error', (e) => throw e);
+        comprimido.pipe(output);
         let pesoTotal = 0, n = 0;
         for (let archivo of facultad.directorio[curso][carpeta]) {
           if (pesoTotal*(n+1) > LIMITE*n || comprimido.pointer() > LIMITE) break; // Estimacion de peso adicional de un archivo adicional
@@ -704,8 +710,10 @@ Bot.prototype.compressFiles = async function () {
           pesoTotal += data.ContentLength;
         }
         comprimido.finalize();
+        if (n === 0) continue;
         let zipKey = `${id}/${curso}/${carpeta}/todos.zip`;
-        this.amazon.putObject(zipKey, comprimido, 'application/zip')
+
+        this.amazon.putObject(zipKey, output, 'application/zip')
             .then(() => {
               this.archivos.eliminaArchivo(zipKey); //Evitar redundancia en archivos locales
               console.log(zipKey + " finalizado")

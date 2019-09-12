@@ -163,7 +163,7 @@ Amazon.prototype.getJSON = async function (key) {
  * Metodo para subir archivos a una ruta especifica
  * @method putObject
  * @param {String} key
- * @param {Buffer|String|ReadableStream} cuerpo
+ * @param {Buffer|String|Readable} cuerpo
  * @param {String} [mime] propiedad que indica content-type
  * @returns {Promise<S3.PutObjectOutput>}
  */
