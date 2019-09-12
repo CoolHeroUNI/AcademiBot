@@ -694,7 +694,7 @@ Bot.prototype.compressFiles = async function () {
         });
         output.on('close', () => console.log(comprimido.pointer() + " data added."));
         output.on('end', () => console.log("Data drained"));
-        comprimido.on('error', (e) => throw e);
+        comprimido.on('error', e => console.log(e));
         comprimido.pipe(output);
         let pesoTotal = 0, n = 0;
         for (let archivo of facultad.directorio[curso][carpeta]) {

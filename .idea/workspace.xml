@@ -7,9 +7,6 @@
     <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/Bot.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Bot.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/servicios-web/Amazon.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/servicios-web/Amazon.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -131,14 +128,7 @@
       <workItem from="1568165020094" duration="26000" />
       <workItem from="1568235417860" duration="4908000" />
       <workItem from="1568262527721" duration="5052000" />
-      <workItem from="1568300072217" duration="4903000" />
-    </task>
-    <task id="LOCAL-00068" summary="Mejora estetica boton inicio">
-      <created>1565026907719</created>
-      <option name="number" value="00068" />
-      <option name="presentableId" value="LOCAL-00068" />
-      <option name="project" value="LOCAL" />
-      <updated>1565026907719</updated>
+      <workItem from="1568300072217" duration="5161000" />
     </task>
     <task id="LOCAL-00069" summary="Error en pug&#10;se coloco un bloque especifico para codigo">
       <created>1565027351537</created>
@@ -476,7 +466,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568303238222</updated>
     </task>
-    <option name="localTasksCounter" value="117" />
+    <task id="LOCAL-00117" summary="Stream Fix&#10;Se intenta realizar arreglos con Streams para poder subir archivos correctamente.&#10;Ademas se impide la subida de zips Vacios">
+      <created>1568305048732</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1568305048732</updated>
+    </task>
+    <option name="localTasksCounter" value="118" />
     <servers />
   </component>
   <component name="TodoView">
@@ -520,7 +517,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="RELOAD_CONTEXT" value="false" />
-    <MESSAGE value="SLOW DOWN&#10;Excedi el limite de llamadas a la API de facebook, se propone esperar un poco entre mensaje y mensaje" />
     <MESSAGE value="Nombres usuarios&#10;Se añadio soporte a los nombres de usuario de parte de Facebook, se buscará nombrar a todos los usuarios que utilicen el bot" />
     <MESSAGE value="Error&#10;Los memes no se cargaban al comienzo, pudiendo ocasionar errores." />
     <MESSAGE value="Logica peticiones&#10;Se soluciono un error antiguo, las peticiones se consideraban cambiadas cuando su representacion de cadena nueva era diferente a la antigua, pero esto daba falsos negativos cuando se queria pedir el mismo curso o misma carpeta, por lo que ahora se comprueba si existe un objeto que alterara la peticion de cualquier forma, aunque esta sea la misma al final." />
@@ -545,6 +541,7 @@
     <MESSAGE value="Log" />
     <MESSAGE value="Archivador -&gt; archivos" />
     <MESSAGE value="Panel" />
-    <option name="LAST_COMMIT_MESSAGE" value="Panel" />
+    <MESSAGE value="Stream Fix&#10;Se intenta realizar arreglos con Streams para poder subir archivos correctamente.&#10;Ademas se impide la subida de zips Vacios" />
+    <option name="LAST_COMMIT_MESSAGE" value="Stream Fix&#10;Se intenta realizar arreglos con Streams para poder subir archivos correctamente.&#10;Ademas se impide la subida de zips Vacios" />
   </component>
 </project>
