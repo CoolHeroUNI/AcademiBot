@@ -688,13 +688,14 @@ Bot.prototype.compressFiles = async function () {
       for (let carpeta in facultad.directorio[curso]) {
         if (!facultad.directorio[curso].hasOwnProperty(carpeta)) continue;
         const output = new stream.PassThrough();
+        let a = output._read()
         let comprimido = archiver('zip', {
           comment : `${carpeta} de ${curso} de la ${id}.`,
           zlib: {level : 9}
         });
         output.on('close', () => console.log(comprimido.pointer() + " data added."));
         output.on('end', () => console.log("Data drained"));
-        comprimido.on('error', e => console.log(e));
+        comprimido.on('error', e => console.log("Error en comprimido"));
         comprimido.pipe(output);
         let pesoTotal = 0, n = 0;
         for (let archivo of facultad.directorio[curso][carpeta]) {
@@ -713,7 +714,7 @@ Bot.prototype.compressFiles = async function () {
         if (n === 0) continue;
         let zipKey = `${id}/${curso}/${carpeta}/todos.zip`;
 
-        this.amazon.putObject(zipKey, output, 'application/zip')
+        this.amazon.putObject(zipKey, output, 'application/zip', comprimido.pointer())
             .then(() => {
               this.archivos.eliminaArchivo(zipKey); //Evitar redundancia en archivos locales
               console.log(zipKey + " finalizado")

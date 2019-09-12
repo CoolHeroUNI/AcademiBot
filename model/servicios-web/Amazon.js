@@ -163,11 +163,12 @@ Amazon.prototype.getJSON = async function (key) {
  * Metodo para subir archivos a una ruta especifica
  * @method putObject
  * @param {String} key
- * @param {Buffer|String|Readable} cuerpo
+ * @param {Buffer|String|Readable|ReadableStream} cuerpo
  * @param {String} [mime] propiedad que indica content-type
+ * @param {Number} [size] propiedad que indica el tamano
  * @returns {Promise<S3.PutObjectOutput>}
  */
-Amazon.prototype.putObject = function (key, cuerpo, mime) {
+Amazon.prototype.putObject = function (key, cuerpo, mime, size) {
   let param = {
     Body: cuerpo,
     Bucket: this.bucketName,
@@ -175,6 +176,9 @@ Amazon.prototype.putObject = function (key, cuerpo, mime) {
   };
   if (mime) {
     param.ContentType = mime;
+  }
+  if (size) {
+    param.ContentLength = size;
   }
   return this.s3.putObject(param).promise();
 };
