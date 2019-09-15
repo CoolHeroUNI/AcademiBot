@@ -106,6 +106,7 @@ Facebook.prototype.enviaTexto = function (id, texto, opciones) {
   const promesas = [];
   for (let url of urls) {
     texto = texto.replace(url, '');
+    console.log(url);
     promesas.push(this.enviaUrl(id, url, opciones));
   }
   if (texto.length > 0) {
