@@ -4,9 +4,7 @@
     <option name="GROUP_BY_SEVERITY" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +25,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model/Bot.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="410">
+            <state relative-caret-position="1878">
               <caret line="896" column="42" selection-start-line="896" selection-start-column="42" selection-end-line="896" selection-end-column="42" />
             </state>
           </provider>
@@ -36,8 +34,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/model/servicios-web/Facebook.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-55">
-              <caret line="109" column="3" lean-forward="true" selection-start-line="109" selection-start-column="3" selection-end-line="109" selection-end-column="3" />
+            <state relative-caret-position="209">
+              <caret line="108" column="30" selection-start-line="108" selection-start-column="30" selection-end-line="108" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -251,27 +249,6 @@
       <workItem from="1568235417860" duration="4908000" />
       <workItem from="1568262527721" duration="5052000" />
       <workItem from="1568300072217" duration="13337000" />
-    </task>
-    <task id="LOCAL-00077" summary="Error en indices de arreglo&#10;Se soluciono un error en los indices de los arreglos">
-      <created>1565036047789</created>
-      <option name="number" value="00077" />
-      <option name="presentableId" value="LOCAL-00077" />
-      <option name="project" value="LOCAL" />
-      <updated>1565036047789</updated>
-    </task>
-    <task id="LOCAL-00078" summary="Botones&#10;Se arreglo la ruta de redireccion de los botones">
-      <created>1565036688064</created>
-      <option name="number" value="00078" />
-      <option name="presentableId" value="LOCAL-00078" />
-      <option name="project" value="LOCAL" />
-      <updated>1565036688064</updated>
-    </task>
-    <task id="LOCAL-00079" summary="Cookies&#10;Se observa la posibilidad de utilizar las cookies para mejorar los tiempos de carga de la pagina">
-      <created>1565037543392</created>
-      <option name="number" value="00079" />
-      <option name="presentableId" value="LOCAL-00079" />
-      <option name="project" value="LOCAL" />
-      <updated>1565037543394</updated>
     </task>
     <task id="LOCAL-00080" summary="Manejo de errores adecuadamente">
       <created>1565039638463</created>
@@ -595,11 +572,32 @@
       <option name="project" value="LOCAL" />
       <updated>1568513163875</updated>
     </task>
-    <option name="localTasksCounter" value="126" />
+    <task id="LOCAL-00126" summary="Envio de musica&#10;Se modifico el metodo de enviar texto para reconocer y enviar enlaces.">
+      <created>1568513222785</created>
+      <option name="number" value="00126" />
+      <option name="presentableId" value="LOCAL-00126" />
+      <option name="project" value="LOCAL" />
+      <updated>1568513222786</updated>
+    </task>
+    <task id="LOCAL-00127" summary="Debug">
+      <created>1568521562882</created>
+      <option name="number" value="00127" />
+      <option name="presentableId" value="LOCAL-00127" />
+      <option name="project" value="LOCAL" />
+      <updated>1568521562883</updated>
+    </task>
+    <task id="LOCAL-00128" summary="Correccion mal uso URL&#10;Se soluciona el mal uso de las URLs">
+      <created>1568521859205</created>
+      <option name="number" value="00128" />
+      <option name="presentableId" value="LOCAL-00128" />
+      <option name="project" value="LOCAL" />
+      <updated>1568521859205</updated>
+    </task>
+    <option name="localTasksCounter" value="129" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="888000" />
+    <option name="totallyTimeSpent" value="2950000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -612,7 +610,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16069546" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -689,8 +686,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="RELOAD_CONTEXT" value="false" />
-    <MESSAGE value="Error nombres usuario&#10;Error por no parsear la cadena de nombres de los usuarios al crear un nuevo usuario" />
-    <MESSAGE value="Solucion subida y seleccion de ciclo&#10;Resueltos problemas de subida de datos donde se enviaban mensajes duplicados&#10;Resuelto un error de tipografia donde no se respondia ante la seleccion erronea de un ciclo" />
     <MESSAGE value="CODE-URLs&#10;Se remueven las URLs de los textos a enviarse globalmente, dejando solo las vistas previas" />
     <MESSAGE value="URL&#10;se elimina el texto de las URLs" />
     <MESSAGE value="Mensajes globales&#10;Para el envio de mensajes globales se espera 1m 30s por cada 50 usuarios" />
@@ -714,7 +709,9 @@
     <MESSAGE value="Limite de quickReplies&#10;Se limitaron las quickReplies a 10, evitando asi posibles errores futuros" />
     <MESSAGE value="Error de nombres&#10;accidentalmente se crearon carpetas adicionales con solo la ultima palabra despues de los guiones." />
     <MESSAGE value="Envio de musica&#10;Se modifico el metodo de enviar texto para reconocer y enviar enlaces." />
-    <option name="LAST_COMMIT_MESSAGE" value="Envio de musica&#10;Se modifico el metodo de enviar texto para reconocer y enviar enlaces." />
+    <MESSAGE value="Debug" />
+    <MESSAGE value="Correccion mal uso URL&#10;Se soluciona el mal uso de las URLs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Correccion mal uso URL&#10;Se soluciona el mal uso de las URLs" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/metodos.js">
@@ -726,15 +723,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/model/Bot.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
+        <state relative-caret-position="1878">
           <caret line="896" column="42" selection-start-line="896" selection-start-column="42" selection-end-line="896" selection-end-column="42" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/model/servicios-web/Facebook.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-55">
-          <caret line="109" column="3" lean-forward="true" selection-start-line="109" selection-start-column="3" selection-end-line="109" selection-end-column="3" />
+        <state relative-caret-position="209">
+          <caret line="108" column="30" selection-start-line="108" selection-start-column="30" selection-end-line="108" selection-end-column="30" />
         </state>
       </provider>
     </entry>
