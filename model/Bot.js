@@ -877,7 +877,6 @@ Bot.prototype.procesaUrl = async function (id, urls) {
  * @TODO comprobar el correcto funcionamiento del metodo, ahora espera las respuestas, pero el tiempo puede no ser suficiente, ultimo error: SLOW DOWN
  */
 Bot.prototype.enviaMensajeGlobal = async function (texto) {
-  const urls = linkify.find(texto);
   const longitudSublistas = 50, tiempoEspera = 1000*60*7.5;
   const listas = [];
   const ids = this.UNI.getUsuarios().map(usuario => usuario.id);
@@ -895,18 +894,14 @@ Bot.prototype.enviaMensajeGlobal = async function (texto) {
     messaging_type: "MESSAGE_TAG",
     tag: "NON_PROMOTIONAL_SUBSCRIPTION"
   };
-  const url = urls ? urls[0].value : undefined;
-  texto = texto.replace(url,'');
   console.log("Mensaje global: " + texto);
-
   for (let k = 0; k < listas.length; k++) {
     let usuarios = listas[k];
     for (let i = 0; i < usuarios.length; i++) {
       let id = usuarios[i];
       console.log("Enviando mensaje global #"+ (i + 1 + k*longitudSublistas) + " de " + (longitudTotal));
       try {
-        if (texto.length > 0) await this.FB.enviaTexto(id, texto, opciones);
-        if (url) await this.FB.enviaUrl(id, url, opciones);
+        await this.FB.enviaTexto(id, texto, opciones);
       } catch (e) {
         console.log({error: e['message'], codigo: e['code']});
       }

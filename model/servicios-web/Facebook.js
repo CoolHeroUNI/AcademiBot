@@ -1,4 +1,6 @@
 const RequestPromise = require('request-promise');
+const linkify = require('linkifyjs');
+
 /**
  * Clase que modela la interaccion entre el ChatBot y la API Graph de Facebook, 
  * contiene las funciones necesarias para poder maneras los mensajes
@@ -100,25 +102,35 @@ Facebook.prototype.enviaQuickReply =  function (id, parametros, text) {
  * @returns {Promise}
  */
 Facebook.prototype.enviaTexto = function (id, texto, opciones) {
-  let json = {
-    messaging_type : "RESPONSE",
-    recipient : {id},
-    message : {text: texto},
-  };
-  if (opciones) {
-    for (let opcion in opciones) {
-      if (opciones.hasOwnProperty(opcion)) {
-        json[opcion] = opciones[opcion];
+  const urls = linkify.find(texto);
+  const promesas = [];
+  for (let url of urls) {
+    texto = texto.replace(url, '');
+    promesas.push(this.enviaUrl(id, url, opciones));
+  }
+  if (texto.length > 0) {
+    let json = {
+      messaging_type : "RESPONSE",
+      recipient : {id},
+      message : {text: texto},
+    };
+    if (opciones) {
+      for (let opcion in opciones) {
+        if (opciones.hasOwnProperty(opcion)) {
+          json[opcion] = opciones[opcion];
+        }
       }
     }
+    let params = {
+      uri: "https://graph.facebook.com/v3.3/me/messages",
+      qs : {access_token : this.token},
+      method: "POST",
+      json
+    };
+    promesas.push(RequestPromise(params))
   }
-  let params = {
-    uri: "https://graph.facebook.com/v3.3/me/messages",
-    qs : {access_token : this.token},
-    method: "POST",
-    json
-  };
-  return RequestPromise(params);
+
+  return Promise.all(promesas);
 };
 /**
  * Metodo para enviar una accion al usuario
@@ -283,7 +295,7 @@ Facebook.prototype.getUserInfo = function (PPID) {
  * @method enviaUrl
  * @param {String} id
  * @param {String} url
- * @param {Object} opciones
+ * @param {Object} [opciones]
  */
 Facebook.prototype.enviaUrl = function (id, url, opciones) {
   let json = {
