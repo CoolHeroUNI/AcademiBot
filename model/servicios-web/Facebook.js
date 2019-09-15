@@ -102,9 +102,11 @@ Facebook.prototype.enviaQuickReply =  function (id, parametros, text) {
  * @returns {Promise}
  */
 Facebook.prototype.enviaTexto = function (id, texto, opciones) {
-  const urls = linkify.find(texto);
+  const links = linkify.find(texto);
   const promesas = [];
-  for (let url of urls) {
+  for (let link of links) {
+    if (link['type'] !== 'url') continue;
+    const url = link['value'];
     texto = texto.replace(url, '');
     console.log(url);
     promesas.push(this.enviaUrl(id, url, opciones));
