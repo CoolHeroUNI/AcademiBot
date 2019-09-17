@@ -1,10 +1,9 @@
 const fs = require('fs');
 const RequestPromise = require('request-promise');
-const linkify = require('linkifyjs');
 const archiver = require('archiver');
 const stream = require('stream');
 
-const Amazon = require('./servicios-web/Amazon');
+const S3 = require('./servicios-web/S3');
 const Facebook = require('./servicios-web/Facebook');
 const DialogFlow = require('./servicios-web/DialogFlow');
 
@@ -25,20 +24,10 @@ const Facultad = require('./universidad/facultad/Facultad');
  * @class Bot
  */
 class Bot {
-  /**
-   * @constructor
-   * @param {{accessKeyId:String, secretAccessKey:String, region:String, nombre:String}} amazonConfig
-   * datos para la creacion de un bucket de S3
-   * @param {String} facebookToken token para poder interactuar con la
-   * graph API de Facebook
-   * @param {String} [DialogFlowProjectId] id del proyecto de dialogflow, es opcional
-   */
-  constructor (amazonConfig, facebookToken, DialogFlowProjectId) {
-    const accessKeyId = amazonConfig.accessKeyId;
-    const secretAccessKey = amazonConfig.secretAccessKey;
-    const region = amazonConfig.region;
-    const nombre = amazonConfig.nombre;
-    let dialogflow = this.setupDialogFlow(DialogFlowProjectId);
+
+  constructor () {
+
+    let dialogflow = this.setupDialogFlow();
     /**
      * Propiedad para interactuar con la Universidad
      * @property {Universidad} UNI
@@ -52,14 +41,14 @@ class Bot {
     this.archivos = new Archivador();
     /**
      * Propiedad para interactuar con s3
-     * @property {Amazon} amazon
+     * @property {S3} S3
      */
-    this.amazon = new Amazon(accessKeyId, secretAccessKey, region, nombre);
+    this.S3 = new S3();
     /**
      * Propiedad para interactuar con facebook
      * @property {Facebook} FB
      */
-    this.FB = new Facebook(facebookToken);
+    this.FB = new Facebook();
     /**
      * Propiedad para interactuar con DialogFlow
      * @property {DialogFlow} dialogflow
@@ -83,15 +72,13 @@ class Bot {
  * se carga el archivo de claves a partir de la variable DIALOGFLOW
  * y se escribe en la ubicacion indicada por GOOGLE_APPLICATION_CREDENTIALS
  * @method setupDialogFlow
- * @param {String} projectId id del proyecto de
  */
-Bot.prototype.setupDialogFlow = function (projectId) {
-  if (projectId === "DONT USE") return null;
+Bot.prototype.setupDialogFlow = function () {
   const path = process.env.GOOGLE_APPLICATION_CREDENTIALS;
   let DialogFlowString = process.env.DIALOGFLOW;
   fs.writeFileSync(path, DialogFlowString);
   // noinspection JSUnresolvedVariable
-  const id = projectId || JSON.parse(DialogFlowString).project_id;
+  const id = JSON.parse(DialogFlowString).project_id;
   return new DialogFlow(id);
 };
 /**
@@ -120,7 +107,7 @@ Bot.prototype.cargaArchivador = function (archivador) {
  */
 Bot.prototype.creaUsuario = function (id) {
   const imagen = new Archivo("configuracion/bienvenida.jpg");
-  const imagenesBienvenida = this.amazon.firmaUrls([imagen]);
+  const imagenesBienvenida = this.S3.firmaUrls([imagen]);
   const mensajeBienvenida = 
   "Hola, no te habia visto por aqui antes, soy AcademiBot," +
   " me encargo de mantener una base de datos de material académico" +
@@ -169,7 +156,7 @@ Bot.prototype.getUsuario = function (id) {
  */
 Bot.prototype.enviaMeme = function (usuario) {
   const meme = this.memes.toArray().random();
-  const urlFirmada = this.amazon.firmaUrls([meme]);
+  const urlFirmada = this.S3.firmaUrls([meme]);
   this.FB.enviaAdjuntos(usuario.id, urlFirmada)
     .catch(e => console.log({error: e['message'], codigo: e['code']}));
 };
@@ -245,7 +232,7 @@ Bot.prototype.setEspecialidad = function (usuario, id) {
 Bot.prototype.guardaFacultades = function () {
   let key = "configuracion/facultades.json";
   let facultades = this.UNI.getFacultadesObject().map(facultad => facultad.toJSON());
-  this.amazon.putObject(key, JSON.stringify(facultades));
+  this.S3.putObject(key, JSON.stringify(facultades));
 };
 /**
  * Metodo para leer el archivo que contiene el estado actual de
@@ -255,7 +242,7 @@ Bot.prototype.guardaFacultades = function () {
  */
 Bot.prototype.leeFacultades = function () {
   let key = "configuracion/facultades.json";
-  return this.amazon.getJSON(key);
+  return this.S3.getJSON(key);
 };
 /**
  * Metodo para guardar el estado actual de los Usuarios
@@ -276,7 +263,7 @@ Bot.prototype.guardaUsuarios = async function () {
       }
     }
   }
-  this.amazon.putObject(key, JSON.stringify(usuarios));
+  this.S3.putObject(key, JSON.stringify(usuarios));
 };
 /**
  * Metodo para leer el archivo que contiene el estado actual de los usuarios de UNI y los 
@@ -286,7 +273,7 @@ Bot.prototype.guardaUsuarios = async function () {
  */
 Bot.prototype.leeUsuarios = function () {
   let key = "configuracion/usuarios.json";
-  return this.amazon.getJSON(key);
+  return this.S3.getJSON(key);
 };
 /**
  * Metodo para guardar el estado actual del archivador
@@ -295,7 +282,7 @@ Bot.prototype.leeUsuarios = function () {
 Bot.prototype.guardaArchivador = function () {
   let key = "configuracion/archivador.json";
   let archivos = this.archivos.toJSON();
-  this.amazon.putObject(key, JSON.stringify(archivos));
+  this.S3.putObject(key, JSON.stringify(archivos));
 };
 /**
  * Metodo para leer el archivo que contiene el estado actual del archivador y los devuelve como objeto
@@ -304,7 +291,7 @@ Bot.prototype.guardaArchivador = function () {
  */
 Bot.prototype.leeArchivador = function () {
   let key = "configuracion/archivador.json";
-  return this.amazon.getJSON(key);
+  return this.S3.getJSON(key);
 };
 /**
  * Metodo para cargar las direcciones de los archivos enviados por los usuarios
@@ -312,7 +299,7 @@ Bot.prototype.leeArchivador = function () {
  * @returns {Promise<void>}
  */
 Bot.prototype.cargaSubmissions = async function () {
-  let direcciones = await this.amazon.listaObjetos('submissions');
+  let direcciones = await this.S3.listaObjetos('submissions');
   for (let i = 0; i < direcciones.length; i++) {
     this.submissions.creaArchivo(direcciones[i]);
   }
@@ -323,7 +310,7 @@ Bot.prototype.cargaSubmissions = async function () {
  * @returns {Promise<void>}
  */
 Bot.prototype.cargaMemes = async function () {
-  let direcciones = await this.amazon.listaObjetos('memes');
+  let direcciones = await this.S3.listaObjetos('memes');
   for (let i = 0; i < direcciones.length; i++) {
     this.memes.creaArchivo(direcciones[i]);
   }
@@ -371,7 +358,7 @@ Bot.prototype.actualizaDirectorios = async function () {
   let facultades = this.UNI.getFacultadesObject();
   let JSONfacultades = [];
   for (let facultad of facultades) {
-    let direcciones = await this.amazon.listaObjetos(facultad.id);
+    let direcciones = await this.S3.listaObjetos(facultad.id);
     let directorio = Facultad.creaDirectorio(direcciones);
     let JSONfacultad = facultad.toJSON();
     JSONfacultad.directorio = directorio;
@@ -396,9 +383,9 @@ Bot.prototype.obtieneArchivoDeEnvios = async function (tipo, index) {
       if (index >= envio.length) index = envio.length - 1;
       if (index < 0) index = 0;
       envio = envio[index];
-      let urlFirmada = this.amazon.firmaUrls([envio], 600)[0];
+      let urlFirmada = this.S3.firmaUrls([envio], 600)[0];
 
-      this.amazon.getObject(envio.getRuta())
+      this.S3.getObject(envio.getRuta())
         .then(data => {
           resolve({
             ruta: envio.getRuta(),
@@ -420,7 +407,7 @@ Bot.prototype.obtieneArchivoDeEnvios = async function (tipo, index) {
  */
 Bot.prototype.mueveArchivo = async function (origen, destino) {
   this.archivos.eliminaArchivo(destino); //Elimina la redundancia del archivo anterior contra una nueva copia
-  this.amazon.moveObject(origen, destino)
+  this.S3.moveObject(origen, destino)
     .catch(e => console.log(e));
 };
 /**
@@ -430,7 +417,7 @@ Bot.prototype.mueveArchivo = async function (origen, destino) {
  * @returns {Promise<PromiseResult<S3.DeleteObjectOutput, AWSError>>}
  */
 Bot.prototype.borraArchivo = function (key) {
-  return this.amazon.deleteObject(key);
+  return this.S3.deleteObject(key);
 };
 /**
  * Metodo para reaccionar ante la situacion en la que el usuario
@@ -477,7 +464,7 @@ Bot.prototype.reaccionaPeticionValida = function (usuario, especialidad) {
   const peticion = usuario.getPeticion();
   let rutas = facultad.getRutas(peticion, especialidad.id);
   let archivos = rutas.map(ruta => this.archivos.getArchivo(ruta));
-  let urlsFirmadas = this.amazon.firmaUrls(archivos);
+  let urlsFirmadas = this.S3.firmaUrls(archivos);
   usuario.completaPeticion();
   let promesa = this.FB.enviaAdjuntos(usuario.id, urlsFirmadas);
   // Revisar esto cuidadosamente, puede que las promesas no se almacenen en el mismo orden en el que llegan
@@ -704,7 +691,7 @@ Bot.prototype.compressFiles = async function () {
             nueva = nueva[nueva.length - 1];
             let filename = `${nueva}_todos.zip`;
             let zipKey = `${id}/${curso}/${carpeta}/${filename}`;
-            this.amazon.putObject(zipKey, buffer, 'application/zip')
+            this.S3.putObject(zipKey, buffer, 'application/zip')
                 .then(() => {
                   this.archivos.eliminaArchivo(zipKey); //Evitar redundancia en archivos locales
                   console.log(zipKey + " finalizado")
@@ -721,7 +708,7 @@ Bot.prototype.compressFiles = async function () {
             let key = `${id}/${curso}/${carpeta}/${archivo}`;
             let file = this.archivos.getArchivo(key);
             if (file.extension === 'zip' || file.extension === 'rar') continue;
-            let data = await this.amazon.getObject(key);
+            let data = await this.S3.getObject(key);
             if (pesoTotal + data.ContentLength < LIMITE) {
               comprimido.append(data.Body, {name : `${id}_${curso}_${carpeta}_${archivo}`});
             }
@@ -732,7 +719,7 @@ Bot.prototype.compressFiles = async function () {
         comprimido.finalize();
         /**let zipKey = `${id}/${curso}/${carpeta}/todos.zip`;
 
-        this.amazon.putObject(zipKey, output, 'application/zip', comprimido.pointer())
+        this.S3.putObject(zipKey, output, 'application/zip', comprimido.pointer())
             .then(() => {
               this.archivos.eliminaArchivo(zipKey); //Evitar redundancia en archivos locales
               console.log(zipKey + " finalizado")
@@ -858,7 +845,7 @@ Bot.prototype.procesaUrl = async function (id, urls) {
       .then((res) => {
         const mime = res.headers["content-type"] ? res.headers["content-type"] : "application/octet-stream";
         const body = res.body ? res.body : new Buffer("");
-        return this.amazon.putObject(key, body, mime);
+        return this.S3.putObject(key, body, mime);
       })
       .then(() => {
         console.log(`Objeto colocado correctamente en: ${key}`);

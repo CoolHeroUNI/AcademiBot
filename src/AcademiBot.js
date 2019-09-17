@@ -7,7 +7,7 @@ const amazondata = {
     region: "us-east-1",
     nombre: process.env.S3_BUCKET_NAME
 };
-const AcademiBot = new Bot(amazondata, process.env.FACEBOOK_TOKEN);
+const AcademiBot = new Bot();
 AcademiBot.carga()
     .catch(e => console.log(e));
 

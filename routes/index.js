@@ -6,7 +6,7 @@ router.get('/', (req, res) => {
   const tab = req.query.tab;
   const logged = req.session.logged;
 
-  if (tab === "amazon") {
+  if (tab === "S3") {
     res.render('indexAmazon', {logged, titulo:"Amazon"});
   } else if (tab === "facebook") {
     res.render('indexFacebook', {logged, titulo:"Facebook"});
