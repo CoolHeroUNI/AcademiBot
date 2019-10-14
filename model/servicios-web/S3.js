@@ -1,5 +1,10 @@
 const AWS = require('aws-sdk');
 const Archivo = require('../universidad/archivos/Archivo');
+AWS.config = new AWS.Config(  {
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+    region: "us-east-1"
+});
 /**
  * clase dedicada al manejo de la base de datos, obtencion
  * de archivos de configuracion para cargar los usuarios y
@@ -7,43 +12,33 @@ const Archivo = require('../universidad/archivos/Archivo');
  * utiliza el modulo de aws-sdk, pero utiliza solo los
  * metodos necesarios y adaptados para el desarrollo de esta
  * aplicacion
- * @class Amazon
+ * @class S3
  * @constructor
- * @param {String} _accessKeyId clave de acceso
- * @param {String} _secretAccessKey clave secreta
- * @param {String} _region region del Bucket
- * @param {String} _nombre nombre del Bucket
  */
-class Amazon {
-  constructor(_accessKeyId, _secretAccessKey, _region, _nombre) {
-    // noinspection UnnecessaryLocalVariableJS
-    let S3 = new AWS.S3({
-      accessKeyId: _accessKeyId,
-      secretAccessKey: _secretAccessKey,  
-      region: _region
-    });
+class S3 {
+  constructor() {
     /**
      * El objeto principal, interfaz entre el programa y
-     * Amazon Web Services
+     * S3 Web Services
      * @property {AWS.S3} s3
      */
-    this.s3 = S3;
+    this.s3 = new AWS.S3();
     /**
-     * Nombre del bucket de amazon s3
+     * Nombre del bucket de S3 s3
      * @property {String}
      */
-    this.bucketName = _nombre;
+    this.bucketName = process.env.S3_BUCKET_NAME;
   }
 }
 /**
  * Metodo para la obtencion de url's pre-firmadas por 
- * Amazon, imprescindible para el envio de archivos.
+ * S3, imprescindible para el envio de archivos.
  * @method firmaUrls
  * @param {Archivo[]} archivos
  * @param {Number} [tiempo]
  * @returns {{payload:{attachment_id:String,url:String}, extension:String, type:String}[]}
  */
-Amazon.prototype.firmaUrls = function (archivos, tiempo) {
+S3.prototype.firmaUrls = function (archivos, tiempo) {
   // Tiempo que la Url estara activa (en segundos)
   if (!tiempo) tiempo = 300;
   let respuesta = [];
@@ -74,7 +69,7 @@ Amazon.prototype.firmaUrls = function (archivos, tiempo) {
  * @param {String[]} [previo] resultados previos
  * @returns {Promise<String[]>}
  */
-Amazon.prototype.listaObjetos = async function (prefijo, continuationToken, previo) {
+S3.prototype.listaObjetos = async function (prefijo, continuationToken, previo) {
   let resultado = [];
   let params = {
     Bucket:this.bucketName,
@@ -106,7 +101,7 @@ Amazon.prototype.listaObjetos = async function (prefijo, continuationToken, prev
  * @param {String[]} [previo]
  * @returns {String[]}
  */
-Amazon.prototype.listaObjetosDirectamenteBajo = async function (prefijo, continuationToken, previo) {
+S3.prototype.listaObjetosDirectamenteBajo = async function (prefijo, continuationToken, previo) {
   let resultado = [];
   let params = {
     Bucket:this.bucketName,
@@ -141,7 +136,7 @@ Amazon.prototype.listaObjetosDirectamenteBajo = async function (prefijo, continu
  * @param {String} key
  * @returns {Promise<S3.Types.GetObjectOutput>}
  */
-Amazon.prototype.getObject = function (key) {
+S3.prototype.getObject = function (key) {
   let param = {
     Bucket: this.bucketName,
     Key: key
@@ -155,7 +150,7 @@ Amazon.prototype.getObject = function (key) {
  * @param {String} key
  * @returns {Promise}
  */
-Amazon.prototype.getJSON = async function (key) {
+S3.prototype.getJSON = async function (key) {
   let data = await this.getObject(key);
   return JSON.parse(data.Body.toString());
 };
@@ -168,7 +163,7 @@ Amazon.prototype.getJSON = async function (key) {
  * @param {Number} [size] propiedad que indica el tamano
  * @returns {Promise<S3.PutObjectOutput>}
  */
-Amazon.prototype.putObject = function (key, cuerpo, mime, size) {
+S3.prototype.putObject = function (key, cuerpo, mime, size) {
   let param = {
     Body: cuerpo,
     Bucket: this.bucketName,
@@ -190,7 +185,7 @@ Amazon.prototype.putObject = function (key, cuerpo, mime, size) {
  * @param {String} destino
  * @returns {Promise}
  */
-Amazon.prototype.moveObject = function (origen, destino) {
+S3.prototype.moveObject = function (origen, destino) {
   let param = {
     Bucket: this.bucketName,
     CopySource: `/${this.bucketName}/${origen}`,
@@ -203,11 +198,12 @@ Amazon.prototype.moveObject = function (origen, destino) {
  * @param {String} key
  * @returns {Promise}
  */
-Amazon.prototype.deleteObject = function (key) {
+S3.prototype.deleteObject = function (key) {
   let param = {
     Bucket : this.bucketName,
     Key : key
   };
   return this.s3.deleteObject(param).promise();
 };
-module.exports = Amazon;
+
+module.exports = S3;

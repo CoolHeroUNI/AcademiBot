@@ -8,10 +8,9 @@ const linkify = require('linkifyjs');
  * @constructor
  */
 class Facebook {
-  /**
-   * @param {String} FacebookToken token que permite el acceso a la cuenta del Bot
-   */
-  constructor(FacebookToken) {
+
+  constructor() {
+    let FacebookToken = process.env.FACEBOOK_TOKEN;
     /**
      * Token que permite las transacciones hacia la API Graph.
      * @property {String} token

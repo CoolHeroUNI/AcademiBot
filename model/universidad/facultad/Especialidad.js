@@ -21,7 +21,7 @@ class Especialidad {
    * respectivos nombres, si no existiera un curso en este {Array}
    * se bloquea la ejecucion del codigo
    * @param {Object} _direcciones objeto que contiene el directorio
-   * generado por amazon de todas las direcciones de los cursos de 
+   * generado por S3 de todas las direcciones de los cursos de
    * la facultad, se utilizara para poder comparar los textos con 
    * cada parte del objeto y determinar si corresponde a un curso,
    * carpeta, archivo o seccion
