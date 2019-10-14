@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
+    <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="Interfaces&#10;Creacion de interfaces para las clases del modelo">
+      <change afterPath="$PROJECT_DIR$/model/FileStorage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/MessagingChannel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/NLPMotor.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="RunDashboard">
@@ -27,5 +33,9 @@
   </component>
   <component name="TaskManager">
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Interfaces&#10;Creacion de interfaces para las clases del modelo" />
+    <option name="LAST_COMMIT_MESSAGE" value="Interfaces&#10;Creacion de interfaces para las clases del modelo" />
   </component>
 </project>
