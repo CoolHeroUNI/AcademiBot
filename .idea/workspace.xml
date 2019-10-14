@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/NLPMotor.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/NLPMotor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/Interfaces/FileStorage.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Interfaces/FileStorage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/servicios-web/S3.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/servicios-web/S3.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +22,11 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\coolh\WebstormProjects\AcademiBot\model\Interfaces" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -52,7 +58,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571075020801</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="NLPMotor&#10;Interfaz que define los metodos que deben poseer las clases utilizadas para procesar lenguaje natural">
+      <created>1571094836966</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1571094836966</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -69,6 +82,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Interfaces&#10;Creacion de interfaces para las clases del modelo" />
     <MESSAGE value="MessagingChannel&#10;La interfaz MessagingChannel definira los metodos de las clases que busquen interactuar con los usuarios del ChatBot" />
-    <option name="LAST_COMMIT_MESSAGE" value="MessagingChannel&#10;La interfaz MessagingChannel definira los metodos de las clases que busquen interactuar con los usuarios del ChatBot" />
+    <MESSAGE value="NLPMotor&#10;Interfaz que define los metodos que deben poseer las clases utilizadas para procesar lenguaje natural" />
+    <option name="LAST_COMMIT_MESSAGE" value="NLPMotor&#10;Interfaz que define los metodos que deben poseer las clases utilizadas para procesar lenguaje natural" />
   </component>
 </project>

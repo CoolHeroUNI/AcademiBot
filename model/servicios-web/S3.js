@@ -134,7 +134,7 @@ S3.prototype.listaObjetosDirectamenteBajo = async function (prefijo, continuatio
  * no se valida, tener precaucion
  * @method getObject
  * @param {String} key
- * @returns {Promise<S3.Types.GetObjectOutput>}
+ * @returns {Promise<PromiseResult<S3.GetObjectOutput, AWSError>>}
  */
 S3.prototype.getObject = function (key) {
   let param = {
