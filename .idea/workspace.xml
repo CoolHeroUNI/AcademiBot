@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="Interfaces&#10;Creacion de interfaces para las clases del modelo">
-      <change afterPath="$PROJECT_DIR$/model/FileStorage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/MessagingChannel.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/NLPMotor.js" afterDir="false" />
+    <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="MessagingChannel&#10;La interfaz MessagingChannel definira los metodos de las clases que busquen interactuar con los usuarios del ChatBot">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/MessagingChannel.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/MessagingChannel.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,6 +14,14 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -32,10 +38,30 @@
     <configuration />
   </component>
   <component name="TaskManager">
+    <task id="LOCAL-00001" summary="Interfaces&#10;Creacion de interfaces para las clases del modelo">
+      <created>1571067366962</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1571067366962</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Interfaces&#10;Creacion de interfaces para las clases del modelo" />
-    <option name="LAST_COMMIT_MESSAGE" value="Interfaces&#10;Creacion de interfaces para las clases del modelo" />
+    <MESSAGE value="MessagingChannel&#10;La interfaz MessagingChannel definira los metodos de las clases que busquen interactuar con los usuarios del ChatBot" />
+    <option name="LAST_COMMIT_MESSAGE" value="MessagingChannel&#10;La interfaz MessagingChannel definira los metodos de las clases que busquen interactuar con los usuarios del ChatBot" />
   </component>
 </project>
