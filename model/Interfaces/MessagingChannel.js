@@ -30,7 +30,7 @@ class MessagingChannel {
  * @method startInteraction
  * Inicia la interaccion con un usuario y determina si esta fue exitosa o no
  * @param {Number} userId
- * @returns {Promise<Boolean>}
+ * @returns {Promise}
  */
 MessagingChannel.prototype.startInteraction = function(userId) {};
 
@@ -39,9 +39,10 @@ MessagingChannel.prototype.startInteraction = function(userId) {};
  * Envia un mensaje de texto a un usuario
  * @param {Number} userId
  * @param {String} text
+ * @param {Boolean} publicity
  * @returns {Promise}
  */
-MessagingChannel.prototype.sendText = function(userId, text) {};
+MessagingChannel.prototype.sendText = function(userId, text, publicity) {};
 
 /**
  * @method sendURL
@@ -49,36 +50,37 @@ MessagingChannel.prototype.sendText = function(userId, text) {};
  * previa
  * @param {Number} userId
  * @param {String} URL
+ * @param {Boolean} publicity
  * @returns {Promise}
  */
-MessagingChannel.prototype.sendURL = function(userId, URL) {};
+MessagingChannel.prototype.sendURL = function(userId, URL, publicity) {};
 
 /**
  * @method sendTextWithURLs
  * Envia un texto que puede contener URLs, que seran enviadas de forma secuencial luego de enviar el texto
  * @param {Number} userId
  * @param {String} text
+ * @param {Boolean} publicity
  * @returns {Promise}
  */
-MessagingChannel.prototype.sendTextWithURLs = function(userId, text) {};
+MessagingChannel.prototype.sendTextWithURLs = function(userId, text, publicity) {};
 
 /**
  * @method sendAttachment
- * Envia un archivo adjunto a un usuario, los parametros del envio dependen del canal de mensajeria, devuelve una cadena
- * detallando el resultado de la operacion
+ * Envia un archivo adjunto a un usuario, los parametros del envio dependen del canal de mensajeria
  * @param {Number} userId
  * @param {Object} parameters
- * @returns {Promise<String>}
+ * @returns {Promise}
  */
 MessagingChannel.prototype.sendAttachment = function(userId, parameters) {};
 
 /**
  * @method sendSecuentialAttachments
- * Envia varios archivos adjuntos a un usuario de forma secuencial, devuelde una lista ordenada detallando el resultado
- * de cada operacion
+ * Envia varios archivos adjuntos a un usuario de forma secuencial, devuelde una lista ordenada con el resultado de
+ * cada operacion
  * @param {Number} userId
  * @param {Object[]} parameterList
- * @returns {Promise<String[]>}
+ * @returns {Promise<Object[]>}
  */
 MessagingChannel.prototype.sendSecuentialAttachments = function(userId, parameterList) {};
 
@@ -92,11 +94,13 @@ MessagingChannel.prototype.getUserInfo = function(userId) {};
 
 /**
  * @method sendReplyButtons
- * Envia botones de un solo uso con respuestras predefinidas, los parametros dependen del canal de mensajeria
- * @param userId
+ * Envia botones de un solo uso con respuestas predefinidas, con un texto de encabezado, los parametros dependen del
+ * canal de mensajeria
+ * @param {Number} userId
+ * @param {String} text
  * @param {Object[]} parameters
  */
-MessagingChannel.prototype.sendReplyButtons = function(userId, parameters) {};
+MessagingChannel.prototype.sendReplyButtons = function(userId, text, parameters) {};
 /**
  * @method sendOptionsMenu
  * Envia menu persistente con opciones predefinidas, los parametros dependen del canal de mensajeria

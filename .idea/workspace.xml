@@ -2,29 +2,61 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/model/Classes/Archivo.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/Classes/Bot.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/Classes/CacheHandler.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/Classes/Curso.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/Classes/Dialogflow.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/Classes/Error_AcademiBot.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/Classes/Facebook.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/Classes/MySQLDataBase.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/Classes/S3.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/Classes/Transaccion.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/Classes/Usuario.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/Interfaces/DataBase.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/Interfaces/FileStorage.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Interfaces/FileStorage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/servicios-web/S3.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/servicios-web/S3.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/Interfaces/MessagingChannel.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Interfaces/MessagingChannel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/Interfaces/NLPMotor.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Interfaces/NLPMotor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="ProjectId" id="1SFgNP9Fp4xkJhJCmGcqs99bFxd" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/model/Classes" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2019.2.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\coolh\WebstormProjects\AcademiBot\model\Classes" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\coolh\WebstormProjects\AcademiBot\model\Classes" />
       <recent name="C:\Users\coolh\WebstormProjects\AcademiBot\model\Interfaces" />
     </key>
   </component>
@@ -65,15 +97,37 @@
       <option name="project" value="LOCAL" />
       <updated>1571094836966</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="FileStorage&#10;Interfaz para definir los metodos de las clases encargadas de gestionar el sistema de archivos para el Bot">
+      <created>1571096221337</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1571096221337</updated>
+    </task>
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="" />
+      <created>1571164717757</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1571164717757</updated>
+      <workItem from="1571164723039" duration="6103000" />
+      <workItem from="1571265653190" duration="3458000" />
+      <workItem from="1571426911946" duration="92205000" />
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -83,6 +137,7 @@
     <MESSAGE value="Interfaces&#10;Creacion de interfaces para las clases del modelo" />
     <MESSAGE value="MessagingChannel&#10;La interfaz MessagingChannel definira los metodos de las clases que busquen interactuar con los usuarios del ChatBot" />
     <MESSAGE value="NLPMotor&#10;Interfaz que define los metodos que deben poseer las clases utilizadas para procesar lenguaje natural" />
-    <option name="LAST_COMMIT_MESSAGE" value="NLPMotor&#10;Interfaz que define los metodos que deben poseer las clases utilizadas para procesar lenguaje natural" />
+    <MESSAGE value="FileStorage&#10;Interfaz para definir los metodos de las clases encargadas de gestionar el sistema de archivos para el Bot" />
+    <option name="LAST_COMMIT_MESSAGE" value="FileStorage&#10;Interfaz para definir los metodos de las clases encargadas de gestionar el sistema de archivos para el Bot" />
   </component>
 </project>

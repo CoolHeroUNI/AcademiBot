@@ -1,0 +1,264 @@
+const MessagingChannel = require('../Interfaces/MessagingChannel');
+const RequestPromise = require('request-promise');
+const linkify = require('linkifyjs');
+class Facebook extends MessagingChannel {
+    /**
+     * @param {String} Token
+     * @param {String} versionAPI
+     */
+    constructor (Token, versionAPI) {
+        super();
+        /**
+         * Atributo que representa las credenciales necesarias para poder utilizar los servicios de Facebook
+         * @property Token
+         * @type {String}
+         */
+        this.Token = Token;
+        /**
+         * Atributo que indica la version de la API de facebook a utilizar
+         * @property versionApi
+         * @type {String}
+         */
+        this.versionAPI = versionAPI;
+    }
+}
+Facebook.prototype.startInteraction = function (userId) {
+    return this.markSeen(userId);
+};
+Facebook.prototype.sendText = function (userId, text, publicity) {
+    const params = {
+        uri : `https://graph.facebook.com/v${this.versionAPI}/me/messages`,
+        qs : {access_token : this.Token},
+        method : "POST",
+        json : {
+            messaging_type : "RESPONSE",
+            recipient : {id : userId},
+            message : {text: text},
+        }
+    };
+    if (publicity) {
+        params['json']['messaging_type'] = "MESSAGE_TAG";
+        params['json']['tag'] = "NON_PROMOTIONAL_SUBSCRIPTION"
+    }
+    return RequestPromise(params);
+};
+Facebook.prototype.sendURL = function (userId, URL, publicity) {
+    const params = {
+        uri : `https://graph.facebook.com/v${this.versionAPI}/me/messages`,
+        qs : {access_token : this.Token},
+        method : "POST",
+        json : {
+            messaging_type : "RESPONSE",
+            recipient : {id : userId},
+            message : {
+                attachment : {
+                    type : "template",
+                    payload : {
+                        template_type : "open_graph",
+                        elements : [{url : URL}]
+                    }
+                }
+            },
+        }
+    };
+    if (publicity) {
+        params['json']['messaging_type'] = "MESSAGE_TAG";
+        params['json']['tag'] = "NON_PROMOTIONAL_SUBSCRIPTION"
+    }
+    return RequestPromise(params);
+};
+Facebook.prototype.sendTextWithURLs = function (userId, text, publicity) {
+    const urls = linkify.find(text).filter(link => link['type'] === "url").map(link => link['value']);
+    for (let url of urls) {
+        while (text.contains(url)) text = text.replace(url, '');
+    }
+    if (text) {
+        return this.sendText(userId, text, publicity)
+            .then(() => Promise.all(urls.map(url => this.sendURL(userId, url, publicity))))
+    } else {
+        return Promise.all(urls.map(url => this.sendURL(userId, url, publicity)));
+    }
+};
+Facebook.prototype.sendAttachment = function (userId, parameters) {
+
+    if (!Object.hasOwnProperty('url')) return Promise.reject(new Error("Propiedad url faltante"));
+    if (!Object.hasOwnProperty('attachment_id')) return Promise.reject(new Error("Propiedad attachment_id faltante"));
+    if (!Object.hasOwnProperty('type')) return Promise.reject(new Error("Propiedad type faltante"));
+
+    const params = {
+        uri : `https://graph.facebook.com/v${this.versionAPI}/me/messages`,
+        qs : {access_token : this.Token},
+        method : "POST",
+        json : {
+            messaging_type : "RESPONSE",
+            recipient : {id : userId},
+            message : {
+                attachment : {
+                    type : parameters['type'],
+                    payload : {}
+                }
+            }
+        }
+    };
+    if (parameters['attachment_id']) {
+        params['json']['message']['attachment']['payload']['attachment_id'] = parameters['attachment_id'];
+    } else {
+        params['json']['message']['attachment']['payload']['url'] = parameters['url'];
+        params['json']['message']['attachment']['payload']['is_reusable'] = true;
+    }
+    return RequestPromise(params);
+};
+Facebook.prototype.sendSecuentialAttachments = async function (userId, parameterList) {
+    const results = [];
+    for (let parameter of parameterList) {
+        this.typingOn(userId);
+        try {
+            const result = await this.sendAttachment(userId, parameter);
+            results.push(result);
+        } catch (e) {
+            results.push(e);
+        }
+    }
+    return Promise.resolve(results);
+};
+
+
+Facebook.prototype.getUserInfo = function (userId) {
+    const params = {
+        uri: `https://graph.facebook.com/v${this.versionAPI}/${userId}?fields=name`,
+        qs : {
+            access_token : this.Token,
+        },
+        method : 'GET'
+    };
+    return new Promise((resolve, reject) => {
+        RequestPromise(params)
+            .then(result => {
+                resolve(JSON.parse(result));
+            })
+            .catch(e => reject(e))
+    });
+};
+
+Facebook.prototype.sendReplyButtons = function (userId, text, parameters) {
+    const LIMITE_FACEBOOK = 10;
+    while (parameters.length > LIMITE_FACEBOOK) parameters.pop();
+    const buttons = parameters.map(parameter => {
+        if (!parameter.hasOwnProperty('title') || !parameter.hasOwnProperty('payload'))
+            throw new Error("Formato de botones de respuesta invalido.");
+        return {
+            content_type : 'text',
+            title : parameter['title'],
+            payload : parameter['payload']
+        }
+    });
+    const params = {
+        uri : `https://graph.facebook.com/v${this.versionAPI}/me/messages`,
+        qs : {access_token : this.Token},
+        method : "POST",
+        json : {
+            messaging_type : "RESPONSE",
+            recipient : {id : userId},
+            message : {
+                text: text,
+                quick_replies : buttons
+            },
+        }
+    };
+    return RequestPromise(params);
+};
+Facebook.prototype.sendOptionsMenu = function (userId, parameters) {
+    const LIMITE_FACEBOOK = 10;
+    while (parameters.length > LIMITE_FACEBOOK) parameters.pop();
+    const opciones = parameters.map(parameter => {
+        if (!parameter.hasOwnProperty('title') || !parameter.hasOwnProperty('buttons'))
+            throw new Error("Formato de las opciones invalido.");
+        if (parameter['buttons'].length > 3 || parameter['buttons'].length === 0)
+            throw new Error("Cantidad de botones invalida.");
+        // Creacion del arreglo de botones que pertenecen a cada opcion
+        const buttons = parameter['buttons'].map(button => {
+            if (!button['title'] || !button['payload']) throw new Error("Formato de boton de opciones invalido.");
+            return {
+                type : 'postback',
+                title : button['title'],
+                payload : button['payload']
+            }
+        });
+        const param =  {
+            title : parameter['title'],
+            buttons : buttons
+        };
+        // Añadir subtitulo a cada opcion en caso se provea uno
+        if (parameter['subtitle']) param['subtitle'] = parameter['subtitle'];
+        return param;
+    });
+    const params = {
+        uri : `https://graph.facebook.com/v${this.versionAPI}/me/messages`,
+        qs : {access_token : this.Token},
+        method : 'POST',
+        json : {
+            messaging_type : 'RESPONSE',
+            recipient : {id : userId},
+            message : {
+                attachment: {
+                    type: 'template',
+                    payload: {
+                        template_type : 'generic',
+                        elements : opciones
+                    }
+                }
+            }
+        }
+    };
+    return RequestPromise(params);
+};
+
+
+
+
+
+/**
+ * Metodo para enviar una accion al usuario
+ * @method sendAction
+ * @param {String} id
+ * @param {String} action
+ */
+Facebook.prototype.sendAction = function (id, action) {
+    let param = {
+        uri: "https://graph.facebook.com/v"+this.versionAPI+"/me/messages",
+        qs : {access_token : this.token},
+        method: "POST",
+        json: {
+            recipient : {id},
+            sender_action : action
+        }
+    };
+    RequestPromise(param);
+};
+/**
+ * Metodo para enviar la señal de visto dado un usuario identificado por id
+ * https://developers.facebook.com/docs/messenger-platform/send-messages/sender-actions
+ * @method markSeen
+ * @param {String} id
+ */
+Facebook.prototype.markSeen = function (id) {
+    this.sendAction(id, "mark_seen");
+};
+/**
+ * Metodo para enviar la señal de typing on
+ * @method typingOn
+ * @param {String} id
+ */
+Facebook.prototype.typingOn = function (id) {
+    this.sendAction(id, "typing_on");
+};
+/**
+ * Metodo para enviar la señal de typing off al usuario identificado por id
+ * @method typingOff
+ * @param {String} id
+ */
+Facebook.prototype.typingOff = function (id) {
+    this.sendAction(id,"typing_off");
+};
+
+module.exports = Facebook;

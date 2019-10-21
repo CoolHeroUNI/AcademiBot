@@ -17,7 +17,7 @@ class NLPMotor {
  * sesion definida por un identificador
  * @param {Number} sessionId
  * @param {String} text
- * @returns {Promise<{text:String, payload:Object}>}
+ * @returns {Promise<{text:String, payload:Object, parameters:Object}>}
  */
 NLPMotor.prototype.processText = function(sessionId, text) {};
 module.exports = NLPMotor;
