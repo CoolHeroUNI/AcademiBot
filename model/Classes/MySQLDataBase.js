@@ -202,6 +202,7 @@ WHERE Facultad='${Facultad}' AND Curso='${Curso}' AND Carpeta='${Carpeta}'`;
  * @param {Usuario} user
  */
 MySQLDataBase.prototype.updateFile = function (file, user) {
+    if (!user.isAbleToRequestFiles()) return Promise.reject(new Error('Datos de usuario faltantes'));
     const Curso = user.getCurso();
     const Carpeta = user.getCarpeta();
     const Key = file.getKey();
@@ -274,13 +275,17 @@ MySQLDataBase.prototype.logTransaction = function (user, key, success) {
 
 
 
-
 MySQLDataBase.prototype.getEspecialidadesByFacultad = function (Facultad) {
     const sqlEspecialidad =
 `SELECT * FROM \`${this.Especialidad}\` 
 WHERE Facultad='${Facultad}'`;
     return this.makeFastQuery(sqlEspecialidad);
 };
+MySQLDataBase.prototype.getFacultades = function () {
+    const sql = `SELECT * FROM ${this.Facultad}`;
+    return this.makeFastQuery(sql);
+};
+
 MySQLDataBase.prototype.getEspecialidadById = function (Especialidad) {
     const sqlFacultad =
 `SELECT * FROM \`${this.Especialidad}\` 

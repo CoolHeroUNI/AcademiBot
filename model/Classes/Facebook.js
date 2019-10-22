@@ -68,10 +68,11 @@ Facebook.prototype.sendURL = function (userId, URL, publicity) {
     return RequestPromise(params);
 };
 Facebook.prototype.sendTextWithURLs = function (userId, text, publicity) {
-    const urls = linkify.find(text).filter(link => link['type'] === "url").map(link => link['value']);
-    for (let url of urls) {
+    const urls = linkify.find(text).filter(link => link['type'] === "url").map(link => {
+        const url = link['value'];
         while (text.contains(url)) text = text.replace(url, '');
-    }
+        return url;
+    });
     if (text) {
         return this.sendText(userId, text, publicity)
             .then(() => Promise.all(urls.map(url => this.sendURL(userId, url, publicity))))

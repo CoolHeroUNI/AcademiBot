@@ -162,12 +162,14 @@ Bot.prototype.sendCourses = function (user, courses) {
         option['buttons'] = [
             {
                 'title' : `MATERIAL ${data['Codigo']}`,
-                'payload' : `SetCurso ${data['Codigo']}`
+                'payload' : `SetCurso:${data['Codigo']}`
             }
         ]
     });
     const id = user.getFacebookId();
-    return this.MessagingChannel.sendOptionsMenu(id, options);
+    return this.MessagingChannel.sendOptionsMenu(id, options)
+        .catch(e => this.DataBase.logInternalError(e, 'MessagingChannel'))
+        .catch(e => console.log(e));
 };
 
 
@@ -212,14 +214,15 @@ Bot.prototype.sendFolders = function (user, folders) {
     const buttons = folders.map(folder => {
         return {
             'title' : folder.replace(/-/g,' '),
-            'payload' : `SetFolder ${folder}`
+            'payload' : `SetFolder:${folder}`
         }
     });
     const text = 'Quisiera que me muestres las carpetas';
     const Curso = user.getCurso();
     return this.NLPMotor.processText(userId, text)
         .then(response => response['text'].replace('***', Curso))
-        .then(Text => this.MessagingChannel.sendReplyButtons(userId, Text, buttons));
+        .then(Text => this.MessagingChannel.sendReplyButtons(userId, Text, buttons))
+        .catch(e => this.DataBase.logInternalError(e, 'MessagingChannel'));
 };
 
 /**
@@ -232,18 +235,19 @@ Bot.prototype.detectFiles = function (user, message) {
     const Especialidad = user.getEspecialidad();
     const Curso = user.getCurso();
     const Carpeta = user.getCarpeta();
+    let prefix = '';
     return this.DataBase.getEspecialidadById(Especialidad)
         .then(rows => {
             const Facultad = rows[0]['Facultad'];
-            const prefix = `${Facultad}/${Curso}/${Carpeta}/`;
+            prefix = `${Facultad}/${Curso}/${Carpeta}/`;
             const cachedFiles = this.CacheHandler.get(prefix);
             if (cachedFiles) return cachedFiles;
-            return this.FileStorage.listObjectsUnder(prefix)
-                .then(respuesta => {
-                    const Files = respuesta.map(o => o.replace(prefix, '').replace('/',''));
-                    this.CacheHandler.set(prefix, Files);
-                    return Files;
-                })
+            return this.FileStorage.listObjectsUnder(prefix);
+        })
+        .then(respuesta => {
+            const Files = respuesta.map(o => o.replace(prefix, '').replace('/',''));
+            this.CacheHandler.set(prefix, Files);
+            return Files;
         })
         .then(Files => Files.filter(file => file.matchesText(message)));
 };
@@ -292,10 +296,11 @@ Bot.prototype.sendFiles = function (user, files) {
                 const file = sortedFiles[i];
                 const key = file.getKey();
                 if (response instanceof Error) {
-                    this.DataBase.logTransaction(user, key, false)
+                    this.DataBase.logUserError(response, user, 'MessagingChannel')
+                        .then(() => this.DataBase.logTransaction(user, key, false))
                         .catch(e => console.log(e));
                 } else {
-                    const attachment_id = parseInt(response['attachment_id']);
+                    const attachment_id = parseInt(response['attachment_id']) || null;
                     file.setReuseId(attachment_id);
                     this.DataBase.logTransaction(user, key, true)
                         .then(() => this.DataBase.updateFile(file, user))
@@ -304,10 +309,114 @@ Bot.prototype.sendFiles = function (user, files) {
             }
             return Promise.resolve();
         })
-        .catch(e => this.DataBase.logInternalError(e, 'MessagingChannel'));
+        .catch(e => this.DataBase.logInternalError(e, 'MessagingChannel'))
+        .catch(e => console.log(e));
 };
-Bot.prototype.processPostback = function (user, postback) {
-    this.prepareCommand(user, postback)
+/**
+ *
+ * @param {Usuario} user
+ * @param {Archivo[]} files
+ */
+Bot.prototype.sendFileOptions = function (user, files) {
+    const userId = user.getFacebookId();
+    const buttons = files
+        .map(file => file.getShortName())
+        .filter((value, index, self) => self.indexOf(value) === index)
+        .map(File => {
+            return {
+                'title' : File,
+                'payload' : `SetFile:${File}`
+            }
+        });
+    const text = 'Quisiera que me muestres los archivos';
+    const Carpeta = user.getCarpeta();
+    return this.NLPMotor.processText(userId, text)
+        .then(response => response['text'].replace('***', Carpeta))
+        .then(Text => this.MessagingChannel.sendReplyButtons(userId, Text, buttons))
+        .catch(e => this.DataBase.logInternalError(e, 'MessagingChannel'));
+
+};
+/**
+ *
+ * @param {Usuario} user
+ */
+Bot.prototype.regularizeUser = function (user) {
+    const userId = user.getFacebookId();
+    if (!user.getEspecialidad()) {
+        return this.DataBase.getFacultades()
+            .then(rows => {
+                const buttons = rows.map(row => {
+                    return {
+                        'title' : row['Id'],
+                        'payload' : `SetFacultad:${row['Id']}`
+                    }
+                });
+                const message = 'Selecciona una Facultad';
+                return this.MessagingChannel.sendReplyButtons(userId, message, buttons);
+            })
+            .catch(e => this.DataBase.logUserError(e, user, 'MessagingChannel'));
+    } else if (!user.getCiclo()) {
+        
+    }
+};
+
+
+/**
+ *
+ * @param {Usuario} user
+ * @param {String} command
+ * @param {Object} parameters
+ * @param {String} [text]
+ */
+Bot.prototype.executeCommand = function (user, command, parameters, text) {
+    const userId = user.getFacebookId();
+    switch (command) {
+        case 'Cursos':
+            if (!user.isAbleToRequestCourses()) return this.regularizeUser(user);
+            return this.detectCourses(user, '')
+                .catch(e => this.DataBase.logInternalError(e, 'DataBase'))
+                .then(courses => this.sendCourses(user, courses))
+                .catch(e => this.DataBase.logInternalError(e, 'MessagingChannel'));
+        case 'SetEspecialidad':
+            const Especialidad = parameters['especialidad'];
+            return this.DataBase.getEspecialidadById(Especialidad)
+                .catch(e => console.log(e))
+                .then(rows => {
+                    if (!rows) return Promise.reject(new Error('No se encontro ' + Especialidad));
+                    user.setEspecialidad(Especialidad);
+                    return this.DataBase.getCiclos();
+                })
+                .catch(e => this.DataBase.logUserError(e, user, 'DataBase'))
+                .then(ciclos => {
+                    const buttons = ciclos.map(ciclo => {
+                        return {
+                            'title' : ciclo['Nombre'],
+                            'payload' : `SetCiclo:${ciclo['Nombre']}`
+                        }
+                    });
+                    return this.MessagingChannel.sendReplyButtons(userId, text, buttons);
+                })
+                .catch(e => this.DataBase.logUserError(e, user, 'MessagingChannel'));
+        case 'SetCiclo':
+            const Ciclo = parameters['ciclo'];
+            return this.DataBase.getCiclos()
+                .then(rows => {
+                    const ciclo = rows.filter(row => row['Nombre'] === Ciclo)[0]['Numero'];
+                    if (!ciclo) return Promise.reject(new Error('No se encontro el ciclo ' + Ciclo));
+                    user.setCiclo(parseInt(ciclo));
+                    return this.detectCourses(user, '');
+                })
+                .catch(e => this.DataBase.logUserError(e, user, 'DataBase'))
+                .then(courses => {
+                    return this.sendCourses(user, courses);
+                });
+        case 'SetCurso':
+            const course = parameters['curso'];
+            return this.DataBase.getCourseById(course)
+                .then(ro)
+        default:
+            return Promise.reject(new Error('Commando no valido, '+command));
+    }
 };
 Bot.prototype.prepareCommand = function (user, postback) {
 
@@ -315,10 +424,17 @@ Bot.prototype.prepareCommand = function (user, postback) {
 Bot.prototype.processPayloadFromNLP = function (user, intent) {
     const {text, payload, parameters} = intent;
     if (payload['comando']) {
-        return this.processCommand(user, payload['comando'], parameters);
+        // Commands come with parameters that must be procesed
+        const command = payload['comando'];
+        return this.executeCommand(user, command, parameters, text);
     } else if (payload['peticion']) {
-
+        // Petitions have no parameters
+        const petition = payload['peticion'];
+        return this.processPetition(user, petition, text);
     }
+    const e = new Error("No method provided to process Payload: "+JSON.stringify(payload));
+    this.DataBase.logUserError(e, user, 'NLPMotor')
+        .catch(e => console.log(e));
 };
 /**
  *
@@ -326,10 +442,10 @@ Bot.prototype.processPayloadFromNLP = function (user, intent) {
  * @param {String} message
  */
 Bot.prototype.recieveMessage = async function (user, message) {
-    if (!user.Valido) return Promise.resolve();
-    let userRequestedOnlyOneFolder = false;
-    let userRequestedOnlyOneCourse = false;
+    if (!user.Valido) return Promise.reject(new Error('Usuario no valido.'));
     try {
+        let userRequestedOnlyOneFolder = false;
+        let userRequestedOnlyOneCourse = false;
         const courses = await this.detectCourses(user, message);
         if (courses) {
             if (courses.length > 1) return this.sendCourses(user, courses);
@@ -348,15 +464,11 @@ Bot.prototype.recieveMessage = async function (user, message) {
         }
         const files = await this.detectFiles(user, message);
 
-        if (files) {
-            this.sendFiles(user, files)
-                .then()
-                .catch(e => this.sendRetryButtons(user, files));
-        }
+        if (files) return this.sendFiles(user, files);
 
         if (userRequestedOnlyOneFolder) {
             const files = await this.detectFiles(user, '');
-            return this.sendFilesOptions(user, files);
+            return this.sendFileOptions(user, files);
         } else if (userRequestedOnlyOneCourse) {
             const folders = await this.detectFolders(user, '');
             return this.sendFolders(user, folders);
@@ -377,31 +489,20 @@ Bot.prototype.recieveMessage = async function (user, message) {
 
 
     const userId = user.getFacebookId();
-    try {
-        const intent = await this.NLPMotor.processText(userId, message);
-        const {text, payload, parameters} = intent;
-        const payloadKeys = Object.getOwnPropertyNames(payload);
-        if (payloadKeys) return this.processPayloadFromNLP(user, intent);
-
-
-    }
-    requestIntent.catch(e => this.DataBase.logInternalError(e, 'NLPMotor'));
-    requestIntent
-        .then(response => {
-            const {text, payload} = response;
+    return this.NLPMotor.processText(userId, message)
+        .then(intent => {
+            const {text, payload} = intent;
             const payloadKeys = Object.getOwnPropertyNames(payload);
-            if (payloadKeys) return this.processPayloadFromNLP(user, response);
-            return this.MessagingChannel.sendText(userId, text, false)
-                .catch(e => this.DataBase.logInternalError(e, 'MessagingChannel'));
-        });
+            if (payloadKeys) return this.processPayloadFromNLP(user, intent);
+            return this.MessagingChannel.sendTextWithURLs(userId, text, false)
+        })
+        .catch(e => {
+            this.DataBase.logInternalError(e, 'NLPMotor');
+            const emergencyResponse = 'No puedo brindarte una respuesta fluida.';
+            return this.MessagingChannel.sendText(userId, emergencyResponse, false);
+        })
+        .catch(e => this.DataBase.logInternalError(e, 'MessagingChannel'));
 
 
-    try {
-        const response = this.NLPMotor.processText(userId, message);
-
-    } catch (e) {
-        this.DataBase.logInternalError(e, 'NLPMotor')
-            .catch(er => console.log(er));
-    }
 
 };
