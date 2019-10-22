@@ -2,6 +2,7 @@ const FileStorage = require('../Interfaces/FileStorage');
 const MessagingChannel = require('../Interfaces/MessagingChannel');
 const NLPMotor = require('../Interfaces/NLPMotor');
 const Usuario = require('./Usuario');
+const Archivo = require('./Archivo');
 const DataBase = require('../Interfaces/DataBase');
 const Curso = require('./Curso');
 const CacheHandler = require('./CacheHandler');
@@ -118,7 +119,7 @@ Bot.prototype.startInteraction = async function (userId) {
  * @param {String} message
  */
 Bot.prototype.detectCourses = function (user, message) {
-    if (!user.isAbleToRequestCourses()) return [];
+    if (!user.isAbleToRequestCourses()) return Promise.resolve([]);
     const words = message.split(' ').filter(word => word.length >= 5).map(word => word.limpia());
     return this.DataBase.getProbableCoursesByUser(user)
         .then(courses => {
@@ -169,21 +170,19 @@ Bot.prototype.sendCourses = function (user, courses) {
     return this.MessagingChannel.sendOptionsMenu(id, options);
 };
 
+
 /**
  *
  * @param {Usuario} user
  * @param {String} message
  */
 Bot.prototype.detectFolders = function (user, message) {
-    if (!user.isAbleToRequestFolders()) return [];
+    if (!user.isAbleToRequestFolders()) return Promise.resolve([]);
     const Especialidad = user.getEspecialidad();
     const Curso = user.getCurso();
     return this.DataBase.getEspecialidadById(Especialidad)
         .then(rows => {
             const Facultad = rows[0]['Facultad'];
-            return Promise.resolve(Facultad);
-        })
-        .then(Facultad => {
             const prefix = `${Facultad}/${Curso}/`;
             const cachedFolders = this.CacheHandler.get(prefix);
             if (cachedFolders) return cachedFolders;
@@ -223,16 +222,100 @@ Bot.prototype.sendFolders = function (user, folders) {
         .then(Text => this.MessagingChannel.sendReplyButtons(userId, Text, buttons));
 };
 
+/**
+ *
+ * @param {Usuario} user
+ * @param {String} message
+ */
+Bot.prototype.detectFiles = function (user, message) {
+    if (!user.isAbleToRequestFiles()) return Promise.resolve([]);
+    const Especialidad = user.getEspecialidad();
+    const Curso = user.getCurso();
+    const Carpeta = user.getCarpeta();
+    return this.DataBase.getEspecialidadById(Especialidad)
+        .then(rows => {
+            const Facultad = rows[0]['Facultad'];
+            const prefix = `${Facultad}/${Curso}/${Carpeta}/`;
+            const cachedFiles = this.CacheHandler.get(prefix);
+            if (cachedFiles) return cachedFiles;
+            return this.FileStorage.listObjectsUnder(prefix)
+                .then(respuesta => {
+                    const Files = respuesta.map(o => o.replace(prefix, '').replace('/',''));
+                    this.CacheHandler.set(prefix, Files);
+                    return Files;
+                })
+        })
+        .then(Files => Files.filter(file => file.matchesText(message)));
+};
+/**
+ *
+ * @param {Usuario} user
+ * @param {Archivo[]} files
+ */
+Bot.prototype.sendFiles = function (user, files) {
+    const userId = user.getFacebookId();
+    const sortedFiles = files.sort((file1, file2) => {
+        try {
+            return file2.getPage() - file1.getPage();
+        } catch (e) {
+            this.DataBase.logInternalError(e, 'Archivo').catch(e => console.log(e));
+            throw e;
+        }
+    });
+    // Se mapea cada archivo a una promesa que contendra todos los parametros necesarios para hacer las requests
+    return Promise.all(sortedFiles.map(file => {
+        return new Promise((resolve, reject) => {
+            const type = file.getType();
+            const params = {
+                'type': type,
+                'attachment_id': null,
+                'url': null
+            };
+            const reuseId = file.getReuseId();
+            if (reuseId) {
+                params['attachment_id'] = reuseId;
+                resolve(params);
+            }
+            const key = file.getKey();
+            this.FileStorage.getPublicURL(key)
+                .then(url => {
+                    params['url'] = url;
+                    resolve(params)
+                })
+                .catch(e => reject(e))
+        })
+    })) //Se envian luego de forma secuencial al usuario
+        .then(parameters => this.MessagingChannel.sendSecuentialAttachments(userId, parameters))
+        .then(responses => {
+            for (let i = 0; i < responses.length; i++) {
+                const response = responses[i];
+                const file = sortedFiles[i];
+                const key = file.getKey();
+                if (response instanceof Error) {
+                    this.DataBase.logTransaction(user, key, false)
+                        .catch(e => console.log(e));
+                } else {
+                    const attachment_id = parseInt(response['attachment_id']);
+                    file.setReuseId(attachment_id);
+                    this.DataBase.logTransaction(user, key, true)
+                        .then(() => this.DataBase.updateFile(file, user))
+                        .catch(e => console.log(e))
+                }
+            }
+            return Promise.resolve();
+        })
+        .catch(e => this.DataBase.logInternalError(e, 'MessagingChannel'));
+};
 Bot.prototype.processPostback = function (user, postback) {
     this.prepareCommand(user, postback)
 };
 Bot.prototype.prepareCommand = function (user, postback) {
 
 };
-Bot.prototype.processPayloadFromNLP = function (user, Payload) {
-    const {text, payload, parameters} = Payload;
+Bot.prototype.processPayloadFromNLP = function (user, intent) {
+    const {text, payload, parameters} = intent;
     if (payload['comando']) {
-        return this.processCommand(user, Payload)
+        return this.processCommand(user, payload['comando'], parameters);
     } else if (payload['peticion']) {
 
     }
@@ -244,16 +327,47 @@ Bot.prototype.processPayloadFromNLP = function (user, Payload) {
  */
 Bot.prototype.recieveMessage = async function (user, message) {
     if (!user.Valido) return Promise.resolve();
-    const courses = await this.detectCourses(user, message);
-    if (courses) {
-        if (courses.length > 1) return this.sendCourses(user, courses);
-        else user.setCurso(courses[0]['Codigo'])
+    let userRequestedOnlyOneFolder = false;
+    let userRequestedOnlyOneCourse = false;
+    try {
+        const courses = await this.detectCourses(user, message);
+        if (courses) {
+            if (courses.length > 1) return this.sendCourses(user, courses);
+            else {
+                user.setCurso(courses[0]['Codigo']);
+                userRequestedOnlyOneCourse = true;
+            }
+        }
+        const folders = await this.detectFolders(user, message);
+        if (folders) {
+            if (folders.length > 1) return this.sendFolders(user, folders);
+            else {
+                user.setCarpeta(folders[0]);
+                userRequestedOnlyOneFolder = true;
+            }
+        }
+        const files = await this.detectFiles(user, message);
+
+        if (files) {
+            this.sendFiles(user, files)
+                .then()
+                .catch(e => this.sendRetryButtons(user, files));
+        }
+
+        if (userRequestedOnlyOneFolder) {
+            const files = await this.detectFiles(user, '');
+            return this.sendFilesOptions(user, files);
+        } else if (userRequestedOnlyOneCourse) {
+            const folders = await this.detectFolders(user, '');
+            return this.sendFolders(user, folders);
+        }
+    } catch (e) {
+        this.DataBase.logUserError(e, user, 'FileSystem')
+            .catch(e => console.log(e));
     }
-    const folders = await this.detectFolders(user, message);
-    if (folders) {
-        if (folders.length > 1) return this.sendFolders(user, folders);
-        else user.setCarpeta(folders[0]);
-    }
+
+
+
     // TODO terminar el tercer eslavon de la deteccion de peticiones
     // TODO crear funciones para preparar y ejecutar comandos proveidos por NLP
     // TODO crear funciones para ejecutar comandos proveidos por MessagingChannel
@@ -263,14 +377,13 @@ Bot.prototype.recieveMessage = async function (user, message) {
 
 
     const userId = user.getFacebookId();
-
-
     try {
-        const response = await this.NLPMotor.processText(userId, message);
+        const intent = await this.NLPMotor.processText(userId, message);
+        const {text, payload, parameters} = intent;
+        const payloadKeys = Object.getOwnPropertyNames(payload);
+        if (payloadKeys) return this.processPayloadFromNLP(user, intent);
 
 
-    } catch (e) {
-        this.DataBase.logInternalError()
     }
     requestIntent.catch(e => this.DataBase.logInternalError(e, 'NLPMotor'));
     requestIntent

@@ -97,10 +97,17 @@ Archivo.prototype.getFilename = function () {
  * @returns {string}
  */
 Archivo.prototype.getShortName = function () {
-    const name = this.getFilename();
-    const list = name.split('-');
-    list.pop();
-    return list.join('-');
+    const partesSeparadasPorGuion = this.getFilename().split('-');
+    partesSeparadasPorGuion.pop();
+    return partesSeparadasPorGuion.join('-');
+};
+Archivo.prototype.getPage = function () {
+    const last = this.getFilename().split('-').pop();
+    const dotIndex = last.lastIndexOf('.');
+    const page = last.substring(0, dotIndex);
+    const number = parseInt(page);
+    if (!number) throw new Error('No se pudo encontrar numero de pagina, archivo: ' + this.getKey());
+    return number;
 };
 /**
  * Metodo para obtener la extension del archivo
@@ -108,8 +115,7 @@ Archivo.prototype.getShortName = function () {
  * @returns {string}
  */
 Archivo.getExtension = function () {
-    const name = this.getFilename();
-    const last = name.split('-').pop();
+    const last = this.getFilename().split('-').pop();
     const dotIndex = last.lastIndexOf('.') + 1;
     if (dotIndex === 0) throw new Error("El archivo no posee una extension en " + this.Key);
     return last.substr(dotIndex);
@@ -117,11 +123,14 @@ Archivo.getExtension = function () {
 /**
  * Metodo para determinar si el nombre corto del archivo coincide con el del parametro, se utilizara para reconocer
  * las paginas de un mismo examen, util para filtrado
- * @param {String} ShortName
+ * @param {String} Text
  * @returns {boolean}
  */
-Archivo.prototype.matchesShortName = function (ShortName) {
-    return (this.getShortName() === ShortName);
+Archivo.prototype.matchesText = function (Text) {
+    const expression = new RegExp(this.getShortName(), 'i');
+    const expressionText = new RegExp(Text);
+    if (expressionText.test(this.getShortName())) return true;
+    return (expression.test(Text));
 };
 /**
  * Metodo que retorna el tipo de archivo para su uso en Facebook
@@ -144,10 +153,11 @@ Archivo.prototype.getType = function () {
 Archivo.prototype.getKey = function () {
     return this.Key;
 };
+
 /**
  *
  * @returns {{ReuseId: Number, Carpeta: String, Facultad: String, Curso: String, Key: String,
- * ContadorPeticiones: Number, Type : String}}
+ * ContadorPeticiones: Number}}
  */
 Archivo.prototype.getData = function () {
     return {
@@ -165,4 +175,5 @@ Archivo.prototype.getUpdateData = function () {
         ContadorPeticiones : this.ContadorPeticiones
     }
 };
+
 module.exports = Archivo;
