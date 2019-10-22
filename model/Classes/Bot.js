@@ -343,6 +343,7 @@ Bot.prototype.sendFileOptions = function (user, files) {
 Bot.prototype.regularizeUser = function (user) {
     const userId = user.getFacebookId();
     if (!user.getEspecialidad()) {
+        const message = 'Selecciona una Facultad';
         return this.DataBase.getFacultades()
             .then(rows => {
                 const buttons = rows.map(row => {
@@ -351,16 +352,38 @@ Bot.prototype.regularizeUser = function (user) {
                         'payload' : `SetFacultad:${row['Id']}`
                     }
                 });
-                const message = 'Selecciona una Facultad';
                 return this.MessagingChannel.sendReplyButtons(userId, message, buttons);
             })
             .catch(e => this.DataBase.logUserError(e, user, 'MessagingChannel'));
     } else if (!user.getCiclo()) {
-        
+        const message = 'Selecciona un ciclo';
+        return this.DataBase.getCiclos()
+            .catch(e => this.DataBase.logUserError(e, user, 'DataBase'))
+            .then(ciclos => {
+                const buttons = ciclos.map(ciclo => {
+                    return {
+                        'title' : ciclo['Nombre'],
+                        'payload' : `SetCiclo:${ciclo['Nombre']}`
+                    }
+                });
+                return this.MessagingChannel.sendReplyButtons(userId, message, buttons);
+            })
+            .catch(e => this.DataBase.logUserError(e, user, 'MessagingChannel'));
     }
 };
-
-
+Bot.prototype.sendAvailableCourses = function (user) {
+    return this.detectCourses(user, '')
+        .catch(e => this.DataBase.logUserError(e, user, 'DataBase'))
+        .then(courses => this.sendCourses(user, courses));
+};
+Bot.prototype.sendAvailableFolders = function (user) {
+    return this.detectFolders(user, '')
+        .then(folders => this.sendFolders(user, folders));
+};
+Bot.prototype.sendAvailableFiles = function (user) {
+    this.detectFiles(user, '')
+        .then(files => this.sendFileOptions(user, files));
+};
 /**
  *
  * @param {Usuario} user
@@ -377,6 +400,21 @@ Bot.prototype.executeCommand = function (user, command, parameters, text) {
                 .catch(e => this.DataBase.logInternalError(e, 'DataBase'))
                 .then(courses => this.sendCourses(user, courses))
                 .catch(e => this.DataBase.logInternalError(e, 'MessagingChannel'));
+        case 'SetFacultad':
+            const message = 'Selecciona una especialidad';
+            const Facultad = parameters['facultad'];
+            return this.DataBase.getEspecialidadesByFacultad(Facultad)
+                .catch(e => this.DataBase.logUserError(e, user, 'DataBase'))
+                .then(rows => {
+                    const buttons = rows.map(row => {
+                        return {
+                            'title' : row['Id'],
+                            'payload' : `SetEspecialidad:${row['Id']}`
+                        }
+                    });
+                    return this.MessagingChannel.sendReplyButtons(userId, message, buttons);
+                })
+                .catch(e => this.DataBase.logUserError(e, user, 'MessagingChannel'));
         case 'SetEspecialidad':
             const Especialidad = parameters['especialidad'];
             return this.DataBase.getEspecialidadById(Especialidad)
@@ -384,19 +422,8 @@ Bot.prototype.executeCommand = function (user, command, parameters, text) {
                 .then(rows => {
                     if (!rows) return Promise.reject(new Error('No se encontro ' + Especialidad));
                     user.setEspecialidad(Especialidad);
-                    return this.DataBase.getCiclos();
-                })
-                .catch(e => this.DataBase.logUserError(e, user, 'DataBase'))
-                .then(ciclos => {
-                    const buttons = ciclos.map(ciclo => {
-                        return {
-                            'title' : ciclo['Nombre'],
-                            'payload' : `SetCiclo:${ciclo['Nombre']}`
-                        }
-                    });
-                    return this.MessagingChannel.sendReplyButtons(userId, text, buttons);
-                })
-                .catch(e => this.DataBase.logUserError(e, user, 'MessagingChannel'));
+                    return this.regularizeUser(user);
+                });
         case 'SetCiclo':
             const Ciclo = parameters['ciclo'];
             return this.DataBase.getCiclos()
@@ -404,16 +431,17 @@ Bot.prototype.executeCommand = function (user, command, parameters, text) {
                     const ciclo = rows.filter(row => row['Nombre'] === Ciclo)[0]['Numero'];
                     if (!ciclo) return Promise.reject(new Error('No se encontro el ciclo ' + Ciclo));
                     user.setCiclo(parseInt(ciclo));
-                    return this.detectCourses(user, '');
-                })
-                .catch(e => this.DataBase.logUserError(e, user, 'DataBase'))
-                .then(courses => {
-                    return this.sendCourses(user, courses);
+                    return this.sendAvailableCourses(user);
                 });
         case 'SetCurso':
             const course = parameters['curso'];
             return this.DataBase.getCourseById(course)
-                .then(ro)
+                .then(curso => {
+                    if (!curso) return Promise.reject(new Error('No se encontro curso ' + course));
+                    const codigo = curso.getCodigo();
+                    user.setCurso(codigo);
+                    return this.sendAvailableFolders(user);
+                });
         default:
             return Promise.reject(new Error('Commando no valido, '+command));
     }
@@ -467,11 +495,9 @@ Bot.prototype.recieveMessage = async function (user, message) {
         if (files) return this.sendFiles(user, files);
 
         if (userRequestedOnlyOneFolder) {
-            const files = await this.detectFiles(user, '');
-            return this.sendFileOptions(user, files);
+            return this.sendAvailableFiles(user);
         } else if (userRequestedOnlyOneCourse) {
-            const folders = await this.detectFolders(user, '');
-            return this.sendFolders(user, folders);
+            return this.sendAvailableFolders(user);
         }
     } catch (e) {
         this.DataBase.logUserError(e, user, 'FileSystem')

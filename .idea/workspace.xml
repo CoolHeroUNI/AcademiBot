@@ -4,10 +4,9 @@
     <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/Classes/Bot.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Classes/Bot.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/Classes/Error_AcademiBot.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/Classes/Facebook.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Classes/Facebook.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/Classes/Curso.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Classes/Curso.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/Classes/MySQLDataBase.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Classes/MySQLDataBase.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/Classes/Transaccion.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/Classes/Usuario.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Classes/Usuario.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/Interfaces/DataBase.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Interfaces/DataBase.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -102,7 +101,7 @@
       <workItem from="1571164723039" duration="6103000" />
       <workItem from="1571265653190" duration="3458000" />
       <workItem from="1571426911946" duration="92518000" />
-      <workItem from="1571671301967" duration="28713000" />
+      <workItem from="1571671301967" duration="31530000" />
     </task>
     <task id="LOCAL-00005" summary="Salto mortal&#10;Se avanzo casi en su totalidad el nuevo modelo de AcademiBot, usando clases que se instanciaran por separado y tendran funciones especificas, no se prioriza la cantidad de metodos de una clase, sino que estos sean atomicos, cada atributo debe mantener una semantica y ontologia. Se incluyen metodos no utilizados actualmente en pro de la vision del proyecto. El modulo CacheHandler ha probado ser una idea increible uwu">
       <created>1571633672751</created>
@@ -118,7 +117,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571712021674</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Logica de recepcion de mensaje&#10;Se escribio la logica completa para el procesamiento de los mensajes que contengan alguna solicitud, se trabaja ahora en la logica de ejecucion de comandos proveidos por el motor de procesamiento de lenguaje natural o por em canal de mensajeria">
+      <created>1571775158064</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1571775158064</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -144,6 +150,7 @@
     <MESSAGE value="FileStorage&#10;Interfaz para definir los metodos de las clases encargadas de gestionar el sistema de archivos para el Bot" />
     <MESSAGE value="Salto mortal&#10;Se avanzo casi en su totalidad el nuevo modelo de AcademiBot, usando clases que se instanciaran por separado y tendran funciones especificas, no se prioriza la cantidad de metodos de una clase, sino que estos sean atomicos, cada atributo debe mantener una semantica y ontologia. Se incluyen metodos no utilizados actualmente en pro de la vision del proyecto. El modulo CacheHandler ha probado ser una idea increible uwu" />
     <MESSAGE value="Logica de envios&#10;Se esta trabajando en la logica de envios, leer TODO's" />
-    <option name="LAST_COMMIT_MESSAGE" value="Logica de envios&#10;Se esta trabajando en la logica de envios, leer TODO's" />
+    <MESSAGE value="Logica de recepcion de mensaje&#10;Se escribio la logica completa para el procesamiento de los mensajes que contengan alguna solicitud, se trabaja ahora en la logica de ejecucion de comandos proveidos por el motor de procesamiento de lenguaje natural o por em canal de mensajeria" />
+    <option name="LAST_COMMIT_MESSAGE" value="Logica de recepcion de mensaje&#10;Se escribio la logica completa para el procesamiento de los mensajes que contengan alguna solicitud, se trabaja ahora en la logica de ejecucion de comandos proveidos por el motor de procesamiento de lenguaje natural o por em canal de mensajeria" />
   </component>
 </project>

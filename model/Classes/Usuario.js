@@ -136,14 +136,14 @@ Usuario.prototype.getFacebookId = function () {
   return this.FacebookId;
 };
 Usuario.prototype.isAbleToRequestCourses = function () {
-  return this.getEspecialidad() && this.getEspecialidad() && this.getCiclo();
+  return this.getEspecialidad() && this.getCiclo();
 };
 Usuario.prototype.isAbleToRequestFolders = function () {
   return this.isAbleToRequestCourses() && this.getCurso();
 };
 Usuario.prototype.isAbleToRequestFiles = function () {
   return this.isAbleToRequestFolders() && this.getCarpeta();
-}
+};
 /**
  * Metodo para obtener la data del usuario en forma de objeto, permite la rapida asignacion de variables
  * @returns {{Ciclo: Number, Carpeta: String, FacebookId: Number, Especialidad: String, UltimaInteraccion: Date,

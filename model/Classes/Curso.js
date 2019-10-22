@@ -43,6 +43,13 @@ class Curso {
 }
 
 /**
+ *
+ * @returns {String}
+ */
+Curso.prototype.getCodigo = function () {
+    return this.Codigo;
+};
+/**
  * Metodo para comprobar si un nombre encaja con un curso, util para filtrar
  * @method matchesName
  * @param {String} Nombre

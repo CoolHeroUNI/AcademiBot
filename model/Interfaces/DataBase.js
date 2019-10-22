@@ -23,7 +23,8 @@ class DataBase {
             "logInternalError",
             "getEspecialidadById",
             "getCiclos",
-            "getFacultades"
+            "getFacultades",
+            "getEspecialidadesByFacultad"
         ];
         for (const method of methods) {
             if (!this[method]) {
@@ -32,6 +33,7 @@ class DataBase {
         }
     }
 }
+DataBase.prototype.getEspecialidadesByFacultad = async function (Facultad) {};
 DataBase.prototype.connect = async function() {};
 DataBase.prototype.getUserById = async function (userId) {};
 DataBase.prototype.getFilesByUser = async function (user) {};

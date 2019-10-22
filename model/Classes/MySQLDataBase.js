@@ -92,7 +92,7 @@ MySQLDataBase.prototype.getCourseById = function (courseId) {
             const SistemaEvaluacion = DataPacket['SistemaEvaluacion'];
             const Creditos = DataPacket['Creditos'];
             return new Curso(Codigo, Nombre, SistemaEvaluacion, Creditos);
-        }))
+        })[0])
 };
 /**
  * @param {Usuario} user
