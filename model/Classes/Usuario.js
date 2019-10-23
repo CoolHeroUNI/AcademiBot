@@ -74,6 +74,7 @@ Usuario.prototype.cargaDesdeObjeto = function (DataPacket) {
   this.AceptaPublicidad = DataPacket['AceptaPublicidad'] || true;
   this.FechaCreacion = DataPacket['FechaCreacion'] || this.FechaCreacion;
   this.Valido = DataPacket['Valido'] || 1;
+  return this;
 };
 /**
  * Metodo para aumentar en uno la cantida de peticiones del usuario
