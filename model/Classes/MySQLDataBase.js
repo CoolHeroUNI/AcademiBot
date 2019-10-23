@@ -8,6 +8,7 @@ const Curso = require('./Curso');
 class MySQLDataBase extends DataBase {
     constructor(host, user, password, database, port) {
         super();
+        this.db = database;
         this.conn = mysql.createConnection({
             host : host,
             user : user,
@@ -29,12 +30,13 @@ class MySQLDataBase extends DataBase {
     }
 }
 MySQLDataBase.prototype.connect = function () {
-    return new Promise((resolve, reject) => {
+    return (new Promise((resolve, reject) => {
         this.conn.connect(err => {
             if (err) return reject(err);
             return resolve();
         })
-    })
+    }))
+        .then(() => this.conn.query(`USE \`${this.db}\``));
 };
 
 MySQLDataBase.prototype.getUserById = function (userId) {
