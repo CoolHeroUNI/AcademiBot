@@ -227,7 +227,7 @@ Facebook.prototype.sendOptionsMenu = function (userId, parameters) {
 Facebook.prototype.sendAction = function (id, action) {
     let param = {
         uri: "https://graph.facebook.com/v"+this.versionAPI+"/me/messages",
-        qs : {access_token : this.token},
+        qs : {access_token : this.Token},
         method: "POST",
         json: {
             recipient : {id},
