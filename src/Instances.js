@@ -26,7 +26,7 @@ const Dialogflow = new dialogflow(projectId, language);
 const host = process.env.MYSQL_HOST;
 const user = process.env.MYSQL_USER;
 const pass = process.env.MYSQL_PASS;
-const db = process.env.MYSQ_DB;
+const db = process.env.MYSQL_DB;
 const port = process.env.MYSQL_PORT;
 const MySQL = new MySQLDataBase(host, user, pass, db, port);
 

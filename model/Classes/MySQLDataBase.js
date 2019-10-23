@@ -30,13 +30,12 @@ class MySQLDataBase extends DataBase {
     }
 }
 MySQLDataBase.prototype.connect = function () {
-    return (new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
         this.conn.connect(err => {
             if (err) return reject(err);
             return resolve();
         })
-    }))
-        .then(() => this.conn.query(`USE \`${this.db}\``));
+    });
 };
 
 MySQLDataBase.prototype.getUserById = function (userId) {
