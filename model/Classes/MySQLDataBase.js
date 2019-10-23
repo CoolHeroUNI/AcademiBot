@@ -268,6 +268,7 @@ MySQLDataBase.prototype.logUserError = function (error, user, module) {
  */
 MySQLDataBase.prototype.logInternalError = function (error, module) {
     const message = error.message.substr(0, 200);
+    console.log(error);
     const sql = `INSERT INTO \`${this.Error}\` (Mensaje,Modulo) VALUES ('${message}','${module}')`;
     return this.promiseQuery(sql);
 };
@@ -310,7 +311,7 @@ MySQLDataBase.prototype.makeFastQuery = async function (SQL) {
 };
 MySQLDataBase.prototype.promiseQuery = function (SQL) {
     return new Promise((resolve, reject) => {
-        this.conn.query(SQL, (err, result, fields) => {
+        this.conn.query(SQL,(err, result, fields) => {
             if (err) return reject(err);
             resolve(result);
         });
