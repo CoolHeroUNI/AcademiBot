@@ -243,7 +243,7 @@ Facebook.prototype.sendAction = function (id, action) {
  * @param {String} id
  */
 Facebook.prototype.markSeen = function (id) {
-    this.sendAction(id, "mark_seen");
+    return this.sendAction(id, "mark_seen");
 };
 /**
  * Metodo para enviar la señal de typing on
@@ -251,7 +251,7 @@ Facebook.prototype.markSeen = function (id) {
  * @param {String} id
  */
 Facebook.prototype.typingOn = function (id) {
-    this.sendAction(id, "typing_on");
+    return this.sendAction(id, "typing_on");
 };
 /**
  * Metodo para enviar la señal de typing off al usuario identificado por id
@@ -259,7 +259,7 @@ Facebook.prototype.typingOn = function (id) {
  * @param {String} id
  */
 Facebook.prototype.typingOff = function (id) {
-    this.sendAction(id,"typing_off");
+    return this.sendAction(id,"typing_off");
 };
 
 module.exports = Facebook;
