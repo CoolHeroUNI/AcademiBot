@@ -439,11 +439,36 @@ Bot.prototype.executeCommand = function (user, command, parameters, text) {
                 .then(curso => {
                     if (!curso) return Promise.reject(new Error('No se encontro curso ' + course));
                     const codigo = curso.getCodigo();
-                    user.setCurso(codigo);
+                    try {user.setCurso(codigo)}
+                    catch (e) {
+                        user.reset();
+                        return Promise.reject(e);
+                    }
                     return this.sendAvailableFolders(user);
                 });
+        case 'SetCarpeta':
+            const folder = parameters['carpeta'];
+            try {user.setCarpeta(folder)}
+            catch (e) {
+                user.reset();
+                return this.DataBase.logUserError(e, user, 'Usuario');
+            }
+            return this.sendAvailableFiles(user);
+        case 'SetArchivo':
+            const shortName = parameters['archivo'];
+            return this.detectFiles(user, shortName)
+                .then(files => this.sendFiles(user, files));
         default:
             return Promise.reject(new Error('Commando no valido, '+command));
+    }
+};
+Bot.prototype.executePetition = function (user, petition, text) {
+    switch (petition) {
+        case 'Meme':
+            const memeFolder = 'memes/';
+
+        default:
+            return Promise.reject(new Error('Peticion no valida, '+petition));
     }
 };
 Bot.prototype.prepareCommand = function (user, postback) {
@@ -458,7 +483,7 @@ Bot.prototype.processPayloadFromNLP = function (user, intent) {
     } else if (payload['peticion']) {
         // Petitions have no parameters
         const petition = payload['peticion'];
-        return this.processPetition(user, petition, text);
+        return this.executePetition(user, petition, text);
     }
     const e = new Error("No method provided to process Payload: "+JSON.stringify(payload));
     this.DataBase.logUserError(e, user, 'NLPMotor')
@@ -474,6 +499,7 @@ Bot.prototype.recieveMessage = async function (user, message) {
     try {
         let userRequestedOnlyOneFolder = false;
         let userRequestedOnlyOneCourse = false;
+
         const courses = await this.detectCourses(user, message);
         if (courses) {
             if (courses.length > 1) return this.sendCourses(user, courses);
@@ -482,6 +508,7 @@ Bot.prototype.recieveMessage = async function (user, message) {
                 userRequestedOnlyOneCourse = true;
             }
         }
+
         const folders = await this.detectFolders(user, message);
         if (folders) {
             if (folders.length > 1) return this.sendFolders(user, folders);
@@ -490,8 +517,8 @@ Bot.prototype.recieveMessage = async function (user, message) {
                 userRequestedOnlyOneFolder = true;
             }
         }
-        const files = await this.detectFiles(user, message);
 
+        const files = await this.detectFiles(user, message);
         if (files) return this.sendFiles(user, files);
 
         if (userRequestedOnlyOneFolder) {
@@ -504,15 +531,11 @@ Bot.prototype.recieveMessage = async function (user, message) {
             .catch(e => console.log(e));
     }
 
-
-
-    // TODO terminar el tercer eslavon de la deteccion de peticiones
     // TODO crear funciones para preparar y ejecutar comandos proveidos por NLP
     // TODO crear funciones para ejecutar comandos proveidos por MessagingChannel
     // TODO enviar adecuadamente el texto con URLs
     // TODO adaptar las peticiones realizadas en front
     // TODO no olvidar que el modelo puede funcionar independientemente, cada modulo se debe instanciar por separado
-
 
     const userId = user.getFacebookId();
     return this.NLPMotor.processText(userId, message)

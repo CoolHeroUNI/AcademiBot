@@ -144,6 +144,9 @@ Usuario.prototype.isAbleToRequestFolders = function () {
 Usuario.prototype.isAbleToRequestFiles = function () {
   return this.isAbleToRequestFolders() && this.getCarpeta();
 };
+Usuario.prototype.reset = function () {
+  this.setCurso(null);
+};
 /**
  * Metodo para obtener la data del usuario en forma de objeto, permite la rapida asignacion de variables
  * @returns {{Ciclo: Number, Carpeta: String, FacebookId: Number, Especialidad: String, UltimaInteraccion: Date,
