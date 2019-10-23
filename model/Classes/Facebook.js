@@ -234,7 +234,7 @@ Facebook.prototype.sendAction = function (id, action) {
             sender_action : action
         }
     };
-    RequestPromise(param);
+    return RequestPromise(param);
 };
 /**
  * Metodo para enviar la señal de visto dado un usuario identificado por id

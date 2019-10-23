@@ -15,7 +15,7 @@ router.post('/', (req, res) => {
 
     const messagingEvents = req.body.entry[0]['messaging'];
     for (const event of messagingEvents) {
-        const userId = event['sender']['id'];
+        const userId = parseInt(event['sender']['id']);
         AcademiBot.startInteraction(userId)
             .then(user => {
                 if (event['message'] && event['message']['text']) {
