@@ -26,7 +26,7 @@ class MySQLDataBase extends DataBase {
         this.Transaccion = 'Transaccion';
         this.User = 'Usuario_AcademiBot';
 
-        this.cache = new CacheHandler();
+        this.cache = new CacheHandler(10);
     }
 }
 MySQLDataBase.prototype.connect = function () {

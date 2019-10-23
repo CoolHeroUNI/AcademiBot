@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/Classes/Bot.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Classes/Bot.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/Classes/MySQLDataBase.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Classes/MySQLDataBase.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -99,7 +97,7 @@
       <workItem from="1571265653190" duration="3458000" />
       <workItem from="1571426911946" duration="92518000" />
       <workItem from="1571671301967" duration="31769000" />
-      <workItem from="1571787326229" duration="25815000" />
+      <workItem from="1571787326229" duration="26030000" />
     </task>
     <task id="LOCAL-00005" summary="Salto mortal&#10;Se avanzo casi en su totalidad el nuevo modelo de AcademiBot, usando clases que se instanciaran por separado y tendran funciones especificas, no se prioriza la cantidad de metodos de una clase, sino que estos sean atomicos, cada atributo debe mantener una semantica y ontologia. Se incluyen metodos no utilizados actualmente en pro de la vision del proyecto. El modulo CacheHandler ha probado ser una idea increible uwu">
       <created>1571633672751</created>
@@ -304,7 +302,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571867066045</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="asdasd">
+      <created>1571867770446</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1571867770447</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -347,6 +352,7 @@
     <MESSAGE value="message in double quotes" />
     <MESSAGE value="database not working" />
     <MESSAGE value="debugging" />
-    <option name="LAST_COMMIT_MESSAGE" value="debugging" />
+    <MESSAGE value="asdasd" />
+    <option name="LAST_COMMIT_MESSAGE" value="asdasd" />
   </component>
 </project>
