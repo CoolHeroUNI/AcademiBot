@@ -9,9 +9,16 @@ class Dialogflow extends NLPMotor {
         this.language = language;
     }
 }
+
+/**
+ *
+ * @param {Number} sessionId
+ * @param {String} text
+ * @returns {Promise<{payload: *, text: *, parameters: *}>}
+ */
 Dialogflow.prototype.processText = async function (sessionId, text) {
-    console.log(sessionId, text);
-    const sessionPath = this.sessionsClient.sessionPath(this.projectId, sessionId);
+    const session = sessionId.toString();
+    const sessionPath = this.sessionsClient.sessionPath(this.projectId, session);
     const params = {
         session: sessionPath,
         queryInput: {

@@ -570,8 +570,8 @@ Bot.prototype.recieveMessage = async function (user, message) {
     return this.NLPMotor.processText(userId, message)
         .then(intent => {
             const {texto, payload} = intent;
-            // const payloadKeys = Object.getOwnPropertyNames(payload);
-            // if (payloadKeys) return this.processPayloadFromNLP(user, intent);
+            const payloadKeys = Object.getOwnPropertyNames(payload);
+            if (payloadKeys) return this.processPayloadFromNLP(user, intent);
             return this.MessagingChannel.sendTextWithURLs(userId, texto, false)
         })
         .catch(e => {
