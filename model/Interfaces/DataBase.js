@@ -34,7 +34,6 @@ class DataBase {
         }
     }
 }
-DataBase.prototype.getUsersEllegibleForPublicity = async function () {};
 DataBase.prototype.getAllUsers = async function () {};
 DataBase.prototype.getEspecialidadesByFacultad = async function (Facultad) {};
 DataBase.prototype.connect = async function() {};
@@ -52,6 +51,7 @@ DataBase.prototype.getCoursesByUser = async function (user) {};
 DataBase.prototype.getCoursesByTextAndUser = async function (name) {};
 DataBase.prototype.getEspecialidadById = async function (especialidad) {};
 DataBase.prototype.getCiclos = async function () {};
+DataBase.prototype.ping = async function () {};
 /**
  *
  * @param user
@@ -61,5 +61,6 @@ DataBase.prototype.getProbableCoursesByUser = async function (user) {};
 DataBase.prototype.createFile = async function (key) {};
 DataBase.prototype.getFileByKey = async function (key) {};
 DataBase.prototype.logTransaction = async function (user, key, success) {};
+DataBase.prototype.getUsersEllegibleForPublicity = async function () {};
 
 module.exports = DataBase;

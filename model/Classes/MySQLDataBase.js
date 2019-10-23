@@ -317,4 +317,12 @@ MySQLDataBase.prototype.promiseQuery = function (SQL) {
         });
     });
 };
+MySQLDataBase.prototype.ping = function () {
+    return new Promise((resolve, reject) => {
+        this.conn.ping(err => {
+            if (err) return reject(err);
+            return resolve();
+        });
+    });
+};
 module.exports = MySQLDataBase;

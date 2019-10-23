@@ -38,7 +38,8 @@ class Bot {
     }
 }
 Bot.prototype.init = async function () {
-    return this.DataBase.connect();
+    return this.DataBase.connect()
+        .then(() => setInterval(() => this.DataBase.ping(), 2000));
 };
 /**
  * @method setFileStorage
