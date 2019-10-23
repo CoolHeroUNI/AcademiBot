@@ -2,7 +2,9 @@ const fs = require('fs');
 
 const Bot = require('../model/Classes/Bot');
 const Facebook = require('../model/Classes/Facebook');
-const dialogflow = require('../model/Classes/Dialogflow');
+const dialogflow = require('../model/servicios-web/DialogFlow');
+//const dialogflow = require('../model/Classes/Dialogflow');
+
 const MySQLDataBase = require('../model/Classes/MySQLDataBase');
 const s3 = require('../model/Classes/S3');
 
@@ -23,7 +25,8 @@ fs.writeFileSync(path, DialogFlowString);
 const projectId = JSON.parse(DialogFlowString)['project_id'];
 console.log(projectId);
 const language = 'es';
-const Dialogflow = new dialogflow(projectId, language);
+//const Dialogflow = new dialogflow(projectId, language);
+const Dialogflow = new dialogflow(projectId);
 
 const host = process.env.MYSQL_HOST;
 const user = process.env.MYSQL_USER;

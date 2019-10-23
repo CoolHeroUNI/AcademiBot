@@ -556,7 +556,6 @@ Bot.prototype.recieveMessage = async function (user, message) {
             .catch(e => console.log(e));
     }
 
-
     if (userRequestedOnlyOneFolder) {
         return this.sendAvailableFiles(user);
     } else if (userRequestedOnlyOneCourse) {
@@ -570,10 +569,10 @@ Bot.prototype.recieveMessage = async function (user, message) {
     const userId = user.getFacebookId();
     return this.NLPMotor.processText(userId, message)
         .then(intent => {
-            const {text, payload} = intent;
-            const payloadKeys = Object.getOwnPropertyNames(payload);
-            if (payloadKeys) return this.processPayloadFromNLP(user, intent);
-            return this.MessagingChannel.sendTextWithURLs(userId, text, false)
+            const {texto, payload} = intent;
+            // const payloadKeys = Object.getOwnPropertyNames(payload);
+            // if (payloadKeys) return this.processPayloadFromNLP(user, intent);
+            return this.MessagingChannel.sendTextWithURLs(userId, texto, false)
         })
         .catch(e => {
             this.DataBase.logInternalError(e, 'NLPMotor');
