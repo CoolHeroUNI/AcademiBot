@@ -569,10 +569,10 @@ Bot.prototype.recieveMessage = async function (user, message) {
     const userId = user.getFacebookId();
     return this.NLPMotor.processText(userId, message)
         .then(intent => {
-            const {texto, payload} = intent;
+            const {text, payload} = intent;
             const payloadKeys = Object.getOwnPropertyNames(payload);
             if (payloadKeys.length > 0) return this.processPayloadFromNLP(user, intent);
-            return this.MessagingChannel.sendTextWithURLs(userId, texto, false)
+            return this.MessagingChannel.sendTextWithURLs(userId, text, false)
         })
         .catch(e => {
             this.DataBase.logInternalError(e, 'NLPMotor');
