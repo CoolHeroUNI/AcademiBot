@@ -568,6 +568,7 @@ Bot.prototype.recieveMessage = async function (user, message) {
 
     const userId = user.getFacebookId();
     return this.NLPMotor.processText(userId, message)
+        .catch(e => this.DataBase.logUserError(e, userId, 'NLPMotor'))
         .then(intent => {
             const {text, payload} = intent;
             const payloadKeys = Object.getOwnPropertyNames(payload);
@@ -575,7 +576,7 @@ Bot.prototype.recieveMessage = async function (user, message) {
             return this.MessagingChannel.sendTextWithURLs(userId, text, false)
         })
         .catch(e => {
-            this.DataBase.logInternalError(e, 'NLPMotor');
+            this.DataBase.logUserError(e, user, 'MessagingChannel');
             const emergencyResponse = 'No puedo brindarte una respuesta fluida.';
             return this.MessagingChannel.sendText(userId, emergencyResponse, false);
         })

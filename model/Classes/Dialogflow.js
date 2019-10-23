@@ -44,8 +44,8 @@ Dialogflow.prototype.processText = async function (sessionId, text) {
     const fields = intent.queryResult['parameters']['fields'];
     if (fields) {
         const parametersProperties = Object.getOwnPropertyNames(fields)
-            .filter(key => parametersProperties[key]['stringValue']);
-        for (let key of parametersProperties) parameters[key] = fields[key]['stringValue'];
+            .filter(key => fields[key]['stringValue']);
+        for (let key of fields) parameters[key] = fields[key]['stringValue'];
     }
 
 
