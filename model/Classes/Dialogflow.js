@@ -45,7 +45,7 @@ Dialogflow.prototype.processText = async function (sessionId, text) {
     if (fields) {
         const parametersProperties = Object.getOwnPropertyNames(fields)
             .filter(key => fields[key]['stringValue']);
-        for (let key of fields) parameters[key] = fields[key]['stringValue'];
+        for (let key of parametersProperties) parameters[key] = fields[key]['stringValue'];
     }
 
 
