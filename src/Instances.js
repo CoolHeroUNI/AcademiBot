@@ -13,7 +13,7 @@ const bucket = process.env.S3_BUCKET_NAME;
 const S3 = new s3(awsKey, awsSecretKey, region, bucket);
 
 const tokenFB = process.env.FACEBOOK_TOKEN;
-const versionAPI = '4.0';
+const versionAPI = '3.3';
 const FB = new Facebook(tokenFB, versionAPI);
 
 const path = process.env.GOOGLE_APPLICATION_CREDENTIALS;
