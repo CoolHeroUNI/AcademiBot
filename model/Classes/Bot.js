@@ -524,7 +524,7 @@ Bot.prototype.recieveMessage = async function (user, message) {
     let userRequestedOnlyOneCourse = false;
     try {
         const courses = await this.detectCourses(user, message);
-        if (courses) {
+        if (courses.length > 0) {
             if (courses.length > 1) return this.sendCourses(user, courses);
             else {
                 user.setCurso(courses[0]['Codigo']);
@@ -537,7 +537,7 @@ Bot.prototype.recieveMessage = async function (user, message) {
     }
     try {
         const folders = await this.detectFolders(user, message);
-        if (folders) {
+        if (folders.length > 0) {
             if (folders.length > 1) return this.sendFolders(user, folders);
             else {
                 user.setCarpeta(folders[0]);
@@ -550,7 +550,7 @@ Bot.prototype.recieveMessage = async function (user, message) {
     }
     try {
         const files = await this.detectFiles(user, message);
-        if (files) return this.sendFiles(user, files);
+        if (files.length > 0) return this.sendFiles(user, files);
     } catch (e) {
         this.DataBase.logUserError(e, user, 'FileSystem')
             .catch(e => console.log(e));
