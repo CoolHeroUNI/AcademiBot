@@ -39,7 +39,7 @@ class DialogFlow {
  * @param {String} idSesion
  * @returns {Promise<{texto:String,comando:String}>}
  */
-DialogFlow.prototype.processText = async function (texto, idSesion) {
+DialogFlow.prototype.processText = async function (idSesion, texto) {
   const sessionPath = this.sessionClient.sessionPath(this.idProyecto, idSesion);
   const peticion = {
     session: sessionPath,
