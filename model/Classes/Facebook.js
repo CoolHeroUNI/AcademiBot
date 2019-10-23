@@ -70,7 +70,7 @@ Facebook.prototype.sendURL = function (userId, URL, publicity) {
 Facebook.prototype.sendTextWithURLs = function (userId, text, publicity) {
     const urls = linkify.find(text).filter(link => link['type'] === "url").map(link => {
         const url = link['value'];
-        while (text.contains(url)) text = text.replace(url, '');
+        while (text.indexOf(url) >= 0) text = text.replace(url, '');
         return url;
     });
     if (text) {
