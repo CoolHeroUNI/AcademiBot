@@ -35,23 +35,6 @@ class Bot {
          */
         this.DataBase = null;
 
-        const methods = [
-            "startInteraction",
-            "setFileStorage",
-            "setMessagingChannel",
-            "setNLPMotor",
-            "setDataBase",
-            "recieveText",
-            "recieveCommand",
-            "recieveURL",
-            "sendGlobalMessage",
-            "endInteraction"
-        ];
-        for (const method of methods) {
-            if (!this[method]) {
-                throw new Error("Must include method " + method);
-            }
-        }
     }
 }
 Bot.prototype.init = async function () {
