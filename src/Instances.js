@@ -18,10 +18,8 @@ const FB = new Facebook(tokenFB, versionAPI);
 
 const path = process.env.GOOGLE_APPLICATION_CREDENTIALS;
 const DialogFlowString = process.env.DIALOGFLOW;
-console.log(path, DialogFlowString);
 fs.writeFileSync(path, DialogFlowString);
 const projectId = JSON.parse(DialogFlowString)['project_id'];
-console.log(projectId);
 const language = 'es';
 const Dialogflow = new dialogflow(projectId, language);
 

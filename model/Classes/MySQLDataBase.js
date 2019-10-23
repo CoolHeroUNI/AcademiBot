@@ -307,7 +307,6 @@ WHERE Id='${Especialidad}'`;
 };
 MySQLDataBase.prototype.makeFastQuery = async function (SQL) {
     const cached = this.cache.get(SQL);
-    console.log(cached);
     if (cached) return cached;
     const rows = await this.promiseQuery(SQL);
     if (rows) this.cache.set(SQL, rows);
