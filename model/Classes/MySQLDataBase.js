@@ -310,7 +310,7 @@ MySQLDataBase.prototype.makeFastQuery = async function (SQL) {
     console.log(cached);
     if (cached) return cached;
     const rows = await this.promiseQuery(SQL);
-    this.cache.set(SQL, rows);
+    if (rows) this.cache.set(SQL, rows);
     return rows;
 };
 MySQLDataBase.prototype.promiseQuery = function (SQL) {

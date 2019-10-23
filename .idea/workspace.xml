@@ -97,7 +97,7 @@
       <workItem from="1571265653190" duration="3458000" />
       <workItem from="1571426911946" duration="92518000" />
       <workItem from="1571671301967" duration="31769000" />
-      <workItem from="1571787326229" duration="26030000" />
+      <workItem from="1571787326229" duration="26342000" />
     </task>
     <task id="LOCAL-00005" summary="Salto mortal&#10;Se avanzo casi en su totalidad el nuevo modelo de AcademiBot, usando clases que se instanciaran por separado y tendran funciones especificas, no se prioriza la cantidad de metodos de una clase, sino que estos sean atomicos, cada atributo debe mantener una semantica y ontologia. Se incluyen metodos no utilizados actualmente en pro de la vision del proyecto. El modulo CacheHandler ha probado ser una idea increible uwu">
       <created>1571633672751</created>
@@ -309,7 +309,21 @@
       <option name="project" value="LOCAL" />
       <updated>1571867770447</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="asdasd">
+      <created>1571867984511</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1571867984511</updated>
+    </task>
+    <task id="LOCAL-00036" summary="asdasd">
+      <created>1571868026448</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1571868026448</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
