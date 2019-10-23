@@ -27,7 +27,7 @@ class Bot {
 
   constructor () {
 
-    let dialogflow = this.setupDialogFlow();
+    let dialogflow = null;
     /**
      * Propiedad para interactuar con la Universidad
      * @property {Universidad} UNI
