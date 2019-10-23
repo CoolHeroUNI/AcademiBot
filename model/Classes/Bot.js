@@ -544,7 +544,11 @@ Bot.prototype.recieveMessage = async function (user, message) {
                 userRequestedOnlyOneFolder = true;
             }
         }
-
+    } catch (e) {
+        this.DataBase.logUserError(e, user, 'FileSystem')
+            .catch(e => console.log(e));
+    }
+    try {
         const files = await this.detectFiles(user, message);
         if (files) return this.sendFiles(user, files);
     } catch (e) {

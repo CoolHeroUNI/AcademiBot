@@ -41,7 +41,10 @@ MySQLDataBase.prototype.connect = function () {
 MySQLDataBase.prototype.getUserById = function (userId) {
     const sql = `SELECT * FROM \`${this.User}\` WHERE FacebookId=${userId}`;
     return this.makeFastQuery(sql)
-        .then(rows => (rows.map(DataPacket => (new Usuario(DataPacket['FacebookId']).cargaDesdeObjeto(DataPacket))))[0])
+        .then(rows => {
+            console.log(rows);
+            return (rows.map(DataPacket => (new Usuario(DataPacket['FacebookId']).cargaDesdeObjeto(DataPacket))))[0];
+        })
 };
 
 MySQLDataBase.prototype.getAllUsers = function () {
