@@ -39,3 +39,4 @@ CacheHandler.prototype.delete = function (k) {
     this.cancelDisposal(k);
     this.storage.delete(k);
 };
+module.exports = CacheHandler;
