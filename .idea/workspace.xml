@@ -95,7 +95,7 @@
       <workItem from="1571265653190" duration="3458000" />
       <workItem from="1571426911946" duration="92518000" />
       <workItem from="1571671301967" duration="31769000" />
-      <workItem from="1571787326229" duration="22236000" />
+      <workItem from="1571787326229" duration="22363000" />
     </task>
     <task id="LOCAL-00005" summary="Salto mortal&#10;Se avanzo casi en su totalidad el nuevo modelo de AcademiBot, usando clases que se instanciaran por separado y tendran funciones especificas, no se prioriza la cantidad de metodos de una clase, sino que estos sean atomicos, cada atributo debe mantener una semantica y ontologia. Se incluyen metodos no utilizados actualmente en pro de la vision del proyecto. El modulo CacheHandler ha probado ser una idea increible uwu">
       <created>1571633672751</created>
@@ -237,7 +237,21 @@
       <option name="project" value="LOCAL" />
       <updated>1571856735760</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="return this&#10;en el metodo para cargar la info del usuario">
+      <created>1571858096474</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1571858096474</updated>
+    </task>
+    <task id="LOCAL-00026" summary="return this&#10;en el metodo para cargar la info del archivo">
+      <created>1571858117841</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1571858117841</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -274,6 +288,8 @@
     <MESSAGE value="sql" />
     <MESSAGE value="L" />
     <MESSAGE value="getUser" />
-    <option name="LAST_COMMIT_MESSAGE" value="getUser" />
+    <MESSAGE value="return this&#10;en el metodo para cargar la info del usuario" />
+    <MESSAGE value="return this&#10;en el metodo para cargar la info del archivo" />
+    <option name="LAST_COMMIT_MESSAGE" value="return this&#10;en el metodo para cargar la info del archivo" />
   </component>
 </project>
