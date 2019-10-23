@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/routes/webhook_old.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Instances.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/Classes/Bot.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Classes/Bot.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/Classes/CacheHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Classes/CacheHandler.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/webhook.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/webhook.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -102,7 +98,7 @@
       <workItem from="1571265653190" duration="3458000" />
       <workItem from="1571426911946" duration="92518000" />
       <workItem from="1571671301967" duration="31769000" />
-      <workItem from="1571787326229" duration="16750000" />
+      <workItem from="1571787326229" duration="16853000" />
     </task>
     <task id="LOCAL-00005" summary="Salto mortal&#10;Se avanzo casi en su totalidad el nuevo modelo de AcademiBot, usando clases que se instanciaran por separado y tendran funciones especificas, no se prioriza la cantidad de metodos de una clase, sino que estos sean atomicos, cada atributo debe mantener una semantica y ontologia. Se incluyen metodos no utilizados actualmente en pro de la vision del proyecto. El modulo CacheHandler ha probado ser una idea increible uwu">
       <created>1571633672751</created>
@@ -146,7 +142,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571846044142</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Try">
+      <created>1571849430839</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1571849430839</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -176,6 +179,7 @@
     <MESSAGE value="Separacion de logica&#10;Se crearon metodos en las interfaces para realizar tareas especificas, se usa el modulo de base de datos con libertad debido a la existencia del modulo de memoria cache, todavia no se ha demostrado su efectividad" />
     <MESSAGE value="ExecuteCommand&#10;Se trabajo en el metodo para ejecutar los comandos, ya sean proveidos por dialogflow o por el propio canal de mensajeria" />
     <MESSAGE value="Core functionality&#10;Funcionalidad primaria terminada, se inician pruebas" />
-    <option name="LAST_COMMIT_MESSAGE" value="Core functionality&#10;Funcionalidad primaria terminada, se inician pruebas" />
+    <MESSAGE value="Try" />
+    <option name="LAST_COMMIT_MESSAGE" value="Try" />
   </component>
 </project>

@@ -23,6 +23,7 @@ router.post('/', (req, res) => {
                     return AcademiBot.recieveMessage(user, textMessage);
                 }
             })
+            .catch(e => console.log(e));
     }
 });
 process.on('SIGTERM', () => {
