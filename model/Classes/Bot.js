@@ -77,7 +77,7 @@ Bot.prototype.setNLPMotor = function (NLPMotor) {
  * @param {Number} userId
  * @returns {User}
  */
-Bot.prototype.startInteraction = async function (userId) {
+Bot.prototype.startInteraction = function (userId) {
     return this.MessagingChannel.startInteraction(userId)
         .catch(e => this.DataBase.logUserError(e, new Usuario(userId), 'MessagingChannel'))
         .then(() => this.DataBase.getUserById(userId))
@@ -298,7 +298,7 @@ Bot.prototype.sendFiles = function (user, files) {
             }
             return failed ? Promise.reject() : Promise.resolve();
         })
-        .catch(e => {
+        .catch(() => {
             const buttons = [
                 {
                     'title' : 'Sí',
@@ -393,7 +393,6 @@ Bot.prototype.sendAvailableFiles = function (user) {
  * @param {Usuario} user
  * @param {String} command
  * @param {Object} parameters
- * @param {String} [text]
  */
 Bot.prototype.executeCommand = function (user, command, parameters) {
     const userId = user.getFacebookId();

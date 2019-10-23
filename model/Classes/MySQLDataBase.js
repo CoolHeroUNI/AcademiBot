@@ -258,7 +258,7 @@ WHERE Key='${Key}'`;
 MySQLDataBase.prototype.logUserError = function (error, user, module) {
     const message = error.message.substr(0,200);
     const userId = user.getFacebookId();
-    const sql = `INSERT INTO \`${this.Error}\` (Usuario,Mensaje,Modulo) VALUES (${userId},'${message}','${module}')`;
+    const sql = `INSERT INTO \`${this.Error}\` (Usuario,Mensaje,Modulo) VALUES (${userId},\`${message}\`,'${module}')`;
     return this.promiseQuery(sql);
 };
 /**
