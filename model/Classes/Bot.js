@@ -520,10 +520,9 @@ Bot.prototype.processPayloadFromNLP = function (user, intent) {
  */
 Bot.prototype.recieveMessage = async function (user, message) {
     if (!user.Valido) return Promise.reject(new Error('Usuario no valido.'));
+    let userRequestedOnlyOneFolder = false;
+    let userRequestedOnlyOneCourse = false;
     try {
-        let userRequestedOnlyOneFolder = false;
-        let userRequestedOnlyOneCourse = false;
-
         const courses = await this.detectCourses(user, message);
         if (courses) {
             if (courses.length > 1) return this.sendCourses(user, courses);
@@ -532,7 +531,11 @@ Bot.prototype.recieveMessage = async function (user, message) {
                 userRequestedOnlyOneCourse = true;
             }
         }
-
+    } catch (e) {
+        this.DataBase.logUserError(e, user, 'DataBase')
+            .catch(e => console.log(e));
+    }
+    try {
         const folders = await this.detectFolders(user, message);
         if (folders) {
             if (folders.length > 1) return this.sendFolders(user, folders);
@@ -544,17 +547,17 @@ Bot.prototype.recieveMessage = async function (user, message) {
 
         const files = await this.detectFiles(user, message);
         if (files) return this.sendFiles(user, files);
-
-        if (userRequestedOnlyOneFolder) {
-            return this.sendAvailableFiles(user);
-        } else if (userRequestedOnlyOneCourse) {
-            return this.sendAvailableFolders(user);
-        }
     } catch (e) {
         this.DataBase.logUserError(e, user, 'FileSystem')
             .catch(e => console.log(e));
     }
 
+
+    if (userRequestedOnlyOneFolder) {
+        return this.sendAvailableFiles(user);
+    } else if (userRequestedOnlyOneCourse) {
+        return this.sendAvailableFolders(user);
+    }
     // TODO crear funciones para ejecutar comandos proveidos por MessagingChannel
     // TODO enviar adecuadamente el texto con URLs
     // TODO adaptar las peticiones realizadas en front
