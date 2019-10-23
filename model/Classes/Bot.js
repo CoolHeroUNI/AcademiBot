@@ -81,7 +81,10 @@ Bot.prototype.startInteraction = function (userId) {
     return this.MessagingChannel.startInteraction(userId)
         .catch(e => this.DataBase.logUserError(e, new Usuario(userId), 'MessagingChannel'))
         .then(() => this.DataBase.getUserById(userId))
-        .then(user => user || this.DataBase.createUser(userId))
+        .then(user => {
+            console.log(user);
+            return user || this.DataBase.createUser(userId);
+        })
     // TODO hacer metodo para crear un nuevo usuario enviando un mensaje de bienvenida y una imagen como instruccion
 };
 
