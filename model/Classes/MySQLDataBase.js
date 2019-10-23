@@ -304,7 +304,7 @@ WHERE Id='${Especialidad}'`;
 };
 MySQLDataBase.prototype.makeFastQuery = async function (SQL) {
     const cached = this.cache.get(SQL);
-    if (cached !== undefined) return cached;
+    if (cached) return cached;
     const rows = await this.promiseQuery(SQL);
     this.cache.set(SQL, rows);
     return rows;
@@ -313,7 +313,7 @@ MySQLDataBase.prototype.promiseQuery = function (SQL) {
     return new Promise((resolve, reject) => {
         this.conn.query(SQL,(err, result, fields) => {
             if (err) return reject(err);
-            resolve(result);
+            return resolve(result);
         });
     });
 };
