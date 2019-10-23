@@ -95,6 +95,7 @@ Bot.prototype.detectCourses = function (user, message) {
     if (!user.isAbleToRequestCourses()) return Promise.resolve([]);
     const words = message.split(' ').filter(word => word.length >= 5).map(word => word.limpia());
     return this.DataBase.getProbableCoursesByUser(user)
+        .catch(e => this.DataBase.logUserError(e, user, 'DataBase'))
         .then(courses => {
             const nonZeroMatch = courses.filter(course => {
                 for (let word of words) {
