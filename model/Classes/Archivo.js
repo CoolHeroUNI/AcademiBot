@@ -56,6 +56,7 @@ Archivo.prototype.equals = function (file) {
 Archivo.prototype.cargaDesdeObjeto = function (DataPacket) {
     this.ReuseId = DataPacket["ReuseId"];
     this.ContadorPeticiones = DataPacket["ContadorPeticiones"];
+    return this;
 };
 Archivo.prototype.setContador = function (contador) {
     this.ContadorPeticiones = contador;
