@@ -16,6 +16,7 @@ class DataBase {
             "getProbableCoursesByUser",
             "getFileByKey",
             "getFilesByUser",
+            "createFile",
             "updateFile",
             "deleteFileByKey",
             "logUserError",
@@ -33,6 +34,8 @@ class DataBase {
         }
     }
 }
+DataBase.prototype.getUsersEllegibleForPublicity = async function () {};
+DataBase.prototype.getAllUsers = async function () {};
 DataBase.prototype.getEspecialidadesByFacultad = async function (Facultad) {};
 DataBase.prototype.connect = async function() {};
 DataBase.prototype.getUserById = async function (userId) {};
@@ -40,8 +43,6 @@ DataBase.prototype.getFilesByUser = async function (user) {};
 DataBase.prototype.getFacultades = async function () {};
 DataBase.prototype.updateFile = async function (file, user) {};
 DataBase.prototype.logInternalError = async function (error, module) {};
-DataBase.prototype.getAllUsers = async function () {};
-DataBase.prototype.getUsersEllegibleForPublicity = async function () {};
 DataBase.prototype.deleteFileByKey = async function (key) {};
 DataBase.prototype.logUserError = async function (error, user, module) {};
 DataBase.prototype.updateUser = async function (user) {};
@@ -57,6 +58,7 @@ DataBase.prototype.getCiclos = async function () {};
  * @returns {Promise<Curso[]>}
  */
 DataBase.prototype.getProbableCoursesByUser = async function (user) {};
+DataBase.prototype.createFile = async function (key) {};
 DataBase.prototype.getFileByKey = async function (key) {};
 DataBase.prototype.logTransaction = async function (user, key, success) {};
 

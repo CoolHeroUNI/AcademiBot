@@ -6,7 +6,7 @@
 class Usuario {
   /**
    * @constructor
-   * @param {Number} FacebookId del usuario
+   * @param {Number} FacebookId
    */
   constructor (FacebookId) {
     if (!FacebookId) throw new Error("Campo FacebookId debe ser no nulo para la instanciacion.");

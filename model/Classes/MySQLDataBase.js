@@ -79,7 +79,8 @@ WHERE FacebookId=${id}`;
 MySQLDataBase.prototype.createUser = function (userId) {
     const id = mysql.escape(userId);
     const sql = `INSERT INTO \`${this.User}\` (FacebookId) VALUES (${id})`;
-    return this.promiseQuery(sql);
+    return this.promiseQuery(sql)
+        .then(() => new Usuario(userId));
 };
 
 MySQLDataBase.prototype.getCourseById = function (courseId) {
@@ -170,8 +171,18 @@ MySQLDataBase.prototype.getFileByKey = function (key) {
 `SELECT * FROM \`${this.Archivo}\`
 WHERE Key='${Key}'`;
     return this.makeFastQuery(sql)
-        .then(rows => rows.map(DataPacket => (new Archivo(DataPacket['Key']).cargaDesdeObjeto(DataPacket))))
+        .then(rows => rows.map(DataPacket => (new Archivo(DataPacket['Key']).cargaDesdeObjeto(DataPacket)))[0])
 };
+MySQLDataBase.prototype.createFile = function (key) {
+    const File = new Archivo(key);
+    const {Key, Curso, Facultad, Carpeta, ContadorPeticiones} = File.getData();
+    const sql =
+`INSERT INTO \`${this.Archivo}\` (Key,Curso,Facultad,Carpeta,ContadorPeticiones)
+VALUES ('${Key}','${Curso}','${Facultad}','${Carpeta}',${ContadorPeticiones}`;
+    return this.promiseQuery(sql)
+        .then(() => File);
+};
+
 /**
  *
  * @param {Usuario} user
@@ -209,7 +220,7 @@ MySQLDataBase.prototype.updateFile = function (file, user) {
     const sql =
 `SELECT * FROM \`${this.Archivo}\`
 WHERE Key='${Key}'`;
-    this.cache.set(sql, file.getData());
+    this.cache.set(sql, [file.getData()]);
     const updateData = file.getUpdateData();
     const ReuseId = updateData['ReuseId'], ContadorPeticiones = updateData['ContadorPeticiones'];
     this.getFilesByUser(user)
@@ -271,8 +282,6 @@ MySQLDataBase.prototype.logTransaction = function (user, key, success) {
     const sql = `INSERT INTO \`${this.Transaccion}\` (Usuario,KeyObtenida,Exitosa) VALUES (${userId},'${key}',${success})`;
     return this.promiseQuery(sql);
 };
-
-
 
 
 MySQLDataBase.prototype.getEspecialidadesByFacultad = function (Facultad) {

@@ -96,21 +96,10 @@ Bot.prototype.setNLPMotor = function (NLPMotor) {
  * @returns {User}
  */
 Bot.prototype.startInteraction = async function (userId) {
-    try {
-        await this.MessagingChannel.startInteraction(userId)
-    } catch (e) {
-        this.DataBase.logInternalError(e, 'MessagingChannel')
-            .finally(() => throw e);
-    }
-    try {
-        const user = await this.DataBase.getUserById(userId);
-        if (user !== undefined) return user;
-        await this.DataBase.createUser(userId);
-        return await this.DataBase.getUserById(userId);
-    } catch (e) {
-        this.DataBase.logInternalError(e, 'DataBase')
-            .finally(() => throw e);
-    }
+    return this.MessagingChannel.startInteraction(userId)
+        .catch(e => this.DataBase.logUserError(e, new Usuario(userId), 'MessagingChannel'))
+        .then(() => this.DataBase.getUserById(userId))
+        .then(user => user || this.DataBase.createUser(userId))
 };
 
 /**
@@ -245,11 +234,17 @@ Bot.prototype.detectFiles = function (user, message) {
             return this.FileStorage.listObjectsUnder(prefix);
         })
         .then(respuesta => {
-            const Files = respuesta.map(o => o.replace(prefix, '').replace('/',''));
-            this.CacheHandler.set(prefix, Files);
-            return Files;
+            this.CacheHandler.set(prefix, respuesta);
+            return Promise.all(respuesta.map(key => {
+                return this.DataBase.getFileByKey(key)
+                    .then(File => {
+                        if (!File) return this.DataBase.createFile(key);
+                        return Promise.resolve(File);
+                    })
+            }))
         })
-        .then(Files => Files.filter(file => file.matchesText(message)));
+        .then(Files => Files.filter(file => file.matchesText(message)))
+        .catch(e => this.DataBase.logUserError(e, user, 'DataBase'));
 };
 /**
  *
@@ -299,12 +294,14 @@ Bot.prototype.sendFiles = function (user, files) {
                     this.DataBase.logUserError(response, user, 'MessagingChannel')
                         .then(() => this.DataBase.logTransaction(user, key, false))
                         .catch(e => console.log(e));
-                } else {
+                } else if (!file.getReuseId()) {
                     const attachment_id = parseInt(response['attachment_id']) || null;
+                    file.aumentaContador();
                     file.setReuseId(attachment_id);
-                    this.DataBase.logTransaction(user, key, true)
+                    this.DataBase.updateFile(file, user)
+                        .then(() => this.DataBase.logTransaction(user, key, true))
                         .then(() => this.DataBase.updateFile(file, user))
-                        .catch(e => console.log(e))
+                        .catch(e => console.log(e));
                 }
             }
             return Promise.resolve();
@@ -391,7 +388,7 @@ Bot.prototype.sendAvailableFiles = function (user) {
  * @param {Object} parameters
  * @param {String} [text]
  */
-Bot.prototype.executeCommand = function (user, command, parameters, text) {
+Bot.prototype.executeCommand = function (user, command, parameters) {
     const userId = user.getFacebookId();
     switch (command) {
         case 'Cursos':
@@ -463,23 +460,42 @@ Bot.prototype.executeCommand = function (user, command, parameters, text) {
     }
 };
 Bot.prototype.executePetition = function (user, petition, text) {
+    const userId = user.getFacebookId();
     switch (petition) {
         case 'Meme':
             const memeFolder = 'memes/';
+            const cachedMemes = this.CacheHandler.get(memeFolder);
+            return this.MessagingChannel.sendText(userId, text, false)
+                .then(() => {
+                    if (cachedMemes) return cachedMemes.random();
+                    return this.FileStorage.listObjectsUnder(memeFolder)
+                        .then(keys => {
+                            this.CacheHandler.set(memeFolder, keys);
+                            return keys.random();
+                        });
+                })
+                .then(meme => this.FileStorage.getPublicURL(meme))
+                .catch(e => this.DataBase.logUserError(e, user, 'FileStorage'))
+                .then(url => {
+                    const parameter = {
+                        'url' : url,
+                        'attachment_id' : '',
+                        'type' : 'image'
+                    };
+                    return this.MessagingChannel.sendAttachment(userId, parameter);
+                })
+                .catch(e => this.DataBase.logUserError(e, user, 'MessagingChannel'));
 
         default:
             return Promise.reject(new Error('Peticion no valida, '+petition));
     }
-};
-Bot.prototype.prepareCommand = function (user, postback) {
-
 };
 Bot.prototype.processPayloadFromNLP = function (user, intent) {
     const {text, payload, parameters} = intent;
     if (payload['comando']) {
         // Commands come with parameters that must be procesed
         const command = payload['comando'];
-        return this.executeCommand(user, command, parameters, text);
+        return this.executeCommand(user, command, parameters);
     } else if (payload['peticion']) {
         // Petitions have no parameters
         const petition = payload['peticion'];
@@ -531,7 +547,6 @@ Bot.prototype.recieveMessage = async function (user, message) {
             .catch(e => console.log(e));
     }
 
-    // TODO crear funciones para preparar y ejecutar comandos proveidos por NLP
     // TODO crear funciones para ejecutar comandos proveidos por MessagingChannel
     // TODO enviar adecuadamente el texto con URLs
     // TODO adaptar las peticiones realizadas en front
@@ -555,3 +570,11 @@ Bot.prototype.recieveMessage = async function (user, message) {
 
 
 };
+Bot.prototype.recievePayload = function (user, payload) {
+    const data = payload.split(':');
+    if (data.length > 2 || data.length === 0) return Promise.reject(new Error('Comando invalido'));
+    const command = data[0];
+    const arguments = data[1];
+    return this.executeCommand(user, command, arguments);
+};
+module.exports = Bot;
