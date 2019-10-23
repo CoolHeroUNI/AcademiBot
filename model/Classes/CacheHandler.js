@@ -1,8 +1,12 @@
 class CacheHandler{
-    constructor() {
+    /**
+     *
+     * @param {Number} [time]
+     */
+    constructor(time) {
         this.storage = new Map();
         this.timeHandler = new Map();
-        this.timeLimit = 300;
+        this.timeLimit = time || 300;
     }
 }
 

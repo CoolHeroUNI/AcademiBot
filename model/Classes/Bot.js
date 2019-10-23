@@ -13,7 +13,7 @@ class Bot {
          * @property
          * @type {CacheHandler}
          */
-        this.CacheHandler = new CacheHandler();
+        this.CacheHandler = new CacheHandler(120);
         /**
          * @property FileStorage
          * @type {FileStorage}
@@ -55,7 +55,6 @@ class Bot {
     }
 }
 Bot.prototype.init = async function () {
-    this.CacheHandler.timeLimit = 300;
     return this.DataBase.connect();
 };
 /**
@@ -253,44 +252,53 @@ Bot.prototype.detectFiles = function (user, message) {
  */
 Bot.prototype.sendFiles = function (user, files) {
     const userId = user.getFacebookId();
-    const sortedFiles = files.sort((file1, file2) => {
-        try {
-            return file2.getPage() - file1.getPage();
-        } catch (e) {
-            this.DataBase.logInternalError(e, 'Archivo').catch(e => console.log(e));
-            throw e;
-        }
-    });
+    let shortName = '';
+    let SortedFiles = [];
     // Se mapea cada archivo a una promesa que contendra todos los parametros necesarios para hacer las requests
-    return Promise.all(sortedFiles.map(file => {
-        return new Promise((resolve, reject) => {
-            const type = file.getType();
-            const params = {
-                'type': type,
-                'attachment_id': null,
-                'url': null
-            };
-            const reuseId = file.getReuseId();
-            if (reuseId) {
-                params['attachment_id'] = reuseId;
-                resolve(params);
-            }
-            const key = file.getKey();
-            this.FileStorage.getPublicURL(key)
-                .then(url => {
-                    params['url'] = url;
-                    resolve(params)
+    Promise.all(files.sort((file1, file2) => {
+        try {
+            const dif = file2.getPage() - file1.getPage();
+            return Promise.resolve(dif);
+        } catch (e) {
+            return Promise.reject(e);
+        }
+    }))
+        .catch(e => this.DataBase.logInternalError(e, 'Archivo'))
+        .then(sortedFiles => {
+            SortedFiles = sortedFiles;
+            return Promise.all(sortedFiles.map(file => {
+                return new Promise((resolve, reject) => {
+                    shortName = file.getShortName();
+                    const type = file.getType();
+                    const params = {
+                        'type': type,
+                        'attachment_id': null,
+                        'url': null
+                    };
+                    const reuseId = file.getReuseId();
+                    if (reuseId) {
+                        params['attachment_id'] = reuseId;
+                        resolve(params);
+                    }
+                    const key = file.getKey();
+                    this.FileStorage.getPublicURL(key)
+                        .then(url => {
+                            params['url'] = url;
+                            resolve(params)
+                        })
+                        .catch(e => reject(e))
                 })
-                .catch(e => reject(e))
-        })
-    })) //Se envian luego de forma secuencial al usuario
+            }))
+        }) //Se envian luego de forma secuencial al usuario
         .then(parameters => this.MessagingChannel.sendSecuentialAttachments(userId, parameters))
         .then(responses => {
+            let failed = false;
             for (let i = 0; i < responses.length; i++) {
                 const response = responses[i];
-                const file = sortedFiles[i];
+                const file = SortedFiles[i];
                 const key = file.getKey();
                 if (response instanceof Error) {
+                    failed = true;
                     this.DataBase.logUserError(response, user, 'MessagingChannel')
                         .then(() => this.DataBase.logTransaction(user, key, false))
                         .catch(e => console.log(e));
@@ -304,7 +312,22 @@ Bot.prototype.sendFiles = function (user, files) {
                         .catch(e => console.log(e));
                 }
             }
-            return Promise.resolve();
+            return failed ? Promise.reject() : Promise.resolve();
+        })
+        .catch(e => {
+            const buttons = [
+                {
+                    'title' : 'Sí',
+                    'payload' : `setFile:${shortName}`
+                },
+                {
+                    'title' : 'No',
+                    'payload' : `setFolder:${user.getCarpeta()}`
+                }
+
+            ];
+            const text = 'Error enviando. ¿Quieres intentarlo de nuevo?';
+            return this.MessagingChannel.sendReplyButtons(userId, text, buttons)
         })
         .catch(e => this.DataBase.logInternalError(e, 'MessagingChannel'))
         .catch(e => console.log(e));
