@@ -166,7 +166,7 @@ MySQLDataBase.prototype.getCiclos = function () {
 };
 MySQLDataBase.prototype.getFileByKey = function (key) {
     const sql =
-`SELECT * FROM \`${this.Archivo}\` WHERE Key='${key}'`;
+`SELECT * FROM \`${this.Archivo}\` WHERE \`${this.Archivo}\`.Key='${key}'`;
     return this.makeFastQuery(sql)
         .then(rows => rows.map(DataPacket => (new Archivo(DataPacket['Key']).cargaDesdeObjeto(DataPacket)))[0])
 };
@@ -216,7 +216,7 @@ MySQLDataBase.prototype.updateFile = function (file, user) {
     const Carpeta = user.getCarpeta();
     const Key = file.getKey();
     const sql =
-`SELECT * FROM \`${this.Archivo}\` WHERE Key='${Key}'`;
+`SELECT * FROM \`${this.Archivo}\` WHERE \`${this.Archivo}\`.Key='${Key}'`;
     this.cache.set(sql, [file.getData()]);
     const updateData = file.getUpdateData();
     const ReuseId = updateData['ReuseId'], ContadorPeticiones = updateData['ContadorPeticiones'];
