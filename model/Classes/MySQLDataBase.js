@@ -171,11 +171,10 @@ MySQLDataBase.prototype.getFileByKey = function (key) {
         .then(rows => rows.map(DataPacket => (new Archivo(DataPacket['Key']).cargaDesdeObjeto(DataPacket)))[0])
 };
 MySQLDataBase.prototype.createFile = function (key) {
-    const File = new Archivo(key);;
+    const File = new Archivo(key);
     const {Curso, Facultad, Carpeta, ContadorPeticiones} = File.getData();
     const sql =
-`INSERT INTO \`${this.Archivo}\`(Key,Curso,Facultad,Carpeta,ContadorPeticiones)
-VALUES ('${key}','${Curso}','${Facultad}','${Carpeta}',${ContadorPeticiones}`;
+`INSERT INTO \`${this.Archivo}\` (Key,Curso,Facultad,Carpeta,ContadorPeticiones) VALUES ('${key}','${Curso}','${Facultad}','${Carpeta}',${ContadorPeticiones})`;
     return this.promiseQuery(sql)
         .then(() => File);
 };
