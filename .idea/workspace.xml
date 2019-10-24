@@ -70,21 +70,7 @@
       <workItem from="1571426911946" duration="92518000" />
       <workItem from="1571671301967" duration="31769000" />
       <workItem from="1571787326229" duration="38322000" />
-      <workItem from="1571930689124" duration="4147000" />
-    </task>
-    <task id="LOCAL-00036" summary="asdasd">
-      <created>1571868026448</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1571868026448</updated>
-    </task>
-    <task id="LOCAL-00037" summary="asdasd">
-      <created>1571868294687</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1571868294687</updated>
+      <workItem from="1571930689124" duration="4413000" />
     </task>
     <task id="LOCAL-00038" summary="arreglos">
       <created>1571868715414</created>
@@ -415,7 +401,21 @@
       <option name="project" value="LOCAL" />
       <updated>1571937504840</updated>
     </task>
-    <option name="localTasksCounter" value="85" />
+    <task id="LOCAL-00085" summary="sendFileOptions">
+      <created>1571937694494</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1571937694494</updated>
+    </task>
+    <task id="LOCAL-00086" summary="sendFileOptions">
+      <created>1571937896849</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1571937896849</updated>
+    </task>
+    <option name="localTasksCounter" value="87" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -435,7 +435,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Logica de envios&#10;Se esta trabajando en la logica de envios, leer TODO's" />
     <MESSAGE value="Logica de recepcion de mensaje&#10;Se escribio la logica completa para el procesamiento de los mensajes que contengan alguna solicitud, se trabaja ahora en la logica de ejecucion de comandos proveidos por el motor de procesamiento de lenguaje natural o por em canal de mensajeria" />
     <MESSAGE value="Separacion de logica&#10;Se crearon metodos en las interfaces para realizar tareas especificas, se usa el modulo de base de datos con libertad debido a la existencia del modulo de memoria cache, todavia no se ha demostrado su efectividad" />
     <MESSAGE value="ExecuteCommand&#10;Se trabajo en el metodo para ejecutar los comandos, ya sean proveidos por dialogflow o por el propio canal de mensajeria" />
@@ -460,6 +459,7 @@
     <MESSAGE value="SQL literals" />
     <MESSAGE value="logging" />
     <MESSAGE value="commands" />
-    <option name="LAST_COMMIT_MESSAGE" value="commands" />
+    <MESSAGE value="sendFileOptions" />
+    <option name="LAST_COMMIT_MESSAGE" value="sendFileOptions" />
   </component>
 </project>

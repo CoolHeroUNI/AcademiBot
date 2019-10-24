@@ -231,7 +231,10 @@ Bot.prototype.detectFiles = function (user, message) {
             }))
         })
         .then(Files => Promise.resolve(Files.filter(file => file.matchesText(message))))
-        .catch(e => this.DataBase.logUserError(e, user, 'DataBase'));
+        .catch(e => {
+            return this.DataBase.logUserError(e, user, 'DataBase')
+                .then(() => []);
+        });
 };
 /**
  *
