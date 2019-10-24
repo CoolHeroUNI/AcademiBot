@@ -174,7 +174,8 @@ WHERE Key='${Key}'`;
 };
 MySQLDataBase.prototype.createFile = function (key) {
     const File = new Archivo(key);
-    const {Key, Curso, Facultad, Carpeta, ContadorPeticiones} = File.getData();
+    const Key = mysql.escape(key);
+    const {Curso, Facultad, Carpeta, ContadorPeticiones} = File.getData();
     const sql =
 `INSERT INTO \`${this.Archivo}\` (Key,Curso,Facultad,Carpeta,ContadorPeticiones)
 VALUES ('${Key}','${Curso}','${Facultad}','${Carpeta}',${ContadorPeticiones}`;
@@ -215,7 +216,7 @@ MySQLDataBase.prototype.updateFile = function (file, user) {
     if (!user.isAbleToRequestFiles()) return Promise.reject(new Error('Datos de usuario faltantes'));
     const Curso = user.getCurso();
     const Carpeta = user.getCarpeta();
-    const Key = file.getKey();
+    const Key = mysql.escape(file.getKey());
     const sql =
 `SELECT * FROM \`${this.Archivo}\`
 WHERE Key='${Key}'`;
