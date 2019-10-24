@@ -382,7 +382,8 @@ Bot.prototype.sendAvailableFolders = function (user) {
     const userId = user.getFacebookId();
     return this.detectFolders(user, '')
         .then(folders => {
-            if (folders.length === 0) return this.MessagingChannel.sendText(userId, 'No hay carpetas disponibles', false);
+            const negationMessage = 'No hay carpetas disponibles, considera donar tu material de estudio en este curso.';
+            if (folders.length === 0) return this.MessagingChannel.sendText(userId, negationMessage, false);
             return this.sendFolders(user, folders)
         });
 };

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/model/Classes/Archivo.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Classes/Archivo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/Classes/Bot.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Classes/Bot.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -70,14 +70,7 @@
       <workItem from="1571426911946" duration="92518000" />
       <workItem from="1571671301967" duration="31769000" />
       <workItem from="1571787326229" duration="38322000" />
-      <workItem from="1571930689124" duration="11893000" />
-    </task>
-    <task id="LOCAL-00058" summary="logging">
-      <created>1571889371132</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1571889371132</updated>
+      <workItem from="1571930689124" duration="12010000" />
     </task>
     <task id="LOCAL-00059" summary="logging">
       <created>1571889416333</created>
@@ -415,7 +408,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571945170734</updated>
     </task>
-    <option name="localTasksCounter" value="107" />
+    <task id="LOCAL-00107" summary="Archivo.prototype.getExtension">
+      <created>1571945502419</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1571945502419</updated>
+    </task>
+    <option name="localTasksCounter" value="108" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -435,7 +435,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Separacion de logica&#10;Se crearon metodos en las interfaces para realizar tareas especificas, se usa el modulo de base de datos con libertad debido a la existencia del modulo de memoria cache, todavia no se ha demostrado su efectividad" />
     <MESSAGE value="ExecuteCommand&#10;Se trabajo en el metodo para ejecutar los comandos, ya sean proveidos por dialogflow o por el propio canal de mensajeria" />
     <MESSAGE value="Core functionality&#10;Funcionalidad primaria terminada, se inician pruebas" />
     <MESSAGE value="Try" />
@@ -460,6 +459,7 @@
     <MESSAGE value="sendFileOptions" />
     <MESSAGE value="sql" />
     <MESSAGE value="FileStorage" />
-    <option name="LAST_COMMIT_MESSAGE" value="FileStorage" />
+    <MESSAGE value="Archivo.prototype.getExtension" />
+    <option name="LAST_COMMIT_MESSAGE" value="Archivo.prototype.getExtension" />
   </component>
 </project>
