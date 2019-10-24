@@ -594,6 +594,7 @@ Bot.prototype.recieveMessage = async function (user, message) {
 
 };
 Bot.prototype.recievePayload = function (user, payload) {
+    console.log(payload);
     const data = payload.split(':');
     if (data.length > 2 || data.length === 0) return Promise.reject(new Error('Comando invalido'));
     const command = data[0];
