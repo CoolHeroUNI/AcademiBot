@@ -42,11 +42,11 @@ Bot.prototype.init = async function () {
         .then(() => setInterval(() => this.DataBase.ping(), 2000));
 };
 /**
- * @method setFileStorage
+ * @method SetArchivoStorage
  * Determina el Almacenamiento de archivos a usar para distribuir el material de estudio
  * @param {FileStorage} FileStorage
  */
-Bot.prototype.setFileStorage = function (FileStorage) {
+Bot.prototype.SetArchivoStorage = function (FileStorage) {
     this.FileStorage = FileStorage;
 };
 /**
@@ -190,7 +190,7 @@ Bot.prototype.sendFolders = function (user, folders) {
     const buttons = folders.map(folder => {
         return {
             'title' : folder.replace(/-/g,' '),
-            'payload' : `SetFolder:${folder}`
+            'payload' : `SetCarpeta:${folder}`
         }
     });
     const text = 'Quisiera que me muestres las carpetas';
@@ -306,11 +306,11 @@ Bot.prototype.sendFiles = function (user, files) {
             const buttons = [
                 {
                     'title' : 'Sí',
-                    'payload' : `setFile:${shortName}`
+                    'payload' : `SetArchivo:${shortName}`
                 },
                 {
                     'title' : 'No',
-                    'payload' : `setFolder:${user.getCarpeta()}`
+                    'payload' : `SetCarpeta:${user.getCarpeta()}`
                 }
 
             ];
@@ -334,7 +334,7 @@ Bot.prototype.sendFileOptions = function (user, files) {
         .map(File => {
             return {
                 'title' : File,
-                'payload' : `SetFile:${File}`
+                'payload' : `SetArchivo:${File}`
             }
         });
     const text = 'Quisiera que me muestres los archivos';
