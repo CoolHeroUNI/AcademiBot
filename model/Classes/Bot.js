@@ -573,6 +573,7 @@ Bot.prototype.recieveMessage = async function (user, message) {
         .catch(e => this.DataBase.logUserError(e, userId, 'NLPMotor'))
         .then(intent => {
             const {text, payload} = intent;
+            console.log(intent);
             const payloadKeys = Object.getOwnPropertyNames(payload);
             if (payloadKeys.length > 0) return this.processPayloadFromNLP(user, intent);
             return this.MessagingChannel.sendTextWithURLs(userId, text, false)
