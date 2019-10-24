@@ -139,7 +139,8 @@ Bot.prototype.sendCourses = function (user, courses) {
                 'title' : `MATERIAL ${data['Codigo']}`,
                 'payload' : `SetCurso:${data['Codigo']}`
             }
-        ]
+        ];
+        return option;
     });
     const id = user.getFacebookId();
     return this.MessagingChannel.sendOptionsMenu(id, options)
