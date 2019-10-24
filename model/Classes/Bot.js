@@ -315,6 +315,7 @@ Bot.prototype.sendFiles = function (user, files) {
             const text = 'Error enviando. ¿Quieres intentarlo de nuevo?';
             return this.MessagingChannel.sendReplyButtons(userId, text, buttons)
         })
+        .then(() => this.sendAvailableFiles(user))
         .catch(e => this.DataBase.logInternalError(e, 'MessagingChannel'))
         .catch(e => console.log(e));
 };
@@ -397,6 +398,7 @@ Bot.prototype.sendAvailableFiles = function (user) {
  * @param {Object} parameters
  */
 Bot.prototype.executeCommand = function (user, command, parameters) {
+    console.log(command, parameters);
     const userId = user.getFacebookId();
     switch (command) {
         case 'Cursos':
@@ -591,5 +593,8 @@ Bot.prototype.recievePayload = function (user, payload) {
     const command = data[0];
     const arguments = data[1];
     return this.executeCommand(user, command, arguments);
+};
+Bot.prototype.endInteraction = function (user) {
+    return this.DataBase.updateUser(user);
 };
 module.exports = Bot;

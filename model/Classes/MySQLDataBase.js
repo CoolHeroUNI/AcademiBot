@@ -41,10 +41,7 @@ MySQLDataBase.prototype.connect = function () {
 MySQLDataBase.prototype.getUserById = function (userId) {
     const sql = `SELECT * FROM \`${this.User}\` WHERE FacebookId=${userId}`;
     return this.makeFastQuery(sql)
-        .then(rows => {
-            console.log(rows);
-            return (rows.map(DataPacket => (new Usuario(DataPacket['FacebookId']).cargaDesdeObjeto(DataPacket))))[0];
-        })
+        .then(rows => (rows.map(DataPacket => (new Usuario(DataPacket['FacebookId']).cargaDesdeObjeto(DataPacket))))[0]);
 };
 
 MySQLDataBase.prototype.getAllUsers = function () {
@@ -271,7 +268,6 @@ MySQLDataBase.prototype.logUserError = function (error, user, module) {
  */
 MySQLDataBase.prototype.logInternalError = function (error, module) {
     const message = error.message.substr(0, 200);
-    console.log(error);
     const sql = `INSERT INTO \`${this.Error}\` (Mensaje,Modulo) VALUES ("${message}",'${module}')`;
     return this.promiseQuery(sql);
 };

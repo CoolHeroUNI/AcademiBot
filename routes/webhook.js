@@ -16,13 +16,16 @@ router.post('/', (req, res) => {
     const messagingEvents = req.body.entry[0]['messaging'];
     for (const event of messagingEvents) {
         const userId = parseInt(event['sender']['id']);
+        let User;
         AcademiBot.startInteraction(userId)
             .then(user => {
+                User = user;
                 if (event['message'] && event['message']['text']) {
                     const textMessage = event['message']['text'];
                     return AcademiBot.recieveMessage(user, textMessage);
                 }
             })
+            .then(() => AcademiBot.endInteraction(User))
             .catch(e => console.log(e));
     }
 });
