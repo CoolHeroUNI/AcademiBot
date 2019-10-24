@@ -168,7 +168,11 @@ MySQLDataBase.prototype.getFileByKey = function (key) {
     const sql =
 `SELECT * FROM \`${this.Archivo}\` WHERE \`${this.Archivo}\`.Key='${key}'`;
     return this.makeFastQuery(sql)
-        .then(rows => rows.map(DataPacket => (new Archivo(DataPacket['Key']).cargaDesdeObjeto(DataPacket)))[0])
+        .then(rows => {
+            const DataPacket = rows[0];
+            console.log(DataPacket);
+            return new Archivo(DataPacket['Key']).cargaDesdeObjeto(DataPacket);
+        })
 };
 MySQLDataBase.prototype.createFile = function (key) {
     const File = new Archivo(key);
@@ -251,7 +255,6 @@ WHERE Key=${Key}`;
  * @param {String} module
  */
 MySQLDataBase.prototype.logUserError = function (error, user, module) {
-    console.log(error);
     const message = mysql.escape(error.message).substr(0,200);
     const userId = user.getFacebookId();
     const sql = `INSERT INTO \`${this.Error}\` (Usuario,Mensaje,Modulo) VALUES (${userId},"${message}",'${module}')`;
@@ -263,7 +266,6 @@ MySQLDataBase.prototype.logUserError = function (error, user, module) {
  * @param {String} module
  */
 MySQLDataBase.prototype.logInternalError = function (error, module) {
-    console.log(error);
     const message = mysql.escape(error.message).substr(0,200);
     const sql = `INSERT INTO \`${this.Error}\` (Mensaje,Modulo) VALUES ("${message}",'${module}')`;
     return this.promiseQuery(sql);
