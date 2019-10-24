@@ -63,7 +63,7 @@ MySQLDataBase.prototype.updateUser = function (user) {
     const id = mysql.escape(user.getFacebookId());
     const sql = `SELECT * FROM \`${this.User}\` WHERE FacebookId=${id}`;
 
-    const userData = user.getUpdateData();
+    const userData = user.getData();
     const Especialidad = userData['Especialidad'], Curso = userData['Curso'], Carpeta = userData['Carpeta'];
     const Ciclo = userData['Ciclo'], CantidadPeticiones = userData['CantidadPeticiones'];
     const AceptaPublicidad = userData['AceptaPublicidad'], Valido = userData['Valido'];

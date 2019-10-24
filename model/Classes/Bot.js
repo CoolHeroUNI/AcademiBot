@@ -399,7 +399,6 @@ Bot.prototype.sendAvailableFiles = function (user) {
  * @param {Object} parameters
  */
 Bot.prototype.executeCommand = function (user, command, parameters) {
-    console.log(command, parameters);
     const userId = user.getFacebookId();
     switch (command) {
         case 'Cursos':
