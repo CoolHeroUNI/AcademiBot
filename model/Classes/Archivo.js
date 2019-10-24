@@ -115,7 +115,7 @@ Archivo.prototype.getPage = function () {
  * @method getExtension
  * @returns {string}
  */
-Archivo.getExtension = function () {
+Archivo.prototype.getExtension = function () {
     const last = this.getFilename().split('-').pop();
     const dotIndex = last.lastIndexOf('.') + 1;
     if (dotIndex === 0) throw new Error("El archivo no posee una extension en " + this.Key);
