@@ -183,7 +183,7 @@ MySQLDataBase.prototype.createFile = function (key) {
     const sql =
 `INSERT INTO \`${this.Archivo}\` (\`${this.Archivo}\`.Key,Curso,Facultad,Carpeta,ContadorPeticiones) VALUES ('${key}','${Curso}','${Facultad}','${Carpeta}',${ContadorPeticiones})`;
     return this.promiseQuery(sql)
-        .finally(() => Promise.resolve(File));
+        .then(() => Promise.resolve(File));
 };
 
 /**
