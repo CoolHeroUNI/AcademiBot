@@ -439,12 +439,13 @@ Bot.prototype.executeCommand = function (user, command, parameters) {
                     return this.regularizeUser(user);
                 });
         case 'SetCiclo':
-            const Ciclo = parameters['ciclo'];
+            const Ciclo = parameters['ciclo'] || parameters;
             return this.DataBase.getCiclos()
                 .then(rows => {
-                    const ciclo = rows.filter(row => row['Nombre'] === Ciclo)[0]['Numero'];
+                    const ciclo = rows.filter(row => row['Nombre'] === Ciclo)[0];
                     if (!ciclo) return Promise.reject(new Error('No se encontro el ciclo ' + Ciclo));
-                    user.setCiclo(parseInt(ciclo));
+                    const numero = parseInt(ciclo['Numero']);
+                    user.setCiclo(numero);
                     return this.sendAvailableCourses(user);
                 });
         case 'SetCurso':
