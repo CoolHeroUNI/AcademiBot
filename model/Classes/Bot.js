@@ -415,7 +415,7 @@ Bot.prototype.executeCommand = function (user, command, parameters) {
                 .catch(e => this.DataBase.logInternalError(e, 'MessagingChannel'));
         case 'SetFacultad':
             const message = 'Selecciona una especialidad';
-            const Facultad = parameters['facultad'];
+            const Facultad = parameters['facultad'] || parameters;
             return this.DataBase.getEspecialidadesByFacultad(Facultad)
                 .catch(e => this.DataBase.logUserError(e, user, 'DataBase'))
                 .then(rows => {
@@ -429,7 +429,7 @@ Bot.prototype.executeCommand = function (user, command, parameters) {
                 })
                 .catch(e => this.DataBase.logUserError(e, user, 'MessagingChannel'));
         case 'SetEspecialidad':
-            const Especialidad = parameters['especialidad'];
+            const Especialidad = parameters['especialidad'] || parameters;
             return this.DataBase.getEspecialidadById(Especialidad)
                 .catch(e => console.log(e))
                 .then(rows => {
@@ -447,7 +447,7 @@ Bot.prototype.executeCommand = function (user, command, parameters) {
                     return this.sendAvailableCourses(user);
                 });
         case 'SetCurso':
-            const course = parameters['curso'];
+            const course = parameters['curso'] || parameters;
             return this.DataBase.getCourseById(course)
                 .then(curso => {
                     if (!curso) return Promise.reject(new Error('No se encontro curso ' + course));
@@ -460,7 +460,7 @@ Bot.prototype.executeCommand = function (user, command, parameters) {
                     return this.sendAvailableFolders(user);
                 });
         case 'SetCarpeta':
-            const folder = parameters['carpeta'];
+            const folder = parameters['carpeta'] || parameters;
             try {user.setCarpeta(folder)}
             catch (e) {
                 user.reset();
@@ -468,7 +468,7 @@ Bot.prototype.executeCommand = function (user, command, parameters) {
             }
             return this.sendAvailableFiles(user);
         case 'SetArchivo':
-            const shortName = parameters['archivo'];
+            const shortName = parameters['archivo'] || parameters;
             return this.detectFiles(user, shortName)
                 .then(files => this.sendFiles(user, files));
         default:
