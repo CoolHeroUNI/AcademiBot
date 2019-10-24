@@ -97,7 +97,6 @@ Bot.prototype.detectCourses = function (user, message) {
     return this.DataBase.getProbableCoursesByUser(user)
         .catch(e => this.DataBase.logUserError(e, user, 'DataBase'))
         .then(courses => {
-            console.log(courses);
             const nonZeroMatch = courses.filter(course => {
                 for (let word of words) {
                     if (course.matchesName(word)) return true;
@@ -129,6 +128,7 @@ Bot.prototype.detectCourses = function (user, message) {
  * @param {Curso[]} courses
  */
 Bot.prototype.sendCourses = function (user, courses) {
+    console.log(courses);
     const options = courses.map(course => {
         const option = {};
         const data = course.getData();
