@@ -104,17 +104,16 @@ MySQLDataBase.prototype.getCoursesByUser = function (user) {
     const Ciclo = user.getCiclo();
     if (!Ciclo) throw new Error("No es posible realizar la busqueda por ausencia de Ciclo");
     const sql =
-`SELECT Codigo,Nombre,SistemaEvaluacion,Creditos 
-FROM \`${this.Curso}\`,\`${this.ECC}\` 
-WHERE \`${this.ECC}\`.Curso=\`${this.Curso}\`.Codigo AND Especialidad='${Especialidad}' AND Ciclo=${Ciclo}`;
+`SELECT Curso
+FROM \`${this.ECC}\` 
+WHERE Especialidad='${Especialidad}' AND Ciclo=${Ciclo}`;
     return this.makeFastQuery(sql)
-        .then(rows => rows.map(DataPacket => {
-            const Codigo = DataPacket['Codigo'];
-            const Nombre = DataPacket['Nombre'];
-            const SistemaEvaluacion = DataPacket['SistemaEvaluacion'];
-            const Creditos = DataPacket['Creditos'];
-            return new Curso(Codigo, Nombre, SistemaEvaluacion, Creditos);
-        }))
+        .then(rows => {
+            return Promise.all(rows.map(row => {
+                const Codigo = row['Curso'];
+                return this.getCourseById(Codigo);
+            }))
+        });
 };
 /**
  * DEPRECATED
@@ -256,9 +255,9 @@ WHERE Key='${Key}'`;
  * @param {String} module
  */
 MySQLDataBase.prototype.logUserError = function (error, user, module) {
-    const message = error.message.substr(0,200);
+    const message = mysql.escape(error.message.substr(0,200));
     const userId = user.getFacebookId();
-    const sql = `INSERT INTO \`${this.Error}\` (Usuario,Mensaje,Modulo) VALUES (${userId},\`${message}\`,'${module}')`;
+    const sql = `INSERT INTO \`${this.Error}\` (Usuario,Mensaje,Modulo) VALUES (${userId},"${message}",'${module}')`;
     return this.promiseQuery(sql);
 };
 /**
@@ -267,8 +266,8 @@ MySQLDataBase.prototype.logUserError = function (error, user, module) {
  * @param {String} module
  */
 MySQLDataBase.prototype.logInternalError = function (error, module) {
-    const message = error.message.substr(0, 200);
-    const sql = `INSERT INTO \`${this.Error}\` (Mensaje,Modulo) VALUES (\`${message}\`,'${module}')`;
+    const message = mysql.escape(error.message.substr(0,200));
+    const sql = `INSERT INTO \`${this.Error}\` (Mensaje,Modulo) VALUES ("${message}",'${module}')`;
     return this.promiseQuery(sql);
 };
 /**
