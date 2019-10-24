@@ -70,7 +70,7 @@ S3.prototype.copyObject = function (from, to) {
         Bucket: this.bucket,
         Key: to
     };
-    return this.s3.copyObject(params);
+    return this.s3.copyObject(params).promise();
 };
 S3.prototype.deleteObject = function (key) {
     const params = {
