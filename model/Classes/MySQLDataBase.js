@@ -85,7 +85,7 @@ MySQLDataBase.prototype.createUser = function (userId) {
 
 MySQLDataBase.prototype.getCourseById = function (courseId) {
     const codigo = mysql.escape(courseId);
-    const sql = `SELECT * FROM \`${this.Curso}\` WHERE Codigo='${codigo}'`;
+    const sql = `SELECT * FROM \`${this.Curso}\` WHERE Codigo=${codigo}`;
     return this.makeFastQuery(sql)
         .then(rows => rows.map(DataPacket => {
             const Codigo = DataPacket['Codigo'];
@@ -303,6 +303,7 @@ WHERE Id='${Especialidad}'`;
 MySQLDataBase.prototype.makeFastQuery = async function (SQL) {
     console.log(SQL);
     const cached = this.cache.get(SQL);
+    console.log(cached);
     if (cached) return cached;
     const rows = await this.promiseQuery(SQL);
     console.log(rows);
