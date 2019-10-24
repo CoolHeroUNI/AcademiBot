@@ -221,6 +221,7 @@ Bot.prototype.detectFiles = function (user, message) {
             return this.FileStorage.listObjectsUnder(prefix);
         })
         .then(respuesta => {
+            console.log(prefix, respuesta);
             this.CacheHandler.set(prefix, respuesta);
             return Promise.all(respuesta.map(key => {
                 return this.DataBase.getFileByKey(key)
@@ -328,6 +329,7 @@ Bot.prototype.sendFiles = function (user, files) {
  */
 Bot.prototype.sendFileOptions = function (user, files) {
     const userId = user.getFacebookId();
+    console.log(files);
     const buttons = files
         .map(file => file.getShortName())
         .filter((value, index, self) => self.indexOf(value) === index)
@@ -593,7 +595,6 @@ Bot.prototype.recieveMessage = async function (user, message) {
 
 };
 Bot.prototype.recievePayload = function (user, payload) {
-    console.log(payload);
     const data = payload.split(':');
     if (data.length > 2 || data.length === 0) return Promise.reject(new Error('Comando invalido'));
     const command = data[0];
