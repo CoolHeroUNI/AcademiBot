@@ -169,7 +169,6 @@ Facebook.prototype.sendReplyButtons = function (userId, text, parameters) {
     return RequestPromise(params);
 };
 Facebook.prototype.sendOptionsMenu = function (userId, parameters) {
-    console.log(parameters);
     const LIMITE_FACEBOOK = 10;
     while (parameters.length > LIMITE_FACEBOOK) parameters.pop();
     const opciones = parameters.map(parameter => {

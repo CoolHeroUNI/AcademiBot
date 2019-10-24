@@ -128,7 +128,6 @@ Bot.prototype.detectCourses = function (user, message) {
  * @param {Curso[]} courses
  */
 Bot.prototype.sendCourses = function (user, courses) {
-    console.log(courses);
     const options = courses.map(course => {
         const option = {};
         const data = course.getData();
