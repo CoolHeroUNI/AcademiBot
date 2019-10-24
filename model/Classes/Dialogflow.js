@@ -33,6 +33,7 @@ Dialogflow.prototype.processText = async function (sessionId, text) {
     const fulfillmentText = intent.queryResult.fulfillmentText;
     const payload = {};
     const parameters = {};
+    console.log(fulfillmentMessages);
     const fulfillmentMessage = fulfillmentMessages
         .filter(message => message['payload'] && message['payload']['fields'])[0];
     if (fulfillmentMessage) {
