@@ -12,7 +12,6 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
     res.sendStatus(200);
-
     const messagingEvents = req.body.entry[0]['messaging'];
     for (const event of messagingEvents) {
         const userId = parseInt(event['sender']['id']);
@@ -20,9 +19,20 @@ router.post('/', (req, res) => {
         AcademiBot.startInteraction(userId)
             .then(user => {
                 User = user;
-                if (event['message'] && event['message']['text']) {
-                    const textMessage = event['message']['text'];
-                    return AcademiBot.recieveMessage(user, textMessage);
+                if (event['postback'] && event['postback']['payload']) {
+                    const payload = event['postback']['payload'];
+                    return AcademiBot.recievePayload(user, payload);
+                }
+                if (event['message']) {
+                    const message = event['message'];
+                    if (message['quick_reply'] && message['quick_reply']['payload']) {
+                        const payload = message['quick_reply']['payload'];
+                        return AcademiBot.recievePayload(user, payload);
+                    }
+                    if (message['text']) {
+                        const textMessage = event['message']['text'];
+                        return AcademiBot.recieveMessage(user, textMessage);
+                    }
                 }
             })
             .then(() => AcademiBot.endInteraction(User))
