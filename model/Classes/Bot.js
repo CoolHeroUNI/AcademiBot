@@ -42,11 +42,11 @@ Bot.prototype.init = async function () {
         .then(() => setInterval(() => this.DataBase.ping(), 2000));
 };
 /**
- * @method SetFileStorage
+ * @method setFileStorage
  * Determina el Almacenamiento de archivos a usar para distribuir el material de estudio
  * @param {FileStorage} FileStorage
  */
-Bot.prototype.SetFileStorage = function (FileStorage) {
+Bot.prototype.setFileStorage = function (FileStorage) {
     this.FileStorage = FileStorage;
 };
 /**
