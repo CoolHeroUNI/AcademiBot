@@ -240,7 +240,7 @@ WHERE Facultad='${Facultad}' AND Curso='${Curso}' AND Carpeta='${Carpeta}'`;
     const sqlUpdate =
 `UPDATE \`${this.Archivo}\`
 SET ReuseId=${ReuseId}, ContadorPeticiones=${ContadorPeticiones}
-WHERE Key='${Key}'`;
+WHERE \`${this.Archivo}\`.Key='${Key}'`;
     return this.promiseQuery(sqlUpdate);
 };
 MySQLDataBase.prototype.deleteFileByKey = function (key) {

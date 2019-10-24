@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/model/Classes/Bot.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Classes/Bot.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/Classes/MySQLDataBase.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Classes/MySQLDataBase.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -70,14 +71,7 @@
       <workItem from="1571426911946" duration="92518000" />
       <workItem from="1571671301967" duration="31769000" />
       <workItem from="1571787326229" duration="38322000" />
-      <workItem from="1571930689124" duration="12010000" />
-    </task>
-    <task id="LOCAL-00059" summary="logging">
-      <created>1571889416333</created>
-      <option name="number" value="00059" />
-      <option name="presentableId" value="LOCAL-00059" />
-      <option name="project" value="LOCAL" />
-      <updated>1571889416333</updated>
+      <workItem from="1571930689124" duration="12513000" />
     </task>
     <task id="LOCAL-00060" summary="logging">
       <created>1571889789927</created>
@@ -415,7 +409,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571945502419</updated>
     </task>
-    <option name="localTasksCounter" value="108" />
+    <task id="LOCAL-00108" summary="message">
+      <created>1571945628272</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
+      <option name="project" value="LOCAL" />
+      <updated>1571945628272</updated>
+    </task>
+    <option name="localTasksCounter" value="109" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -435,7 +436,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="ExecuteCommand&#10;Se trabajo en el metodo para ejecutar los comandos, ya sean proveidos por dialogflow o por el propio canal de mensajeria" />
     <MESSAGE value="Core functionality&#10;Funcionalidad primaria terminada, se inician pruebas" />
     <MESSAGE value="Try" />
     <MESSAGE value="module.exports missing&#10;CacheHandler" />
@@ -460,6 +460,7 @@
     <MESSAGE value="sql" />
     <MESSAGE value="FileStorage" />
     <MESSAGE value="Archivo.prototype.getExtension" />
-    <option name="LAST_COMMIT_MESSAGE" value="Archivo.prototype.getExtension" />
+    <MESSAGE value="message" />
+    <option name="LAST_COMMIT_MESSAGE" value="message" />
   </component>
 </project>

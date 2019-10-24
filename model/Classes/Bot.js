@@ -241,9 +241,7 @@ Bot.prototype.sendFiles = function (user, files) {
         .catch(e => this.DataBase.logInternalError(e, 'Archivo'))
         .then(sortedFiles => {
             SortedFiles = sortedFiles;
-            console.log('FILES');
             return Promise.all(sortedFiles.map(file => {
-                console.log(file);
                 return new Promise((resolve, reject) => {
                     shortName = file.getShortName();
                     const type = file.getType();
@@ -259,10 +257,8 @@ Bot.prototype.sendFiles = function (user, files) {
                         resolve(params);
                     }
                     const key = file.getKey();
-                    console.log(key);
                     this.FileStorage.getPublicURL(key)
                         .then(url => {
-                            console.log(url);
                             params['url'] = url;
                             resolve(params)
                         })
@@ -282,21 +278,24 @@ Bot.prototype.sendFiles = function (user, files) {
                     this.DataBase.logUserError(response, user, 'MessagingChannel')
                         .then(() => this.DataBase.logTransaction(user, key, false))
                         .catch(e => console.log(e));
-                } else if (!file.getReuseId()) {
-                    const attachment_id = parseInt(response['attachment_id']) || null;
-                    file.aumentaContador();
-                    file.setReuseId(attachment_id);
-                    this.DataBase.updateFile(file, user)
-                        .then(() => this.DataBase.logTransaction(user, key, true))
-                        .then(() => this.DataBase.updateFile(file, user))
+                } else {
+                    this.DataBase.logTransaction(user, key, true)
+                        .then(() => {
+                            if (!file.getReuseId()) {
+                                const attachment_id = parseInt(response['attachment_id']) || null;
+                                file.aumentaContador();
+                                file.setReuseId(attachment_id);
+                                return this.DataBase.updateFile(file, user)
+                            }
+                        })
+                        .catch(e => this.DataBase.logUserError(e, user, 'DataBase'))
                         .catch(e => console.log(e));
                 }
             }
             return failed ? Promise.reject() : Promise.resolve();
         })
         .then(() => this.sendAvailableFiles(user))
-        .catch((e) => {
-            console.log('error', e);
+        .catch(() => {
             const buttons = [
                 {
                     'title' : 'Sí',
