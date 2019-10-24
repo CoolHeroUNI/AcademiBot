@@ -162,11 +162,9 @@ Bot.prototype.detectFolders = function (user, message) {
             const Facultad = rows[0]['Facultad'];
             const prefix = `${Facultad}/${Curso}/`;
             const cachedFolders = this.CacheHandler.get(prefix);
-            console.log(prefix, cachedFolders);
             if (cachedFolders) return cachedFolders;
             return this.FileStorage.listObjectsDirectlyUnder(prefix)
                 .then(respuesta => {
-                    console.log(respuesta);
                     const Folders = respuesta.map(o => o.replace(prefix, '').replace('/',''));
                     this.CacheHandler.set(prefix, Folders);
                     return Folders;
@@ -174,6 +172,7 @@ Bot.prototype.detectFolders = function (user, message) {
         })
         .then(Carpetas => {
             return Carpetas.filter(Carpeta => {
+                if (message.length === 0) return true;
                 if (Carpeta.indexOf(message) > 0) return true;
                 const carpeta = new RegExp(Carpeta.replace(/-/g, '(|-| )'), 'i');
                 return carpeta.test(message);
