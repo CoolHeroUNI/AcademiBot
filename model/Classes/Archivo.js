@@ -130,7 +130,9 @@ Archivo.getExtension = function () {
 Archivo.prototype.matchesText = function (Text) {
     const expression = new RegExp(this.getShortName(), 'i');
     const expressionText = new RegExp(Text);
-    if (expressionText.test(this.getShortName())) return true;
+    const ownShortName = this.getShortName();
+    console.log(ownShortName, Text, expressionText.test(ownShortName));
+    if (expressionText.test(ownShortName)) return true;
     return (expression.test(Text));
 };
 /**

@@ -224,12 +224,7 @@ Bot.prototype.detectFiles = function (user, message) {
             this.CacheHandler.set(prefix, respuesta);
             return Promise.all(respuesta.map(key => this.DataBase.getFileByKey(key)))
         })
-        .then(Files => Promise.all(Files.filter(file => file.matchesText(message))))
-        .catch(e => {
-            this.DataBase.logUserError(e, user, 'DataBase')
-                .catch(e => console.log(e))
-            return Promise.reject(e);
-        });
+        .then(Files => Files.filter(file => file.matchesText(message)))
 };
 /**
  *
