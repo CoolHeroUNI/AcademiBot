@@ -170,10 +170,9 @@ MySQLDataBase.prototype.getFileByKey = function (key) {
     return this.makeFastQuery(sql)
         .then(rows => {
             const DataPacket = rows[0];
-            if (!DataPacket) return Promise.reject();
+            if (!DataPacket) return this.createFile(key);
             return Promise.resolve(new Archivo(DataPacket['Key']).cargaDesdeObjeto(DataPacket));
         })
-        .catch(() => Promise.resolve(this.createFile(key)))
 };
 MySQLDataBase.prototype.createFile = function (key) {
     const File = new Archivo(key);

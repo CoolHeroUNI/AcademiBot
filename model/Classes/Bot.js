@@ -237,12 +237,13 @@ Bot.prototype.sendFiles = function (user, files) {
     let shortName = '';
     let SortedFiles = [];
     // Se mapea cada archivo a una promesa que contendra todos los parametros necesarios para hacer las requests
-    Promise.all(files.sort((file1, file2) => file2.getPage() - file1.getPage()))
+    Promise.all(files.sort((file1, file2) => file1.getPage() - file2.getPage()))
         .catch(e => this.DataBase.logInternalError(e, 'Archivo'))
         .then(sortedFiles => {
             SortedFiles = sortedFiles;
-            console.log('FILES', SortedFiles);
+            console.log('FILES');
             return Promise.all(sortedFiles.map(file => {
+                console.log(file);
                 return new Promise((resolve, reject) => {
                     shortName = file.getShortName();
                     const type = file.getType();
@@ -293,7 +294,9 @@ Bot.prototype.sendFiles = function (user, files) {
             }
             return failed ? Promise.reject() : Promise.resolve();
         })
-        .catch(() => {
+        .then(() => this.sendAvailableFiles(user))
+        .catch((e) => {
+            console.log('error', e);
             const buttons = [
                 {
                     'title' : 'Sí',
@@ -308,7 +311,6 @@ Bot.prototype.sendFiles = function (user, files) {
             const text = 'Error enviando. ¿Quieres intentarlo de nuevo?';
             return this.MessagingChannel.sendReplyButtons(userId, text, buttons)
         })
-        .then(() => this.sendAvailableFiles(user))
         .catch(e => this.DataBase.logInternalError(e, 'MessagingChannel'))
         .catch(e => console.log(e));
 };

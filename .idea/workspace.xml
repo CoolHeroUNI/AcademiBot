@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/model/Classes/Bot.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Classes/Bot.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/Classes/MySQLDataBase.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Classes/MySQLDataBase.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -70,14 +71,7 @@
       <workItem from="1571426911946" duration="92518000" />
       <workItem from="1571671301967" duration="31769000" />
       <workItem from="1571787326229" duration="38322000" />
-      <workItem from="1571930689124" duration="11001000" />
-    </task>
-    <task id="LOCAL-00056" summary="logging">
-      <created>1571888893687</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1571888893687</updated>
+      <workItem from="1571930689124" duration="11573000" />
     </task>
     <task id="LOCAL-00057" summary="logging">
       <created>1571889169218</created>
@@ -415,7 +409,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571944331051</updated>
     </task>
-    <option name="localTasksCounter" value="105" />
+    <task id="LOCAL-00105" summary="FileStorage">
+      <created>1571944599395</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1571944599395</updated>
+    </task>
+    <option name="localTasksCounter" value="106" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -435,7 +436,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Logica de recepcion de mensaje&#10;Se escribio la logica completa para el procesamiento de los mensajes que contengan alguna solicitud, se trabaja ahora en la logica de ejecucion de comandos proveidos por el motor de procesamiento de lenguaje natural o por em canal de mensajeria" />
     <MESSAGE value="Separacion de logica&#10;Se crearon metodos en las interfaces para realizar tareas especificas, se usa el modulo de base de datos con libertad debido a la existencia del modulo de memoria cache, todavia no se ha demostrado su efectividad" />
     <MESSAGE value="ExecuteCommand&#10;Se trabajo en el metodo para ejecutar los comandos, ya sean proveidos por dialogflow o por el propio canal de mensajeria" />
     <MESSAGE value="Core functionality&#10;Funcionalidad primaria terminada, se inician pruebas" />
@@ -460,6 +460,7 @@
     <MESSAGE value="commands" />
     <MESSAGE value="sendFileOptions" />
     <MESSAGE value="sql" />
-    <option name="LAST_COMMIT_MESSAGE" value="sql" />
+    <MESSAGE value="FileStorage" />
+    <option name="LAST_COMMIT_MESSAGE" value="FileStorage" />
   </component>
 </project>
