@@ -168,7 +168,7 @@ MySQLDataBase.prototype.getFileByKey = function (key) {
     const Key = mysql.escape(key);
     const sql =
 `SELECT * FROM \`${this.Archivo}\`
-WHERE Key='${Key}'`;
+WHERE Key=${Key}`;
     return this.makeFastQuery(sql)
         .then(rows => rows.map(DataPacket => (new Archivo(DataPacket['Key']).cargaDesdeObjeto(DataPacket)))[0])
 };
@@ -178,7 +178,7 @@ MySQLDataBase.prototype.createFile = function (key) {
     const {Curso, Facultad, Carpeta, ContadorPeticiones} = File.getData();
     const sql =
 `INSERT INTO \`${this.Archivo}\` (Key,Curso,Facultad,Carpeta,ContadorPeticiones)
-VALUES ('${Key}','${Curso}','${Facultad}','${Carpeta}',${ContadorPeticiones}`;
+VALUES (${Key},'${Curso}','${Facultad}','${Carpeta}',${ContadorPeticiones}`;
     return this.promiseQuery(sql)
         .then(() => File);
 };
@@ -219,7 +219,7 @@ MySQLDataBase.prototype.updateFile = function (file, user) {
     const Key = mysql.escape(file.getKey());
     const sql =
 `SELECT * FROM \`${this.Archivo}\`
-WHERE Key='${Key}'`;
+WHERE Key=${Key}`;
     this.cache.set(sql, [file.getData()]);
     const updateData = file.getUpdateData();
     const ReuseId = updateData['ReuseId'], ContadorPeticiones = updateData['ContadorPeticiones'];
@@ -246,7 +246,7 @@ MySQLDataBase.prototype.deleteFileByKey = function (key) {
     const Key = mysql.escape(key);
     const sql =
 `DELETE FROM \`${this.Archivo}\`
-WHERE Key='${Key}'`;
+WHERE Key=${Key}`;
     return this.promiseQuery(sql);
 };
 /**
