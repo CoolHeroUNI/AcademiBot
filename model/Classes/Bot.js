@@ -242,6 +242,7 @@ Bot.prototype.detectFiles = function (user, message) {
  * @param {Archivo[]} files
  */
 Bot.prototype.sendFiles = function (user, files) {
+    if (files.length === 0) return Promise.reject(new Error('No hay archivos para enviar.'));
     const userId = user.getFacebookId();
     let shortName = '';
     let SortedFiles = [];
