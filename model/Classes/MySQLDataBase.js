@@ -178,6 +178,8 @@ MySQLDataBase.prototype.getFileByKey = function (key) {
 MySQLDataBase.prototype.createFile = function (key) {
     const File = new Archivo(key);
     const {Curso, Facultad, Carpeta, ContadorPeticiones} = File.getData();
+    const insertSql = `SELECT * FROM \`${this.Archivo}\` WHERE \`${this.Archivo}\`.Key='${key}'`;
+    this.cache.set(insertSql, File.getData());
     const sql =
 `INSERT INTO \`${this.Archivo}\` (\`${this.Archivo}\`.Key,Curso,Facultad,Carpeta,ContadorPeticiones) VALUES ('${key}','${Curso}','${Facultad}','${Carpeta}',${ContadorPeticiones})`;
     return this.promiseQuery(sql)
