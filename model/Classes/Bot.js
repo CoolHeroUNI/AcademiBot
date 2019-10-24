@@ -233,7 +233,6 @@ Bot.prototype.detectFiles = function (user, message) {
  */
 Bot.prototype.sendFiles = function (user, files) {
     if (files.length === 0) return Promise.reject(new Error('No hay archivos para enviar.'));
-    console.log('FILES', files);
     const userId = user.getFacebookId();
     let shortName = '';
     let SortedFiles = [];
@@ -242,6 +241,7 @@ Bot.prototype.sendFiles = function (user, files) {
         .catch(e => this.DataBase.logInternalError(e, 'Archivo'))
         .then(sortedFiles => {
             SortedFiles = sortedFiles;
+            console.log('FILES', SortedFiles);
             return Promise.all(sortedFiles.map(file => {
                 return new Promise((resolve, reject) => {
                     shortName = file.getShortName();
@@ -253,12 +253,15 @@ Bot.prototype.sendFiles = function (user, files) {
                     };
                     const reuseId = file.getReuseId();
                     if (reuseId) {
+                        console.log(reuseId);
                         params['attachment_id'] = reuseId;
                         resolve(params);
                     }
                     const key = file.getKey();
+                    console.log(key);
                     this.FileStorage.getPublicURL(key)
                         .then(url => {
+                            console.log(url);
                             params['url'] = url;
                             resolve(params)
                         })
