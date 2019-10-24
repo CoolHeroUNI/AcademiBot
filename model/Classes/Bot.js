@@ -225,7 +225,7 @@ Bot.prototype.detectFiles = function (user, message) {
             return Promise.all(respuesta.map(key => {
                 return this.DataBase.getFileByKey(key)
                     .then(File => {
-                        if (!File) return this.DataBase.createFile(key);
+                        console.log(File);
                         return Promise.resolve(File);
                     })
             }))
@@ -243,7 +243,7 @@ Bot.prototype.detectFiles = function (user, message) {
  */
 Bot.prototype.sendFiles = function (user, files) {
     if (files.length === 0) return Promise.reject(new Error('No hay archivos para enviar.'));
-    console.log(files);
+    console.log('FILES', files);
     const userId = user.getFacebookId();
     let shortName = '';
     let SortedFiles = [];
