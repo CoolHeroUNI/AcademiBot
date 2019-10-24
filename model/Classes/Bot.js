@@ -221,7 +221,6 @@ Bot.prototype.detectFiles = function (user, message) {
             return this.FileStorage.listObjectsUnder(prefix);
         })
         .then(respuesta => {
-            console.log(prefix, respuesta);
             this.CacheHandler.set(prefix, respuesta);
             return Promise.all(respuesta.map(key => {
                 return this.DataBase.getFileByKey(key)
@@ -231,7 +230,7 @@ Bot.prototype.detectFiles = function (user, message) {
                     })
             }))
         })
-        .then(Files => Files.filter(file => file.matchesText(message)))
+        .then(Files => Promise.resolve(Files.filter(file => file.matchesText(message))))
         .catch(e => this.DataBase.logUserError(e, user, 'DataBase'));
 };
 /**
