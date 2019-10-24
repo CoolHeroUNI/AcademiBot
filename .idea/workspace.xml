@@ -70,21 +70,7 @@
       <workItem from="1571426911946" duration="92518000" />
       <workItem from="1571671301967" duration="31769000" />
       <workItem from="1571787326229" duration="38322000" />
-      <workItem from="1571930689124" duration="5808000" />
-    </task>
-    <task id="LOCAL-00041" summary="dialogflow">
-      <created>1571870087753</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1571870087753</updated>
-    </task>
-    <task id="LOCAL-00042" summary="dialogflow">
-      <created>1571870224095</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1571870224095</updated>
+      <workItem from="1571930689124" duration="6594000" />
     </task>
     <task id="LOCAL-00043" summary="dialogflow">
       <created>1571870626612</created>
@@ -415,7 +401,21 @@
       <option name="project" value="LOCAL" />
       <updated>1571938933071</updated>
     </task>
-    <option name="localTasksCounter" value="90" />
+    <task id="LOCAL-00090" summary="sql">
+      <created>1571939361395</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1571939361395</updated>
+    </task>
+    <task id="LOCAL-00091" summary="sql">
+      <created>1571939580817</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1571939580817</updated>
+    </task>
+    <option name="localTasksCounter" value="92" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

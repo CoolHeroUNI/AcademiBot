@@ -78,7 +78,7 @@ WHERE FacebookId=${id}`;
 };
 MySQLDataBase.prototype.createUser = function (userId) {
     const id = mysql.escape(userId);
-    const sql = `INSERT INTO \`${this.User}\` (FacebookId) VALUES (${id})`;
+    const sql = `INSERT INTO \`${this.User}\`(FacebookId) VALUES (${id})`;
     return this.promiseQuery(sql)
         .then(() => new Usuario(userId));
 };
@@ -171,12 +171,11 @@ MySQLDataBase.prototype.getFileByKey = function (key) {
         .then(rows => rows.map(DataPacket => (new Archivo(DataPacket['Key']).cargaDesdeObjeto(DataPacket)))[0])
 };
 MySQLDataBase.prototype.createFile = function (key) {
-    const File = new Archivo(key);
-    const Key = mysql.escape(key);
+    const File = new Archivo(key);;
     const {Curso, Facultad, Carpeta, ContadorPeticiones} = File.getData();
     const sql =
-`INSERT INTO \`${this.Archivo}\` (\`${this.Archivo}\`.Key,Curso,Facultad,Carpeta,ContadorPeticiones)
-VALUES (${Key},'${Curso}','${Facultad}','${Carpeta}',${ContadorPeticiones}`;
+`INSERT INTO \`${this.Archivo}\`(Key,Curso,Facultad,Carpeta,ContadorPeticiones)
+VALUES ('${key}','${Curso}','${Facultad}','${Carpeta}',${ContadorPeticiones}`;
     return this.promiseQuery(sql)
         .then(() => File);
 };
