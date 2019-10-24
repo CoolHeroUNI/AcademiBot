@@ -171,7 +171,8 @@ MySQLDataBase.prototype.getFileByKey = function (key) {
         .then(rows => {
             const DataPacket = rows[0];
             console.log(DataPacket);
-            return new Archivo(DataPacket['Key']).cargaDesdeObjeto(DataPacket);
+            if (!DataPacket) return Promise.resolve(undefined);
+            return Promise.resolve(new Archivo(DataPacket['Key']).cargaDesdeObjeto(DataPacket));
         })
 };
 MySQLDataBase.prototype.createFile = function (key) {
