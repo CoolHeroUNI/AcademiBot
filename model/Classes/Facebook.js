@@ -112,8 +112,8 @@ Facebook.prototype.sendAttachment = function (userId, parameters) {
 Facebook.prototype.sendSecuentialAttachments = async function (userId, parameterList) {
     const results = [];
     for (let parameter of parameterList) {
-        this.typingOn(userId);
         try {
+            await this.typingOn(userId);
             const result = await this.sendAttachment(userId, parameter);
             results.push(result);
         } catch (e) {
