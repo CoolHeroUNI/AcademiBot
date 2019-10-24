@@ -380,7 +380,7 @@ Bot.prototype.regularizeUser = function (user) {
     }
 };
 Bot.prototype.sendAvailableCourses = function (user) {
-    return this.detectCourses(user, '')
+    return this.DataBase.getCoursesByUser(user)
         .catch(e => this.DataBase.logUserError(e, user, 'DataBase'))
         .then(courses => this.sendCourses(user, courses));
 };
