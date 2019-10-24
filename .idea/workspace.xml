@@ -71,14 +71,7 @@
       <workItem from="1571426911946" duration="92518000" />
       <workItem from="1571671301967" duration="31769000" />
       <workItem from="1571787326229" duration="38322000" />
-      <workItem from="1571930689124" duration="5008000" />
-    </task>
-    <task id="LOCAL-00039" summary="arreglos">
-      <created>1571869048912</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1571869048912</updated>
+      <workItem from="1571930689124" duration="5382000" />
     </task>
     <task id="LOCAL-00040" summary="dialogflow">
       <created>1571869587740</created>
@@ -416,7 +409,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571937955899</updated>
     </task>
-    <option name="localTasksCounter" value="88" />
+    <task id="LOCAL-00088" summary="sql">
+      <created>1571938624247</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1571938624247</updated>
+    </task>
+    <option name="localTasksCounter" value="89" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -444,7 +444,6 @@
     <MESSAGE value="module.exports missing&#10;CacheHandler" />
     <MESSAGE value="Restrictions" />
     <MESSAGE value="Return Promise" />
-    <MESSAGE value="sql" />
     <MESSAGE value="L" />
     <MESSAGE value="getUser" />
     <MESSAGE value="return this&#10;en el metodo para cargar la info del usuario" />
@@ -461,6 +460,7 @@
     <MESSAGE value="logging" />
     <MESSAGE value="commands" />
     <MESSAGE value="sendFileOptions" />
-    <option name="LAST_COMMIT_MESSAGE" value="sendFileOptions" />
+    <MESSAGE value="sql" />
+    <option name="LAST_COMMIT_MESSAGE" value="sql" />
   </component>
 </project>
