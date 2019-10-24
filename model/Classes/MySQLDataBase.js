@@ -175,7 +175,7 @@ MySQLDataBase.prototype.createFile = function (key) {
     const Key = mysql.escape(key);
     const {Curso, Facultad, Carpeta, ContadorPeticiones} = File.getData();
     const sql =
-`INSERT INTO \`${this.Archivo}\` (Key,Curso,Facultad,Carpeta,ContadorPeticiones)
+`INSERT INTO \`${this.Archivo}\` (\`${this.Archivo}\`.Key,Curso,Facultad,Carpeta,ContadorPeticiones)
 VALUES (${Key},'${Curso}','${Facultad}','${Carpeta}',${ContadorPeticiones}`;
     return this.promiseQuery(sql)
         .then(() => File);
