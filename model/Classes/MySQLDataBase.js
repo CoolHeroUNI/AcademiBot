@@ -71,8 +71,8 @@ MySQLDataBase.prototype.updateUser = function (user) {
     this.cache.set(sql, [userData]);
     const updateSQL =
 `UPDATE \`${this.User}\`
-SET Especialidad='${Especialidad}', Curso='${Curso}', Ciclo=${Ciclo}, Carpeta='${Carpeta}', 
-CantidadPeticiones=${CantidadPeticiones}, AceptaPublicidad=${AceptaPublicidad}, Valido=${Valido}
+SET Especialidad=${Especialidad ?`'${Especialidad}'` : null}, Curso=${Curso?`'${Curso}'` : null}, Ciclo=${Ciclo}, 
+Carpeta=${Carpeta ?`'${Carpeta}'` : null}, CantidadPeticiones=${CantidadPeticiones}, AceptaPublicidad=${AceptaPublicidad}, Valido=${Valido}
 WHERE FacebookId=${id}`;
     return this.promiseQuery(updateSQL);
 };

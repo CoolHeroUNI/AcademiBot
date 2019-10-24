@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/Classes/Bot.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Classes/Bot.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/Classes/MySQLDataBase.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Classes/MySQLDataBase.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -61,13 +59,6 @@
     <configuration />
   </component>
   <component name="TaskManager">
-    <task id="LOCAL-00004" summary="FileStorage&#10;Interfaz para definir los metodos de las clases encargadas de gestionar el sistema de archivos para el Bot">
-      <created>1571096221337</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1571096221337</updated>
-    </task>
     <task active="true" id="Default" summary="Default task">
       <changelist id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="" />
       <created>1571164717757</created>
@@ -78,7 +69,7 @@
       <workItem from="1571265653190" duration="3458000" />
       <workItem from="1571426911946" duration="92518000" />
       <workItem from="1571671301967" duration="31769000" />
-      <workItem from="1571787326229" duration="31476000" />
+      <workItem from="1571787326229" duration="32202000" />
     </task>
     <task id="LOCAL-00005" summary="Salto mortal&#10;Se avanzo casi en su totalidad el nuevo modelo de AcademiBot, usando clases que se instanciaran por separado y tendran funciones especificas, no se prioriza la cantidad de metodos de una clase, sino que estos sean atomicos, cada atributo debe mantener una semantica y ontologia. Se incluyen metodos no utilizados actualmente en pro de la vision del proyecto. El modulo CacheHandler ha probado ser una idea increible uwu">
       <created>1571633672751</created>
@@ -416,7 +407,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571872760133</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="Logica de envio de mensajes">
+      <created>1571887803225</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1571887803225</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -436,7 +434,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="MessagingChannel&#10;La interfaz MessagingChannel definira los metodos de las clases que busquen interactuar con los usuarios del ChatBot" />
     <MESSAGE value="NLPMotor&#10;Interfaz que define los metodos que deben poseer las clases utilizadas para procesar lenguaje natural" />
     <MESSAGE value="FileStorage&#10;Interfaz para definir los metodos de las clases encargadas de gestionar el sistema de archivos para el Bot" />
     <MESSAGE value="Salto mortal&#10;Se avanzo casi en su totalidad el nuevo modelo de AcademiBot, usando clases que se instanciaran por separado y tendran funciones especificas, no se prioriza la cantidad de metodos de una clase, sino que estos sean atomicos, cada atributo debe mantener una semantica y ontologia. Se incluyen metodos no utilizados actualmente en pro de la vision del proyecto. El modulo CacheHandler ha probado ser una idea increible uwu" />
@@ -461,6 +458,7 @@
     <MESSAGE value="asdasd" />
     <MESSAGE value="arreglos" />
     <MESSAGE value="dialogflow" />
-    <option name="LAST_COMMIT_MESSAGE" value="dialogflow" />
+    <MESSAGE value="Logica de envio de mensajes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Logica de envio de mensajes" />
   </component>
 </project>
