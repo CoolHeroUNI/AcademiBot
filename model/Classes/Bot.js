@@ -97,6 +97,7 @@ Bot.prototype.detectCourses = function (user, message) {
     return this.DataBase.getProbableCoursesByUser(user)
         .catch(e => this.DataBase.logUserError(e, user, 'DataBase'))
         .then(courses => {
+            console.log(courses);
             const nonZeroMatch = courses.filter(course => {
                 for (let word of words) {
                     if (course.matchesName(word)) return true;
@@ -573,7 +574,6 @@ Bot.prototype.recieveMessage = async function (user, message) {
         .catch(e => this.DataBase.logUserError(e, userId, 'NLPMotor'))
         .then(intent => {
             const {text, payload} = intent;
-            //console.log(intent);
             const payloadKeys = Object.getOwnPropertyNames(payload);
             if (payloadKeys.length > 0) return this.processPayloadFromNLP(user, intent);
             return this.MessagingChannel.sendTextWithURLs(userId, text, false)
