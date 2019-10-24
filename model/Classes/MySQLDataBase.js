@@ -171,7 +171,7 @@ MySQLDataBase.prototype.getFileByKey = function (key) {
         .then(rows => {
             const DataPacket = rows[0];
             console.log(DataPacket);
-            if (!DataPacket) return Promise.resolve(undefined);
+            if (!DataPacket) return Promise.resolve();
             return Promise.resolve(new Archivo(DataPacket['Key']).cargaDesdeObjeto(DataPacket));
         })
 };
@@ -181,7 +181,7 @@ MySQLDataBase.prototype.createFile = function (key) {
     const sql =
 `INSERT INTO \`${this.Archivo}\` (\`${this.Archivo}\`.Key,Curso,Facultad,Carpeta,ContadorPeticiones) VALUES ('${key}','${Curso}','${Facultad}','${Carpeta}',${ContadorPeticiones})`;
     return this.promiseQuery(sql)
-        .then(() => File);
+        .finally(() => Promise.resolve(File));
 };
 
 /**
