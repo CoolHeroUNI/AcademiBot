@@ -238,14 +238,7 @@ Bot.prototype.sendFiles = function (user, files) {
     let shortName = '';
     let SortedFiles = [];
     // Se mapea cada archivo a una promesa que contendra todos los parametros necesarios para hacer las requests
-    Promise.all(files.sort((file1, file2) => {
-        try {
-            const dif = file2.getPage() - file1.getPage();
-            return Promise.resolve(dif);
-        } catch (e) {
-            return Promise.reject(e);
-        }
-    }))
+    Promise.all(files.sort((file1, file2) => file2.getPage() - file1.getPage()))
         .catch(e => this.DataBase.logInternalError(e, 'Archivo'))
         .then(sortedFiles => {
             SortedFiles = sortedFiles;
@@ -323,7 +316,6 @@ Bot.prototype.sendFiles = function (user, files) {
  */
 Bot.prototype.sendFileOptions = function (user, files) {
     const userId = user.getFacebookId();
-    console.log(files);
     const buttons = files
         .map(file => file.getShortName())
         .filter((value, index, self) => self.indexOf(value) === index)
