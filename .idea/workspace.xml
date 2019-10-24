@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/model/Classes/Bot.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Classes/Bot.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/Classes/MySQLDataBase.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Classes/MySQLDataBase.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -70,14 +71,7 @@
       <workItem from="1571426911946" duration="92518000" />
       <workItem from="1571671301967" duration="31769000" />
       <workItem from="1571787326229" duration="38322000" />
-      <workItem from="1571930689124" duration="8897000" />
-    </task>
-    <task id="LOCAL-00051" summary="dialogflow">
-      <created>1571872479105</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1571872479105</updated>
+      <workItem from="1571930689124" duration="9597000" />
     </task>
     <task id="LOCAL-00052" summary="dialogflow">
       <created>1571872760133</created>
@@ -415,7 +409,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571942186632</updated>
     </task>
-    <option name="localTasksCounter" value="100" />
+    <task id="LOCAL-00100" summary="sql">
+      <created>1571942473647</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1571942473647</updated>
+    </task>
+    <option name="localTasksCounter" value="101" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

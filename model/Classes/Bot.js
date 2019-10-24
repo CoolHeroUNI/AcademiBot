@@ -222,18 +222,13 @@ Bot.prototype.detectFiles = function (user, message) {
         })
         .then(respuesta => {
             this.CacheHandler.set(prefix, respuesta);
-            return Promise.all(respuesta.map(key => {
-                return this.DataBase.getFileByKey(key)
-                    .then(File => {
-                        console.log(File);
-                        return Promise.resolve(File);
-                    })
-            }))
+            return Promise.all(respuesta.map(key => this.DataBase.getFileByKey(key)))
         })
-        .then(Files => Promise.resolve(Files.filter(file => file.matchesText(message))))
+        .then(Files => Promise.all(Files.filter(file => file.matchesText(message))))
         .catch(e => {
-            return this.DataBase.logUserError(e, user, 'DataBase')
-                .then(() => []);
+            this.DataBase.logUserError(e, user, 'DataBase')
+                .catch(e => console.log(e))
+            return Promise.reject(e);
         });
 };
 /**
