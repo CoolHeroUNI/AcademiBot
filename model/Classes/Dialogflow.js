@@ -35,7 +35,8 @@ Dialogflow.prototype.processText = async function (sessionId, text) {
     const parameters = {};
     console.log(fulfillmentMessages);
     const fulfillmentMessage = fulfillmentMessages
-        .filter(message => message['payload'] && message['payload']['fields'])[0]['payload']['fields'];
+        .filter(message => message['payload'] && message['payload']['fields'])
+        .map(message => message['payload']['fields'])[0];
     console.log(fulfillmentMessage);
     if (fulfillmentMessage) {
         const payloadProperties = Object.getOwnPropertyNames(fulfillmentMessage)

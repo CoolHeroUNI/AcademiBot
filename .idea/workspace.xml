@@ -69,21 +69,7 @@
       <workItem from="1571265653190" duration="3458000" />
       <workItem from="1571426911946" duration="92518000" />
       <workItem from="1571671301967" duration="31769000" />
-      <workItem from="1571787326229" duration="32977000" />
-    </task>
-    <task id="LOCAL-00008" summary="Separacion de logica&#10;Se crearon metodos en las interfaces para realizar tareas especificas, se usa el modulo de base de datos con libertad debido a la existencia del modulo de memoria cache, todavia no se ha demostrado su efectividad">
-      <created>1571778149285</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1571778149285</updated>
-    </task>
-    <task id="LOCAL-00009" summary="ExecuteCommand&#10;Se trabajo en el metodo para ejecutar los comandos, ya sean proveidos por dialogflow o por el propio canal de mensajeria">
-      <created>1571794955374</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1571794955374</updated>
+      <workItem from="1571787326229" duration="33223000" />
     </task>
     <task id="LOCAL-00010" summary="Core functionality&#10;Funcionalidad primaria terminada, se inician pruebas">
       <created>1571846044142</created>
@@ -414,7 +400,21 @@
       <option name="project" value="LOCAL" />
       <updated>1571888893687</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="logging">
+      <created>1571889169218</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1571889169218</updated>
+    </task>
+    <task id="LOCAL-00058" summary="logging">
+      <created>1571889371132</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1571889371132</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
