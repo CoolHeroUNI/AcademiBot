@@ -36,13 +36,16 @@ Dialogflow.prototype.processText = async function (sessionId, text) {
     console.log(fulfillmentMessages);
     const fulfillmentMessage = fulfillmentMessages
         .filter(message => message['payload'] && message['payload']['fields'])[0];
+    console.log(fulfillmentMessage);
     if (fulfillmentMessage) {
         const payloadProperties = Object.getOwnPropertyNames(fulfillmentMessage)
             .filter(key => fulfillmentMessage[key]['stringValue']);
+        console.log(payloadProperties);
         for (let key of payloadProperties) payload[key] = fulfillmentMessage[key]['stringValue'];
     }
 
     const fields = intent.queryResult['parameters']['fields'];
+    console.log(fields);
     if (fields) {
         const parametersProperties = Object.getOwnPropertyNames(fields)
             .filter(key => fields[key]['stringValue']);

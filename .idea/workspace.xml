@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/model/Classes/Bot.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Classes/Bot.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/Classes/Dialogflow.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Classes/Dialogflow.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -70,14 +69,7 @@
       <workItem from="1571265653190" duration="3458000" />
       <workItem from="1571426911946" duration="92518000" />
       <workItem from="1571671301967" duration="31769000" />
-      <workItem from="1571787326229" duration="32701000" />
-    </task>
-    <task id="LOCAL-00007" summary="Logica de recepcion de mensaje&#10;Se escribio la logica completa para el procesamiento de los mensajes que contengan alguna solicitud, se trabaja ahora en la logica de ejecucion de comandos proveidos por el motor de procesamiento de lenguaje natural o por em canal de mensajeria">
-      <created>1571775158064</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1571775158064</updated>
+      <workItem from="1571787326229" duration="32977000" />
     </task>
     <task id="LOCAL-00008" summary="Separacion de logica&#10;Se crearon metodos en las interfaces para realizar tareas especificas, se usa el modulo de base de datos con libertad debido a la existencia del modulo de memoria cache, todavia no se ha demostrado su efectividad">
       <created>1571778149285</created>
@@ -415,7 +407,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571888596067</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="logging">
+      <created>1571888893687</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1571888893687</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
