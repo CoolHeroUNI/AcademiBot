@@ -301,9 +301,11 @@ WHERE Id='${Especialidad}'`;
     return this.makeFastQuery(sqlFacultad);
 };
 MySQLDataBase.prototype.makeFastQuery = async function (SQL) {
+    console.log(SQL);
     const cached = this.cache.get(SQL);
     if (cached) return cached;
     const rows = await this.promiseQuery(SQL);
+    console.log(rows);
     if (rows) this.cache.set(SQL, rows);
     return rows;
 };
