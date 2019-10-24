@@ -385,8 +385,12 @@ Bot.prototype.sendAvailableCourses = function (user) {
         .then(courses => this.sendCourses(user, courses));
 };
 Bot.prototype.sendAvailableFolders = function (user) {
+    const userId = user.getFacebookId();
     return this.detectFolders(user, '')
-        .then(folders => this.sendFolders(user, folders));
+        .then(folders => {
+            if (folders.length === 0) return this.MessagingChannel.sendText(userId, 'No hay carpetas disponibles', false);
+            return this.sendFolders(user, folders)
+        });
 };
 Bot.prototype.sendAvailableFiles = function (user) {
     this.detectFiles(user, '')
