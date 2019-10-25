@@ -3,7 +3,7 @@ const {AcademiBot} = require('../src/Instances');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    if (req.query['hub.verify_token'] === process.env.FB_VERIFY_TOKEN) {
+    if (req.query['hub.verify_token'] === process.env.FACEBOOK_VERIFY_TOKEN) {
         res.send(req.query['hub.challenge']);
     } else {
         res.send("Wrong token");
@@ -38,12 +38,6 @@ router.post('/', (req, res) => {
             .then(() => AcademiBot.endInteraction(User))
             .catch(e => console.log(e));
     }
-});
-process.on('SIGTERM', () => {
-    console.log('Ya esta atardeciendo...');
-    setTimeout(() => {
-        process.exit(0);
-    }, 1000);
 });
 
 module.exports = router;

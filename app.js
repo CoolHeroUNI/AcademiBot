@@ -17,13 +17,13 @@ app.set('view engine', 'pug');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(session({
-  name: "AcademiBot",
+  name: process.env.COOKIE_NAME,
   secret: process.env.COOKIE_SECRET,
   resave: true,
   saveUninitialized: true,
   rolling: true,
   cookie: {
-    maxAge: 1000*60*15
+    maxAge: 1000*60*30
   }
 }));
 // Importar rutas
@@ -60,5 +60,11 @@ app.use(function(err, req, res, next) {
 
 app.listen(app.get('port'), () => {
   console.log("running");
-  randomPing(process.env.URL);
+  randomPing(process.env.ACADEMIBOT_URL);
+});
+process.on('SIGTERM', () => {
+  console.log('Ya esta atardeciendo...');
+  setTimeout(() => {
+    process.exit(0);
+  }, 250);
 });

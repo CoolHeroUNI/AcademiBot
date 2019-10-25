@@ -8,12 +8,14 @@ const Curso = require('./Curso');
 const CacheHandler = require('./CacheHandler');
 
 class Bot {
-    constructor() {
+    constructor(cacheTime, greetingsMessage, mediaFolder) {
+        this.greetingsMessage = greetingsMessage;
+        this.mediaFolder = mediaFolder;
         /**
          * @property
          * @type {CacheHandler}
          */
-        this.CacheHandler = new CacheHandler(120);
+        this.CacheHandler = new CacheHandler(cacheTime);
         /**
          * @property FileStorage
          * @type {FileStorage}
@@ -78,11 +80,24 @@ Bot.prototype.setNLPMotor = function (NLPMotor) {
  * @param {Number} userId
  * @returns {User}
  */
+Bot.prototype.createUser = function (userId) {
+    let User;
+    return this.DataBase.createUser(userId)
+        .then(user => {
+            User = user;
+            return this.MessagingChannel.sendText(userId, this.greetingsMessage, false);
+        })
+        .then(() => Promise.resolve(User));
+};
+
 Bot.prototype.startInteraction = function (userId) {
     return this.MessagingChannel.startInteraction(userId)
         .catch(e => this.DataBase.logUserError(e, new Usuario(userId), 'MessagingChannel'))
         .then(() => this.DataBase.getUserById(userId))
-        .then(user =>  user || this.DataBase.createUser(userId));
+        .then(user =>  {
+            if (!user) return this.createUser(userId);
+            return Promise.resolve(user);
+        });
     // TODO hacer metodo para crear un nuevo usuario enviando un mensaje de bienvenida y una imagen como instruccion
 };
 
@@ -475,13 +490,14 @@ Bot.prototype.executePetition = function (user, petition, text) {
     const userId = user.getFacebookId();
     switch (petition) {
         case 'Meme':
-            const memeFolder = 'memes/';
+            const memeFolder = this.mediaFolder + '/memes';
             const cachedMemes = this.CacheHandler.get(memeFolder);
             return this.MessagingChannel.sendText(userId, text, false)
                 .then(() => {
                     if (cachedMemes) return cachedMemes.random();
                     return this.FileStorage.listObjectsUnder(memeFolder)
                         .then(keys => {
+                            keys = keys.filter(key => key.indexOf('.') !== -1);
                             this.CacheHandler.set(memeFolder, keys);
                             return keys.random();
                         });
