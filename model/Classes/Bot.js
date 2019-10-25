@@ -258,7 +258,8 @@ Bot.prototype.sendFiles = function (user, files) {
                         'url': null
                     };
                     const reuseId = file.getReuseId();
-                    if (reuseId) {
+                    console.log(file, reuseId);
+                    if (reuseId !== null) {
                         params['attachment_id'] = reuseId;
                         resolve(params);
                     }
@@ -301,7 +302,7 @@ Bot.prototype.sendFiles = function (user, files) {
             return failed ? Promise.reject() : Promise.resolve();
         })
         .then(() => this.sendAvailableFiles(user))
-        .catch(() => {
+        .catch((e) => {
             const buttons = [
                 {
                     'title' : 'Sí',
@@ -314,9 +315,9 @@ Bot.prototype.sendFiles = function (user, files) {
 
             ];
             const text = 'Error enviando. ¿Quieres intentarlo de nuevo?';
-            return this.MessagingChannel.sendReplyButtons(userId, text, buttons)
+            return this.DataBase.logUserError(e, user, 'MessagingChannel')
+                .then(() => this.MessagingChannel.sendReplyButtons(userId, text, buttons))
         })
-        .catch(e => this.DataBase.logInternalError(e, 'MessagingChannel'))
         .catch(e => console.log(e));
 };
 /**

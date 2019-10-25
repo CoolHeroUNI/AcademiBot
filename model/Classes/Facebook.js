@@ -82,7 +82,6 @@ Facebook.prototype.sendTextWithURLs = function (userId, text, publicity) {
     }
 };
 Facebook.prototype.sendAttachment = function (userId, parameters) {
-    console.log(parameters);
     if (!parameters.hasOwnProperty('url')) return Promise.reject(new Error("Propiedad url faltante"));
     if (!parameters.hasOwnProperty('attachment_id')) return Promise.reject(new Error("Propiedad attachment_id faltante"));
     if (!parameters.hasOwnProperty('type')) return Promise.reject(new Error("Propiedad type faltante"));
