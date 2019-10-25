@@ -3,8 +3,8 @@ class Archivo {
      * @param {String} Key
      */
     constructor (Key) {
-        const [Facultad, Curso, Carpeta] = Key.split('/');
-        if (!Facultad || !Curso || !Carpeta) throw new Error("Clave invalida " + Key);
+        const [Facultad, Curso, Carpeta, Nombre] = Key.split('/');
+        if (!Facultad || !Curso || !Carpeta || !Nombre) throw new Error("Clave invalida " + Key);
         /**
          * Atributo que indica la ubicacion (ruta) del archivo en el sistema de archivos
          * @property Key

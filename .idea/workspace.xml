@@ -4,7 +4,6 @@
     <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/Classes/Bot.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Classes/Bot.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/Classes/MySQLDataBase.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Classes/MySQLDataBase.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -72,14 +71,7 @@
       <workItem from="1571426911946" duration="92518000" />
       <workItem from="1571671301967" duration="31769000" />
       <workItem from="1571787326229" duration="38322000" />
-      <workItem from="1571930689124" duration="17699000" />
-    </task>
-    <task id="LOCAL-00065" summary="logging">
-      <created>1571891754498</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1571891754498</updated>
+      <workItem from="1571930689124" duration="18506000" />
     </task>
     <task id="LOCAL-00066" summary="logging">
       <created>1571892414590</created>
@@ -417,7 +409,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571986593276</updated>
     </task>
-    <option name="localTasksCounter" value="114" />
+    <task id="LOCAL-00114" summary="Almost Finish">
+      <created>1572014014559</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1572014014559</updated>
+    </task>
+    <option name="localTasksCounter" value="115" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

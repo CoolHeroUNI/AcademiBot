@@ -221,6 +221,7 @@ Bot.prototype.detectFiles = function (user, message) {
             return this.FileStorage.listObjectsUnder(prefix);
         })
         .then(respuesta => {
+            respuesta = respuesta.filter(key => key.split('/').length === 4);
             this.CacheHandler.set(prefix, respuesta);
             return Promise.all(respuesta.map(key => this.DataBase.getFileByKey(key)))
         })
