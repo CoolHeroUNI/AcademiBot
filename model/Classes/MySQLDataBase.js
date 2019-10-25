@@ -129,9 +129,8 @@ MySQLDataBase.prototype.getCoursesByTextAndUser = function (text, user) {
     if (!Especialidad) throw new Error("No es posible realizar la busqueda por ausencia de Especialidad");
     const sql =
 `SELECT Codigo,Nombre,SistemaEvaluacion,Creditos 
-FROM \`${this.Curso}\`,\`${this.ECC}\` 
-WHERE \`${this.ECC}\`.Curso=\`${this.Curso}\`.Codigo AND Especialidad='${Especialidad}' AND 
-(Nombre LIKE '%${Text}%' OR Codigo='${Text}')`;
+FROM \`${this.Curso}\` INNER JOIN \`${this.ECC}\` ON \`${this.ECC}\`.Curso=\`${this.Curso}\`.Codigo
+WHERE Especialidad='${Especialidad}' AND Nombre LIKE '%${Text}%' OR Codigo='${Text}'`;
     return this.makeFastQuery(sql)
         .then(rows => rows.map(DataPacket => {
             const Codigo = DataPacket['Codigo'];
@@ -150,9 +149,8 @@ MySQLDataBase.prototype.getProbableCoursesByUser = function (user) {
     // quinto ciclo se toman los electivos
     const sql =
 `SELECT Codigo,Nombre,SistemaEvaluacion,Creditos 
-FROM \`${this.Curso}\`,\`${this.ECC}\` 
-WHERE \`${this.ECC}\`.Curso=\`${this.Curso}\`.Codigo AND Especialidad='${Especialidad}' AND 
-Ciclo>=${Ciclo - 2} AND Ciclo<${Ciclo + 2}${Ciclo > 5 ? ' OR Ciclo=11' : ''}`;
+FROM \`${this.Curso}\` INNER JOIN \`${this.ECC}\` ON \`${this.ECC}\`.Curso=\`${this.Curso}\`.Codigo
+WHERE Especialidad='${Especialidad}' AND Ciclo>=${Ciclo - 2} AND Ciclo<${Ciclo + 2}${Ciclo > 5 ? ' OR Ciclo=11' : ''}`;
      console.log(sql);
     return this.makeFastQuery(sql)
         .then(rows => rows.map(DataPacket => {
