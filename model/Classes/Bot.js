@@ -252,7 +252,6 @@ Bot.prototype.sendFiles = function (user, files) {
                     };
                     const reuseId = file.getReuseId();
                     if (reuseId) {
-                        console.log(reuseId);
                         params['attachment_id'] = reuseId;
                         resolve(params);
                     }

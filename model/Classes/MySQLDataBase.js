@@ -172,12 +172,12 @@ MySQLDataBase.prototype.getFileByKey = function (key) {
     return this.makeFastQuery(sql)
         .then(rows => {
             const DataPacket = rows[0];
-            console.log(DataPacket);
             if (!DataPacket) return this.createFile(key);
             return Promise.resolve(new Archivo(DataPacket['Key']).cargaDesdeObjeto(DataPacket));
         })
 };
 MySQLDataBase.prototype.createFile = function (key) {
+    console.log(key);
     const File = new Archivo(key);
     const {Curso, Facultad, Carpeta, ContadorPeticiones} = File.getData();
     const insertSql = `SELECT * FROM \`${this.Archivo}\` WHERE \`${this.Archivo}\`.Key='${key}'`;
@@ -185,7 +185,11 @@ MySQLDataBase.prototype.createFile = function (key) {
     const sql =
 `INSERT INTO \`${this.Archivo}\` (\`${this.Archivo}\`.Key,Curso,Facultad,Carpeta,ContadorPeticiones) VALUES ('${key}','${Curso}','${Facultad}','${Carpeta}',${ContadorPeticiones})`;
     return this.promiseQuery(sql)
-        .then(() => Promise.resolve(File));
+        .then(() => Promise.resolve(File))
+        .catch((e) => {
+            console.log(e.message);
+            return Promise.resolve(File);
+        })
 };
 
 /**
