@@ -151,7 +151,6 @@ MySQLDataBase.prototype.getProbableCoursesByUser = function (user) {
 `SELECT Codigo,Nombre,SistemaEvaluacion,Creditos 
 FROM \`${this.Curso}\` INNER JOIN \`${this.ECC}\` ON \`${this.ECC}\`.Curso=\`${this.Curso}\`.Codigo
 WHERE Especialidad='${Especialidad}' AND Ciclo>=${Ciclo - 2} AND Ciclo<${Ciclo + 2}${Ciclo > 5 ? ' OR Ciclo=11' : ''}`;
-     console.log(sql);
     return this.makeFastQuery(sql)
         .then(rows => rows.map(DataPacket => {
             const Codigo = DataPacket['Codigo'];
@@ -166,7 +165,6 @@ MySQLDataBase.prototype.getCiclos = function () {
     return this.makeFastQuery(sql);
 };
 MySQLDataBase.prototype.getFileByKey = function (key) {
-    console.log(key);
     const sql = `SELECT * FROM \`${this.Archivo}\` WHERE \`${this.Archivo}\`.Key='${key}'`;
     return this.makeFastQuery(sql)
         .then(rows => {
@@ -178,7 +176,6 @@ MySQLDataBase.prototype.getFileByKey = function (key) {
 MySQLDataBase.prototype.createFile = function (key) {
     const insertSql = `SELECT * FROM \`${this.Archivo}\` WHERE \`${this.Archivo}\`.Key='${key}'`;
     const cached = this.cache.get(insertSql);
-    console.log(cached);
     if (cached) return Promise.resolve(cached);
     const File = new Archivo(key);
     const {Curso, Facultad, Carpeta, ContadorPeticiones} = File.getData();
@@ -188,7 +185,7 @@ MySQLDataBase.prototype.createFile = function (key) {
     return this.promiseQuery(sql)
         .then(() => Promise.resolve(File))
         .catch((e) => {
-            console.log(e.message);
+            this.logInternalError(e, 'DataBase');
             return Promise.resolve(File);
         })
 };

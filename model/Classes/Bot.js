@@ -97,7 +97,6 @@ Bot.prototype.detectCourses = function (user, message) {
     return this.DataBase.getProbableCoursesByUser(user)
         .catch(e => this.DataBase.logUserError(e, user, 'DataBase'))
         .then(courses => {
-            console.log(courses);
             const nonZeroMatch = courses.filter(course => {
                 for (let word of words) {
                     if (course.matchesName(word)) return true;
@@ -258,10 +257,9 @@ Bot.prototype.sendFiles = function (user, files) {
                         'url': null
                     };
                     const reuseId = file.getReuseId();
-                    console.log(file, reuseId);
                     if (reuseId !== null) {
                         params['attachment_id'] = reuseId;
-                        resolve(params);
+                        return resolve(params);
                     }
                     const key = file.getKey();
                     this.FileStorage.getPublicURL(key)
