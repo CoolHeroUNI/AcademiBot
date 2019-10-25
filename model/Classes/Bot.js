@@ -376,7 +376,8 @@ Bot.prototype.regularizeUser = function (user) {
 Bot.prototype.sendAvailableCourses = function (user) {
     return this.DataBase.getCoursesByUser(user)
         .catch(e => this.DataBase.logUserError(e, user, 'DataBase'))
-        .then(courses => this.sendCourses(user, courses));
+        .then(courses => this.sendCourses(user, courses))
+        .catch(e => this.DataBase.logInternalError(e, 'MessagingChannel'));
 };
 Bot.prototype.sendAvailableFolders = function (user) {
     const userId = user.getFacebookId();
@@ -402,10 +403,7 @@ Bot.prototype.executeCommand = function (user, command, parameters) {
     switch (command) {
         case 'Cursos':
             if (!user.isAbleToRequestCourses()) return this.regularizeUser(user);
-            return this.detectCourses(user, '')
-                .catch(e => this.DataBase.logInternalError(e, 'DataBase'))
-                .then(courses => this.sendCourses(user, courses))
-                .catch(e => this.DataBase.logInternalError(e, 'MessagingChannel'));
+            return this.sendAvailableCourses(user);
         case 'SetFacultad':
             const message = 'Selecciona una especialidad';
             const Facultad = parameters['facultad'] || parameters;
