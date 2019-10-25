@@ -268,7 +268,7 @@ WHERE Key=${Key}`;
 MySQLDataBase.prototype.logUserError = function (error, user, module) {
     const message = mysql.escape(error.message).substr(0,200);
     const userId = user.getFacebookId();
-    const sql = `INSERT INTO \`${this.Error}\` (Usuario,Mensaje,Modulo) VALUES (${userId},"${message}",'${module}')`;
+    const sql = `INSERT INTO \`${this.Error}\` (Usuario,Mensaje,Modulo) VALUES (${userId},${message},'${module}')`;
     return this.promiseQuery(sql);
 };
 /**
@@ -278,7 +278,7 @@ MySQLDataBase.prototype.logUserError = function (error, user, module) {
  */
 MySQLDataBase.prototype.logInternalError = function (error, module) {
     const message = mysql.escape(error.message).substr(0,200);
-    const sql = `INSERT INTO \`${this.Error}\` (Mensaje,Modulo) VALUES ("${message}",'${module}')`;
+    const sql = `INSERT INTO \`${this.Error}\` (Mensaje,Modulo) VALUES (${message},'${module}')`;
     return this.promiseQuery(sql);
 };
 /**
@@ -312,7 +312,7 @@ WHERE Id='${Especialidad}'`;
 };
 MySQLDataBase.prototype.makeFastQuery = function (SQL) {
     const cached = this.cache.get(SQL);
-    if (cached) return cached;
+    if (cached) return Promise.resolve(cached);
     return this.promiseQuery(SQL)
         .then(rows => {
             if (rows.length > 0) this.cache.set(SQL, rows);
