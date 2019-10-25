@@ -28,7 +28,7 @@ const user = process.env.MYSQL_USER;
 const pass = process.env.MYSQL_PASS;
 const db = process.env.MYSQL_DB;
 const port = process.env.MYSQL_PORT;
-const SQLtime = process.env.MYSQL_CACHE_TIME;
+const SQLtime = parseInt(process.env.MYSQL_CACHE_TIME);
 const MySQL = new MySQLDataBase(host, user, pass, db, port, SQLtime);
 
 const greetings = process.env.ACADEMIBOT_GREETINGS;
