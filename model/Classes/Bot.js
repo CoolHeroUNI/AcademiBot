@@ -281,12 +281,12 @@ Bot.prototype.sendFiles = function (user, files) {
                 } else {
                     this.DataBase.logTransaction(user, key, true)
                         .then(() => {
+                            file.aumentaContador();
                             if (!file.getReuseId()) {
                                 const attachment_id = parseInt(response['attachment_id']) || null;
-                                file.aumentaContador();
                                 file.setReuseId(attachment_id);
-                                return this.DataBase.updateFile(file, user)
                             }
+                            return this.DataBase.updateFile(file, user)
                         })
                         .catch(e => this.DataBase.logUserError(e, user, 'DataBase'))
                         .catch(e => console.log(e));
