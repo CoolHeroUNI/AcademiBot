@@ -316,7 +316,7 @@ MySQLDataBase.prototype.makeFastQuery = function (SQL) {
     return this.promiseQuery(SQL)
         .then(rows => {
             if (rows.length > 0) this.cache.set(SQL, rows);
-            return rows;
+            return Promise.resolve(rows);
         });
 };
 MySQLDataBase.prototype.promiseQuery = function (SQL) {
