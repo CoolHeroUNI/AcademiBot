@@ -27,7 +27,7 @@ class S3 {
      * Nombre del bucket de S3 s3
      * @property {String}
      */
-    this.bucketName = process.env.S3_BUCKET_NAME;
+    this.bucketName = process.env.AWS_S3_BUCKET_NAME;
   }
 }
 /**
