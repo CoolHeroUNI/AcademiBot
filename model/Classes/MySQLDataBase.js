@@ -6,9 +6,8 @@ const Archivo = require('./Archivo');
 const Curso = require('./Curso');
 
 class MySQLDataBase extends DataBase {
-    constructor(host, user, password, database, port) {
+    constructor(host, user, password, database, port, cacheTime) {
         super();
-        this.db = database;
         this.conn = mysql.createConnection({
             host : host,
             user : user,
@@ -26,7 +25,7 @@ class MySQLDataBase extends DataBase {
         this.Transaccion = 'Transaccion';
         this.User = 'Usuario_AcademiBot';
 
-        this.cache = new CacheHandler(10);
+        this.cache = new CacheHandler(cacheTime);
     }
 }
 MySQLDataBase.prototype.connect = function () {
@@ -79,8 +78,11 @@ WHERE FacebookId=${id}`;
 MySQLDataBase.prototype.createUser = function (userId) {
     const id = mysql.escape(userId);
     const sql = `INSERT INTO \`${this.User}\`(FacebookId) VALUES (${id})`;
+    const sqlSelect = `SELECT * FROM \`${this.User}\` WHERE FacebookId=${id}`;
+    const user = new Usuario(userId);
+    this.cache.set(sqlSelect, [user.getData()]);
     return this.promiseQuery(sql)
-        .then(() => new Usuario(userId));
+        .then(() => user);
 };
 
 MySQLDataBase.prototype.getCourseById = function (courseId) {
@@ -283,7 +285,6 @@ MySQLDataBase.prototype.logTransaction = function (user, key, success) {
     const sql = `INSERT INTO \`${this.Transaccion}\` (Usuario,KeyObtenida,Exitosa) VALUES (${userId},'${key}',${success})`;
     return this.promiseQuery(sql);
 };
-
 
 MySQLDataBase.prototype.getEspecialidadesByFacultad = function (Facultad) {
     const sqlEspecialidad =

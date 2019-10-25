@@ -23,7 +23,8 @@ class Facebook extends MessagingChannel {
     }
 }
 Facebook.prototype.startInteraction = function (userId) {
-    return this.markSeen(userId);
+    return this.markSeen(userId)
+        .then(() => this.typingOn(userId));
 };
 Facebook.prototype.sendText = function (userId, text, publicity) {
     const params = {

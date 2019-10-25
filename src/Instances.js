@@ -28,7 +28,8 @@ const user = process.env.MYSQL_USER;
 const pass = process.env.MYSQL_PASS;
 const db = process.env.MYSQL_DB;
 const port = process.env.MYSQL_PORT;
-const MySQL = new MySQLDataBase(host, user, pass, db, port);
+const time = 60;
+const MySQL = new MySQLDataBase(host, user, pass, db, port, time);
 
 const AcademiBot = new Bot();
 AcademiBot.setDataBase(MySQL);
