@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/Classes/Facebook.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Classes/Facebook.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/Classes/MySQLDataBase.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Classes/MySQLDataBase.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/Interfaces/DataBase.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Interfaces/DataBase.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Instances.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Instances.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -74,14 +70,7 @@
       <workItem from="1571426911946" duration="92518000" />
       <workItem from="1571671301967" duration="31769000" />
       <workItem from="1571787326229" duration="38322000" />
-      <workItem from="1571930689124" duration="15343000" />
-    </task>
-    <task id="LOCAL-00062" summary="logging">
-      <created>1571890308089</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
-      <option name="project" value="LOCAL" />
-      <updated>1571890308089</updated>
+      <workItem from="1571930689124" duration="16067000" />
     </task>
     <task id="LOCAL-00063" summary="logging">
       <created>1571890964901</created>
@@ -419,7 +408,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571946187928</updated>
     </task>
-    <option name="localTasksCounter" value="111" />
+    <task id="LOCAL-00111" summary="Almost Finish">
+      <created>1571985378145</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1571985378145</updated>
+    </task>
+    <option name="localTasksCounter" value="112" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -439,7 +435,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Core functionality&#10;Funcionalidad primaria terminada, se inician pruebas" />
     <MESSAGE value="Try" />
     <MESSAGE value="module.exports missing&#10;CacheHandler" />
     <MESSAGE value="Restrictions" />
@@ -464,6 +459,7 @@
     <MESSAGE value="FileStorage" />
     <MESSAGE value="Archivo.prototype.getExtension" />
     <MESSAGE value="message" />
-    <option name="LAST_COMMIT_MESSAGE" value="message" />
+    <MESSAGE value="Almost Finish" />
+    <option name="LAST_COMMIT_MESSAGE" value="Almost Finish" />
   </component>
 </project>
