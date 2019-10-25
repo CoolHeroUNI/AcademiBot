@@ -167,8 +167,8 @@ MySQLDataBase.prototype.getCiclos = function () {
     return this.makeFastQuery(sql);
 };
 MySQLDataBase.prototype.getFileByKey = function (key) {
-    const sql =
-`SELECT * FROM \`${this.Archivo}\` WHERE \`${this.Archivo}\`.Key='${key}'`;
+    console.log(key);
+    const sql = `SELECT * FROM \`${this.Archivo}\` WHERE \`${this.Archivo}\`.Key='${key}'`;
     return this.makeFastQuery(sql)
         .then(rows => {
             const DataPacket = rows[0];
@@ -177,9 +177,9 @@ MySQLDataBase.prototype.getFileByKey = function (key) {
         })
 };
 MySQLDataBase.prototype.createFile = function (key) {
-    console.log(key);
     const insertSql = `SELECT * FROM \`${this.Archivo}\` WHERE \`${this.Archivo}\`.Key='${key}'`;
     const cached = this.cache.get(insertSql);
+    console.log(cached);
     if (cached) return Promise.resolve(cached);
     const File = new Archivo(key);
     const {Curso, Facultad, Carpeta, ContadorPeticiones} = File.getData();
@@ -310,12 +310,14 @@ MySQLDataBase.prototype.getEspecialidadById = function (Especialidad) {
 WHERE Id='${Especialidad}'`;
     return this.makeFastQuery(sqlFacultad);
 };
-MySQLDataBase.prototype.makeFastQuery = async function (SQL) {
+MySQLDataBase.prototype.makeFastQuery = function (SQL) {
     const cached = this.cache.get(SQL);
     if (cached) return cached;
-    const rows = await this.promiseQuery(SQL);
-    if (rows) this.cache.set(SQL, rows);
-    return rows;
+    return this.promiseQuery(SQL)
+        .then(rows => {
+            if (rows.length > 0) this.cache.set(SQL, rows);
+            return rows;
+        });
 };
 MySQLDataBase.prototype.promiseQuery = function (SQL) {
     return new Promise((resolve, reject) => {
