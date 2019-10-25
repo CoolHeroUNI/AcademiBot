@@ -225,12 +225,12 @@ Bot.prototype.detectFiles = function (user, message) {
             respuesta = respuesta.filter(key => {
                 const lista = key.split('/');
                 if (lista.length !== 4) return false;
-                if (lista.pop().length > 0) return true;
+                return lista.pop().length > 0;
+
             });
             this.CacheHandler.set(prefix, respuesta);
             return Promise.all(respuesta.map(key => this.DataBase.getFileByKey(key)))
         })
-        .catch(e => this.DataBase.logInternalError(e, 'DataBase'))
         .then(Files => Files.filter(file => file.matchesText(message)))
 };
 /**
