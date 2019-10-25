@@ -97,6 +97,7 @@ Bot.prototype.detectCourses = function (user, message) {
     return this.DataBase.getProbableCoursesByUser(user)
         .catch(e => this.DataBase.logUserError(e, user, 'DataBase'))
         .then(courses => {
+            console.log(courses);
             const nonZeroMatch = courses.filter(course => {
                 for (let word of words) {
                     if (course.matchesName(word)) return true;
@@ -230,6 +231,7 @@ Bot.prototype.detectFiles = function (user, message) {
             this.CacheHandler.set(prefix, respuesta);
             return Promise.all(respuesta.map(key => this.DataBase.getFileByKey(key)))
         })
+        .catch(e => this.DataBase.logInternalError(e, 'DataBase'))
         .then(Files => Files.filter(file => file.matchesText(message)))
 };
 /**
