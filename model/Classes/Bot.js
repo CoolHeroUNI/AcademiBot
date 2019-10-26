@@ -421,8 +421,11 @@ Bot.prototype.executeCommand = function (user, command, parameters) {
     switch (command) {
         case 'Empezar':
             return this.regularizeUser(user);
-        case 'Reset':
+        case 'ResetEspecialidad':
             user.setEspecialidad(null);
+            return this.regularizeUser(user);
+        case 'ResetCiclo':
+            user.setCiclo(null);
             return this.regularizeUser(user);
         case 'Cursos':
             if (!user.isAbleToRequestCourses()) return this.regularizeUser(user);
