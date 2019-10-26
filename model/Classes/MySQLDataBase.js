@@ -28,10 +28,25 @@ class MySQLDataBase extends DataBase {
         this.cache = new CacheHandler(cacheTime);
     }
 }
-MySQLDataBase.prototype.connect = function () {
+
+/**
+ * @param {Number} reconTime time in miliseconds to send a ping to database
+ * @param {Boolean} autoReconnect
+ * @returns {Promise<unknown>}
+ */
+MySQLDataBase.prototype.connect = function (reconTime, autoReconnect) {
     return new Promise((resolve, reject) => {
         this.conn.connect(err => {
             if (err) return reject(err);
+            setInterval(() => this.ping(), reconTime);
+            if (autoReconnect) {
+                this.conn.on('error' , (error) => {
+                    if (error.code === 'ECONNREFUSED') {
+                        this.connect(reconTime, true)
+                            .catch(e => reject(e));
+                    }
+                })
+            }
             return resolve();
         })
     });

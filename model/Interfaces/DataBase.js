@@ -37,7 +37,7 @@ class DataBase {
 }
 DataBase.prototype.getAllUsers = async function () {};
 DataBase.prototype.getEspecialidadesByFacultad = async function (Facultad) {};
-DataBase.prototype.connect = async function() {};
+DataBase.prototype.connect = async function(reconTime, autoReconnect) {};
 DataBase.prototype.getUserById = async function (userId) {};
 DataBase.prototype.getFilesByUser = async function (user) {};
 DataBase.prototype.getFacultades = async function () {};

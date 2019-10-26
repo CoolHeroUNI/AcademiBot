@@ -34,14 +34,14 @@ const MySQL = new MySQLDataBase(host, user, pass, db, port, SQLtime);
 const greetings = process.env.ACADEMIBOT_GREETINGS;
 const mediaFolder = process.env.ACADEMIBOT_MEDIA_FOLDER;
 const time = parseInt(process.env.ACADEMIBOT_CACHE_TIME);
-
+const reconTime = parseInt(process.env.ACADEMIBOT_DB_RECONNECTION_TIME);
 const AcademiBot = new Bot(time, greetings, mediaFolder);
 AcademiBot.setDataBase(MySQL);
 AcademiBot.setFileStorage(S3);
 AcademiBot.setMessagingChannel(FB);
 AcademiBot.setNLPMotor(Dialogflow);
-AcademiBot.init()
-    .then(() => console.log('running.'))
+AcademiBot.init(reconTime)
+    .then(() => console.log('Succesful connection to DataBase'))
     .catch(e => {
         console.log(e);
         process.exit(0);
