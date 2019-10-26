@@ -176,10 +176,10 @@ MySQLDataBase.prototype.getFileByKey = function (key) {
 MySQLDataBase.prototype.createFile = function (key) {
     const insertSql = `SELECT * FROM \`${this.Archivo}\` WHERE \`${this.Archivo}\`.Key='${key}'`;
     const cached = this.cache.get(insertSql);
-    if (cached !== undefined) return Promise.resolve(cached);
+    if (cached !== undefined) return Promise.resolve(new Archivo(cached[0]['Key']).cargaDesdeObjeto(cached[0]));
     const File = new Archivo(key);
     const {Curso, Facultad, Carpeta, ContadorPeticiones} = File.getData();
-    this.cache.set(insertSql, File.getData());
+    this.cache.set(insertSql, [File.getData()]);
     const sql =
 `INSERT INTO \`${this.Archivo}\` (\`${this.Archivo}\`.Key,Curso,Facultad,Carpeta,ContadorPeticiones) VALUES ('${key}','${Curso}','${Facultad}','${Carpeta}',${ContadorPeticiones})`;
     return this.promiseQuery(sql)
@@ -225,7 +225,7 @@ MySQLDataBase.prototype.updateFile = function (file, user) {
     const Carpeta = user.getCarpeta();
     const Key = file.getKey();
     const sql = `SELECT * FROM \`${this.Archivo}\` WHERE \`${this.Archivo}\`.Key='${Key}'`;
-    this.cache.set(sql, file.getData());
+    this.cache.set(sql, [file.getData()]);
     const updateData = file.getUpdateData();
     const ReuseId = updateData['ReuseId'], ContadorPeticiones = updateData['ContadorPeticiones'];
     this.getFilesByUser(user)
