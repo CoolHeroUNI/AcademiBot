@@ -38,13 +38,16 @@ MySQLDataBase.prototype.connect = function (reconTime, autoReconnect) {
     return new Promise((resolve, reject) => {
         this.conn.connect(err => {
             if (err) return reject(err);
-            setInterval(() => this.ping(), reconTime);
+            setInterval(() => {
+                this.ping()
+                    .then(() => console.log('Successful ping to Database.'));
+            }, reconTime);
             if (autoReconnect) {
                 this.conn.on('error' , (error) => {
                     console.log(error);
                     if (error.code === 'ECONNREFUSED') {
                         this.connect(reconTime, true)
-                            .then(() => console.log('Sucessful Reconnection to database.'))
+                            .then(() => console.log('Successful Reconnection to database.'))
                             .catch(e => reject(e));
                     }
                 })
