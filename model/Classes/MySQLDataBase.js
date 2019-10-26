@@ -176,7 +176,7 @@ MySQLDataBase.prototype.getFileByKey = function (key) {
 MySQLDataBase.prototype.createFile = function (key) {
     const insertSql = `SELECT * FROM \`${this.Archivo}\` WHERE \`${this.Archivo}\`.Key='${key}'`;
     const cached = this.cache.get(insertSql);
-    if (cached) return Promise.resolve(cached);
+    if (cached !== undefined) return Promise.resolve(cached);
     const File = new Archivo(key);
     const {Curso, Facultad, Carpeta, ContadorPeticiones} = File.getData();
     this.cache.set(insertSql, File.getData());
@@ -224,9 +224,8 @@ MySQLDataBase.prototype.updateFile = function (file, user) {
     const Curso = user.getCurso();
     const Carpeta = user.getCarpeta();
     const Key = file.getKey();
-    const sql =
-`SELECT * FROM \`${this.Archivo}\` WHERE \`${this.Archivo}\`.Key='${Key}'`;
-    this.cache.set(sql, [file.getData()]);
+    const sql = `SELECT * FROM \`${this.Archivo}\` WHERE \`${this.Archivo}\`.Key='${Key}'`;
+    this.cache.set(sql, file.getData());
     const updateData = file.getUpdateData();
     const ReuseId = updateData['ReuseId'], ContadorPeticiones = updateData['ContadorPeticiones'];
     this.getFilesByUser(user)

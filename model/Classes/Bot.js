@@ -248,12 +248,14 @@ Bot.prototype.detectFiles = function (user, message) {
  * @param {Archivo[]} files
  */
 Bot.prototype.sendFiles = function (user, files) {
-    if (files.length === 0) return Promise.reject(new Error('No hay archivos para enviar.'));
+    if (files.length === 0) {
+        return this.DataBase.logUserError(new Error('No hay archivos para enviar.'), user, 'DataBase');
+    }
     const userId = user.getFacebookId();
     let shortName = '';
     let SortedFiles = [];
     // Se mapea cada archivo a una promesa que contendra todos los parametros necesarios para hacer las requests
-    Promise.all(files.sort((file1, file2) => file1.getPage() - file2.getPage()))
+    return Promise.all(files.sort((file1, file2) => file1.getPage() - file2.getPage()))
         .catch(e => this.DataBase.logInternalError(e, 'Archivo'))
         .then(sortedFiles => {
             SortedFiles = sortedFiles;
