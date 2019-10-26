@@ -419,6 +419,8 @@ Bot.prototype.sendAvailableFiles = function (user) {
 Bot.prototype.executeCommand = function (user, command, parameters) {
     const userId = user.getFacebookId();
     switch (command) {
+        case 'Empezar':
+            return this.regularizeUser(user);
         case 'Cursos':
             if (!user.isAbleToRequestCourses()) return this.regularizeUser(user);
             return this.sendAvailableCourses(user);
