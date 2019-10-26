@@ -98,7 +98,6 @@ Bot.prototype.startInteraction = function (userId) {
             if (!user) return this.createUser(userId);
             return Promise.resolve(user);
         });
-    // TODO hacer metodo para crear un nuevo usuario enviando un mensaje de bienvenida y una imagen como instruccion
 };
 
 /**
