@@ -250,6 +250,7 @@ Bot.prototype.sendFiles = function (user, files) {
     if (files.length === 0) {
         return this.DataBase.logUserError(new Error('No hay archivos para enviar.'), user, 'DataBase');
     }
+    user.aumentaPeticion();
     const userId = user.getFacebookId();
     let shortName = '';
     let SortedFiles = [];
@@ -419,6 +420,9 @@ Bot.prototype.executeCommand = function (user, command, parameters) {
     const userId = user.getFacebookId();
     switch (command) {
         case 'Empezar':
+            return this.regularizeUser(user);
+        case 'Reset':
+            user.setEspecialidad(null);
             return this.regularizeUser(user);
         case 'Cursos':
             if (!user.isAbleToRequestCourses()) return this.regularizeUser(user);
