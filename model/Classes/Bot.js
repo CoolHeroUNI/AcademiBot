@@ -236,12 +236,7 @@ Bot.prototype.detectFiles = function (user, message) {
             return this.FileStorage.listObjectsUnder(prefix);
         })
         .then(respuesta => {
-            respuesta = respuesta.filter(key => {
-                const lista = key.split('/');
-                if (lista.length !== 4) return false;
-                return lista.pop().length > 0;
-
-            });
+            respuesta = respuesta.filter(key => key.indexOf('.') !== -1);
             this.CacheHandler.set(prefix, respuesta);
             return Promise.all(respuesta.map(key => this.DataBase.getFileByKey(key)))
         })
@@ -390,6 +385,8 @@ Bot.prototype.regularizeUser = function (user) {
                 return this.MessagingChannel.sendReplyButtons(userId, message, buttons);
             })
             .catch(e => this.DataBase.logUserError(e, user, 'MessagingChannel'));
+    } else {
+        return Promise.resolve();
     }
 };
 Bot.prototype.sendAvailableCourses = function (user) {
@@ -448,6 +445,7 @@ Bot.prototype.executeCommand = function (user, command, parameters) {
                     return this.regularizeUser(user);
                 });
         case 'SetCiclo':
+            if (!user.getEspecialidad()) return this.regularizeUser(user);
             const Ciclo = parameters['ciclo'] || parameters;
             return this.DataBase.getCiclos()
                 .then(rows => {

@@ -102,9 +102,9 @@ MySQLDataBase.prototype.getCourseById = function (courseId) {
  */
 MySQLDataBase.prototype.getCoursesByUser = function (user) {
     const Especialidad = user.getEspecialidad();
-    if (!Especialidad) throw new Error("No es posible realizar la busqueda por ausencia de Especialidad");
+    if (!Especialidad) return Promise.reject(new Error("No es posible realizar la busqueda por ausencia de Especialidad"));
     const Ciclo = user.getCiclo();
-    if (!Ciclo) throw new Error("No es posible realizar la busqueda por ausencia de Ciclo");
+    if (!Ciclo) return Promise.reject(new Error("No es posible realizar la busqueda por ausencia de Ciclo"));
     const sql =
 `SELECT Curso
 FROM \`${this.ECC}\` 
