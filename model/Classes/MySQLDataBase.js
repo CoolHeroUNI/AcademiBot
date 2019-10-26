@@ -41,8 +41,10 @@ MySQLDataBase.prototype.connect = function (reconTime, autoReconnect) {
             setInterval(() => this.ping(), reconTime);
             if (autoReconnect) {
                 this.conn.on('error' , (error) => {
+                    console.log(error);
                     if (error.code === 'ECONNREFUSED') {
                         this.connect(reconTime, true)
+                            .then(() => console.log('Sucessful Reconnection to database.'))
                             .catch(e => reject(e));
                     }
                 })
