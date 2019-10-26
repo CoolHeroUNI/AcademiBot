@@ -32,7 +32,7 @@ class MySQLDataBase extends DataBase {
 /**
  * @param {Number} reconTime time in miliseconds to send a ping to database
  * @param {Boolean} autoReconnect
- * @returns {Promise<unknown>}
+ * @returns {Promise}
  */
 MySQLDataBase.prototype.connect = function (reconTime, autoReconnect) {
     return new Promise((resolve, reject) => {
