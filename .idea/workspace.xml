@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="" />
+    <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/views/adminClasificador.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/adminClasificador.pug" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,14 +70,7 @@
       <workItem from="1571426911946" duration="92518000" />
       <workItem from="1571671301967" duration="31769000" />
       <workItem from="1571787326229" duration="38322000" />
-      <workItem from="1571930689124" duration="69969000" />
-    </task>
-    <task id="LOCAL-00105" summary="FileStorage">
-      <created>1571944599395</created>
-      <option name="number" value="00105" />
-      <option name="presentableId" value="LOCAL-00105" />
-      <option name="project" value="LOCAL" />
-      <updated>1571944599395</updated>
+      <workItem from="1571930689124" duration="70310000" />
     </task>
     <task id="LOCAL-00106" summary="FileStorage">
       <created>1571945170734</created>
@@ -413,7 +408,14 @@
       <option name="project" value="LOCAL" />
       <updated>1572219034387</updated>
     </task>
-    <option name="localTasksCounter" value="154" />
+    <task id="LOCAL-00154" summary="Clasificador v2.0&#10;problems with css">
+      <created>1572219175582</created>
+      <option name="number" value="00154" />
+      <option name="presentableId" value="LOCAL-00154" />
+      <option name="project" value="LOCAL" />
+      <updated>1572219175582</updated>
+    </task>
+    <option name="localTasksCounter" value="155" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
