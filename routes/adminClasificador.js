@@ -28,13 +28,13 @@ router.get('/', (req, res) => {
               Facultades = facultades.map(facultad => facultad['Id']);
               return Promise.all(facultades.map(facultad => MySQL.getCoursesByFaculty(facultad['Id'])));
             })
-            .then(cursos => {
-              Cursos = cursos.map(curso => {
+            .then(cursosPorFacultad => {
+              Cursos = cursosPorFacultad.map(cursos => cursos.map(curso => {
                   return {
                       Codigo : curso['Codigo'],
                       Nombre : curso['Nombre']
                   }
-              });
+              }));
               cache.set('INFORMACION', {Facultades,Cursos});
               return Promise.resolve({
                 keys : Keys,

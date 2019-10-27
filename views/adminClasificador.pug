@@ -40,11 +40,11 @@ script.
         return self.indexOf(v) === i;
     });
     const OpcionesCarpetas = [1,2,3,4,5].map(num => num+'pc');
-    OpcionesCarpetas.append('examen-parcial');
-    OpcionesCarpetas.append('examen-final');
-    OpcionesCarpetas.append('sustitutorio');
-    OpcionesCarpetas.append('entrada');
-    OpcionesCarpetas.append('material-adicional');
+    OpcionesCarpetas.push('examen-parcial');
+    OpcionesCarpetas.push('examen-final');
+    OpcionesCarpetas.push('sustitutorio');
+    OpcionesCarpetas.push('entrada');
+    OpcionesCarpetas.push('material-adicional');
     const firstRow = document.createElement('tr');
     const columns = [
         document.createElement('th'),
