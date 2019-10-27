@@ -68,14 +68,7 @@
       <workItem from="1571426911946" duration="92518000" />
       <workItem from="1571671301967" duration="31769000" />
       <workItem from="1571787326229" duration="38322000" />
-      <workItem from="1571930689124" duration="69125000" />
-    </task>
-    <task id="LOCAL-00102" summary="sql">
-      <created>1571943558569</created>
-      <option name="number" value="00102" />
-      <option name="presentableId" value="LOCAL-00102" />
-      <option name="project" value="LOCAL" />
-      <updated>1571943558569</updated>
+      <workItem from="1571930689124" duration="69372000" />
     </task>
     <task id="LOCAL-00103" summary="sql">
       <created>1571944065022</created>
@@ -413,7 +406,14 @@
       <option name="project" value="LOCAL" />
       <updated>1572217923805</updated>
     </task>
-    <option name="localTasksCounter" value="151" />
+    <task id="LOCAL-00151" summary="Clasificador v2.0&#10;problems with css">
+      <created>1572218519547</created>
+      <option name="number" value="00151" />
+      <option name="presentableId" value="LOCAL-00151" />
+      <option name="project" value="LOCAL" />
+      <updated>1572218519547</updated>
+    </task>
+    <option name="localTasksCounter" value="152" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -433,7 +433,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="message in double quotes" />
     <MESSAGE value="database not working" />
     <MESSAGE value="debugging" />
     <MESSAGE value="asdasd" />
@@ -458,6 +457,7 @@
     <MESSAGE value="Clasificador v2.0&#10;Error in SQL" />
     <MESSAGE value="Clasificador v2.0&#10;Error in parameters&#10;Push instead of Append" />
     <MESSAGE value="Clasificador v2.0&#10;Populated Cursos after creation of document" />
-    <option name="LAST_COMMIT_MESSAGE" value="Clasificador v2.0&#10;Populated Cursos after creation of document" />
+    <MESSAGE value="Clasificador v2.0&#10;problems with css" />
+    <option name="LAST_COMMIT_MESSAGE" value="Clasificador v2.0&#10;problems with css" />
   </component>
 </project>
