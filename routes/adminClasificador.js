@@ -44,7 +44,10 @@ router.get('/', (req, res) => {
             })
       })
       .then(informacion => res.render('adminClasificador', informacion))
-      .catch(e => res.render('error', e));
+      .catch(e => {
+          console.log(e);
+          res.render('error', e)
+      });
 });
 
 router.post('/', (req, res) => {

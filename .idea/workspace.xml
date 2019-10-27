@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/routes/adminClasificador.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/adminClasificador.js" afterDir="false" />
-    </list>
+    <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,21 +68,7 @@
       <workItem from="1571426911946" duration="92518000" />
       <workItem from="1571671301967" duration="31769000" />
       <workItem from="1571787326229" duration="38322000" />
-      <workItem from="1571930689124" duration="66340000" />
-    </task>
-    <task id="LOCAL-00095" summary="sql">
-      <created>1571941258211</created>
-      <option name="number" value="00095" />
-      <option name="presentableId" value="LOCAL-00095" />
-      <option name="project" value="LOCAL" />
-      <updated>1571941258211</updated>
-    </task>
-    <task id="LOCAL-00096" summary="sql">
-      <created>1571941527339</created>
-      <option name="number" value="00096" />
-      <option name="presentableId" value="LOCAL-00096" />
-      <option name="project" value="LOCAL" />
-      <updated>1571941527339</updated>
+      <workItem from="1571930689124" duration="66588000" />
     </task>
     <task id="LOCAL-00097" summary="sql">
       <created>1571941813274</created>
@@ -415,7 +399,21 @@
       <option name="project" value="LOCAL" />
       <updated>1572215493304</updated>
     </task>
-    <option name="localTasksCounter" value="144" />
+    <task id="LOCAL-00144" summary="Clasificador v2.0">
+      <created>1572215547211</created>
+      <option name="number" value="00144" />
+      <option name="presentableId" value="LOCAL-00144" />
+      <option name="project" value="LOCAL" />
+      <updated>1572215547211</updated>
+    </task>
+    <task id="LOCAL-00145" summary="Clasificador v2.0">
+      <created>1572215593535</created>
+      <option name="number" value="00145" />
+      <option name="presentableId" value="LOCAL-00145" />
+      <option name="project" value="LOCAL" />
+      <updated>1572215593535</updated>
+    </task>
+    <option name="localTasksCounter" value="146" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -435,7 +433,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="getUser" />
     <MESSAGE value="return this&#10;en el metodo para cargar la info del usuario" />
     <MESSAGE value="return this&#10;en el metodo para cargar la info del archivo" />
     <MESSAGE value="Sessionsclient&#10;missing s" />
@@ -460,6 +457,7 @@
     <MESSAGE value="Final Part" />
     <MESSAGE value="Final" />
     <MESSAGE value="Front" />
-    <option name="LAST_COMMIT_MESSAGE" value="Front" />
+    <MESSAGE value="Clasificador v2.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="Clasificador v2.0" />
   </component>
 </project>
