@@ -8,6 +8,7 @@ h2 Clasificador de material
 button.collapsible Botones
 div.content
     button(onclick="window.location='/'") Inicio 🏠
+
 script.
     const Keys = Array.from(!{JSON.stringify(keys)});
     const Facultades = Array.from(!{JSON.stringify(facultades)});
@@ -72,10 +73,10 @@ script.
         const MatchingKeys = Keys.filter(function (ruta) {
             return ruta.indexOf(folder) >= 0;
         });
-        const content = document.createElement('div')
+        const content = document.createElement('div');
         content.classList.add('content');
         const table = document.createElement('table');
-        table.innerHTML = firstRow.outerHTML;
+        table.appendChild(firstRow);
         for (let key of MatchingKeys) {
             const nthRow = document.createElement('tr');
             const Form = document.createElement('form');
