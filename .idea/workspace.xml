@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/views/adminClasificador.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/adminClasificador.pug" afterDir="false" />
-    </list>
+    <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,14 +68,7 @@
       <workItem from="1571426911946" duration="92518000" />
       <workItem from="1571671301967" duration="31769000" />
       <workItem from="1571787326229" duration="38322000" />
-      <workItem from="1571930689124" duration="67205000" />
-    </task>
-    <task id="LOCAL-00099" summary="sql">
-      <created>1571942186632</created>
-      <option name="number" value="00099" />
-      <option name="presentableId" value="LOCAL-00099" />
-      <option name="project" value="LOCAL" />
-      <updated>1571942186632</updated>
+      <workItem from="1571930689124" duration="67726000" />
     </task>
     <task id="LOCAL-00100" summary="sql">
       <created>1571942473647</created>
@@ -415,7 +406,14 @@
       <option name="project" value="LOCAL" />
       <updated>1572216218362</updated>
     </task>
-    <option name="localTasksCounter" value="148" />
+    <task id="LOCAL-00148" summary="Clasificador v2.0&#10;Error in parameters&#10;Push instead of Append">
+      <created>1572216523495</created>
+      <option name="number" value="00148" />
+      <option name="presentableId" value="LOCAL-00148" />
+      <option name="project" value="LOCAL" />
+      <updated>1572216523495</updated>
+    </task>
+    <option name="localTasksCounter" value="149" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -435,7 +433,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="return this&#10;en el metodo para cargar la info del archivo" />
     <MESSAGE value="Sessionsclient&#10;missing s" />
     <MESSAGE value="message in double quotes" />
     <MESSAGE value="database not working" />
@@ -460,6 +457,7 @@
     <MESSAGE value="Front" />
     <MESSAGE value="Clasificador v2.0" />
     <MESSAGE value="Clasificador v2.0&#10;Error in SQL" />
-    <option name="LAST_COMMIT_MESSAGE" value="Clasificador v2.0&#10;Error in SQL" />
+    <MESSAGE value="Clasificador v2.0&#10;Error in parameters&#10;Push instead of Append" />
+    <option name="LAST_COMMIT_MESSAGE" value="Clasificador v2.0&#10;Error in parameters&#10;Push instead of Append" />
   </component>
 </project>

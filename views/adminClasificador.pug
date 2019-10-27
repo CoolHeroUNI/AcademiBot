@@ -107,7 +107,6 @@ script.
                 const facultad = '' + Facultades[i];
                 selectFacultad.options[i] = new Option(facultad, facultad);
             }
-            PopulateCursos(key);
             Columns[1].innerHTML = selectFacultad.outerHTML;
             const selectCursos = document.createElement('select');
             selectCursos.id = key + '-Curso';
@@ -156,4 +155,7 @@ script.
         }
         content.innerHTML = table.outerHTML;
         document.body.appendChild(content);
+    }
+    for (let Key of Keys) {
+        PopulateCursos(Key);
     }
