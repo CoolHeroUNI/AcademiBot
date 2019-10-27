@@ -70,14 +70,7 @@
       <workItem from="1571426911946" duration="92518000" />
       <workItem from="1571671301967" duration="31769000" />
       <workItem from="1571787326229" duration="38322000" />
-      <workItem from="1571930689124" duration="70310000" />
-    </task>
-    <task id="LOCAL-00106" summary="FileStorage">
-      <created>1571945170734</created>
-      <option name="number" value="00106" />
-      <option name="presentableId" value="LOCAL-00106" />
-      <option name="project" value="LOCAL" />
-      <updated>1571945170734</updated>
+      <workItem from="1571930689124" duration="70779000" />
     </task>
     <task id="LOCAL-00107" summary="Archivo.prototype.getExtension">
       <created>1571945502419</created>
@@ -415,7 +408,14 @@
       <option name="project" value="LOCAL" />
       <updated>1572219175582</updated>
     </task>
-    <option name="localTasksCounter" value="155" />
+    <task id="LOCAL-00155" summary="Clasificador v2.0&#10;problems with css">
+      <created>1572219519923</created>
+      <option name="number" value="00155" />
+      <option name="presentableId" value="LOCAL-00155" />
+      <option name="project" value="LOCAL" />
+      <updated>1572219519923</updated>
+    </task>
+    <option name="localTasksCounter" value="156" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

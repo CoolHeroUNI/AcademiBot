@@ -3,18 +3,30 @@ head
     title="Clasificador de material"
     meta(name='viewport' content='width=device-width, initial-scale=1')
     link(rel='stylesheet' type='text/css' href='/public/stylesheets/collapsible.css')
-    
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js")
+    script.
+        const Keys = Array.from(!{JSON.stringify(keys)});
+    script.
+        const Facultades = Array.from(!{JSON.stringify(facultades)});
+    script.
+        const Cursos = Array.from(!{JSON.stringify(cursos)});
+    script(src="/public/javascripts/clasificador.js")
+    script.
+        Start()
+        const coll = document.getElementsByClassName("collapsible");
+        for (let i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                let content = this.nextElementSibling;
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        }
 body
-    h2(align='center') Administrador de Facebook
-    button(onclick="window.location='/'") Inicio 🏠
-    button.collapsible Mensaje global
+    h2 Clasificador de material
+    button.collapsible Botones
     div.content
-        form(action='/admin/facebook?action=global', method='POST')
-            label.text--center Ingrese mensaje
-            div.form__field
-                input.form__input(type="text", name="texto", placeholder="Ingrese su mensaje")
-            div.form__field
-                input(type="submit", value="Enviar mensaje")
-    button.collapsible Buscador de usuarios
-    div.content
-        p Proximamente buscador de usuarios
+        button(onclick="window.location='/'") Inicio 🏠
