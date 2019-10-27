@@ -26,7 +26,7 @@ router.get('/', (req, res) => {
         return MySQL.getFacultades()
             .then(facultades => {
               Facultades = facultades.map(facultad => facultad['Id']);
-              return Promise.all(facultades.map(facultad => MySQL.getCoursesByFaculty(facultad)));
+              return Promise.all(facultades.map(facultad => MySQL.getCoursesByFaculty(facultad['Id'])));
             })
             .then(cursos => {
               Cursos = cursos.map(curso => {
