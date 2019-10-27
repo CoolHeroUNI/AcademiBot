@@ -1,35 +1,58 @@
 const express = require('express');
 const router = express.Router();
+const {S3, MySQL} = require('../src/Instances');
+const CacheHandler = require('../model/Classes/CacheHandler');
+const cache = new CacheHandler(1800);
+const submissionsFolder = process.env.ACADEMIBOT_SUBMISSIONS_FOLDER;
 const AcademiBot = require('../src/AcademiBot');
 
+
+
+
 router.get('/', (req, res) => {
-  const tipe = req.query.tipo || 'image';
-  const page = req.query.page || 0;
-
-  AcademiBot.obtieneArchivoDeEnvios(tipe, page)
-    .then(archivo => {
-      const facultades = AcademiBot.UNI.getFacultadesObject().map(facu => {
-        return {
-          id: facu.id,
-          directorio: facu.directorio
-        };
-      });
-      res.render('adminClasificador', {
-        facultades : JSON.stringify(facultades),
-        Material : "data:image;base64," + archivo.body.toString('base64'),
-        Ruta : archivo.ruta,
-        Tipo : tipe,
-        Pagina : archivo.indice
-      });
-    })
-    .catch(error => {
-      res.render('error', error)
-      console.log(error)
-    });
-
+  let Keys;
+  let Facultades;
+  let Cursos;
+  return S3.listObjectsUnder(submissionsFolder)
+      .then(keys => keys.filter(key => {
+          if (key.indexOf('.') >= 0) return true;
+          S3.deleteObject(key);
+          return false;
+        }))
+      .then(keys => {
+        Keys = keys;
+        const cached = cache.get('INFORMACION');
+        if (cached) return Promise.resolve({
+            keys : keys,
+            facultades : cached['Facultades'],
+            cursos : cached['Cursos']
+          });
+        return MySQL.getFacultades()
+            .then(facultades => {
+              Facultades = facultades.map(facultad => facultad['Id']);
+              return Promise.all(facultades.map(facultad => MySQL.getCoursesByFaculty(facultad)));
+            })
+            .then(cursos => {
+              Cursos = cursos.map(curso => {
+                  return {
+                      Codigo : curso['Codigo'],
+                      Nombre : curso['Nombre']
+                  }
+              });
+              cache.set('INFORMACION', {Facultades,Cursos});
+              return Promise.resolve({
+                keys : Keys,
+                facultades : Facultades,
+                cursos : Cursos,
+              })
+            })
+      })
+      .then(informacion => res.render('adminClasificador', informacion))
+      .catch(e => res.render('error', e));
 });
 
 router.post('/', (req, res) => {
+
   const tipe = req.query.tipo || 'image';
   const page = req.query.page || 0;
   const action = req.query.action;

@@ -1,6 +1,6 @@
 const ensureAuth = (req, res, next) => {
   if (!req.session.logged) {
-    console.log("not allowed!")
+    console.log("not allowed!");
     return res.redirect(`/login?redirect=${encodeURIComponent(req.originalUrl)}`);
   }
   req.session.touch();

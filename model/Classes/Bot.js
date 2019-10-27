@@ -2,7 +2,7 @@ const FileStorage = require('../Interfaces/FileStorage');
 const MessagingChannel = require('../Interfaces/MessagingChannel');
 const NLPMotor = require('../Interfaces/NLPMotor');
 const Usuario = require('./Usuario');
-const Archivo = require('./Archivo');
+const MaterialEstudio = require('./MaterialEstudio');
 const DataBase = require('../Interfaces/DataBase');
 const Curso = require('./Curso');
 const CacheHandler = require('./CacheHandler');
@@ -40,6 +40,11 @@ class Bot {
     }
 }
 
+/**
+ *
+ * @param {Number} reconnectionTime
+ * @returns {Promise<*>}
+ */
 Bot.prototype.init = function (reconnectionTime) {
     return this.DataBase.connect(reconnectionTime, true);
 };
@@ -124,7 +129,6 @@ Bot.prototype.detectCourses = function (user, message) {
                 return true;
             });
             if (exactMatch) return exactMatch;
-            // TODO revisar problemas de tiempo de respuesta por la complejidad de calcular los puntajes cada vez que se compara
             return nonZeroMatch.sort((course1, course2) => {
                 let score1 = 0, score2 = 0;
                 for (let word of words) {
@@ -142,7 +146,7 @@ Bot.prototype.detectCourses = function (user, message) {
  * @param {Curso[]} courses
  */
 Bot.prototype.sendCourses = function (user, courses) {
-    const options = courses.map(course => {
+    const options = Array.shuffle(courses.map(course => {
         const option = {};
         const data = course.getData();
         option['title'] = data['Nombre'].toUpperCase();
@@ -154,7 +158,7 @@ Bot.prototype.sendCourses = function (user, courses) {
             }
         ];
         return option;
-    });
+    }));
     const id = user.getFacebookId();
     return this.MessagingChannel.sendOptionsMenu(id, options)
         .catch(e => this.DataBase.logInternalError(e, 'MessagingChannel'))
@@ -244,7 +248,7 @@ Bot.prototype.detectFiles = function (user, message) {
 /**
  *
  * @param {Usuario} user
- * @param {Archivo[]} files
+ * @param {MaterialEstudio[]} files
  */
 Bot.prototype.sendFiles = function (user, files) {
     if (files.length === 0) {
@@ -333,7 +337,7 @@ Bot.prototype.sendFiles = function (user, files) {
 /**
  *
  * @param {Usuario} user
- * @param {Archivo[]} files
+ * @param {MaterialEstudio[]} files
  */
 Bot.prototype.sendFileOptions = function (user, files) {
     const userId = user.getFacebookId();

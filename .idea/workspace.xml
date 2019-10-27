@@ -2,8 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/academibot.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/academibot.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/Classes/Archivo.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Classes/MaterialEstudio.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/Classes/Bot.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Classes/Bot.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/Classes/Curso.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Classes/Curso.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/Classes/Facebook.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Classes/Facebook.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/Classes/MySQLDataBase.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Classes/MySQLDataBase.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/Interfaces/DataBase.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Interfaces/DataBase.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/Interfaces/FileStorage.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Interfaces/FileStorage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/adminClasificador.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/adminClasificador.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/middleware.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/middleware.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/adminClasificador.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/adminClasificador.pug" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -71,21 +83,7 @@
       <workItem from="1571426911946" duration="92518000" />
       <workItem from="1571671301967" duration="31769000" />
       <workItem from="1571787326229" duration="38322000" />
-      <workItem from="1571930689124" duration="37149000" />
-    </task>
-    <task id="LOCAL-00092" summary="sql">
-      <created>1571940153579</created>
-      <option name="number" value="00092" />
-      <option name="presentableId" value="LOCAL-00092" />
-      <option name="project" value="LOCAL" />
-      <updated>1571940153579</updated>
-    </task>
-    <task id="LOCAL-00093" summary="sql">
-      <created>1571940496218</created>
-      <option name="number" value="00093" />
-      <option name="presentableId" value="LOCAL-00093" />
-      <option name="project" value="LOCAL" />
-      <updated>1571940496218</updated>
+      <workItem from="1571930689124" duration="66087000" />
     </task>
     <task id="LOCAL-00094" summary="sql">
       <created>1571940812056</created>
@@ -416,7 +414,21 @@
       <option name="project" value="LOCAL" />
       <updated>1572115610165</updated>
     </task>
-    <option name="localTasksCounter" value="141" />
+    <task id="LOCAL-00141" summary="Final Part">
+      <created>1572116900140</created>
+      <option name="number" value="00141" />
+      <option name="presentableId" value="LOCAL-00141" />
+      <option name="project" value="LOCAL" />
+      <updated>1572116900140</updated>
+    </task>
+    <task id="LOCAL-00142" summary="Final">
+      <created>1572116994899</created>
+      <option name="number" value="00142" />
+      <option name="presentableId" value="LOCAL-00142" />
+      <option name="project" value="LOCAL" />
+      <updated>1572116994899</updated>
+    </task>
+    <option name="localTasksCounter" value="143" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -436,7 +448,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Return Promise" />
     <MESSAGE value="L" />
     <MESSAGE value="getUser" />
     <MESSAGE value="return this&#10;en el metodo para cargar la info del usuario" />
@@ -461,6 +472,7 @@
     <MESSAGE value="SQL" />
     <MESSAGE value="log" />
     <MESSAGE value="Final Part" />
-    <option name="LAST_COMMIT_MESSAGE" value="Final Part" />
+    <MESSAGE value="Final" />
+    <option name="LAST_COMMIT_MESSAGE" value="Final" />
   </component>
 </project>

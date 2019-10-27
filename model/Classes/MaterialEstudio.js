@@ -1,4 +1,4 @@
-class Archivo {
+class MaterialEstudio {
     /**
      * @param {String} Key
      */
@@ -44,7 +44,7 @@ class Archivo {
     }
 }
 
-Archivo.prototype.equals = function (file) {
+MaterialEstudio.prototype.equals = function (file) {
     return this.Key = file.Key;
 };
 
@@ -53,22 +53,22 @@ Archivo.prototype.equals = function (file) {
  * @method cargaDesdeObjeto
  * @param {{ReuseId : Number, ContadorPeticiones : Number}}DataPacket
  */
-Archivo.prototype.cargaDesdeObjeto = function (DataPacket) {
+MaterialEstudio.prototype.cargaDesdeObjeto = function (DataPacket) {
     this.ReuseId = DataPacket["ReuseId"];
     this.ContadorPeticiones = DataPacket["ContadorPeticiones"];
     return this;
 };
-Archivo.prototype.setContador = function (contador) {
+MaterialEstudio.prototype.setContador = function (contador) {
     this.ContadorPeticiones = contador;
 };
-Archivo.prototype.getContador = function () {
+MaterialEstudio.prototype.getContador = function () {
     return this.ContadorPeticiones;
 };
 /**
  * Metodo para aumentar el contador de peticiones
  * @method aumentaContador
  */
-Archivo.prototype.aumentaContador = function () {
+MaterialEstudio.prototype.aumentaContador = function () {
     this.ContadorPeticiones++;
 };
 /**
@@ -76,10 +76,10 @@ Archivo.prototype.aumentaContador = function () {
  * @method setReuseId
  * @param {Number} ReuseId
  */
-Archivo.prototype.setReuseId = function (ReuseId) {
+MaterialEstudio.prototype.setReuseId = function (ReuseId) {
     this.ReuseId = ReuseId;
 };
-Archivo.prototype.getReuseId = function () {
+MaterialEstudio.prototype.getReuseId = function () {
     return this.ReuseId;
 };
 /**
@@ -87,7 +87,7 @@ Archivo.prototype.getReuseId = function () {
  * @method getFileName
  * @returns {string}
  */
-Archivo.prototype.getFilename = function () {
+MaterialEstudio.prototype.getFilename = function () {
     const list = this.Key.split('/');
     if (list.length !== 4) throw new Error("Existen una cantidad invalida de separadores en " + this.Key);
     return list[3];
@@ -97,12 +97,12 @@ Archivo.prototype.getFilename = function () {
  * @method getShortName
  * @returns {string}
  */
-Archivo.prototype.getShortName = function () {
+MaterialEstudio.prototype.getShortName = function () {
     const partesSeparadasPorGuion = this.getFilename().split('-');
     partesSeparadasPorGuion.pop();
     return partesSeparadasPorGuion.join('-');
 };
-Archivo.prototype.getPage = function () {
+MaterialEstudio.prototype.getPage = function () {
     const last = this.getFilename().split('-').pop();
     const dotIndex = last.lastIndexOf('.');
     const page = last.substring(0, dotIndex);
@@ -115,7 +115,7 @@ Archivo.prototype.getPage = function () {
  * @method getExtension
  * @returns {string}
  */
-Archivo.prototype.getExtension = function () {
+MaterialEstudio.prototype.getExtension = function () {
     const last = this.getFilename().split('-').pop();
     const dotIndex = last.lastIndexOf('.') + 1;
     if (dotIndex === 0) throw new Error("El archivo no posee una extension en " + this.Key);
@@ -127,7 +127,7 @@ Archivo.prototype.getExtension = function () {
  * @param {String} Text
  * @returns {boolean}
  */
-Archivo.prototype.matchesText = function (Text) {
+MaterialEstudio.prototype.matchesText = function (Text) {
     const expression = new RegExp(this.getShortName(), 'i');
     const expressionText = new RegExp(Text);
     const ownShortName = this.getShortName();
@@ -139,7 +139,7 @@ Archivo.prototype.matchesText = function (Text) {
  * @method getType
  * @returns {String}
  */
-Archivo.prototype.getType = function () {
+MaterialEstudio.prototype.getType = function () {
     const extension = this.getExtension();
     const extensionesImagenes = ["jpg","png","jpeg","bmp"];
     if (extensionesImagenes.includes(extension))
@@ -152,7 +152,7 @@ Archivo.prototype.getType = function () {
         return 'video';
     return 'file';
 };
-Archivo.prototype.getKey = function () {
+MaterialEstudio.prototype.getKey = function () {
     return this.Key;
 };
 
@@ -161,7 +161,7 @@ Archivo.prototype.getKey = function () {
  * @returns {{ReuseId: Number, Carpeta: String, Facultad: String, Curso: String, Key: String,
  * ContadorPeticiones: Number}}
  */
-Archivo.prototype.getData = function () {
+MaterialEstudio.prototype.getData = function () {
     return {
         Key : this.Key,
         Curso : this.Curso,
@@ -171,11 +171,11 @@ Archivo.prototype.getData = function () {
         ContadorPeticiones : this.ContadorPeticiones
     }
 };
-Archivo.prototype.getUpdateData = function () {
+MaterialEstudio.prototype.getUpdateData = function () {
     return {
         ReuseId : this.ReuseId,
         ContadorPeticiones : this.ContadorPeticiones
     }
 };
 
-module.exports = Archivo;
+module.exports = MaterialEstudio;

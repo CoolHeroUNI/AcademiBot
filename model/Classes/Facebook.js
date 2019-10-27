@@ -113,8 +113,8 @@ Facebook.prototype.sendSecuentialAttachments = async function (userId, parameter
     const results = [];
     for (let parameter of parameterList) {
         try {
-            await this.typingOn(userId);
             const result = await this.sendAttachment(userId, parameter);
+            await this.typingOn(userId);
             results.push(result);
         } catch (e) {
             results.push(e);
@@ -132,13 +132,8 @@ Facebook.prototype.getUserInfo = function (userId) {
         },
         method : 'GET'
     };
-    return new Promise((resolve, reject) => {
-        RequestPromise(params)
-            .then(result => {
-                resolve(JSON.parse(result));
-            })
-            .catch(e => reject(e))
-    });
+    return RequestPromise(params)
+        .then(result => Promise.resolve(JSON.parse(result)));
 };
 
 Facebook.prototype.sendReplyButtons = function (userId, text, parameters) {

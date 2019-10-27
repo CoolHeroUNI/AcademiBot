@@ -2,7 +2,7 @@ const DataBase = require('../Interfaces/DataBase');
 const CacheHandler = require('./CacheHandler');
 const mysql = require('mysql');
 const Usuario = require('./Usuario');
-const Archivo = require('./Archivo');
+const MaterialEstudio = require('./MaterialEstudio');
 const Curso = require('./Curso');
 
 class MySQLDataBase extends DataBase {
@@ -180,6 +180,18 @@ WHERE Especialidad='${Especialidad}' AND Ciclo>=${Ciclo - 2} AND Ciclo<${Ciclo +
             return new Curso(Codigo, Nombre, SistemaEvaluacion, Creditos);
         }))
 };
+MySQLDataBase.prototype.getCoursesByFaculty = function (Facultad) {
+    return this.getEspecialidadesByFacultad(Facultad)
+        .then(Especialidades => {
+            Especialidades = Especialidades.map(Especialidad => `Especialidad=${mysql.escape(Especialidad['Id'])}`);
+            const condition = Especialidades.join(' OR ');
+            const sql =
+`SELECT Codigo,Nombre,SistemaEvaluacion,Creditos 
+FROM \`${this.Curso}\` INNER JOIN \`${this.ECC}\` ON \`${this.ECC}\`.Curso=\`${this.Curso}\`.Codigo
+WHERE ${condition}`;
+            return this.makeFastQuery(sql);
+        })
+};
 MySQLDataBase.prototype.getCiclos = function () {
     const sql = `SELECT * FROM \`${this.Ciclo}\``;
     return this.makeFastQuery(sql);
@@ -190,14 +202,14 @@ MySQLDataBase.prototype.getFileByKey = function (key) {
         .then(rows => {
             const DataPacket = rows[0];
             if (!DataPacket) return this.createFile(key);
-            return Promise.resolve(new Archivo(DataPacket['Key']).cargaDesdeObjeto(DataPacket));
+            return Promise.resolve(new MaterialEstudio(DataPacket['Key']).cargaDesdeObjeto(DataPacket));
         })
 };
 MySQLDataBase.prototype.createFile = function (key) {
     const insertSql = `SELECT * FROM \`${this.Archivo}\` WHERE \`${this.Archivo}\`.Key='${key}'`;
     const cached = this.cache.get(insertSql);
-    if (cached !== undefined) return Promise.resolve(new Archivo(cached[0]['Key']).cargaDesdeObjeto(cached[0]));
-    const File = new Archivo(key);
+    if (cached !== undefined) return Promise.resolve(new MaterialEstudio(cached[0]['Key']).cargaDesdeObjeto(cached[0]));
+    const File = new MaterialEstudio(key);
     const {Curso, Facultad, Carpeta, ContadorPeticiones} = File.getData();
     this.cache.set(insertSql, [File.getData()]);
     const sql =
@@ -213,7 +225,7 @@ MySQLDataBase.prototype.createFile = function (key) {
 /**
  *
  * @param {Usuario} user
- * @returns {Promise<Archivo[]>}
+ * @returns {Promise<MaterialEstudio[]>}
  */
 MySQLDataBase.prototype.getFilesByUser = function (user) {
     const Especialidad = user.getEspecialidad();
@@ -230,13 +242,13 @@ MySQLDataBase.prototype.getFilesByUser = function (user) {
 `SELECT * FROM \`${this.Archivo}\` 
 WHERE Facultad='${Facultad}' AND Curso='${Curso}' AND Carpeta='${Carpeta}'`;
             return this.makeFastQuery(sqlFiles)
-                .then(rows => rows.map(DataPacket => (new Archivo(DataPacket['Key']).cargaDesdeObjeto(DataPacket))))
+                .then(rows => rows.map(DataPacket => (new MaterialEstudio(DataPacket['Key']).cargaDesdeObjeto(DataPacket))))
         })
 };
 
 /**
  * TODO Revisar el desempeño de este metodo, buscar optimizar aun mas los tiempos de respuesta y comprobrar errores de escritura en paralelo
- * @param {Archivo} file
+ * @param {MaterialEstudio} file
  * @param {Usuario} user
  */
 MySQLDataBase.prototype.updateFile = function (file, user) {
@@ -309,9 +321,10 @@ MySQLDataBase.prototype.logTransaction = function (user, key, success) {
 };
 
 MySQLDataBase.prototype.getEspecialidadesByFacultad = function (Facultad) {
+    Facultad = mysql.escape(Facultad);
     const sqlEspecialidad =
 `SELECT * FROM \`${this.Especialidad}\` 
-WHERE Facultad='${Facultad}'`;
+WHERE Facultad=${Facultad}`;
     return this.makeFastQuery(sqlEspecialidad);
 };
 MySQLDataBase.prototype.getFacultades = function () {
