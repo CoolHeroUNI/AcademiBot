@@ -31,11 +31,49 @@ body
                 selectCurso.options[j] = new Option(Nombre, Codigo);
             }
         }
+        function Disable(Key) {
+            document.getElementById(Key + '-Anchor').href = '';
+            document.getElementById(Key + '-Facultad').setAttribute('disabled', '');
+            document.getElementById(Key + '-Curso').setAttribute('disabled', '');
+            document.getElementById(Key + '-Carpeta').setAttribute('disabled', '');
+            document.getElementById(Key + '-Nombre').setAttribute('disabled', '');
+            document.getElementById(Key + '-Number').setAttribute('disabled', '');
+            document.getElementById(Key + '-Extension').setAttribute('disabled', '');
+            document.getElementById(Key + '-Submit').setAttribute('disabled', '');
+            document.getElementById(Key + '-Delete').setAttribute('disabled', '');
+        }
         function PostRequest(Key) {
-
+            const Facultad = document.getElementById(Key + '-Facultad').value;
+            const Curso = document.getElementById(Key + '-Curso').value;
+            const Carpeta = document.getElementById(Key + '-Carpeta').value;
+            const Nombre = document.getElementById(Key + '-Nombre').value;
+            const Pagina = document.getElementById(Key + '-Number').value;
+            const Extension = document.getElementById(Key + '-Extension').value;
+            if (!Facultad || !Curso || !Carpeta || !Nombre || !Pagina || !Extension) throw new Error('Solicitud invalida!');
+            const NewKey = `${Facultad}/${Curso}/${Carpeta}/${Nombre}-${Pagina}${Extension}`;
+            if (!confirm(`Desea mover el archivo a ${NewKey}?`)) return;
+            $.post('/admin/clasificador?action=move', {Key, NewKey})
+                .done(function () {
+                    Disable(Key);
+                    alert('Operacion exitosa!');
+                })
+                .fail(function (e) {
+                    console.log(e);
+                    alert('Error!');
+                })
         }
         function DeleteEntry(Key) {
-
+            const name = Key.split('/').pop();
+            if (!confirm(`Desea eliminar ${name}?`)) return;
+            $.post('/admin/clasificador?action=delete', {Key})
+                .done(function () {
+                    Disable(Key);
+                    alert('Operacion exitosa!');
+                })
+                .fail(function (e) {
+                    console.log(e);
+                    alert('Error!');
+                })
         }
 
         const Folders = Keys.map(function (key) {
@@ -102,8 +140,9 @@ body
                     document.createElement('td')
                 ];
                 const anchor = document.createElement('a');
+                anchor.id = key + '-Anchor';
                 anchor.innerText = name.length > 20 ? name.substr(0, 17) + '...' : name;
-                anchor.setAttribute('href', '/admin/API?key=' + key);
+                anchor.setAttribute('href', '/admin/API?action=download&key=' + key);
                 anchor.setAttribute('download', fileName);
                 Columns[0].innerHTML = anchor.outerHTML;
                 const selectFacultad = document.createElement('select');

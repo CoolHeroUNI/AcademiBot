@@ -51,6 +51,26 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    res.sendStatus(200);
+    const action = req.query['action'];
+    const Key = req.body['Key'];
+    const NewKey = req.body['NewKey'];
+    switch (action) {
+        case 'move':
+            return S3.moveObject(Key, NewKey)
+                .then(() => res.sendStatus(200))
+                .catch((e) => {
+                    res.sendStatus(500);
+                    MySQL.logInternalError(e, 'AdminClasificador');
+                });
+        case 'delete':
+            return S3.deleteObject(Key)
+                .then(() => res.sendStatus(200))
+                .catch((e) => {
+                    res.sendStatus(500);
+                    MySQL.logInternalError(e, 'AdminClasificador');
+                });
+        default:
+            res.sendStatus(405);
+    }
 });
 module.exports = router;
