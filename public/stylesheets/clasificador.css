@@ -1,18 +1,18 @@
 .SelectFacultad {
-    width: 40px;
+    width: 100px;
 }
 .SelectCurso {
-    width: 150px;
+    width: 250px;
 }
 .SelectCarpeta {
     width: 100px;
 }
 .InputNombre {
-    width: 100px;
+    width: 200px;
 }
 .InputPagina {
     width: 20px;
 }
-.InputExtension {
+.InputExt {
     width: 30px;
 }

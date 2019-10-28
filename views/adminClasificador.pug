@@ -28,7 +28,7 @@ body
                 const curso = cursos[j];
                 const Codigo = curso['Codigo'];
                 const Nombre = curso['Nombre'];
-                selectCurso.options[i] = new Option(Nombre, Codigo);
+                selectCurso.options[j] = new Option(Nombre, Codigo);
             }
         }
         function PostRequest(Key) {
@@ -102,7 +102,7 @@ body
                     document.createElement('td')
                 ];
                 const anchor = document.createElement('a');
-                anchor.innerText = name.length > 10 ? name.substr(0, 7) + '...' : name;
+                anchor.innerText = name.length > 20 ? name.substr(0, 17) + '...' : name;
                 anchor.setAttribute('href', '/admin/API?key=' + key);
                 anchor.setAttribute('download', fileName);
                 Columns[0].innerHTML = anchor.outerHTML;

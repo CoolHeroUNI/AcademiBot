@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/stylesheets/clasificador.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/adminClasificador.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/adminClasificador.pug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/stylesheets/clasificador.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/stylesheets/clasificador.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -74,14 +72,7 @@
       <workItem from="1571426911946" duration="92518000" />
       <workItem from="1571671301967" duration="31769000" />
       <workItem from="1571787326229" duration="38322000" />
-      <workItem from="1571930689124" duration="72716000" />
-    </task>
-    <task id="LOCAL-00111" summary="Almost Finish">
-      <created>1571985378145</created>
-      <option name="number" value="00111" />
-      <option name="presentableId" value="LOCAL-00111" />
-      <option name="project" value="LOCAL" />
-      <updated>1571985378145</updated>
+      <workItem from="1571930689124" duration="72985000" />
     </task>
     <task id="LOCAL-00112" summary="Almost Finish">
       <created>1571986098051</created>
@@ -419,7 +410,14 @@
       <option name="project" value="LOCAL" />
       <updated>1572221153152</updated>
     </task>
-    <option name="localTasksCounter" value="160" />
+    <task id="LOCAL-00160" summary="Adjusting width">
+      <created>1572221961734</created>
+      <option name="number" value="00160" />
+      <option name="presentableId" value="LOCAL-00160" />
+      <option name="project" value="LOCAL" />
+      <updated>1572221961734</updated>
+    </task>
+    <option name="localTasksCounter" value="161" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -439,7 +437,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="database not working" />
     <MESSAGE value="debugging" />
     <MESSAGE value="asdasd" />
     <MESSAGE value="arreglos" />
@@ -464,6 +461,7 @@
     <MESSAGE value="Clasificador v2.0&#10;Error in parameters&#10;Push instead of Append" />
     <MESSAGE value="Clasificador v2.0&#10;Populated Cursos after creation of document" />
     <MESSAGE value="Clasificador v2.0&#10;problems with css" />
-    <option name="LAST_COMMIT_MESSAGE" value="Clasificador v2.0&#10;problems with css" />
+    <MESSAGE value="Adjusting width" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adjusting width" />
   </component>
 </project>
