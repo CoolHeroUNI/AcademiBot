@@ -38,13 +38,13 @@ router.post('/', (req, res) => {
                     }
                     if (!message['sticker_id'] && message['attachments']) {
                         const attachments = message['attachments'];
-                        attachments
+                        return Promise.all(attachments
                             .filter(attachment => attachment['payload'] && attachment['payload']['url'])
-                            .forEach(attachment => {
+                            .map(attachment => {
                                 const url = attachment['payload']['url'];
                                 const fileName = url.substr(0, url.indexOf('?')).split('/').pop();
                                 const key = submissionsFolder + '/' + user.getFacebookId() + '/' + fileName;
-                                RequestPromise.get(url, {encoding: null, resolveWithFullResponse: true})
+                                return RequestPromise.get(url, {encoding: null, resolveWithFullResponse: true})
                                     .then(res => {
                                         if (!res['headers']['content-type']) return Promise.reject(new Error('No content header in ' + url));
                                         if (!res['body']) return Promise.reject(new Error('No body in ' + url));
@@ -55,12 +55,12 @@ router.post('/', (req, res) => {
                                             ContentType : mime
                                         });
                                     })
-                                    .then(() => FB.sendText(userId, thanksSubmission, false))
                                     .catch(e => {
                                         console.log(e);
                                         MySQL.logUserError(e, user, 'Webhook')
                                     });
-                            })
+                            }))
+                            .then(() => FB.sendText(userId, thanksSubmission, false));
                     }
                 }
             })
