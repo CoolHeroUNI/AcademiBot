@@ -5,11 +5,11 @@ head
     link(rel='stylesheet' type='text/css' href='/public/stylesheets/collapsible.css')
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js")
     script.
-        const Keys = Array.from(!{JSON.stringify(keys)});
+        const Keys = !{JSON.stringify(keys)};
     script.
-        const Facultades = Array.from(!{JSON.stringify(facultades)});
+        const Facultades = !{JSON.stringify(facultades)};
     script.
-        const Cursos = Array.from(!{JSON.stringify(cursos)});
+        const Cursos = !{JSON.stringify(cursos)};
 body
     h2 Clasificador de material
     button.collapsible Botones
