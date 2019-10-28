@@ -56,7 +56,10 @@ router.post('/', (req, res) => {
     const NewKey = req.body['NewKey'];
     switch (action) {
         case 'move':
-            return S3.moveObject(Key, NewKey)
+            return S3.getObject(NewKey)
+                .catch(e => Promise.resolve())
+                .then(() => Promise.reject(new Error('Ya existe un archivo con el mismo nombre')))
+                .then(() => S3.moveObject(Key, NewKey))
                 .then(() => res.sendStatus(200))
                 .catch((e) => {
                     res.sendStatus(500);
