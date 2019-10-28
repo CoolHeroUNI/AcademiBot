@@ -3,6 +3,7 @@ head
     title="Clasificador de material"
     meta(name='viewport' content='width=device-width, initial-scale=1')
     link(rel='stylesheet' type='text/css' href='/public/stylesheets/collapsible.css')
+    link(rel='stylesheet' type='text/css' href='/public/stylesheets/clasificador.css')
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js")
     script.
         const Keys = !{JSON.stringify(keys)};
@@ -101,11 +102,12 @@ body
                     document.createElement('td')
                 ];
                 const anchor = document.createElement('a');
-                anchor.innerText = name;
+                anchor.innerText = name.length > 10 ? name.substr(0, 7) + '...' : name;
                 anchor.setAttribute('href', '/admin/API?key=' + key);
                 anchor.setAttribute('download', fileName);
                 Columns[0].innerHTML = anchor.outerHTML;
                 const selectFacultad = document.createElement('select');
+                selectFacultad.classList.add('SelectFacultad');
                 selectFacultad.id = key + '-Facultad';
                 selectFacultad.name = 'Facultad';
                 selectFacultad.setAttribute('onchange', `PopulateCursos('${key}')`);
@@ -114,11 +116,13 @@ body
                     selectFacultad.options[i] = new Option(facultad, facultad);
                 }
                 Columns[1].innerHTML = selectFacultad.outerHTML;
-                const selectCursos = document.createElement('select');
-                selectCursos.id = key + '-Curso';
-                selectCursos.name = 'Curso';
-                Columns[2].innerHTML = selectCursos.outerHTML;
+                const selectCurso = document.createElement('select');
+                selectCurso.classList.add('SelectCurso');
+                selectCurso.id = key + '-Curso';
+                selectCurso.name = 'Curso';
+                Columns[2].innerHTML = selectCurso.outerHTML;
                 const selectCarpeta = document.createElement('select');
+                selectCarpeta.classList.add('SelectCarpeta');
                 selectCarpeta.id = key + '-Carpeta';
                 selectCarpeta.name = 'Carpeta';
                 for (let i = 0; i < OpcionesCarpetas.length; i++) {
@@ -127,20 +131,23 @@ body
                 }
                 Columns[3].innerHTML = selectCarpeta.outerHTML;
                 const textNombre = document.createElement('input');
+                textNombre.classList.add('InputNombre');
                 textNombre.id = key + '-Nombre';
                 textNombre.type = 'text';
                 textNombre.placeholder = name;
                 textNombre.name = 'Archivo';
                 const page = document.createElement('input');
+                page.classList.add('InputPagina');
                 page.id = key + '-Number';
                 page.type = 'number';
                 page.name = 'Pagina';
-                page.value = '1';
+                page.setAttribute('value', '1');
                 const extension = document.createElement('input');
+                extension.classList.add('InputExt');
                 extension.id = key + '-Extension';
                 extension.type = 'text';
                 extension.name = 'Extension';
-                extension.value = ext;
+                extension.setAttribute('value', ext);
                 extension.readOnly = true;
                 Columns[4].appendChild(textNombre);
                 Columns[4].appendChild(page);
@@ -178,3 +185,4 @@ body
                 }
             });
         }
+
