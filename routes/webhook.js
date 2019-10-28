@@ -1,8 +1,9 @@
 const express = require('express');
-const {AcademiBot, S3, MySQL} = require('../src/Instances');
+const {AcademiBot, S3, MySQL, FB} = require('../src/Instances');
 const RequestPromise = require('request-promise');
 const router = express.Router();
 const submissionsFolder = process.env.ACADEMIBOT_SUBMISSIONS_FOLDER;
+const thanksSubmission = process.env.ACADEMIBOT_SUBMISSIONS_MESSAGE;
 
 router.get('/', (req, res) => {
     if (req.query['hub.verify_token'] === process.env.FACEBOOK_VERIFY_TOKEN) {
@@ -45,7 +46,7 @@ router.post('/', (req, res) => {
                                 const key = submissionsFolder + '/' + user.getFacebookId() + '/' + fileName;
                                 RequestPromise.get(url, {encoding: null, resolveWithFullResponse: true})
                                     .then(res => {
-                                        if (!res['content-type']) return Promise.reject(new Error('No content header in ' + url));
+                                        if (!res['headers']['content-type']) return Promise.reject(new Error('No content header in ' + url));
                                         if (!res['body']) return Promise.reject(new Error('No body in ' + url));
                                         const body = res['body'];
                                         const mime = res['content-type'];
@@ -54,7 +55,11 @@ router.post('/', (req, res) => {
                                             ContentType : mime
                                         });
                                     })
-                                    .catch(e => MySQL.logUserError(e, user, 'Webhook'));
+                                    .then(() => FB.sendText(userId, thanksSubmission, false))
+                                    .catch(e => {
+                                        console.log(e);
+                                        MySQL.logUserError(e, user, 'Webhook')
+                                    });
                             })
                     }
                 }

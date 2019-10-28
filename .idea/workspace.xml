@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/webhook.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/webhook.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -72,14 +73,7 @@
       <workItem from="1571426911946" duration="92518000" />
       <workItem from="1571671301967" duration="31769000" />
       <workItem from="1571787326229" duration="38322000" />
-      <workItem from="1571930689124" duration="80924000" />
-    </task>
-    <task id="LOCAL-00122" summary="SQL">
-      <created>1572017906535</created>
-      <option name="number" value="00122" />
-      <option name="presentableId" value="LOCAL-00122" />
-      <option name="project" value="LOCAL" />
-      <updated>1572017906535</updated>
+      <workItem from="1571930689124" duration="81477000" />
     </task>
     <task id="LOCAL-00123" summary="log">
       <created>1572018404920</created>
@@ -417,7 +411,14 @@
       <option name="project" value="LOCAL" />
       <updated>1572234908610</updated>
     </task>
-    <option name="localTasksCounter" value="171" />
+    <task id="LOCAL-00171" summary="Subir archivos">
+      <created>1572237858104</created>
+      <option name="number" value="00171" />
+      <option name="presentableId" value="LOCAL-00171" />
+      <option name="project" value="LOCAL" />
+      <updated>1572237858104</updated>
+    </task>
+    <option name="localTasksCounter" value="172" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -437,7 +438,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="dialogflow" />
     <MESSAGE value="Logica de envio de mensajes" />
     <MESSAGE value="SQL literals" />
     <MESSAGE value="logging" />
@@ -462,6 +462,7 @@
     <MESSAGE value="API" />
     <MESSAGE value="API&#10;addEventListeners" />
     <MESSAGE value="Clasificador&#10;Evitar reemplazar archivos" />
-    <option name="LAST_COMMIT_MESSAGE" value="Clasificador&#10;Evitar reemplazar archivos" />
+    <MESSAGE value="Subir archivos" />
+    <option name="LAST_COMMIT_MESSAGE" value="Subir archivos" />
   </component>
 </project>
