@@ -70,7 +70,7 @@ MySQLDataBase.prototype.getAllUsers = function () {
 };
 
 MySQLDataBase.prototype.getUsersEllegibleForPublicity = function () {
-    const sql = `SELECT * FROM \`${this.User}\` WHERE AceptaPublicidad=TRUE`;
+    const sql = `SELECT * FROM \`${this.User}\` WHERE AceptaPublicidad=TRUE ORDER BY UltimaInteraccion DESC`;
     return this.promiseQuery(sql)
         .then(rows => rows.map(DataPacket => (new Usuario(DataPacket['FacebookId']).cargaDesdeObjeto(DataPacket))))
 

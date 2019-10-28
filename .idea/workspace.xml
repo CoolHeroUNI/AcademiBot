@@ -3,7 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/webhook.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/webhook.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/Classes/Facebook.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Classes/Facebook.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/Classes/MySQLDataBase.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Classes/MySQLDataBase.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/adminClasificador.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/adminClasificador.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/adminFacebook.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/adminFacebook.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/adminHosting.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/adminHosting.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/adminMuestra.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/adminMuestra.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/webhook_old.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AcademiBot.js" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -73,28 +80,7 @@
       <workItem from="1571426911946" duration="92518000" />
       <workItem from="1571671301967" duration="31769000" />
       <workItem from="1571787326229" duration="38322000" />
-      <workItem from="1571930689124" duration="81477000" />
-    </task>
-    <task id="LOCAL-00123" summary="log">
-      <created>1572018404920</created>
-      <option name="number" value="00123" />
-      <option name="presentableId" value="LOCAL-00123" />
-      <option name="project" value="LOCAL" />
-      <updated>1572018404921</updated>
-    </task>
-    <task id="LOCAL-00124" summary="log">
-      <created>1572019207169</created>
-      <option name="number" value="00124" />
-      <option name="presentableId" value="LOCAL-00124" />
-      <option name="project" value="LOCAL" />
-      <updated>1572019207169</updated>
-    </task>
-    <task id="LOCAL-00125" summary="log">
-      <created>1572019572432</created>
-      <option name="number" value="00125" />
-      <option name="presentableId" value="LOCAL-00125" />
-      <option name="project" value="LOCAL" />
-      <updated>1572019572432</updated>
+      <workItem from="1571930689124" duration="83445000" />
     </task>
     <task id="LOCAL-00126" summary="log">
       <created>1572028521978</created>
@@ -418,7 +404,28 @@
       <option name="project" value="LOCAL" />
       <updated>1572237858104</updated>
     </task>
-    <option name="localTasksCounter" value="172" />
+    <task id="LOCAL-00172" summary="Subir archivos">
+      <created>1572238407493</created>
+      <option name="number" value="00172" />
+      <option name="presentableId" value="LOCAL-00172" />
+      <option name="project" value="LOCAL" />
+      <updated>1572238407493</updated>
+    </task>
+    <task id="LOCAL-00173" summary="Subir archivos">
+      <created>1572238420586</created>
+      <option name="number" value="00173" />
+      <option name="presentableId" value="LOCAL-00173" />
+      <option name="project" value="LOCAL" />
+      <updated>1572238420586</updated>
+    </task>
+    <task id="LOCAL-00174" summary="Subir archivos">
+      <created>1572238619574</created>
+      <option name="number" value="00174" />
+      <option name="presentableId" value="LOCAL-00174" />
+      <option name="project" value="LOCAL" />
+      <updated>1572238619574</updated>
+    </task>
+    <option name="localTasksCounter" value="175" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

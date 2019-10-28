@@ -212,7 +212,6 @@ Facebook.prototype.sendOptionsMenu = function (userId, parameters) {
 
 
 
-
 /**
  * Metodo para enviar una accion al usuario
  * @method sendAction

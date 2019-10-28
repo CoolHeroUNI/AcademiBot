@@ -80,7 +80,7 @@ router.post('/', (req, res) => {
                     MySQL.logInternalError(e, 'AdminClasificador');
                 });
         default:
-            res.sendStatus(405);
+            return res.sendStatus(405);
     }
 });
 module.exports = router;
