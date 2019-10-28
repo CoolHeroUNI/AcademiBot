@@ -194,12 +194,16 @@ body
                 const submit = document.createElement('button');
                 submit.id = key + '-Submit';
                 submit.textContent = 'Enviar';
-                submit.addEventListener('click', PostRequest(key));
+                submit.addEventListener('click', function () {
+                    PostRequest(key);
+                });
                 Columns[5].innerHTML = submit.outerHTML;
                 const del = document.createElement('button');
                 del.id = key + '-Delete';
                 del.textContent = 'Eliminar';
-                del.addEventListener('click', DeleteEntry(key));
+                del.addEventListener('click', function () {
+                    DeleteEntry(key);
+                });
                 Columns[6].innerHTML = del.outerHTML;
                 for (let column of Columns) Form.appendChild(column);
                 nthRow.innerHTML = Form.outerHTML;
