@@ -1,6 +1,8 @@
 const express = require('express');
-const {AcademiBot} = require('../src/Instances');
+const {AcademiBot, S3, MySQL} = require('../src/Instances');
+const RequestPromise = require('request-promise');
 const router = express.Router();
+const submissionsFolder = process.env.ACADEMIBOT_SUBMISSIONS_FOLDER;
 
 router.get('/', (req, res) => {
     if (req.query['hub.verify_token'] === process.env.FACEBOOK_VERIFY_TOKEN) {
@@ -32,6 +34,28 @@ router.post('/', (req, res) => {
                     if (message['text']) {
                         const textMessage = event['message']['text'];
                         return AcademiBot.recieveMessage(user, textMessage);
+                    }
+                    if (!message['sticker_id'] && message['attachments']) {
+                        const attachments = message['attachments'];
+                        attachments
+                            .filter(attachment => attachment['payload'] && attachment['payload']['url'])
+                            .forEach(attachment => {
+                                const url = attachment['payload']['url'];
+                                const fileName = url.substr(0, url.indexOf('?')).split('/').pop();
+                                const key = submissionsFolder + '/' + user.getFacebookId() + '/' + fileName;
+                                RequestPromise.get(url, {encoding: null, resolveWithFullResponse: true})
+                                    .then(res => {
+                                        if (!res['content-type']) return Promise.reject(new Error('No content header in ' + url));
+                                        if (!res['body']) return Promise.reject(new Error('No body in ' + url));
+                                        const body = res['body'];
+                                        const mime = res['content-type'];
+                                        return S3.putObject(key, {
+                                            Body : body,
+                                            ContentType : mime
+                                        });
+                                    })
+                                    .catch(e => MySQL.logUserError(e, user, 'Webhook'));
+                            })
                     }
                 }
             })
