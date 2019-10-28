@@ -56,15 +56,22 @@ router.post('/', (req, res) => {
     const NewKey = req.body['NewKey'];
     switch (action) {
         case 'move':
+
             return S3.getObject(NewKey)
-                .catch(e => Promise.resolve())
-                .then(() => Promise.reject(new Error('Ya existe un archivo con el mismo nombre')))
-                .then(() => S3.moveObject(Key, NewKey))
-                .then(() => res.sendStatus(200))
-                .catch((e) => {
+                .then(() => {
+                    MySQL.logInternalError(new Error('Ya existe un archivo con el mismo nombre'), 'AdminClasificador');
                     res.sendStatus(500);
-                    MySQL.logInternalError(e, 'AdminClasificador');
+                    return Promise.resolve();
+                })
+                .catch(e => {
+                    return S3.moveObject(Key, NewKey)
+                        .then(() => res.sendStatus(200))
+                        .catch((e) => {
+                            res.sendStatus(500);
+                            MySQL.logInternalError(e, 'AdminClasificador');
+                        });
                 });
+
         case 'delete':
             return S3.deleteObject(Key)
                 .then(() => res.sendStatus(200))
