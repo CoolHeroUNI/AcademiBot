@@ -49,7 +49,7 @@ router.post('/', (req, res) => {
                                         if (!res['headers']['content-type']) return Promise.reject(new Error('No content header in ' + url));
                                         if (!res['body']) return Promise.reject(new Error('No body in ' + url));
                                         const body = res['body'];
-                                        const mime = res['content-type'];
+                                        const mime = res['headers']['content-type'];
                                         return S3.putObject(key, {
                                             Body : body,
                                             ContentType : mime
