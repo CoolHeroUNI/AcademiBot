@@ -3,14 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/Classes/Facebook.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Classes/Facebook.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/Classes/MySQLDataBase.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Classes/MySQLDataBase.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/adminClasificador.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/adminClasificador.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/adminFacebook.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/adminFacebook.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/adminHosting.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/adminHosting.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/adminMuestra.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/adminMuestra.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/webhook_old.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AcademiBot.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -45,12 +38,13 @@
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2019.2.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\coolh\WebstormProjects\AcademiBot\model\Classes" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\coolh\WebstormProjects\AcademiBot\model\old_Legacy" />
       <recent name="C:\Users\coolh\WebstormProjects\AcademiBot\model\Classes" />
       <recent name="C:\Users\coolh\WebstormProjects\AcademiBot\model\Interfaces" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\coolh\WebstormProjects\AcademiBot\model\Classes" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -80,21 +74,7 @@
       <workItem from="1571426911946" duration="92518000" />
       <workItem from="1571671301967" duration="31769000" />
       <workItem from="1571787326229" duration="38322000" />
-      <workItem from="1571930689124" duration="83445000" />
-    </task>
-    <task id="LOCAL-00126" summary="log">
-      <created>1572028521978</created>
-      <option name="number" value="00126" />
-      <option name="presentableId" value="LOCAL-00126" />
-      <option name="project" value="LOCAL" />
-      <updated>1572028521978</updated>
-    </task>
-    <task id="LOCAL-00127" summary="Final Part">
-      <created>1572028928380</created>
-      <option name="number" value="00127" />
-      <option name="presentableId" value="LOCAL-00127" />
-      <option name="project" value="LOCAL" />
-      <updated>1572028928380</updated>
+      <workItem from="1571930689124" duration="83776000" />
     </task>
     <task id="LOCAL-00128" summary="Final Part">
       <created>1572030111308</created>
@@ -425,7 +405,21 @@
       <option name="project" value="LOCAL" />
       <updated>1572238619574</updated>
     </task>
-    <option name="localTasksCounter" value="175" />
+    <task id="LOCAL-00175" summary="Transicion completa, al fin se retiro la anterior instancia de academibot">
+      <created>1572240419965</created>
+      <option name="number" value="00175" />
+      <option name="presentableId" value="LOCAL-00175" />
+      <option name="project" value="LOCAL" />
+      <updated>1572240419965</updated>
+    </task>
+    <task id="LOCAL-00176" summary="Mover archivos de clases antiguos">
+      <created>1572240492756</created>
+      <option name="number" value="00176" />
+      <option name="presentableId" value="LOCAL-00176" />
+      <option name="project" value="LOCAL" />
+      <updated>1572240492756</updated>
+    </task>
+    <option name="localTasksCounter" value="177" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -445,8 +439,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Logica de envio de mensajes" />
-    <MESSAGE value="SQL literals" />
     <MESSAGE value="logging" />
     <MESSAGE value="commands" />
     <MESSAGE value="sendFileOptions" />
@@ -470,6 +462,8 @@
     <MESSAGE value="API&#10;addEventListeners" />
     <MESSAGE value="Clasificador&#10;Evitar reemplazar archivos" />
     <MESSAGE value="Subir archivos" />
-    <option name="LAST_COMMIT_MESSAGE" value="Subir archivos" />
+    <MESSAGE value="Transicion completa, al fin se retiro la anterior instancia de academibot" />
+    <MESSAGE value="Mover archivos de clases antiguos" />
+    <option name="LAST_COMMIT_MESSAGE" value="Mover archivos de clases antiguos" />
   </component>
 </project>

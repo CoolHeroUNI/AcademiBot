@@ -170,7 +170,7 @@ MySQLDataBase.prototype.getProbableCoursesByUser = function (user) {
     const sql =
 `SELECT Codigo,Nombre,SistemaEvaluacion,Creditos 
 FROM \`${this.Curso}\` INNER JOIN \`${this.ECC}\` ON \`${this.ECC}\`.Curso=\`${this.Curso}\`.Codigo
-WHERE Especialidad='${Especialidad}' AND Ciclo>=${Ciclo - 2} AND Ciclo<${Ciclo + 2}${Ciclo > 5 ? ' OR Ciclo=11' : ''}`;
+WHERE Especialidad='${Especialidad}' AND Ciclo>=${Ciclo - 3} AND Ciclo<=${Ciclo + 3}${Ciclo > 5 ? ' OR Ciclo=11' : ''}`;
     return this.makeFastQuery(sql)
         .then(rows => rows.map(DataPacket => {
             const Codigo = DataPacket['Codigo'];

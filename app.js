@@ -59,7 +59,7 @@ app.use(function(err, req, res, next) {
 });
 
 app.listen(app.get('port'), () => {
-  console.log("running");
+  console.log("Servidor escuchando en puerto " + app.get('port'));
   randomPing(process.env.ACADEMIBOT_URL);
 });
 process.on('SIGTERM', () => {
