@@ -293,6 +293,7 @@ WHERE Key=${Key}`;
  * @param {String} module
  */
 MySQLDataBase.prototype.logUserError = function (error, user, module) {
+    console.log(error);
     const message = mysql.escape(error.message).substr(0,200);
     const userId = user.getFacebookId();
     const sql = `INSERT INTO \`${this.Error}\` (Usuario,Mensaje,Modulo) VALUES (${userId},${message},'${module}')`;
@@ -304,6 +305,7 @@ MySQLDataBase.prototype.logUserError = function (error, user, module) {
  * @param {String} module
  */
 MySQLDataBase.prototype.logInternalError = function (error, module) {
+    console.log(error);
     const message = mysql.escape(error.message).substr(0,200);
     const sql = `INSERT INTO \`${this.Error}\` (Mensaje,Modulo) VALUES (${message},'${module}')`;
     return this.promiseQuery(sql);
