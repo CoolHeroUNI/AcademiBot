@@ -40,7 +40,11 @@ MySQLDataBase.prototype.connect = function (reconTime, autoReconnect) {
             if (err) return reject(err);
             setInterval(() => {
                 this.ping()
-                    .then(() => console.log('Successful ping to Database.'));
+                    .then(() => console.log('Successful ping to Database.'))
+                    .catch(e => {
+                        console.log(e);
+                        process.exit(0);
+                    });
             }, reconTime);
             if (autoReconnect) {
                 this.conn.on('error' , (error) => {

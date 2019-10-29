@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/Classes/MySQLDataBase.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Classes/MySQLDataBase.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -75,14 +74,7 @@
       <workItem from="1571671301967" duration="31769000" />
       <workItem from="1571787326229" duration="38322000" />
       <workItem from="1571930689124" duration="83776000" />
-      <workItem from="1572316381597" duration="201000" />
-    </task>
-    <task id="LOCAL-00129" summary="Final Part">
-      <created>1572030278542</created>
-      <option name="number" value="00129" />
-      <option name="presentableId" value="LOCAL-00129" />
-      <option name="project" value="LOCAL" />
-      <updated>1572030278543</updated>
+      <workItem from="1572316381597" duration="525000" />
     </task>
     <task id="LOCAL-00130" summary="Final Part">
       <created>1572030651905</created>
@@ -420,7 +412,14 @@
       <option name="project" value="LOCAL" />
       <updated>1572316484459</updated>
     </task>
-    <option name="localTasksCounter" value="178" />
+    <task id="LOCAL-00178" summary="SQL Ghost error">
+      <created>1572375024156</created>
+      <option name="number" value="00178" />
+      <option name="presentableId" value="LOCAL-00178" />
+      <option name="project" value="LOCAL" />
+      <updated>1572375024156</updated>
+    </task>
+    <option name="localTasksCounter" value="179" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -440,7 +439,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="logging" />
     <MESSAGE value="commands" />
     <MESSAGE value="sendFileOptions" />
     <MESSAGE value="sql" />
@@ -465,6 +463,7 @@
     <MESSAGE value="Transicion completa, al fin se retiro la anterior instancia de academibot" />
     <MESSAGE value="Mover archivos de clases antiguos" />
     <MESSAGE value="SQL" />
-    <option name="LAST_COMMIT_MESSAGE" value="SQL" />
+    <MESSAGE value="SQL Ghost error" />
+    <option name="LAST_COMMIT_MESSAGE" value="SQL Ghost error" />
   </component>
 </project>
