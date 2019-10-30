@@ -6,7 +6,7 @@ class CacheHandler{
     constructor(time) {
         this.storage = new Map();
         this.timeHandler = new Map();
-        this.timeLimit = time || 300;
+        this.timeLimit = time || 300000;
     }
 }
 
@@ -24,7 +24,7 @@ CacheHandler.prototype.setDisposal = function (k) {
     const caller = setTimeout(() => {
         this.storage.delete(k);
         this.timeHandler.delete(k);
-    }, this.timeLimit * 1000);
+    }, this.timeLimit);
     this.timeHandler.set(k, caller);
 };
 CacheHandler.prototype.cancelDisposal = function (k) {

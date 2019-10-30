@@ -35,6 +35,19 @@ class MySQLDataBase extends DataBase {
  * @returns {Promise}
  */
 MySQLDataBase.prototype.connect = function (reconTime, autoReconnect) {
+    if (autoReconnect) {
+        this.conn.on('error' , (error) => {
+            console.log(error);
+            if (error.code === 'ECONNREFUSED') {
+                this.connect(reconTime, true)
+                    .then(() => console.log('Successful Reconnection to database.'))
+                    .catch(e => {
+                        console.log(e);
+                        process.exit(0);
+                    });
+            }
+        })
+    }
     return new Promise((resolve, reject) => {
         this.conn.connect(err => {
             if (err) return reject(err);
@@ -46,16 +59,6 @@ MySQLDataBase.prototype.connect = function (reconTime, autoReconnect) {
                         process.exit(0);
                     });
             }, reconTime);
-            if (autoReconnect) {
-                this.conn.on('error' , (error) => {
-                    console.log(error);
-                    if (error.code === 'ECONNREFUSED') {
-                        this.connect(reconTime, true)
-                            .then(() => console.log('Successful Reconnection to database.'))
-                            .catch(e => reject(e));
-                    }
-                })
-            }
             return resolve();
         })
     });

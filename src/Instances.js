@@ -33,8 +33,8 @@ const MySQL = new MySQLDataBase(host, user, pass, db, port, SQLtime);
 
 const greetings = process.env.ACADEMIBOT_GREETINGS;
 const mediaFolder = process.env.ACADEMIBOT_MEDIA_FOLDER;
-const time = parseInt(process.env.ACADEMIBOT_CACHE_TIME);
-const reconTime = parseInt(process.env.ACADEMIBOT_DB_RECONNECTION_TIME);
+const time = parseInt(process.env.ACADEMIBOT_CACHE_TIME) * 1000;
+const reconTime = parseInt(process.env.ACADEMIBOT_DB_RECONNECTION_TIME) * 1000;
 const AcademiBot = new Bot(time, greetings, mediaFolder);
 AcademiBot.setDataBase(MySQL);
 AcademiBot.setFileStorage(S3);
