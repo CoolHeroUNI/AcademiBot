@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/Classes/MySQLDataBase.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Classes/MySQLDataBase.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/Classes/Bot.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Classes/Bot.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/adminFacebook.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/adminFacebook.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -76,14 +77,7 @@
       <workItem from="1571787326229" duration="38322000" />
       <workItem from="1571930689124" duration="83776000" />
       <workItem from="1572316381597" duration="1862000" />
-      <workItem from="1572469948316" duration="688000" />
-    </task>
-    <task id="LOCAL-00131" summary="Final Part">
-      <created>1572030899172</created>
-      <option name="number" value="00131" />
-      <option name="presentableId" value="LOCAL-00131" />
-      <option name="project" value="LOCAL" />
-      <updated>1572030899172</updated>
+      <workItem from="1572469948316" duration="4838000" />
     </task>
     <task id="LOCAL-00132" summary="Final Part">
       <created>1572061320829</created>
@@ -421,7 +415,14 @@
       <option name="project" value="LOCAL" />
       <updated>1572375328076</updated>
     </task>
-    <option name="localTasksCounter" value="180" />
+    <task id="LOCAL-00180" summary="SQL Ghost error">
+      <created>1572470774829</created>
+      <option name="number" value="00180" />
+      <option name="presentableId" value="LOCAL-00180" />
+      <option name="project" value="LOCAL" />
+      <updated>1572470774829</updated>
+    </task>
+    <option name="localTasksCounter" value="181" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

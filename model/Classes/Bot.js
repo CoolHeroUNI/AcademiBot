@@ -326,7 +326,6 @@ Bot.prototype.sendFiles = function (user, files) {
                     'title' : 'No',
                     'payload' : `SetCarpeta:${user.getCarpeta()}`
                 }
-
             ];
             const text = 'Error enviando. ¿Quieres intentarlo de nuevo?';
             return this.DataBase.logUserError(e, user, 'MessagingChannel')
