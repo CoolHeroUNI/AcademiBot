@@ -3,19 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/Classes/CacheHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Classes/CacheHandler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/old_Legacy/Bot.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/old_Legacy/servicios-web/DialogFlow.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/old_Legacy/servicios-web/DynamoDB.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/old_Legacy/servicios-web/Facebook.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/old_Legacy/servicios-web/S3.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/old_Legacy/universidad/Universidad.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/old_Legacy/universidad/archivos/Archivador.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/old_Legacy/universidad/archivos/Archivo.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/old_Legacy/universidad/facultad/Especialidad.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/old_Legacy/universidad/facultad/Facultad.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/old_Legacy/universidad/facultad/Peticion.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/old_Legacy/universidad/facultad/Usuario.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/Classes/Usuario.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Classes/Usuario.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/API.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/API.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -89,14 +78,7 @@
       <workItem from="1571930689124" duration="83776000" />
       <workItem from="1572316381597" duration="1862000" />
       <workItem from="1572469948316" duration="5587000" />
-      <workItem from="1572728763818" duration="856000" />
-    </task>
-    <task id="LOCAL-00134" summary="Final Part">
-      <created>1572063426434</created>
-      <option name="number" value="00134" />
-      <option name="presentableId" value="LOCAL-00134" />
-      <option name="project" value="LOCAL" />
-      <updated>1572063426434</updated>
+      <workItem from="1572728763818" duration="2166000" />
     </task>
     <task id="LOCAL-00135" summary="Final Part">
       <created>1572111096583</created>
@@ -434,7 +416,14 @@
       <option name="project" value="LOCAL" />
       <updated>1572676557661</updated>
     </task>
-    <option name="localTasksCounter" value="183" />
+    <task id="LOCAL-00183" summary="Version 3.0&#10;New version:&#10;-Found a bug that sends all files if a '.' is detected, tagged it as a feature.&#10;-Now connection to MySQL grants the service with persistent data storage, using a cache module latency can be reduced.&#10;-Classes where refactored&#10;-New implementation recognises words that may refer to courses and sends a list of the possible courses&#10;-New submission system">
+      <created>1572730271792</created>
+      <option name="number" value="00183" />
+      <option name="presentableId" value="LOCAL-00183" />
+      <option name="project" value="LOCAL" />
+      <updated>1572730271792</updated>
+    </task>
+    <option name="localTasksCounter" value="184" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -454,7 +443,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="sql" />
     <MESSAGE value="FileStorage" />
     <MESSAGE value="Archivo.prototype.getExtension" />
     <MESSAGE value="message" />
@@ -479,6 +467,7 @@
     <MESSAGE value="SQL Ghost error" />
     <MESSAGE value="Global messages" />
     <MESSAGE value="env sample" />
-    <option name="LAST_COMMIT_MESSAGE" value="env sample" />
+    <MESSAGE value="Version 3.0&#10;New version:&#10;-Found a bug that sends all files if a '.' is detected, tagged it as a feature.&#10;-Now connection to MySQL grants the service with persistent data storage, using a cache module latency can be reduced.&#10;-Classes where refactored&#10;-New implementation recognises words that may refer to courses and sends a list of the possible courses&#10;-New submission system" />
+    <option name="LAST_COMMIT_MESSAGE" value="Version 3.0&#10;New version:&#10;-Found a bug that sends all files if a '.' is detected, tagged it as a feature.&#10;-Now connection to MySQL grants the service with persistent data storage, using a cache module latency can be reduced.&#10;-Classes where refactored&#10;-New implementation recognises words that may refer to courses and sends a list of the possible courses&#10;-New submission system" />
   </component>
 </project>
