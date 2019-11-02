@@ -10,16 +10,31 @@ class CacheHandler{
     }
 }
 
+/**
+ *
+ * @param {any} k
+ * @param {any} v
+ * @returns {CacheHandler}
+ */
 CacheHandler.prototype.set = function (k, v) {
     this.storage.set(k, v);
     this.refresh(k);
     return this;
 };
+/**
+ *
+ * @param {any} k
+ * @returns {any}
+ */
 CacheHandler.prototype.get = function (k) {
     const value = this.storage.get(k);
     if (value !== undefined) this.refresh(k);
     return value;
 };
+/**
+ *
+ * @param {any} k
+ */
 CacheHandler.prototype.setDisposal = function (k) {
     const caller = setTimeout(() => {
         this.storage.delete(k);
@@ -27,10 +42,18 @@ CacheHandler.prototype.setDisposal = function (k) {
     }, this.timeLimit);
     this.timeHandler.set(k, caller);
 };
+/**
+ *
+ * @param {any} k
+ */
 CacheHandler.prototype.cancelDisposal = function (k) {
     const previousCaller = this.timeHandler.get(k);
     if (previousCaller !== undefined) clearTimeout(previousCaller);
 };
+/**
+ *
+ * @param {any} k
+ */
 CacheHandler.prototype.refresh = function (k) {
     this.cancelDisposal(k);
     this.setDisposal(k);
