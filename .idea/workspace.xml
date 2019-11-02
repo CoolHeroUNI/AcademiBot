@@ -3,13 +3,62 @@
   <component name="ChangeListManager">
     <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/Classes/CacheHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Classes/CacheHandler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/old_Legacy/Bot.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/old_Legacy/servicios-web/DialogFlow.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/old_Legacy/servicios-web/DynamoDB.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/old_Legacy/servicios-web/Facebook.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/old_Legacy/servicios-web/S3.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/old_Legacy/universidad/Universidad.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/old_Legacy/universidad/archivos/Archivador.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/old_Legacy/universidad/archivos/Archivo.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/old_Legacy/universidad/facultad/Especialidad.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/old_Legacy/universidad/facultad/Facultad.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/old_Legacy/universidad/facultad/Peticion.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/old_Legacy/universidad/facultad/Usuario.js" beforeDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1SFgNP9Fp4xkJhJCmGcqs99bFxd" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/model/Classes" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2019.2.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\coolh\WebstormProjects\AcademiBot\model\old_Legacy" />
+      <recent name="C:\Users\coolh\WebstormProjects\AcademiBot\model\Classes" />
+      <recent name="C:\Users\coolh\WebstormProjects\AcademiBot\model\Interfaces" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\coolh\WebstormProjects\AcademiBot\model\Classes" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -26,6 +75,410 @@
     <configuration />
   </component>
   <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="" />
+      <created>1571164717757</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1571164717757</updated>
+      <workItem from="1571164723039" duration="6103000" />
+      <workItem from="1571265653190" duration="3458000" />
+      <workItem from="1571426911946" duration="92518000" />
+      <workItem from="1571671301967" duration="31769000" />
+      <workItem from="1571787326229" duration="38322000" />
+      <workItem from="1571930689124" duration="83776000" />
+      <workItem from="1572316381597" duration="1862000" />
+      <workItem from="1572469948316" duration="5587000" />
+      <workItem from="1572728763818" duration="856000" />
+    </task>
+    <task id="LOCAL-00134" summary="Final Part">
+      <created>1572063426434</created>
+      <option name="number" value="00134" />
+      <option name="presentableId" value="LOCAL-00134" />
+      <option name="project" value="LOCAL" />
+      <updated>1572063426434</updated>
+    </task>
+    <task id="LOCAL-00135" summary="Final Part">
+      <created>1572111096583</created>
+      <option name="number" value="00135" />
+      <option name="presentableId" value="LOCAL-00135" />
+      <option name="project" value="LOCAL" />
+      <updated>1572111096583</updated>
+    </task>
+    <task id="LOCAL-00136" summary="Final Part">
+      <created>1572111181069</created>
+      <option name="number" value="00136" />
+      <option name="presentableId" value="LOCAL-00136" />
+      <option name="project" value="LOCAL" />
+      <updated>1572111181069</updated>
+    </task>
+    <task id="LOCAL-00137" summary="Final Part">
+      <created>1572111197833</created>
+      <option name="number" value="00137" />
+      <option name="presentableId" value="LOCAL-00137" />
+      <option name="project" value="LOCAL" />
+      <updated>1572111197833</updated>
+    </task>
+    <task id="LOCAL-00138" summary="Final Part">
+      <created>1572111595846</created>
+      <option name="number" value="00138" />
+      <option name="presentableId" value="LOCAL-00138" />
+      <option name="project" value="LOCAL" />
+      <updated>1572111595846</updated>
+    </task>
+    <task id="LOCAL-00139" summary="Final Part">
+      <created>1572115584699</created>
+      <option name="number" value="00139" />
+      <option name="presentableId" value="LOCAL-00139" />
+      <option name="project" value="LOCAL" />
+      <updated>1572115584699</updated>
+    </task>
+    <task id="LOCAL-00140" summary="Final Part">
+      <created>1572115610165</created>
+      <option name="number" value="00140" />
+      <option name="presentableId" value="LOCAL-00140" />
+      <option name="project" value="LOCAL" />
+      <updated>1572115610165</updated>
+    </task>
+    <task id="LOCAL-00141" summary="Final Part">
+      <created>1572116900140</created>
+      <option name="number" value="00141" />
+      <option name="presentableId" value="LOCAL-00141" />
+      <option name="project" value="LOCAL" />
+      <updated>1572116900140</updated>
+    </task>
+    <task id="LOCAL-00142" summary="Final">
+      <created>1572116994899</created>
+      <option name="number" value="00142" />
+      <option name="presentableId" value="LOCAL-00142" />
+      <option name="project" value="LOCAL" />
+      <updated>1572116994899</updated>
+    </task>
+    <task id="LOCAL-00143" summary="Front">
+      <created>1572215493304</created>
+      <option name="number" value="00143" />
+      <option name="presentableId" value="LOCAL-00143" />
+      <option name="project" value="LOCAL" />
+      <updated>1572215493304</updated>
+    </task>
+    <task id="LOCAL-00144" summary="Clasificador v2.0">
+      <created>1572215547211</created>
+      <option name="number" value="00144" />
+      <option name="presentableId" value="LOCAL-00144" />
+      <option name="project" value="LOCAL" />
+      <updated>1572215547211</updated>
+    </task>
+    <task id="LOCAL-00145" summary="Clasificador v2.0">
+      <created>1572215593535</created>
+      <option name="number" value="00145" />
+      <option name="presentableId" value="LOCAL-00145" />
+      <option name="project" value="LOCAL" />
+      <updated>1572215593535</updated>
+    </task>
+    <task id="LOCAL-00146" summary="Clasificador v2.0">
+      <created>1572215814959</created>
+      <option name="number" value="00146" />
+      <option name="presentableId" value="LOCAL-00146" />
+      <option name="project" value="LOCAL" />
+      <updated>1572215814959</updated>
+    </task>
+    <task id="LOCAL-00147" summary="Clasificador v2.0&#10;Error in SQL">
+      <created>1572216218362</created>
+      <option name="number" value="00147" />
+      <option name="presentableId" value="LOCAL-00147" />
+      <option name="project" value="LOCAL" />
+      <updated>1572216218362</updated>
+    </task>
+    <task id="LOCAL-00148" summary="Clasificador v2.0&#10;Error in parameters&#10;Push instead of Append">
+      <created>1572216523495</created>
+      <option name="number" value="00148" />
+      <option name="presentableId" value="LOCAL-00148" />
+      <option name="project" value="LOCAL" />
+      <updated>1572216523495</updated>
+    </task>
+    <task id="LOCAL-00149" summary="Clasificador v2.0&#10;Populated Cursos after creation of document">
+      <created>1572217122653</created>
+      <option name="number" value="00149" />
+      <option name="presentableId" value="LOCAL-00149" />
+      <option name="project" value="LOCAL" />
+      <updated>1572217122653</updated>
+    </task>
+    <task id="LOCAL-00150" summary="Clasificador v2.0&#10;Populated Cursos after creation of document">
+      <created>1572217923805</created>
+      <option name="number" value="00150" />
+      <option name="presentableId" value="LOCAL-00150" />
+      <option name="project" value="LOCAL" />
+      <updated>1572217923805</updated>
+    </task>
+    <task id="LOCAL-00151" summary="Clasificador v2.0&#10;problems with css">
+      <created>1572218519547</created>
+      <option name="number" value="00151" />
+      <option name="presentableId" value="LOCAL-00151" />
+      <option name="project" value="LOCAL" />
+      <updated>1572218519547</updated>
+    </task>
+    <task id="LOCAL-00152" summary="Clasificador v2.0&#10;problems with css">
+      <created>1572218704243</created>
+      <option name="number" value="00152" />
+      <option name="presentableId" value="LOCAL-00152" />
+      <option name="project" value="LOCAL" />
+      <updated>1572218704243</updated>
+    </task>
+    <task id="LOCAL-00153" summary="Clasificador v2.0&#10;problems with css">
+      <created>1572219034387</created>
+      <option name="number" value="00153" />
+      <option name="presentableId" value="LOCAL-00153" />
+      <option name="project" value="LOCAL" />
+      <updated>1572219034387</updated>
+    </task>
+    <task id="LOCAL-00154" summary="Clasificador v2.0&#10;problems with css">
+      <created>1572219175582</created>
+      <option name="number" value="00154" />
+      <option name="presentableId" value="LOCAL-00154" />
+      <option name="project" value="LOCAL" />
+      <updated>1572219175582</updated>
+    </task>
+    <task id="LOCAL-00155" summary="Clasificador v2.0&#10;problems with css">
+      <created>1572219519923</created>
+      <option name="number" value="00155" />
+      <option name="presentableId" value="LOCAL-00155" />
+      <option name="project" value="LOCAL" />
+      <updated>1572219519923</updated>
+    </task>
+    <task id="LOCAL-00156" summary="Clasificador v2.0&#10;problems with css">
+      <created>1572219988632</created>
+      <option name="number" value="00156" />
+      <option name="presentableId" value="LOCAL-00156" />
+      <option name="project" value="LOCAL" />
+      <updated>1572219988632</updated>
+    </task>
+    <task id="LOCAL-00157" summary="Clasificador v2.0&#10;problems with css">
+      <created>1572220308518</created>
+      <option name="number" value="00157" />
+      <option name="presentableId" value="LOCAL-00157" />
+      <option name="project" value="LOCAL" />
+      <updated>1572220308518</updated>
+    </task>
+    <task id="LOCAL-00158" summary="Clasificador v2.0&#10;problems with css">
+      <created>1572220528329</created>
+      <option name="number" value="00158" />
+      <option name="presentableId" value="LOCAL-00158" />
+      <option name="project" value="LOCAL" />
+      <updated>1572220528329</updated>
+    </task>
+    <task id="LOCAL-00159" summary="Clasificador v2.0&#10;problems with css">
+      <created>1572221153152</created>
+      <option name="number" value="00159" />
+      <option name="presentableId" value="LOCAL-00159" />
+      <option name="project" value="LOCAL" />
+      <updated>1572221153152</updated>
+    </task>
+    <task id="LOCAL-00160" summary="Adjusting width">
+      <created>1572221961734</created>
+      <option name="number" value="00160" />
+      <option name="presentableId" value="LOCAL-00160" />
+      <option name="project" value="LOCAL" />
+      <updated>1572221961734</updated>
+    </task>
+    <task id="LOCAL-00161" summary="Adjusting width">
+      <created>1572222439057</created>
+      <option name="number" value="00161" />
+      <option name="presentableId" value="LOCAL-00161" />
+      <option name="project" value="LOCAL" />
+      <updated>1572222439057</updated>
+    </task>
+    <task id="LOCAL-00162" summary="Adjusting width">
+      <created>1572222919950</created>
+      <option name="number" value="00162" />
+      <option name="presentableId" value="LOCAL-00162" />
+      <option name="project" value="LOCAL" />
+      <updated>1572222919950</updated>
+    </task>
+    <task id="LOCAL-00163" summary="API">
+      <created>1572225556796</created>
+      <option name="number" value="00163" />
+      <option name="presentableId" value="LOCAL-00163" />
+      <option name="project" value="LOCAL" />
+      <updated>1572225556797</updated>
+    </task>
+    <task id="LOCAL-00164" summary="API&#10;addEventListeners">
+      <created>1572225849227</created>
+      <option name="number" value="00164" />
+      <option name="presentableId" value="LOCAL-00164" />
+      <option name="project" value="LOCAL" />
+      <updated>1572225849227</updated>
+    </task>
+    <task id="LOCAL-00165" summary="API&#10;addEventListeners">
+      <created>1572226283029</created>
+      <option name="number" value="00165" />
+      <option name="presentableId" value="LOCAL-00165" />
+      <option name="project" value="LOCAL" />
+      <updated>1572226283029</updated>
+    </task>
+    <task id="LOCAL-00166" summary="API&#10;addEventListeners">
+      <created>1572226602165</created>
+      <option name="number" value="00166" />
+      <option name="presentableId" value="LOCAL-00166" />
+      <option name="project" value="LOCAL" />
+      <updated>1572226602165</updated>
+    </task>
+    <task id="LOCAL-00167" summary="API&#10;addEventListeners">
+      <created>1572226751636</created>
+      <option name="number" value="00167" />
+      <option name="presentableId" value="LOCAL-00167" />
+      <option name="project" value="LOCAL" />
+      <updated>1572226751636</updated>
+    </task>
+    <task id="LOCAL-00168" summary="API&#10;addEventListeners">
+      <created>1572226954871</created>
+      <option name="number" value="00168" />
+      <option name="presentableId" value="LOCAL-00168" />
+      <option name="project" value="LOCAL" />
+      <updated>1572226954871</updated>
+    </task>
+    <task id="LOCAL-00169" summary="Clasificador&#10;Evitar reemplazar archivos">
+      <created>1572234491063</created>
+      <option name="number" value="00169" />
+      <option name="presentableId" value="LOCAL-00169" />
+      <option name="project" value="LOCAL" />
+      <updated>1572234491063</updated>
+    </task>
+    <task id="LOCAL-00170" summary="Clasificador&#10;Evitar reemplazar archivos">
+      <created>1572234908610</created>
+      <option name="number" value="00170" />
+      <option name="presentableId" value="LOCAL-00170" />
+      <option name="project" value="LOCAL" />
+      <updated>1572234908610</updated>
+    </task>
+    <task id="LOCAL-00171" summary="Subir archivos">
+      <created>1572237858104</created>
+      <option name="number" value="00171" />
+      <option name="presentableId" value="LOCAL-00171" />
+      <option name="project" value="LOCAL" />
+      <updated>1572237858104</updated>
+    </task>
+    <task id="LOCAL-00172" summary="Subir archivos">
+      <created>1572238407493</created>
+      <option name="number" value="00172" />
+      <option name="presentableId" value="LOCAL-00172" />
+      <option name="project" value="LOCAL" />
+      <updated>1572238407493</updated>
+    </task>
+    <task id="LOCAL-00173" summary="Subir archivos">
+      <created>1572238420586</created>
+      <option name="number" value="00173" />
+      <option name="presentableId" value="LOCAL-00173" />
+      <option name="project" value="LOCAL" />
+      <updated>1572238420586</updated>
+    </task>
+    <task id="LOCAL-00174" summary="Subir archivos">
+      <created>1572238619574</created>
+      <option name="number" value="00174" />
+      <option name="presentableId" value="LOCAL-00174" />
+      <option name="project" value="LOCAL" />
+      <updated>1572238619574</updated>
+    </task>
+    <task id="LOCAL-00175" summary="Transicion completa, al fin se retiro la anterior instancia de academibot">
+      <created>1572240419965</created>
+      <option name="number" value="00175" />
+      <option name="presentableId" value="LOCAL-00175" />
+      <option name="project" value="LOCAL" />
+      <updated>1572240419965</updated>
+    </task>
+    <task id="LOCAL-00176" summary="Mover archivos de clases antiguos">
+      <created>1572240492756</created>
+      <option name="number" value="00176" />
+      <option name="presentableId" value="LOCAL-00176" />
+      <option name="project" value="LOCAL" />
+      <updated>1572240492756</updated>
+    </task>
+    <task id="LOCAL-00177" summary="SQL">
+      <created>1572316484459</created>
+      <option name="number" value="00177" />
+      <option name="presentableId" value="LOCAL-00177" />
+      <option name="project" value="LOCAL" />
+      <updated>1572316484459</updated>
+    </task>
+    <task id="LOCAL-00178" summary="SQL Ghost error">
+      <created>1572375024156</created>
+      <option name="number" value="00178" />
+      <option name="presentableId" value="LOCAL-00178" />
+      <option name="project" value="LOCAL" />
+      <updated>1572375024156</updated>
+    </task>
+    <task id="LOCAL-00179" summary="SQL Ghost error">
+      <created>1572375328076</created>
+      <option name="number" value="00179" />
+      <option name="presentableId" value="LOCAL-00179" />
+      <option name="project" value="LOCAL" />
+      <updated>1572375328076</updated>
+    </task>
+    <task id="LOCAL-00180" summary="SQL Ghost error">
+      <created>1572470774829</created>
+      <option name="number" value="00180" />
+      <option name="presentableId" value="LOCAL-00180" />
+      <option name="project" value="LOCAL" />
+      <updated>1572470774829</updated>
+    </task>
+    <task id="LOCAL-00181" summary="Global messages">
+      <created>1572675838949</created>
+      <option name="number" value="00181" />
+      <option name="presentableId" value="LOCAL-00181" />
+      <option name="project" value="LOCAL" />
+      <updated>1572675838950</updated>
+    </task>
+    <task id="LOCAL-00182" summary="env sample">
+      <created>1572676557661</created>
+      <option name="number" value="00182" />
+      <option name="presentableId" value="LOCAL-00182" />
+      <option name="project" value="LOCAL" />
+      <updated>1572676557661</updated>
+    </task>
+    <option name="localTasksCounter" value="183" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="sql" />
+    <MESSAGE value="FileStorage" />
+    <MESSAGE value="Archivo.prototype.getExtension" />
+    <MESSAGE value="message" />
+    <MESSAGE value="Almost Finish" />
+    <MESSAGE value="log" />
+    <MESSAGE value="Final Part" />
+    <MESSAGE value="Final" />
+    <MESSAGE value="Front" />
+    <MESSAGE value="Clasificador v2.0" />
+    <MESSAGE value="Clasificador v2.0&#10;Error in SQL" />
+    <MESSAGE value="Clasificador v2.0&#10;Error in parameters&#10;Push instead of Append" />
+    <MESSAGE value="Clasificador v2.0&#10;Populated Cursos after creation of document" />
+    <MESSAGE value="Clasificador v2.0&#10;problems with css" />
+    <MESSAGE value="Adjusting width" />
+    <MESSAGE value="API" />
+    <MESSAGE value="API&#10;addEventListeners" />
+    <MESSAGE value="Clasificador&#10;Evitar reemplazar archivos" />
+    <MESSAGE value="Subir archivos" />
+    <MESSAGE value="Transicion completa, al fin se retiro la anterior instancia de academibot" />
+    <MESSAGE value="Mover archivos de clases antiguos" />
+    <MESSAGE value="SQL" />
+    <MESSAGE value="SQL Ghost error" />
+    <MESSAGE value="Global messages" />
+    <MESSAGE value="env sample" />
+    <option name="LAST_COMMIT_MESSAGE" value="env sample" />
   </component>
 </project>

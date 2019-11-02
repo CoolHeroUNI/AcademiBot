@@ -1,68 +1,86 @@
 const express = require('express');
 const router = express.Router();
-const AcademiBot = require('../src/AcademiBot');
+const {S3, MySQL} = require('../src/Instances');
+const CacheHandler = require('../model/Classes/CacheHandler');
+const cache = new CacheHandler(1800);
+const submissionsFolder = process.env.ACADEMIBOT_SUBMISSIONS_FOLDER;
 
 router.get('/', (req, res) => {
-  const tipe = req.query.tipo || 'image';
-  const page = req.query.page || 0;
-
-  AcademiBot.obtieneArchivoDeEnvios(tipe, page)
-    .then(archivo => {
-      const facultades = AcademiBot.UNI.getFacultadesObject().map(facu => {
-        return {
-          id: facu.id,
-          directorio: facu.directorio
-        };
+  let Keys;
+  let Facultades;
+  let Cursos;
+  return S3.listObjectsUnder(submissionsFolder)
+      .then(keys => keys.filter(key => {
+          if (key.indexOf('.') >= 0) return true;
+          S3.deleteObject(key);
+          return false;
+        }))
+      .then(keys => {
+        Keys = keys;
+        const cached = cache.get('INFORMACION');
+        if (cached) return Promise.resolve({
+            keys : keys,
+            facultades : cached['Facultades'],
+            cursos : cached['Cursos']
+          });
+        return MySQL.getFacultades()
+            .then(facultades => {
+              Facultades = facultades.map(facultad => facultad['Id']);
+              return Promise.all(facultades.map(facultad => MySQL.getCoursesByFaculty(facultad['Id'])));
+            })
+            .then(cursosPorFacultad => {
+              Cursos = cursosPorFacultad.map(cursos => cursos.map(curso => {
+                  return {
+                      Codigo : curso['Codigo'],
+                      Nombre : curso['Nombre']
+                  }
+              }));
+              cache.set('INFORMACION', {Facultades,Cursos});
+              return Promise.resolve({
+                keys : Keys,
+                facultades : Facultades,
+                cursos : Cursos,
+              })
+            })
+      })
+      .then(informacion => res.render('adminClasificador', informacion))
+      .catch(e => {
+          console.log(e);
+          res.render('error', e)
       });
-      res.render('adminClasificador', {
-        facultades : JSON.stringify(facultades),
-        Material : "data:image;base64," + archivo.body.toString('base64'),
-        Ruta : archivo.ruta,
-        Tipo : tipe,
-        Pagina : archivo.indice
-      });
-    })
-    .catch(error => {
-      res.render('error', error)
-      console.log(error)
-    });
-
 });
 
 router.post('/', (req, res) => {
-  const tipe = req.query.tipo || 'image';
-  const page = req.query.page || 0;
-  const action = req.query.action;
-  console.log(req.body);
-  if (!action || !req.body.ruta) {
-    return res.send(404);
-  }
-  if (action === 'move') {
-    const origen = req.body.ruta;
-    const curso = req.body.curso_opcional ? req.body.curso_opcional : req.body.curso;
-    const carpeta = req.body.carpeta_opcional ? req.body.carpeta_opcional : req.body.carpeta;
-    const archivo = `${req.body.archivo}-${req.body.pagina}${req.body.extension}`;
-    const destino = `${req.body.facultad}/${curso}/${carpeta}/${archivo}`;
-    AcademiBot.mueveArchivo(origen, destino)
-      .then(() => {
-        AcademiBot.submissions.eliminaArchivo(req.body.ruta);
-        res.redirect(`/admin/clasificador?tipo=${tipe}&page=${page}`);
-      })
-      .catch(e => {
-        console.log(e);
-        res.render('error', e);
-      });
-  } else if (action === 'delete') {
-    AcademiBot.borraArchivo(req.body.ruta)
-      .then(() => {
-        AcademiBot.submissions.eliminaArchivo(req.body.ruta);
-        res.redirect(`/admin/clasificador?tipo=${tipe}&page=${page}`);
-      })
-      .catch(e => {
-        console.log(e);
-        res.render('error', e);
-      });
-  }
+    const action = req.query['action'];
+    const Key = req.body['Key'];
+    const NewKey = req.body['NewKey'];
+    switch (action) {
+        case 'move':
 
+            return S3.getObject(NewKey)
+                .then(() => {
+                    MySQL.logInternalError(new Error('Ya existe un archivo con el mismo nombre'), 'AdminClasificador');
+                    res.sendStatus(500);
+                    return Promise.resolve();
+                })
+                .catch(e => {
+                    return S3.moveObject(Key, NewKey)
+                        .then(() => res.sendStatus(200))
+                        .catch((e) => {
+                            res.sendStatus(500);
+                            MySQL.logInternalError(e, 'AdminClasificador');
+                        });
+                });
+
+        case 'delete':
+            return S3.deleteObject(Key)
+                .then(() => res.sendStatus(200))
+                .catch((e) => {
+                    res.sendStatus(500);
+                    MySQL.logInternalError(e, 'AdminClasificador');
+                });
+        default:
+            return res.sendStatus(405);
+    }
 });
 module.exports = router;

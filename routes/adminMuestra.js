@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const AcademiBot = require('../src/AcademiBot');
 
 router.get('/', (req, res) => {
   /*
@@ -15,27 +14,21 @@ router.get('/', (req, res) => {
     return res.render('adminMuestra', {logged, titulo:"Archivos"});
   } else if (peticion === "facultades") {
     if (ubicacion === "local") {
-      res.json(AcademiBot.UNI.getFacultadesObject());
+      res.json([]);
     } else if (ubicacion === "S3") {
-      AcademiBot.leeFacultades()
-        .then(facultades => res.json(facultades))
-        .catch(e => res.render('error', e));
+      res.json([]);
     }
   } else if (peticion === "usuarios") {
     if (ubicacion === "local") {
-      res.json(AcademiBot.UNI.getUsuarios().map(usuario => usuario.toJSON()));
+      res.json([]);
     } else if (ubicacion === "S3") {
-      AcademiBot.leeUsuarios()
-        .then(usuarios => res.json(usuarios))
-        .catch(e => res.render('error', e));
+      res.json([]);
     }
   } else if (peticion === "archivador") {
     if (ubicacion === "local") {
-      res.json(AcademiBot.archivos.toJSON());
+      res.json([]);
     } else if (ubicacion === "S3") {
-      AcademiBot.leeArchivador()
-        .then(archivos => res.json(archivos))
-        .catch(e => res.render('error', e));
+      res.json([]);
     }
   }
 });
