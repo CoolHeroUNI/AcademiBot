@@ -12,6 +12,13 @@ class S3 extends FileStorage {
         this.bucket = bucket;
     }
 }
+/**
+ *
+ * @param prefix
+ * @param [continuationToken]
+ * @param [previusResult]
+ * @returns {Promise<String[]>}
+ */
 S3.prototype.listObjectsUnder = async function (prefix, continuationToken, previusResult) {
     previusResult = previusResult || [];
     const params = {
@@ -28,6 +35,13 @@ S3.prototype.listObjectsUnder = async function (prefix, continuationToken, previ
         return resultado;
     }
 };
+/**
+ *
+ * @param prefix
+ * @param [continuationToken]
+ * @param [previusResult]
+ * @returns {Promise<String[]>}
+ */
 S3.prototype.listObjectsDirectlyUnder = async function (prefix, continuationToken, previusResult) {
     previusResult = previusResult || [];
     const params = {

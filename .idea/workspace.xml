@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/Classes/Usuario.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Classes/Usuario.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/Classes/S3.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Classes/S3.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/API.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/API.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/adminClasificador.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/adminClasificador.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -78,14 +79,7 @@
       <workItem from="1571930689124" duration="83776000" />
       <workItem from="1572316381597" duration="1862000" />
       <workItem from="1572469948316" duration="5587000" />
-      <workItem from="1572728763818" duration="2166000" />
-    </task>
-    <task id="LOCAL-00135" summary="Final Part">
-      <created>1572111096583</created>
-      <option name="number" value="00135" />
-      <option name="presentableId" value="LOCAL-00135" />
-      <option name="project" value="LOCAL" />
-      <updated>1572111096583</updated>
+      <workItem from="1572728763818" duration="2990000" />
     </task>
     <task id="LOCAL-00136" summary="Final Part">
       <created>1572111181069</created>
@@ -423,7 +417,14 @@
       <option name="project" value="LOCAL" />
       <updated>1572730271792</updated>
     </task>
-    <option name="localTasksCounter" value="184" />
+    <task id="LOCAL-00184" summary="API">
+      <created>1572733757645</created>
+      <option name="number" value="00184" />
+      <option name="presentableId" value="LOCAL-00184" />
+      <option name="project" value="LOCAL" />
+      <updated>1572733757645</updated>
+    </task>
+    <option name="localTasksCounter" value="185" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -457,7 +458,6 @@
     <MESSAGE value="Clasificador v2.0&#10;Populated Cursos after creation of document" />
     <MESSAGE value="Clasificador v2.0&#10;problems with css" />
     <MESSAGE value="Adjusting width" />
-    <MESSAGE value="API" />
     <MESSAGE value="API&#10;addEventListeners" />
     <MESSAGE value="Clasificador&#10;Evitar reemplazar archivos" />
     <MESSAGE value="Subir archivos" />
@@ -468,6 +468,7 @@
     <MESSAGE value="Global messages" />
     <MESSAGE value="env sample" />
     <MESSAGE value="Version 3.0&#10;New version:&#10;-Found a bug that sends all files if a '.' is detected, tagged it as a feature.&#10;-Now connection to MySQL grants the service with persistent data storage, using a cache module latency can be reduced.&#10;-Classes where refactored&#10;-New implementation recognises words that may refer to courses and sends a list of the possible courses&#10;-New submission system" />
-    <option name="LAST_COMMIT_MESSAGE" value="Version 3.0&#10;New version:&#10;-Found a bug that sends all files if a '.' is detected, tagged it as a feature.&#10;-Now connection to MySQL grants the service with persistent data storage, using a cache module latency can be reduced.&#10;-Classes where refactored&#10;-New implementation recognises words that may refer to courses and sends a list of the possible courses&#10;-New submission system" />
+    <MESSAGE value="API" />
+    <option name="LAST_COMMIT_MESSAGE" value="API" />
   </component>
 </project>
