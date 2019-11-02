@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
         }))
       .then(keys => {
         Keys = keys;
-        const cached = cache.get('INFORMACION');
+        const cached = cache.get(submissionsFolder);
         if (cached) return Promise.resolve({
             keys : keys,
             facultades : cached['Facultades'],
@@ -35,7 +35,7 @@ router.get('/', (req, res) => {
                       Nombre : curso['Nombre']
                   }
               }));
-              cache.set('INFORMACION', {Facultades,Cursos});
+              cache.set(submissionsFolder, {Facultades,Cursos});
               return Promise.resolve({
                 keys : Keys,
                 facultades : Facultades,
@@ -56,14 +56,14 @@ router.post('/', (req, res) => {
     const NewKey = req.body['NewKey'];
     switch (action) {
         case 'move':
-
             return S3.getObject(NewKey)
                 .then(() => {
-                    MySQL.logInternalError(new Error('Ya existe un archivo con el mismo nombre'), 'AdminClasificador');
+                    MySQL.logInternalError(new Error('Ya existe un archivo con el mismo nombre ' + NewKey), 'AdminClasificador');
                     res.sendStatus(500);
                     return Promise.resolve();
                 })
                 .catch(e => {
+                    console.log(e);
                     return S3.moveObject(Key, NewKey)
                         .then(() => res.sendStatus(200))
                         .catch((e) => {
