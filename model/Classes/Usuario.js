@@ -73,7 +73,7 @@ Usuario.prototype.cargaDesdeObjeto = function (DataPacket) {
   this.CantidadPeticiones = DataPacket['CantidadPeticiones'] || 0;
   this.AceptaPublicidad = DataPacket['AceptaPublicidad'] || true;
   this.FechaCreacion = DataPacket['FechaCreacion'] || this.FechaCreacion;
-  this.Valido = DataPacket['Valido'] || 1;
+  this.Valido = DataPacket.hasOwnProperty('Valido') ? DataPacket['Valido'] : 1;
   return this;
 };
 /**
