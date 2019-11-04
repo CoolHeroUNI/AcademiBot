@@ -501,6 +501,7 @@ Bot.prototype.executePetition = function (user, petition, text) {
     const userId = user.getFacebookId();
     switch (petition) {
         case 'Meme':
+            let type;
             const memeFolder = this.mediaFolder + '/memes';
             const cachedMemes = this.CacheHandler.get(memeFolder);
             return this.MessagingChannel.sendText(userId, text, false)
@@ -513,13 +514,17 @@ Bot.prototype.executePetition = function (user, petition, text) {
                             return keys.random();
                         });
                 })
-                .then(meme => this.FileStorage.getPublicURL(meme))
+                .then(meme => {
+                    const archivoAuxiliar = new MaterialEstudio('aux/' + meme);
+                    type = archivoAuxiliar.getType();
+                    return this.FileStorage.getPublicURL(meme);
+                })
                 .catch(e => this.DataBase.logUserError(e, user, 'FileStorage'))
                 .then(url => {
                     const parameter = {
                         'url' : url,
                         'attachment_id' : '',
-                        'type' : 'image'
+                        'type' : type
                     };
                     return this.MessagingChannel.sendAttachment(userId, parameter);
                 })
