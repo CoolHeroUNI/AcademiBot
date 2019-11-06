@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/model/Classes/Curso.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Classes/Curso.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/Classes/Bot.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Classes/Bot.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -78,14 +78,7 @@
       <workItem from="1572316381597" duration="1862000" />
       <workItem from="1572469948316" duration="5587000" />
       <workItem from="1572728763818" duration="3491000" />
-      <workItem from="1572840782070" duration="10793000" />
-    </task>
-    <task id="LOCAL-00145" summary="Clasificador v2.0">
-      <created>1572215593535</created>
-      <option name="number" value="00145" />
-      <option name="presentableId" value="LOCAL-00145" />
-      <option name="project" value="LOCAL" />
-      <updated>1572215593535</updated>
+      <workItem from="1572840782070" duration="11158000" />
     </task>
     <task id="LOCAL-00146" summary="Clasificador v2.0">
       <created>1572215814959</created>
@@ -423,7 +416,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573003108767</updated>
     </task>
-    <option name="localTasksCounter" value="194" />
+    <task id="LOCAL-00194" summary="Exact match">
+      <created>1573003324369</created>
+      <option name="number" value="00194" />
+      <option name="presentableId" value="LOCAL-00194" />
+      <option name="project" value="LOCAL" />
+      <updated>1573003324369</updated>
+    </task>
+    <option name="localTasksCounter" value="195" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
