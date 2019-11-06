@@ -136,6 +136,7 @@ Bot.prototype.detectCourses = function (user, message) {
                 }
                 return true;
             });
+            console.log(exactMatch);
             if (exactMatch.length > 0) return exactMatch;
             return nonZeroMatch.sort((course1, course2) => {
                 let score1 = 0, score2 = 0;
