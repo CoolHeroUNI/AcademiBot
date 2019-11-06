@@ -1,9 +1,9 @@
-const FileStorage = require('../Interfaces/FileStorage');
-const MessagingChannel = require('../Interfaces/MessagingChannel');
-const NLPMotor = require('../Interfaces/NLPMotor');
+const FileStorage = require('./S3');
+const MessagingChannel = require('./Facebook');
+const NLPMotor = require('./Dialogflow');
 const Usuario = require('./Usuario');
 const MaterialEstudio = require('./MaterialEstudio');
-const DataBase = require('../Interfaces/DataBase');
+const DataBase = require('./MySQLDataBase');
 const Curso = require('./Curso');
 const CacheHandler = require('./CacheHandler');
 
@@ -73,28 +73,33 @@ Bot.prototype.setMessagingChannel = function (MessagingChannel) {
 };
 /**
  * Determina el motor de procesamiento de lenguaje natural a usar en las conversaciones con los usuarios
- * @method setNLPMotor
+ * @method
+ * @name setNLPMotor
  * @param {NLPMotor} NLPMotor
  */
 Bot.prototype.setNLPMotor = function (NLPMotor) {
     this.NLPMotor = NLPMotor;
 };
 /**
+ * @method
+ * @name createUser
+ * @param {Number} userId
+ * @returns {Promise<Usuario>}
+ */
+Bot.prototype.createUser = function (userId) {
+    return this.DataBase.createUser(userId)
+        .then(user => {
+            return this.MessagingChannel.sendText(userId, this.greetingsMessage, false)
+                .then(() => user)
+                .catch(e => this.DataBase.logUserError(e, user, 'MessagingChannel'));
+        })
+};
+/**
  * Inicia la interaccion con un usuario, devolviendo una instancia de la clase usuario, que sera necesaria para el
  * desarrollo de siguientes metodos
  * @param {Number} userId
- * @returns {User}
+ * @returns {Promise<User>}
  */
-Bot.prototype.createUser = function (userId) {
-    let User;
-    return this.DataBase.createUser(userId)
-        .then(user => {
-            User = user;
-            return this.MessagingChannel.sendText(userId, this.greetingsMessage, false);
-        })
-        .then(() => Promise.resolve(User));
-};
-
 Bot.prototype.startInteraction = function (userId) {
     return this.MessagingChannel.startInteraction(userId)
         .catch(e => this.DataBase.logUserError(e, new Usuario(userId), 'MessagingChannel'))
@@ -104,11 +109,11 @@ Bot.prototype.startInteraction = function (userId) {
             return Promise.resolve(user);
         });
 };
-
 /**
- *
+ * Determina los posibles cursos a los que un usuario puede referirse con un mensaje de texto
  * @param {Usuario} user
  * @param {String} message
+ * @returns {Promise<Curso[]>}
  */
 Bot.prototype.detectCourses = function (user, message) {
     if (!user.isAbleToRequestCourses()) return Promise.resolve([]);
@@ -144,6 +149,7 @@ Bot.prototype.detectCourses = function (user, message) {
  *
  * @param {Usuario} user
  * @param {Curso[]} courses
+ * @returns {Promise<T>}
  */
 Bot.prototype.sendCourses = function (user, courses) {
     const options = Array.shuffle(courses.map(course => {
@@ -165,11 +171,11 @@ Bot.prototype.sendCourses = function (user, courses) {
         .catch(e => console.log(e));
 };
 
-
 /**
- *
+ * Determina las posibles carpetas a las que se refiere un usuario con un mensaje
  * @param {Usuario} user
  * @param {String} message
+ * @returns {Promise<String[]>}
  */
 Bot.prototype.detectFolders = function (user, message) {
     if (!user.isAbleToRequestFolders()) return Promise.resolve([]);
@@ -191,6 +197,7 @@ Bot.prototype.detectFolders = function (user, message) {
         .then(Carpetas => {
             return Carpetas.filter(Carpeta => {
                 if (message.length === 0) return true;
+                message = message.limpia();
                 if (Carpeta.indexOf(message) > 0) return true;
                 const carpeta = new RegExp(Carpeta.replace(/-/g, '(|-| )'), 'i');
                 return carpeta.test(message);
@@ -202,6 +209,7 @@ Bot.prototype.detectFolders = function (user, message) {
  *
  * @param {Usuario} user
  * @param {String[]} folders
+ * @returns {Promise}
  */
 Bot.prototype.sendFolders = function (user, folders) {
     const userId = user.getFacebookId();
@@ -223,6 +231,7 @@ Bot.prototype.sendFolders = function (user, folders) {
  *
  * @param {Usuario} user
  * @param {String} message
+ * @returns {Promise<MaterialEstudio[]>}
  */
 Bot.prototype.detectFiles = function (user, message) {
     if (!user.isAbleToRequestFiles()) return Promise.resolve([]);
@@ -241,14 +250,15 @@ Bot.prototype.detectFiles = function (user, message) {
         .then(respuesta => {
             respuesta = respuesta.filter(key => key.indexOf('.') !== -1);
             this.CacheHandler.set(prefix, respuesta);
-            return Promise.all(respuesta.map(key => this.DataBase.getFileByKey(key)))
+            return Promise.all(respuesta.map(key => this.DataBase.getFileByKey(key)));
         })
-        .then(Files => Files.filter(file => file.matchesText(message)))
+        .then(Files => Files.filter(file => file.matchesText(message)));
 };
 /**
  *
  * @param {Usuario} user
  * @param {MaterialEstudio[]} files
+ * @returns {Promise}
  */
 Bot.prototype.sendFiles = function (user, files) {
     if (files.length === 0) {
@@ -337,6 +347,7 @@ Bot.prototype.sendFiles = function (user, files) {
  *
  * @param {Usuario} user
  * @param {MaterialEstudio[]} files
+ * @returns {Promise}
  */
 Bot.prototype.sendFileOptions = function (user, files) {
     const userId = user.getFacebookId();
@@ -360,6 +371,7 @@ Bot.prototype.sendFileOptions = function (user, files) {
 /**
  *
  * @param {Usuario} user
+ * @returns {Promise}
  */
 Bot.prototype.regularizeUser = function (user) {
     const userId = user.getFacebookId();
@@ -394,12 +406,22 @@ Bot.prototype.regularizeUser = function (user) {
         return Promise.resolve();
     }
 };
+/**
+ *
+ * @param {Usuario} user
+ * @returns {Promise}
+ */
 Bot.prototype.sendAvailableCourses = function (user) {
     return this.DataBase.getCoursesByUser(user)
         .catch(e => this.DataBase.logUserError(e, user, 'DataBase'))
         .then(courses => this.sendCourses(user, courses))
         .catch(e => this.DataBase.logInternalError(e, 'MessagingChannel'));
 };
+/**
+ *
+ * @param {Usuario} user
+ * @returns {Promise}
+ */
 Bot.prototype.sendAvailableFolders = function (user) {
     const userId = user.getFacebookId();
     return this.detectFolders(user, '')
@@ -409,8 +431,13 @@ Bot.prototype.sendAvailableFolders = function (user) {
             return this.sendFolders(user, folders)
         });
 };
+/**
+ *
+ * @param {Usuario} user
+ * @returns {Promise}
+ */
 Bot.prototype.sendAvailableFiles = function (user) {
-    this.detectFiles(user, '')
+    return this.detectFiles(user, '')
         .then(files => this.sendFileOptions(user, files));
 };
 /**
@@ -418,6 +445,7 @@ Bot.prototype.sendAvailableFiles = function (user) {
  * @param {Usuario} user
  * @param {String} command
  * @param {Object} parameters
+ * @returns {Promise}
  */
 Bot.prototype.executeCommand = function (user, command, parameters) {
     const userId = user.getFacebookId();
@@ -494,13 +522,24 @@ Bot.prototype.executeCommand = function (user, command, parameters) {
             return this.detectFiles(user, shortName)
                 .then(files => this.sendFiles(user, files));
         default:
-            return Promise.reject(new Error('Commando no valido, '+command));
+            const e = new Error('Commando no valido, '+command);
+            this.DataBase.logUserError(e, user, 'Bot')
+                .catch(e => console.log(e));
+            return Promise.reject(e);
     }
 };
+/**
+ *
+ * @param {Usuario} user
+ * @param {String} petition
+ * @param {String} text
+ * @returns {Promise}
+ */
 Bot.prototype.executePetition = function (user, petition, text) {
     const userId = user.getFacebookId();
     switch (petition) {
         case 'Meme':
+            let type;
             const memeFolder = this.mediaFolder + '/memes';
             const cachedMemes = this.CacheHandler.get(memeFolder);
             return this.MessagingChannel.sendText(userId, text, false)
@@ -513,22 +552,35 @@ Bot.prototype.executePetition = function (user, petition, text) {
                             return keys.random();
                         });
                 })
-                .then(meme => this.FileStorage.getPublicURL(meme))
+                .then(meme => {
+                    const archivoAuxiliar = new MaterialEstudio('aux/' + meme);
+                    type = archivoAuxiliar.getType();
+                    return this.FileStorage.getPublicURL(meme);
+                })
                 .catch(e => this.DataBase.logUserError(e, user, 'FileStorage'))
                 .then(url => {
                     const parameter = {
                         'url' : url,
-                        'attachment_id' : '',
-                        'type' : 'image'
+                        'attachment_id' : null,
+                        'type' : type
                     };
                     return this.MessagingChannel.sendAttachment(userId, parameter);
                 })
                 .catch(e => this.DataBase.logUserError(e, user, 'MessagingChannel'));
 
         default:
-            return Promise.reject(new Error('Peticion no valida, '+petition));
+            const e = new Error('Peticion no valida, '+petition);
+            this.DataBase.logUserError(e, user, 'Bot')
+                .catch(e => console.log(e));
+            return Promise.reject(e);
     }
 };
+/**
+ *
+ * @param {Usuario} user
+ * @param {{text:String, payload:Object, parameters:Object}} intent
+ * @returns {Promise}
+ */
 Bot.prototype.processPayloadFromNLP = function (user, intent) {
     const {text, payload, parameters} = intent;
     if (payload['comando']) {
@@ -543,11 +595,13 @@ Bot.prototype.processPayloadFromNLP = function (user, intent) {
     const e = new Error("No method provided to process Payload: "+JSON.stringify(payload));
     this.DataBase.logUserError(e, user, 'NLPMotor')
         .catch(e => console.log(e));
+    return Promise.reject(e);
 };
 /**
  *
  * @param {Usuario} user
  * @param {String} message
+ * @returns {Promise}
  */
 Bot.prototype.recieveMessage = async function (user, message) {
     if (!user.Valido) return Promise.reject(new Error('Usuario no valido.'));
@@ -592,14 +646,10 @@ Bot.prototype.recieveMessage = async function (user, message) {
     } else if (userRequestedOnlyOneCourse) {
         return this.sendAvailableFolders(user);
     }
-    // TODO crear funciones para ejecutar comandos proveidos por MessagingChannel
-    // TODO enviar adecuadamente el texto con URLs
-    // TODO adaptar las peticiones realizadas en front
-    // TODO no olvidar que el modelo puede funcionar independientemente, cada modulo se debe instanciar por separado
 
     const userId = user.getFacebookId();
     return this.NLPMotor.processText(userId, message)
-        .catch(e => this.DataBase.logUserError(e, userId, 'NLPMotor'))
+        .catch(e => this.DataBase.logUserError(e, user, 'NLPMotor'))
         .then(intent => {
             const {text, payload} = intent;
             const payloadKeys = Object.getOwnPropertyNames(payload);
@@ -612,10 +662,13 @@ Bot.prototype.recieveMessage = async function (user, message) {
             return this.MessagingChannel.sendText(userId, emergencyResponse, false);
         })
         .catch(e => this.DataBase.logInternalError(e, 'MessagingChannel'));
-
-
-
 };
+/**
+ *
+ * @param {Usuario} user
+ * @param {String} payload
+ * @returns {Promise}
+ */
 Bot.prototype.recievePayload = function (user, payload) {
     const data = payload.split(':');
     if (data.length > 2 || data.length === 0) return Promise.reject(new Error('Comando invalido'));
@@ -623,6 +676,11 @@ Bot.prototype.recievePayload = function (user, payload) {
     const arguments = data[1];
     return this.executeCommand(user, command, arguments);
 };
+/**
+ *
+ * @param {Usuario} user
+ * @returns {Promise}
+ */
 Bot.prototype.endInteraction = function (user) {
     return this.DataBase.updateUser(user);
 };

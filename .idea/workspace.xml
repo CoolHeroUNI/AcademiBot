@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/model/Classes/MySQLDataBase.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Classes/MySQLDataBase.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/Classes/Bot.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Classes/Bot.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/Classes/CacheHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Classes/CacheHandler.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -34,6 +36,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.smartKeys" />
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2019.2.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
@@ -77,13 +80,7 @@
       <workItem from="1572316381597" duration="1862000" />
       <workItem from="1572469948316" duration="5587000" />
       <workItem from="1572728763818" duration="3491000" />
-    </task>
-    <task id="LOCAL-00137" summary="Final Part">
-      <created>1572111197833</created>
-      <option name="number" value="00137" />
-      <option name="presentableId" value="LOCAL-00137" />
-      <option name="project" value="LOCAL" />
-      <updated>1572111197833</updated>
+      <workItem from="1572840782070" duration="7497000" />
     </task>
     <task id="LOCAL-00138" summary="Final Part">
       <created>1572111595846</created>
@@ -421,7 +418,14 @@
       <option name="project" value="LOCAL" />
       <updated>1572734734401</updated>
     </task>
-    <option name="localTasksCounter" value="186" />
+    <task id="LOCAL-00186" summary="Meme type">
+      <created>1572841050283</created>
+      <option name="number" value="00186" />
+      <option name="presentableId" value="LOCAL-00186" />
+      <option name="project" value="LOCAL" />
+      <updated>1572841050283</updated>
+    </task>
+    <option name="localTasksCounter" value="187" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -441,7 +445,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="FileStorage" />
     <MESSAGE value="Archivo.prototype.getExtension" />
     <MESSAGE value="message" />
     <MESSAGE value="Almost Finish" />
@@ -466,6 +469,7 @@
     <MESSAGE value="env sample" />
     <MESSAGE value="Version 3.0&#10;New version:&#10;-Found a bug that sends all files if a '.' is detected, tagged it as a feature.&#10;-Now connection to MySQL grants the service with persistent data storage, using a cache module latency can be reduced.&#10;-Classes where refactored&#10;-New implementation recognises words that may refer to courses and sends a list of the possible courses&#10;-New submission system" />
     <MESSAGE value="API" />
-    <option name="LAST_COMMIT_MESSAGE" value="API" />
+    <MESSAGE value="Meme type" />
+    <option name="LAST_COMMIT_MESSAGE" value="Meme type" />
   </component>
 </project>
