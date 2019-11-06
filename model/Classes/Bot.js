@@ -130,7 +130,7 @@ Bot.prototype.detectCourses = function (user, message) {
                 return false;
             });
             const exactMatch = nonZeroMatch.filter(course => {
-                if (message.indexOf(course.Nombre) !== -1) return true;
+                if (message.indexOf(course.Nombre.limpia()) !== -1) return true;
                 for (let word of completeWords) {
                     if (!course.matchesName(word)) return false;
                 }

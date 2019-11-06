@@ -15,7 +15,7 @@ router.post('/', middleware.ensureNoAuth, (req, res) => {
   if (!req.session.logged && pass === process.env.PROCESS_KEY) {
     req.session.logged = true;
     console.log("logged in");
-    if (req.session.returnTo) req.session.returnTo = decodeURIComponent(req.session.returnTo)
+    if (req.session.returnTo) req.session.returnTo = decodeURIComponent(req.session.returnTo);
     res.redirect(req.session.returnTo || '/');
     delete req.session.returnTo;
   } else {

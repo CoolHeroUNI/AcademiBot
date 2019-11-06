@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/model/Classes/Bot.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Classes/Bot.js" afterDir="false" />
-    </list>
+    <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,14 +76,7 @@
       <workItem from="1572316381597" duration="1862000" />
       <workItem from="1572469948316" duration="5587000" />
       <workItem from="1572728763818" duration="3491000" />
-      <workItem from="1572840782070" duration="13342000" />
-    </task>
-    <task id="LOCAL-00148" summary="Clasificador v2.0&#10;Error in parameters&#10;Push instead of Append">
-      <created>1572216523495</created>
-      <option name="number" value="00148" />
-      <option name="presentableId" value="LOCAL-00148" />
-      <option name="project" value="LOCAL" />
-      <updated>1572216523495</updated>
+      <workItem from="1572840782070" duration="13582000" />
     </task>
     <task id="LOCAL-00149" summary="Clasificador v2.0&#10;Populated Cursos after creation of document">
       <created>1572217122653</created>
@@ -423,7 +414,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573005733966</updated>
     </task>
-    <option name="localTasksCounter" value="197" />
+    <task id="LOCAL-00197" summary="Logging">
+      <created>1573006082987</created>
+      <option name="number" value="00197" />
+      <option name="presentableId" value="LOCAL-00197" />
+      <option name="project" value="LOCAL" />
+      <updated>1573006082987</updated>
+    </task>
+    <option name="localTasksCounter" value="198" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -443,7 +441,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Almost Finish" />
     <MESSAGE value="log" />
     <MESSAGE value="Final Part" />
     <MESSAGE value="Final" />
@@ -468,6 +465,7 @@
     <MESSAGE value="Meme type" />
     <MESSAGE value="Documentation&#10;Documentando el funcionamiento de los modulos" />
     <MESSAGE value="Exact match" />
-    <option name="LAST_COMMIT_MESSAGE" value="Exact match" />
+    <MESSAGE value="Logging" />
+    <option name="LAST_COMMIT_MESSAGE" value="Logging" />
   </component>
 </project>
