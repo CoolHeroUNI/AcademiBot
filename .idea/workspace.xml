@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/Classes/Bot.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Classes/Bot.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -79,49 +78,7 @@
       <workItem from="1572316381597" duration="1862000" />
       <workItem from="1572469948316" duration="5587000" />
       <workItem from="1572728763818" duration="3491000" />
-      <workItem from="1572840782070" duration="12997000" />
-    </task>
-    <task id="LOCAL-00147" summary="Clasificador v2.0&#10;Error in SQL">
-      <created>1572216218362</created>
-      <option name="number" value="00147" />
-      <option name="presentableId" value="LOCAL-00147" />
-      <option name="project" value="LOCAL" />
-      <updated>1572216218362</updated>
-    </task>
-    <task id="LOCAL-00148" summary="Clasificador v2.0&#10;Error in parameters&#10;Push instead of Append">
-      <created>1572216523495</created>
-      <option name="number" value="00148" />
-      <option name="presentableId" value="LOCAL-00148" />
-      <option name="project" value="LOCAL" />
-      <updated>1572216523495</updated>
-    </task>
-    <task id="LOCAL-00149" summary="Clasificador v2.0&#10;Populated Cursos after creation of document">
-      <created>1572217122653</created>
-      <option name="number" value="00149" />
-      <option name="presentableId" value="LOCAL-00149" />
-      <option name="project" value="LOCAL" />
-      <updated>1572217122653</updated>
-    </task>
-    <task id="LOCAL-00150" summary="Clasificador v2.0&#10;Populated Cursos after creation of document">
-      <created>1572217923805</created>
-      <option name="number" value="00150" />
-      <option name="presentableId" value="LOCAL-00150" />
-      <option name="project" value="LOCAL" />
-      <updated>1572217923805</updated>
-    </task>
-    <task id="LOCAL-00151" summary="Clasificador v2.0&#10;problems with css">
-      <created>1572218519547</created>
-      <option name="number" value="00151" />
-      <option name="presentableId" value="LOCAL-00151" />
-      <option name="project" value="LOCAL" />
-      <updated>1572218519547</updated>
-    </task>
-    <task id="LOCAL-00152" summary="Clasificador v2.0&#10;problems with css">
-      <created>1572218704243</created>
-      <option name="number" value="00152" />
-      <option name="presentableId" value="LOCAL-00152" />
-      <option name="project" value="LOCAL" />
-      <updated>1572218704243</updated>
+      <workItem from="1572840782070" duration="15778000" />
     </task>
     <task id="LOCAL-00153" summary="Clasificador v2.0&#10;problems with css">
       <created>1572219034387</created>
@@ -424,7 +381,49 @@
       <option name="project" value="LOCAL" />
       <updated>1573003674196</updated>
     </task>
-    <option name="localTasksCounter" value="196" />
+    <task id="LOCAL-00196" summary="Exact match">
+      <created>1573005733966</created>
+      <option name="number" value="00196" />
+      <option name="presentableId" value="LOCAL-00196" />
+      <option name="project" value="LOCAL" />
+      <updated>1573005733966</updated>
+    </task>
+    <task id="LOCAL-00197" summary="Logging">
+      <created>1573006082987</created>
+      <option name="number" value="00197" />
+      <option name="presentableId" value="LOCAL-00197" />
+      <option name="project" value="LOCAL" />
+      <updated>1573006082987</updated>
+    </task>
+    <task id="LOCAL-00198" summary="Logging">
+      <created>1573006513015</created>
+      <option name="number" value="00198" />
+      <option name="presentableId" value="LOCAL-00198" />
+      <option name="project" value="LOCAL" />
+      <updated>1573006513015</updated>
+    </task>
+    <task id="LOCAL-00199" summary="Logging">
+      <created>1573006713495</created>
+      <option name="number" value="00199" />
+      <option name="presentableId" value="LOCAL-00199" />
+      <option name="project" value="LOCAL" />
+      <updated>1573006713496</updated>
+    </task>
+    <task id="LOCAL-00200" summary="Logging">
+      <created>1573007169733</created>
+      <option name="number" value="00200" />
+      <option name="presentableId" value="LOCAL-00200" />
+      <option name="project" value="LOCAL" />
+      <updated>1573007169733</updated>
+    </task>
+    <task id="LOCAL-00201" summary="Logging">
+      <created>1573008171143</created>
+      <option name="number" value="00201" />
+      <option name="presentableId" value="LOCAL-00201" />
+      <option name="project" value="LOCAL" />
+      <updated>1573008171143</updated>
+    </task>
+    <option name="localTasksCounter" value="202" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -444,7 +443,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Almost Finish" />
     <MESSAGE value="log" />
     <MESSAGE value="Final Part" />
     <MESSAGE value="Final" />
@@ -469,6 +467,7 @@
     <MESSAGE value="Meme type" />
     <MESSAGE value="Documentation&#10;Documentando el funcionamiento de los modulos" />
     <MESSAGE value="Exact match" />
-    <option name="LAST_COMMIT_MESSAGE" value="Exact match" />
+    <MESSAGE value="Logging" />
+    <option name="LAST_COMMIT_MESSAGE" value="Logging" />
   </component>
 </project>

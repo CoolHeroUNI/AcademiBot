@@ -50,17 +50,17 @@ Curso.prototype.getCodigo = function () {
     return this.Codigo;
 };
 /**
- * Metodo para comprobar si un nombre encaja con un curso, util para filtrar
+ * Metodo para comprobar si un texto encaja con un curso, util para filtrar
  * @method matchesName
- * @param {String} Nombre
+ * @param {String} Text
  * @returns {boolean}
  */
-Curso.prototype.matchesName = function (Nombre) {
-    if (Nombre.length === 0) return true;
+Curso.prototype.matchesName = function (Text) {
+    if (Text.length === 0) return true;
     const codigoTester = new RegExp(this.getCodigo(), 'i');
     const nameTester = new RegExp(this.Nombre, 'i');
-    const expresion = new RegExp(`${Nombre}`,'i');
-    return expresion.test(this.Nombre) || nameTester.test(Nombre) || codigoTester.test(Nombre);
+    const expresion = new RegExp(`${Text}`,'i');
+    return expresion.test(this.Nombre) || nameTester.test(Text) || codigoTester.test(Text);
 };
 /**
  * Metodo para obtener la informacion del curso en forma de objeto para facilitar su asignacion
