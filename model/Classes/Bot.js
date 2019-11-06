@@ -123,17 +123,13 @@ Bot.prototype.detectCourses = function (user, message) {
         .catch(e => this.DataBase.logUserError(e, user, 'DataBase'))
         .then(courses => {
             const nonZeroMatch = courses.filter(course => {
-                if (course.matchesName(message)) return true;
                 for (let word of words) {
                     if (course.matchesName(word)) return true;
                 }
                 return false;
             });
             const exactMatch = nonZeroMatch.filter(course => {
-                for (let word of words) {
-                    if (!course.matchesName(word)) return false;
-                }
-                return true;
+                return course.matchesName(message);
             });
             if (exactMatch) return exactMatch;
             return nonZeroMatch.sort((course1, course2) => {
