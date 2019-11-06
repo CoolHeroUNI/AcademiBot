@@ -118,7 +118,8 @@ Bot.prototype.startInteraction = function (userId) {
 Bot.prototype.detectCourses = function (user, message) {
     if (!user.isAbleToRequestCourses()) return Promise.resolve([]);
     message = message.limpia();
-    const words = message.split(' ').filter(word => word.length >= 5);
+    const completeWords = message.split(' ');
+    const words = completeWords.filter(word => word.length >= 5);
     return this.DataBase.getProbableCoursesByUser(user)
         .catch(e => this.DataBase.logUserError(e, user, 'DataBase'))
         .then(courses => {
@@ -129,7 +130,11 @@ Bot.prototype.detectCourses = function (user, message) {
                 return false;
             });
             const exactMatch = nonZeroMatch.filter(course => {
-                return message.indexOf(course.Nombre.limpia()) !== -1;
+                if (message.indexOf(course.Nombre) !== -1) return true;
+                for (let word of completeWords) {
+                    if (!course.matchesName(word)) return false;
+                }
+                return true;
             });
             if (exactMatch.length > 0) return exactMatch;
             return nonZeroMatch.sort((course1, course2) => {
