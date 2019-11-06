@@ -129,18 +129,13 @@ Bot.prototype.detectCourses = function (user, message) {
                 }
                 return false;
             });
-            const exactMatch = [];
-            for (let course of nonZeroMatch) {
-                if (message.indexOf(course.Nombre.limpia()) !== -1) return [course];
-                let matched = true;
+            const exactMatch = nonZeroMatch.filter(course => {
+                if (course.matchesName(message)) return true;
                 for (let word of completeWords) {
-                    if (!course.matchesName(word)) {
-                        matched = false;
-                        break;
-                    }
+                    if (!course.matchesName(word)) return false;
                 }
-                if (matched) exactMatch.push(course);
-            }
+                return true;
+            });
             if (exactMatch.length > 0) return exactMatch;
             return nonZeroMatch.sort((course1, course2) => {
                 let score1 = 0, score2 = 0;

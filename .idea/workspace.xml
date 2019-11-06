@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cb9b4471-6545-4fb8-bd49-1e0fbd2fd3bd" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/Classes/Bot.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Classes/Bot.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/Classes/Curso.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Classes/Curso.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -78,14 +80,7 @@
       <workItem from="1572316381597" duration="1862000" />
       <workItem from="1572469948316" duration="5587000" />
       <workItem from="1572728763818" duration="3491000" />
-      <workItem from="1572840782070" duration="14429000" />
-    </task>
-    <task id="LOCAL-00151" summary="Clasificador v2.0&#10;problems with css">
-      <created>1572218519547</created>
-      <option name="number" value="00151" />
-      <option name="presentableId" value="LOCAL-00151" />
-      <option name="project" value="LOCAL" />
-      <updated>1572218519547</updated>
+      <workItem from="1572840782070" duration="15427000" />
     </task>
     <task id="LOCAL-00152" summary="Clasificador v2.0&#10;problems with css">
       <created>1572218704243</created>
@@ -423,7 +418,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573006713496</updated>
     </task>
-    <option name="localTasksCounter" value="200" />
+    <task id="LOCAL-00200" summary="Logging">
+      <created>1573007169733</created>
+      <option name="number" value="00200" />
+      <option name="presentableId" value="LOCAL-00200" />
+      <option name="project" value="LOCAL" />
+      <updated>1573007169733</updated>
+    </task>
+    <option name="localTasksCounter" value="201" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
