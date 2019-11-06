@@ -12,8 +12,8 @@ class CacheHandler{
 
 /**
  *
- * @param {any} k
- * @param {any} v
+ * @param {*} k
+ * @param {*} v
  * @returns {CacheHandler}
  */
 CacheHandler.prototype.set = function (k, v) {
@@ -23,8 +23,8 @@ CacheHandler.prototype.set = function (k, v) {
 };
 /**
  *
- * @param {any} k
- * @returns {any}
+ * @param {*} k
+ * @returns {*}
  */
 CacheHandler.prototype.get = function (k) {
     const value = this.storage.get(k);
@@ -33,7 +33,7 @@ CacheHandler.prototype.get = function (k) {
 };
 /**
  *
- * @param {any} k
+ * @param {*} k
  */
 CacheHandler.prototype.setDisposal = function (k) {
     const caller = setTimeout(() => {
@@ -44,7 +44,7 @@ CacheHandler.prototype.setDisposal = function (k) {
 };
 /**
  *
- * @param {any} k
+ * @param {*} k
  */
 CacheHandler.prototype.cancelDisposal = function (k) {
     const previousCaller = this.timeHandler.get(k);
@@ -52,7 +52,7 @@ CacheHandler.prototype.cancelDisposal = function (k) {
 };
 /**
  *
- * @param {any} k
+ * @param {*} k
  */
 CacheHandler.prototype.refresh = function (k) {
     this.cancelDisposal(k);
