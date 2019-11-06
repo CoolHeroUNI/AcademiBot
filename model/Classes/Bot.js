@@ -117,7 +117,8 @@ Bot.prototype.startInteraction = function (userId) {
  */
 Bot.prototype.detectCourses = function (user, message) {
     if (!user.isAbleToRequestCourses()) return Promise.resolve([]);
-    const words = message.split(' ').filter(word => word.length >= 5).map(word => word.limpia());
+    message = message.limpia();
+    const words = message.split(' ').filter(word => word.length >= 5);
     return this.DataBase.getProbableCoursesByUser(user)
         .catch(e => this.DataBase.logUserError(e, user, 'DataBase'))
         .then(courses => {
