@@ -129,9 +129,9 @@ Bot.prototype.detectCourses = function (user, message) {
                 return false;
             });
             const exactMatch = nonZeroMatch.filter(course => {
-                return message.indexOf(course.Nombre) !== -1;
+                return message.indexOf(course.Nombre.limpia()) !== -1;
             });
-            if (exactMatch) return exactMatch;
+            if (exactMatch.length > 0) return exactMatch;
             return nonZeroMatch.sort((course1, course2) => {
                 let score1 = 0, score2 = 0;
                 for (let word of words) {
