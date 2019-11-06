@@ -131,12 +131,13 @@ Bot.prototype.detectCourses = function (user, message) {
             });
             const exactMatch = nonZeroMatch.filter(course => {
                 if (message.indexOf(course.Nombre.limpia()) !== -1) return true;
+                console.log(course.Nombre.limpia());
                 for (let word of completeWords) {
+                    console.log(word, course.matchesName(word));
                     if (!course.matchesName(word)) return false;
                 }
                 return true;
             });
-            console.log(exactMatch);
             if (exactMatch.length > 0) return exactMatch;
             return nonZeroMatch.sort((course1, course2) => {
                 let score1 = 0, score2 = 0;
