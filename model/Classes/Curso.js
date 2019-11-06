@@ -61,7 +61,7 @@ Curso.prototype.matchesName = function (Nombre) {
     const codigoTester = new RegExp(this.getCodigo(), 'i');
     const nameTester = new RegExp(this.Nombre, 'i');
     const expresion = new RegExp(`${Nombre}`,'i');
-    return expresion.test(this.Nombre) || nameTester.test(Nombre) || codigoTester.test(Nombre) || this.Nombre.indexOf(Nombre) !== -1;
+    return expresion.test(this.Nombre) || nameTester.test(Nombre) || codigoTester.test(Nombre) || Nombre.indexOf(this.Nombre) !== -1;
 };
 /**
  * Metodo para obtener la informacion del curso en forma de objeto para facilitar su asignacion
