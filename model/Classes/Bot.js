@@ -129,6 +129,7 @@ Bot.prototype.detectCourses = function (user, message) {
                 }
                 return false;
             });
+            //TODO Priorizar por ciclo
             const exactMatch = nonZeroMatch.filter(course => {
                 if (course.matchesName(message)) return true;
                 for (let word of completeWords) {
