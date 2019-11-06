@@ -129,7 +129,7 @@ Bot.prototype.detectCourses = function (user, message) {
                 return false;
             });
             const exactMatch = nonZeroMatch.filter(course => {
-                return course.matchesName(message);
+                return message.indexOf(course.Nombre) !== -1;
             });
             if (exactMatch) return exactMatch;
             return nonZeroMatch.sort((course1, course2) => {
