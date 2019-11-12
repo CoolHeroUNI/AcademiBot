@@ -3,6 +3,7 @@ const MessagingChannel = require('./Facebook');
 const NLPMotor = require('./Dialogflow');
 const Usuario = require('./Usuario');
 const MaterialEstudio = require('./MaterialEstudio');
+const Archivo = require('./Archivo');
 const DataBase = require('./MySQLDataBase');
 const Curso = require('./Curso');
 const CacheHandler = require('./CacheHandler');
@@ -87,12 +88,26 @@ Bot.prototype.setNLPMotor = function (NLPMotor) {
  * @returns {Promise<Usuario>}
  */
 Bot.prototype.createUser = function (userId) {
-    return this.DataBase.createUser(userId)
-        .then(user => {
-            return this.MessagingChannel.sendText(userId, this.greetingsMessage, false)
-                .then(() => user)
-                .catch(e => this.DataBase.logUserError(e, user, 'MessagingChannel'));
+  const welcomeFileLocation = this.mediaFolder + '/welcome';
+  let type;
+  return this.DataBase.createUser(userId)
+    .then(user => this.MessagingChannel.sendText(userId, this.greetingsMessage, false))
+    .then(() => this.FileStorage.listObjectsUnder(welcomeFileLocation))
+    .then(welcomeFiles => welcomeFiles
+      .filter(file => file.indexOf('.') !== -1)
+      .map(file => new Archivo(file))[0])
+    .then(file => {
+      return this.FileStorage.getPublicURL(file.getKey())
+        .then(url => {
+          return {
+            type : file.getType(),
+            url : url,
+            attachment_id : ''
+          }
         })
+    })
+    .then(file => this.MessagingChannel.sendAttachment(userId, file))
+    .catch(e => this.DataBase.logUserError(e, user, 'MessagingChannel'));
 };
 /**
  * Inicia la interaccion con un usuario, devolviendo una instancia de la clase usuario, que sera necesaria para el
@@ -544,33 +559,28 @@ Bot.prototype.executePetition = function (user, petition, text) {
     const userId = user.getFacebookId();
     switch (petition) {
         case 'Meme':
-            let type;
             const memeFolder = this.mediaFolder + '/memes';
             const cachedMemes = this.CacheHandler.get(memeFolder);
             return this.MessagingChannel.sendText(userId, text, false)
                 .then(() => {
                     if (cachedMemes) return cachedMemes.random();
-                    return this.FileStorage.listObjectsUnder(memeFolder)
-                        .then(keys => {
-                            keys = keys.filter(key => key.indexOf('.') !== -1);
-                            this.CacheHandler.set(memeFolder, keys);
-                            return keys.random();
-                        });
+                    return this.FileStorage.listObjectsUnder(memeFolder);
                 })
-                .then(meme => {
-                    const archivoAuxiliar = new MaterialEstudio('aux/' + meme);
-                    type = archivoAuxiliar.getType();
-                    return this.FileStorage.getPublicURL(meme);
+                .then(keys => {
+                    keys = keys.filter(key => key.indexOf('.') !== -1);
+                    this.CacheHandler.set(memeFolder, keys);
+                    const meme = new Archivo(keys.random());
+                    return this.FileStorage.getPublicURL(meme.getKey())
+                      .then(url => {
+                        return {
+                          url : url,
+                          type : meme.getType(),
+                          attachment_id : ''
+                        }
+                      })
                 })
                 .catch(e => this.DataBase.logUserError(e, user, 'FileStorage'))
-                .then(url => {
-                    const parameter = {
-                        'url' : url,
-                        'attachment_id' : null,
-                        'type' : type
-                    };
-                    return this.MessagingChannel.sendAttachment(userId, parameter);
-                })
+                .then(parameter => this.MessagingChannel.sendAttachment(userId, parameter))
                 .catch(e => this.DataBase.logUserError(e, user, 'MessagingChannel'));
 
         default:
