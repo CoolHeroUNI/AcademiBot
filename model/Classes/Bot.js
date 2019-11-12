@@ -82,26 +82,9 @@ Bot.prototype.setNLPMotor = function (NLPMotor) {
  * @returns {Promise<Usuario>}
  */
 Bot.prototype.createUser = function (userId) {
-  const welcomeFileLocation = this.mediaFolder + '/welcome';
-  let type;
   return this.DataBase.createUser(userId)
-    .then(user => this.MessagingChannel.sendText(userId, this.greetingsMessage, false))
-    .then(() => this.FileStorage.listObjectsUnder(welcomeFileLocation))
-    .then(welcomeFiles => welcomeFiles
-      .filter(file => file.indexOf('.') !== -1)
-      .map(file => new Archivo(file))[0])
-    .then(file => {
-      return this.FileStorage.getPublicURL(file.getKey())
-        .then(url => {
-          return {
-            type : file.getType(),
-            url : url,
-            attachment_id : ''
-          }
-        })
-    })
-    .then(file => this.MessagingChannel.sendAttachment(userId, file))
-    .catch(e => this.DataBase.logUserError(e, user, 'MessagingChannel'));
+    .then(user => this.greet(user))
+    .catch(e => this.DataBase.logUserError(e, new Usuario(userId), 'MessagingChannel'));
 };
 /**
  * Inicia la interaccion con un usuario, devolviendo una instancia de la clase usuario, que sera necesaria para el
@@ -458,7 +441,8 @@ Bot.prototype.executeCommand = function (user, command, parameters) {
     const userId = user.getFacebookId();
     switch (command) {
         case 'Empezar':
-            return this.regularizeUser(user);
+            return this.greet(user)
+              .then(() => this.regularizeUser(user));
         case 'ResetEspecialidad':
             user.setEspecialidad(null);
             return this.regularizeUser(user);
@@ -681,5 +665,27 @@ Bot.prototype.recievePayload = function (user, payload) {
  */
 Bot.prototype.endInteraction = function (user) {
     return this.DataBase.updateUser(user);
+};
+
+
+Bot.prototype.greet = function (user) {
+  const welcomeFileLocation = this.mediaFolder + '/welcome';
+  const userId = user.getFacebookId();
+  return this.MessagingChannel.sendText(userId, this.greetingsMessage, false)
+    .then(() => this.FileStorage.listObjectsUnder(welcomeFileLocation))
+    .then(welcomeFiles => welcomeFiles
+      .filter(file => file.indexOf('.') !== -1)
+      .map(file => new Archivo(file))[0])
+    .then(file => {
+      return this.FileStorage.getPublicURL(file.getKey())
+        .then(url => {
+          return {
+            type : file.getType(),
+            url : url,
+            attachment_id : ''
+          }
+        })
+    })
+    .then(file => this.MessagingChannel.sendAttachment(userId, file))
 };
 module.exports = Bot;
