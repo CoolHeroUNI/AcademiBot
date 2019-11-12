@@ -36,12 +36,12 @@ Array.prototype.random = function () {
 };
 /**
  * Metodo para limpiar las cadenas de mayusculas y de tildes
- * @method limpia
+ * @method removeTildesLower
  * @returns {String}
  */
-String.prototype.limpia = function () {
+String.prototype.removeTildesLower = function () {
   let texto = (" " + this).slice(1);
-  let tildes = 'áàéèíìóòúüùñ';
+  let tildes   = 'áàéèíìóòúüùñ';
   let normales = 'aaeeiioouuun';
   let aux = texto.toLowerCase();
   let res = '';
@@ -56,6 +56,13 @@ String.prototype.limpia = function () {
   }
   return res;
 };
-
+/**
+ * Metodo para quitar toda ocurrencia de caracter especial de una cadena
+ * @param {String} literal
+ * @returns {String}
+ */
+RegExp.escape = function (literal) {
+  return literal.replace(/[^A-Za-z0-9_]/g, '\\$&');
+}
 
 module.exports = {};
