@@ -652,6 +652,7 @@ Bot.prototype.recieveMessage = async function (user, message) {
         return this.sendAvailableFolders(user);
     }
 
+    
     const userId = user.getFacebookId();
     return this.NLPMotor.processText(userId, message)
         .then(intent => {
