@@ -1,5 +1,5 @@
 const AWS = require('aws-sdk');
-
+const CacheHandler = require('./CacheHandler');
 class S3{
     constructor(accessKey, secretKey, region, bucket, cacheTime) {
         this.s3 = new AWS.S3({
@@ -8,8 +8,10 @@ class S3{
             region : region
         });
         this.bucket = bucket;
+        this.cache = new CacheHandler(cacheTime);
     }
 }
+
 /**
  *
  * @param prefix
@@ -57,6 +59,34 @@ S3.prototype.listObjectsDirectlyUnder = async function (prefix, continuationToke
     } else {
         return resultado;
     }
+};
+/**
+ *
+ * @param {String} prefix
+ * @returns {Promise<String[]>}
+ */
+S3.prototype.listObjectUnderCached = function (prefix) {
+    const cached = this.cache.get(prefix);
+    if (cached) return Promise.resolve(cached);
+    return this.listObjectsUnder(prefix)
+      .then(keys => {
+          this.cache.set(prefix, keys);
+          return keys;
+      })
+};
+/**
+ *
+ * @param {String} prefix
+ * @returns {Promise<String[]>}
+ */
+S3.prototype.listObjectsDirectlyUnderCached = function (prefix) {
+    const cached = this.cache.get(prefix);
+    if (cached) return Promise.resolve(cached);
+    return this.listObjectsDirectlyUnder(prefix)
+      .then(keys => {
+          this.cache.set(prefix, keys);
+          return keys;
+      })
 };
 S3.prototype.getObject = function (key) {
     const params = {
