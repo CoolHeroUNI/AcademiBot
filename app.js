@@ -59,11 +59,13 @@ app.use(function(err, req, res, next) {
 });
 
 app.listen(app.get('port'), () => {
-  console.log("Servidor escuchando en puerto " + app.get('port'));
+  console.log(`Servidor escuchando en el puerto ${app.get('port')}.`);
   randomPing(process.env.ACADEMIBOT_URL);
 });
+
 process.on('SIGTERM', () => {
   console.log('Ya esta atardeciendo...');
+
   setTimeout(() => {
     process.exit(0);
   }, 250);

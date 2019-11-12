@@ -41,7 +41,7 @@ AcademiBot.setFileStorage(S3);
 AcademiBot.setMessagingChannel(FB);
 AcademiBot.setNLPMotor(Dialogflow);
 AcademiBot.init(reconTime)
-    .then(() => console.log('Succesful connection to DataBase'))
+    .then(() => console.log('Successful connection to DataBase'))
     .catch(e => {
         console.log(e);
         process.exit(0);
