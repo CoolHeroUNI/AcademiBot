@@ -1,13 +1,11 @@
-const MessagingChannel = require('../Interfaces/MessagingChannel');
 const RequestPromise = require('request-promise');
 const linkify = require('linkifyjs');
-class Facebook extends MessagingChannel {
+class Facebook{
     /**
      * @param {String} Token
      * @param {String} versionAPI
      */
     constructor (Token, versionAPI) {
-        super();
         /**
          * Atributo que representa las credenciales necesarias para poder utilizar los servicios de Facebook
          * @property Token

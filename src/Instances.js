@@ -10,7 +10,8 @@ const awsKey = process.env.AWS_ACCESS_KEY_ID;
 const awsSecretKey = process.env.AWS_SECRET_ACCESS_KEY;
 const region = 'us-east-1';
 const bucket = process.env.AWS_S3_BUCKET_NAME;
-const S3 = new s3(awsKey, awsSecretKey, region, bucket);
+const s3CacheTime = parseInt(process.env.AWS_S3_CACHE_TIME) * 1000;
+const S3 = new s3(awsKey, awsSecretKey, region, bucket, s3CacheTime);
 
 const tokenFB = process.env.FACEBOOK_TOKEN;
 const versionAPI = '3.3';
@@ -33,9 +34,8 @@ const MySQL = new MySQLDataBase(host, user, pass, db, port, SQLtime);
 
 const greetings = process.env.ACADEMIBOT_GREETINGS;
 const mediaFolder = process.env.ACADEMIBOT_MEDIA_FOLDER;
-const time = parseInt(process.env.ACADEMIBOT_CACHE_TIME) * 1000;
-const reconTime = parseInt(process.env.ACADEMIBOT_DB_RECONNECTION_TIME) * 1000;
-const AcademiBot = new Bot(time, greetings, mediaFolder);
+const reconTime = parseInt(process.env.MYSQL_RECONNECTION_TIME) * 1000;
+const AcademiBot = new Bot(greetings, mediaFolder);
 AcademiBot.setDataBase(MySQL);
 AcademiBot.setFileStorage(S3);
 AcademiBot.setMessagingChannel(FB);
