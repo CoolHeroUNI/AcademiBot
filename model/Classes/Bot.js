@@ -258,20 +258,22 @@ Bot.prototype.detectFiles = function (user, message) {
     const Curso = user.getCurso();
     const Carpeta = user.getCarpeta();
     let prefix = '';
-    return this.DataBase.getEspecialidadById(Especialidad)
-        .then(rows => {
-            const Facultad = rows[0]['Facultad'];
-            prefix = `${Facultad}/${Curso}/${Carpeta}/`;
-            const cachedFiles = this.CacheHandler.get(prefix);
-            if (cachedFiles) return cachedFiles;
-            return this.FileStorage.listObjectsUnder(prefix);
-        })
-        .then(respuesta => {
-            respuesta = respuesta.filter(key => key.indexOf('.') !== -1);
-            this.CacheHandler.set(prefix, respuesta);
-            return Promise.all(respuesta.map(key => this.DataBase.getFileByKey(key)));
-        })
-        .then(Files => Files.filter(file => file.matchesText(message)));
+
+
+  return this.DataBase.getEspecialidadById(Especialidad)
+    .then(rows => {
+      const Facultad = rows[0]['Facultad'];
+      prefix = `${Facultad}/${Curso}/${Carpeta}/`;
+      const cachedFiles = this.CacheHandler.get(prefix);
+      if (cachedFiles) return cachedFiles;
+      return this.FileStorage.listObjectsUnder(prefix);
+    })
+    .then(respuesta => {
+      respuesta = respuesta.filter(key => key.indexOf('.') !== -1);
+      this.CacheHandler.set(prefix, respuesta);
+      return Promise.all(respuesta.map(key => this.DataBase.getFileByKey(key)));
+    })
+    .then(Files => Files.filter(file => file.matchesText(message)));
 };
 /**
  *

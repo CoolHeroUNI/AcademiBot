@@ -1,9 +1,7 @@
-const FileStorage = require('../Interfaces/FileStorage');
 const AWS = require('aws-sdk');
 
-class S3 extends FileStorage {
-    constructor(accessKey, secretKey, region, bucket) {
-        super();
+class S3{
+    constructor(accessKey, secretKey, region, bucket, cacheTime) {
         this.s3 = new AWS.S3({
             accessKeyId : accessKey,
             secretAccessKey : secretKey,

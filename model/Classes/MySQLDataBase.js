@@ -1,13 +1,11 @@
-const DataBase = require('../Interfaces/DataBase');
 const CacheHandler = require('./CacheHandler');
 const mysql = require('mysql');
 const Usuario = require('./Usuario');
 const MaterialEstudio = require('./MaterialEstudio');
 const Curso = require('./Curso');
 
-class MySQLDataBase extends DataBase {
+class MySQLDataBase {
     constructor(host, user, password, database, port, cacheTime) {
-        super();
         this.conn = mysql.createConnection({
             host : host,
             user : user,

@@ -1,9 +1,7 @@
-const NLPMotor = require('../Interfaces/NLPMotor');
 const dialogflow = require('dialogflow');
 
-class Dialogflow extends NLPMotor {
+class Dialogflow {
     constructor(projectId, language) {
-        super();
         this.projectId = projectId;
         this.sessionsClient = new dialogflow.SessionsClient();
         this.language = language;
