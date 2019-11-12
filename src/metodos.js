@@ -62,7 +62,7 @@ String.prototype.removeTildesLower = function () {
  * @returns {String}
  */
 RegExp.escape = function (literal) {
-  return literal.replace(/[^A-Za-z0-9_]/g, '\\$&');
+  return literal.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
 module.exports = {};
