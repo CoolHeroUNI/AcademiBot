@@ -65,7 +65,7 @@ S3.prototype.listObjectsDirectlyUnder = async function (prefix, continuationToke
  * @param {String} prefix
  * @returns {Promise<String[]>}
  */
-S3.prototype.listObjectUnderCached = function (prefix) {
+S3.prototype.listObjectsUnderCached = function (prefix) {
     const cached = this.cache.get(prefix);
     if (cached) return Promise.resolve(cached);
     return this.listObjectsUnder(prefix)

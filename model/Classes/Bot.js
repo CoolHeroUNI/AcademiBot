@@ -6,17 +6,11 @@ const MaterialEstudio = require('./MaterialEstudio');
 const Archivo = require('./Archivo');
 const DataBase = require('./MySQLDataBase');
 const Curso = require('./Curso');
-const CacheHandler = require('./CacheHandler');
 
 class Bot {
-    constructor(cacheTime, greetingsMessage, mediaFolder) {
+    constructor(greetingsMessage, mediaFolder) {
         this.greetingsMessage = greetingsMessage;
         this.mediaFolder = mediaFolder;
-        /**
-         * @property
-         * @type {CacheHandler}
-         */
-        this.CacheHandler = new CacheHandler(cacheTime);
         /**
          * @property FileStorage
          * @type {FileStorage}
@@ -204,14 +198,10 @@ Bot.prototype.detectFolders = function (user, message) {
         .then(rows => {
             const Facultad = rows[0]['Facultad'];
             const prefix = `${Facultad}/${Curso}/`;
-            const cachedFolders = this.CacheHandler.get(prefix);
-            if (cachedFolders) return cachedFolders;
-            return this.FileStorage.listObjectsDirectlyUnder(prefix)
-                .then(respuesta => {
-                    const Folders = respuesta.map(o => o.replace(prefix, '').replace('/',''));
-                    this.CacheHandler.set(prefix, Folders);
-                    return Folders;
-                });
+            return this.FileStorage.listObjectsDirectlyUnderCached(prefix)
+              .then(respuesta => {
+                return respuesta.map(o => o.replace(prefix, '').replace('/', ''));
+              })
         })
         .then(Carpetas => {
             return Carpetas.filter(Carpeta => {
@@ -257,20 +247,15 @@ Bot.prototype.detectFiles = function (user, message) {
     const Especialidad = user.getEspecialidad();
     const Curso = user.getCurso();
     const Carpeta = user.getCarpeta();
-    let prefix = '';
-
 
   return this.DataBase.getEspecialidadById(Especialidad)
     .then(rows => {
       const Facultad = rows[0]['Facultad'];
-      prefix = `${Facultad}/${Curso}/${Carpeta}/`;
-      const cachedFiles = this.CacheHandler.get(prefix);
-      if (cachedFiles) return cachedFiles;
-      return this.FileStorage.listObjectsUnder(prefix);
+      const prefix = `${Facultad}/${Curso}/${Carpeta}/`;
+      return this.FileStorage.listObjectsUnderCached(prefix);
     })
     .then(respuesta => {
       respuesta = respuesta.filter(key => key.indexOf('.') !== -1);
-      this.CacheHandler.set(prefix, respuesta);
       return Promise.all(respuesta.map(key => this.DataBase.getFileByKey(key)));
     })
     .then(Files => Files.filter(file => file.matchesText(message)));
@@ -562,15 +547,10 @@ Bot.prototype.executePetition = function (user, petition, text) {
     switch (petition) {
         case 'Meme':
             const memeFolder = this.mediaFolder + '/memes';
-            const cachedMemes = this.CacheHandler.get(memeFolder);
             return this.MessagingChannel.sendText(userId, text, false)
-                .then(() => {
-                    if (cachedMemes) return cachedMemes.random();
-                    return this.FileStorage.listObjectsUnder(memeFolder);
-                })
+                .then(() => this.FileStorage.listObjectsUnderCached(memeFolder))
                 .then(keys => {
                     keys = keys.filter(key => key.indexOf('.') !== -1);
-                    this.CacheHandler.set(memeFolder, keys);
                     const meme = new Archivo(keys.random());
                     return this.FileStorage.getPublicURL(meme.getKey())
                       .then(url => {
