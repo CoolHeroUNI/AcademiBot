@@ -117,7 +117,7 @@ Bot.prototype.startInteraction = function (userId) {
  */
 Bot.prototype.detectCourses = function (user, message) {
     if (!user.isAbleToRequestCourses()) return Promise.resolve([]);
-    message = message.limpia();
+    message = message.removeTildesLower();
     const completeWords = message.split(' ');
     const words = completeWords.filter(word => word.length >= 5);
     return this.DataBase.getProbableCoursesByUser(user)
@@ -201,7 +201,7 @@ Bot.prototype.detectFolders = function (user, message) {
         .then(Carpetas => {
             return Carpetas.filter(Carpeta => {
                 if (message.length === 0) return true;
-                message = message.limpia();
+                message = message.removeTildesLower();
                 if (Carpeta.indexOf(message) > 0) return true;
                 const carpeta = new RegExp(Carpeta.replace(/-/g, '(|-| )'), 'i');
                 return carpeta.test(message);
@@ -608,11 +608,12 @@ Bot.prototype.processPayloadFromNLP = function (user, intent) {
  * @returns {Promise}
  */
 Bot.prototype.recieveMessage = async function (user, message) {
+  const scapedMessage = RegExp.escape(message);
     if (!user.Valido) return Promise.reject(new Error('Usuario no valido.'));
     let userRequestedOnlyOneFolder = false;
     let userRequestedOnlyOneCourse = false;
     try {
-        const courses = await this.detectCourses(user, message);
+        const courses = await this.detectCourses(user, scapedMessage);
         if (courses.length > 0) {
             if (courses.length > 1) return this.sendCourses(user, courses);
             else {
@@ -625,7 +626,7 @@ Bot.prototype.recieveMessage = async function (user, message) {
             .catch(e => console.log(e));
     }
     try {
-        const folders = await this.detectFolders(user, message);
+        const folders = await this.detectFolders(user, scapedMessage);
         if (folders.length > 0) {
             if (folders.length > 1) return this.sendFolders(user, folders);
             else {
@@ -638,7 +639,7 @@ Bot.prototype.recieveMessage = async function (user, message) {
             .catch(e => console.log(e));
     }
     try {
-        const files = await this.detectFiles(user, message);
+        const files = await this.detectFiles(user, scapedMessage);
         if (files.length > 0) return this.sendFiles(user, files);
     } catch (e) {
         this.DataBase.logUserError(e, user, 'FileSystem')
@@ -653,7 +654,6 @@ Bot.prototype.recieveMessage = async function (user, message) {
 
     const userId = user.getFacebookId();
     return this.NLPMotor.processText(userId, message)
-        .catch(e => this.DataBase.logUserError(e, user, 'NLPMotor'))
         .then(intent => {
             const {text, payload} = intent;
             const payloadKeys = Object.getOwnPropertyNames(payload);
@@ -661,7 +661,7 @@ Bot.prototype.recieveMessage = async function (user, message) {
             return this.MessagingChannel.sendTextWithURLs(userId, text, false)
         })
         .catch(e => {
-            this.DataBase.logUserError(e, user, 'MessagingChannel');
+            this.DataBase.logUserError(e, user, 'NLPMotor');
             const emergencyResponse = 'No puedo brindarte una respuesta fluida.';
             return this.MessagingChannel.sendText(userId, emergencyResponse, false);
         })
