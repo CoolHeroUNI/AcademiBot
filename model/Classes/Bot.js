@@ -327,7 +327,8 @@ Bot.prototype.sendFiles = function (user, files) {
                         .catch(e => console.log(e));
                 }
             }
-            return failed ? Promise.reject() : Promise.resolve();
+            const e = new Error('Failed to send files');
+            return failed ? Promise.reject(e) : Promise.resolve();
         })
         .then(() => this.sendAvailableFiles(user))
         .catch((e) => {
