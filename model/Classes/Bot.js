@@ -83,7 +83,6 @@ Bot.prototype.setNLPMotor = function (NLPMotor) {
  */
 Bot.prototype.createUser = function (userId) {
   return this.DataBase.createUser(userId)
-    .then(user => this.greet(user))
     .catch(e => this.DataBase.logUserError(e, new Usuario(userId), 'MessagingChannel'));
 };
 /**
