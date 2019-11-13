@@ -671,8 +671,7 @@ Bot.prototype.endInteraction = function (user) {
 Bot.prototype.greet = function (user) {
   const welcomeFileLocation = this.mediaFolder + '/welcome';
   const userId = user.getFacebookId();
-  return this.MessagingChannel.sendText(userId, this.greetingsMessage, false)
-    .then(() => this.FileStorage.listObjectsUnder(welcomeFileLocation))
+  return this.FileStorage.listObjectsUnder(welcomeFileLocation)
     .then(welcomeFiles => welcomeFiles
       .filter(file => file.indexOf('.') !== -1)
       .map(file => new Archivo(file))[0])
@@ -687,5 +686,6 @@ Bot.prototype.greet = function (user) {
         })
     })
     .then(file => this.MessagingChannel.sendAttachment(userId, file))
+    .then(() => this.MessagingChannel.sendText(userId, this.greetingsMessage, false));
 };
 module.exports = Bot;
