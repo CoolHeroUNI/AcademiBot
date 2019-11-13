@@ -441,6 +441,7 @@ Bot.prototype.executeCommand = function (user, command, parameters) {
     const userId = user.getFacebookId();
     switch (command) {
         case 'Empezar':
+          user.setEspecialidad(null);
             return this.greet(user)
               .then(() => this.regularizeUser(user));
         case 'ResetEspecialidad':
