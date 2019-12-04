@@ -585,7 +585,7 @@ Bot.prototype.processPayloadFromNLP = function (user, intent) {
  * @returns {Promise}
  */
 Bot.prototype.recieveMessage = async function (user, message) {
-  const scapedMessage = RegExp.escape(message);
+    const scapedMessage = RegExp.escape(message);
     if (!user.Valido) return Promise.reject(new Error('Usuario no valido.'));
     let userRequestedOnlyOneFolder = false;
     let userRequestedOnlyOneCourse = false;

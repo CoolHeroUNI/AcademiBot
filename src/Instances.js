@@ -44,7 +44,6 @@ AcademiBot.init(reconTime)
     .then(() => console.log('Successful connection to DataBase'))
     .catch(e => {
         console.log(e);
-        process.exit(0);
     });
 
 module.exports = {AcademiBot, FB, MySQL, Dialogflow, S3};
