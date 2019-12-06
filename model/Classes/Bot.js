@@ -4,7 +4,7 @@ const NLPMotor = require('./Dialogflow');
 const Usuario = require('./Usuario');
 const MaterialEstudio = require('./MaterialEstudio');
 const Archivo = require('./Archivo');
-const DataBase = require('./MySQLDataBase');
+const MySQLDataBase = require('./MySQLDataBase');
 const Curso = require('./Curso');
 
 class Bot {
@@ -28,7 +28,7 @@ class Bot {
         this.NLPMotor = null;
         /**
          * @property DataBase
-         * @type {DataBase}
+         * @type {MySQLDataBase}
          */
         this.DataBase = null;
 
@@ -53,7 +53,7 @@ Bot.prototype.setFileStorage = function (FileStorage) {
 };
 /**
  * Determina la base de datos que se usara para manejar las solicitudes
- * @param {DataBase} DataBase
+ * @param {MySQLDataBase} DataBase
  */
 Bot.prototype.setDataBase = function (DataBase) {
     this.DataBase = DataBase;
@@ -82,26 +82,8 @@ Bot.prototype.setNLPMotor = function (NLPMotor) {
  * @returns {Promise<Usuario>}
  */
 Bot.prototype.createUser = function (userId) {
-  const welcomeFileLocation = this.mediaFolder + '/welcome';
-  let type;
   return this.DataBase.createUser(userId)
-    .then(user => this.MessagingChannel.sendText(userId, this.greetingsMessage, false))
-    .then(() => this.FileStorage.listObjectsUnder(welcomeFileLocation))
-    .then(welcomeFiles => welcomeFiles
-      .filter(file => file.indexOf('.') !== -1)
-      .map(file => new Archivo(file))[0])
-    .then(file => {
-      return this.FileStorage.getPublicURL(file.getKey())
-        .then(url => {
-          return {
-            type : file.getType(),
-            url : url,
-            attachment_id : ''
-          }
-        })
-    })
-    .then(file => this.MessagingChannel.sendAttachment(userId, file))
-    .catch(e => this.DataBase.logUserError(e, user, 'MessagingChannel'));
+    .catch(e => this.DataBase.logUserError(e, new Usuario(userId), 'MessagingChannel'));
 };
 /**
  * Inicia la interaccion con un usuario, devolviendo una instancia de la clase usuario, que sera necesaria para el
@@ -458,7 +440,9 @@ Bot.prototype.executeCommand = function (user, command, parameters) {
     const userId = user.getFacebookId();
     switch (command) {
         case 'Empezar':
-            return this.regularizeUser(user);
+          user.setEspecialidad(null);
+            return this.greet(user)
+              .then(() => this.regularizeUser(user));
         case 'ResetEspecialidad':
             user.setEspecialidad(null);
             return this.regularizeUser(user);
@@ -601,7 +585,7 @@ Bot.prototype.processPayloadFromNLP = function (user, intent) {
  * @returns {Promise}
  */
 Bot.prototype.recieveMessage = async function (user, message) {
-  const scapedMessage = RegExp.escape(message);
+    const scapedMessage = RegExp.escape(message);
     if (!user.Valido) return Promise.reject(new Error('Usuario no valido.'));
     let userRequestedOnlyOneFolder = false;
     let userRequestedOnlyOneCourse = false;
@@ -681,5 +665,27 @@ Bot.prototype.recievePayload = function (user, payload) {
  */
 Bot.prototype.endInteraction = function (user) {
     return this.DataBase.updateUser(user);
+};
+
+
+Bot.prototype.greet = function (user) {
+  const welcomeFileLocation = this.mediaFolder + '/welcome';
+  const userId = user.getFacebookId();
+  return this.FileStorage.listObjectsUnder(welcomeFileLocation)
+    .then(welcomeFiles => welcomeFiles
+      .filter(file => file.indexOf('.') !== -1)
+      .map(file => new Archivo(file))[0])
+    .then(file => {
+      return this.FileStorage.getPublicURL(file.getKey())
+        .then(url => {
+          return {
+            type : file.getType(),
+            url : url,
+            attachment_id : ''
+          }
+        })
+    })
+    .then(file => this.MessagingChannel.sendAttachment(userId, file))
+    .then(() => this.MessagingChannel.sendText(userId, this.greetingsMessage, false));
 };
 module.exports = Bot;

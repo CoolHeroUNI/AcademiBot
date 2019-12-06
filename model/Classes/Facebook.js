@@ -1,4 +1,5 @@
 const RequestPromise = require('request-promise');
+const execute = require('async-executer');
 const linkify = require('linkifyjs');
 class Facebook{
     /**
@@ -109,6 +110,16 @@ Facebook.prototype.sendAttachment = function (userId, parameters) {
 };
 Facebook.prototype.sendSecuentialAttachments = async function (userId, parameterList) {
     const results = [];
+    const send = (userId, parameter) => {
+        return this.sendAttachment(userId, parameter)
+          .then(result => results.push(result))
+          .catch(e => results.push(e))
+          .then(() => this.typingOn(userId));
+    };
+    const params = parameterList.map((parameter) => [userId, parameter]);
+    return execute(send, params, 100)
+      .then(() => results);
+    /*const results = [];
     for (let parameter of parameterList) {
         try {
             const result = await this.sendAttachment(userId, parameter);
@@ -118,7 +129,7 @@ Facebook.prototype.sendSecuentialAttachments = async function (userId, parameter
             results.push(e);
         }
     }
-    return Promise.resolve(results);
+    return Promise.resolve(results);*/
 };
 
 

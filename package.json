@@ -13,6 +13,7 @@
   "dependencies": {
     "@google-cloud/storage": "^4.0.0",
     "archiver": "^3.1.1",
+    "async-executer": "^1.0.5",
     "aws-sdk": "^2.553.0",
     "bluebird": "^3.5.3",
     "body-parser": "^1.18.3",
