@@ -63,6 +63,6 @@ String.prototype.removeTildesLower = function () {
  */
 RegExp.escape = function (literal) {
   return literal.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-}
+};
 
 module.exports = {};

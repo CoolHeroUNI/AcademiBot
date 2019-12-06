@@ -41,7 +41,6 @@ MySQLDataBase.prototype.connect = function (reconTime, autoReconnect) {
                     .then(() => console.log('Successful Reconnection to database.'))
                     .catch(e => {
                         console.log(e);
-                        process.exit(0);
                     });
             }
         })
@@ -54,7 +53,6 @@ MySQLDataBase.prototype.connect = function (reconTime, autoReconnect) {
                     .then(() => console.log('Successful ping to Database.'))
                     .catch(e => {
                         console.log(e);
-                        process.exit(0);
                     });
             }, reconTime);
             return resolve();

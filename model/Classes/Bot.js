@@ -4,7 +4,7 @@ const NLPMotor = require('./Dialogflow');
 const Usuario = require('./Usuario');
 const MaterialEstudio = require('./MaterialEstudio');
 const Archivo = require('./Archivo');
-const DataBase = require('./MySQLDataBase');
+const MySQLDataBase = require('./MySQLDataBase');
 const Curso = require('./Curso');
 
 class Bot {
@@ -28,7 +28,7 @@ class Bot {
         this.NLPMotor = null;
         /**
          * @property DataBase
-         * @type {DataBase}
+         * @type {MySQLDataBase}
          */
         this.DataBase = null;
 
@@ -53,7 +53,7 @@ Bot.prototype.setFileStorage = function (FileStorage) {
 };
 /**
  * Determina la base de datos que se usara para manejar las solicitudes
- * @param {DataBase} DataBase
+ * @param {MySQLDataBase} DataBase
  */
 Bot.prototype.setDataBase = function (DataBase) {
     this.DataBase = DataBase;
@@ -585,7 +585,7 @@ Bot.prototype.processPayloadFromNLP = function (user, intent) {
  * @returns {Promise}
  */
 Bot.prototype.recieveMessage = async function (user, message) {
-  const scapedMessage = RegExp.escape(message);
+    const scapedMessage = RegExp.escape(message);
     if (!user.Valido) return Promise.reject(new Error('Usuario no valido.'));
     let userRequestedOnlyOneFolder = false;
     let userRequestedOnlyOneCourse = false;
