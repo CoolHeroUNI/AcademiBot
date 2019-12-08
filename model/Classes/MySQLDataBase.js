@@ -41,6 +41,7 @@ MySQLDataBase.prototype.connect = function (reconTime, autoReconnect) {
                     .then(() => console.log('Successful Reconnection to database.'))
                     .catch(e => {
                         console.log(e);
+                        process.exit(0);
                     });
             }
         })
