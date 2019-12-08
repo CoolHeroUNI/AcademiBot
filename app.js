@@ -70,3 +70,4 @@ process.on('SIGTERM', () => {
     process.exit(0);
   }, 250);
 });
+module.exports = app;
