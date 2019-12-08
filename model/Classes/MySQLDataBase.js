@@ -36,7 +36,7 @@ MySQLDataBase.prototype.connect = function (reconTime, autoReconnect) {
     if (autoReconnect) {
         this.conn.on('error' , (error) => {
             console.log(error);
-            if (error.code === 'ECONNREFUSED') {
+            if (error.code === 'PROTOCOL_CONNECTION_LOST') {
                 this.connect(reconTime, true)
                     .then(() => console.log('Successful Reconnection to database.'))
                     .catch(e => {
