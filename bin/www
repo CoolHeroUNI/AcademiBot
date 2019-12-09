@@ -59,6 +59,9 @@ function onSIGTERM() {
           console.log('Operations finished, exiting process...');
           process.exit(0);
         })
+    } else {
+      console.log('Exiting process...');
+      process.exit(0);
     }
   })
 
