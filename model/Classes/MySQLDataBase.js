@@ -24,39 +24,38 @@ class MySQLDataBase {
         this.User = 'Usuario_AcademiBot';
 
         this.cache = new CacheHandler(cacheTime);
+
     }
 }
-
+this.conn.on('error' , (error) => {
+    console.log(error);
+    if (error.code === 'PROTOCOL_CONNECTION_LOST') {
+        setTimeout(() =>
+            this.connect(process.env.MYSQL_RECONNECTION_TIME)
+              .then((interval) => {
+                  console.log('Successful Reconnection to database.');
+                  clearInterval(interval);
+              })
+              .catch(e => {
+                  console.log(e);
+              }), 1000);
+    }
+});
 /**
  * @param {Number} reconTime time in miliseconds to send a ping to database
- * @param {Boolean} autoReconnect
  * @returns {Promise}
  */
-MySQLDataBase.prototype.connect = function (reconTime, autoReconnect) {
-    if (autoReconnect) {
-        this.conn.on('error' , (error) => {
-            console.log(error);
-            if (error.code === 'PROTOCOL_CONNECTION_LOST') {
-                this.connect(reconTime, true)
-                    .then(() => console.log('Successful Reconnection to database.'))
-                    .catch(e => {
-                        console.log(e);
-                        process.exit(0);
-                    });
-            }
-        })
-    }
+MySQLDataBase.prototype.connect = function (reconTime) {
     return new Promise((resolve, reject) => {
         this.conn.connect(err => {
             if (err) return reject(err);
-            setInterval(() => {
+            resolve(setInterval(() => {
                 this.ping()
                     .then(() => console.log('Successful ping to Database.'))
                     .catch(e => {
                         console.log(e);
                     });
-            }, reconTime);
-            return resolve();
+            }, reconTime));
         })
     });
 };

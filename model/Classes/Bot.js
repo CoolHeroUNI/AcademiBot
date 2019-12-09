@@ -41,7 +41,7 @@ class Bot {
  * @returns {Promise<*>}
  */
 Bot.prototype.init = function (reconnectionTime) {
-    return this.DataBase.connect(reconnectionTime, true);
+    return this.DataBase.connect(reconnectionTime);
 };
 /**
  * @method setFileStorage
