@@ -24,38 +24,39 @@ class MySQLDataBase {
         this.User = 'Usuario_AcademiBot';
 
         this.cache = new CacheHandler(cacheTime);
-
-    }
-}
-this.conn.on('error' , (error) => {
-    console.log(error);
-    if (error.code === 'PROTOCOL_CONNECTION_LOST') {
-        setTimeout(() =>
-            this.connect(process.env.MYSQL_RECONNECTION_TIME)
-              .then((interval) => {
+        this.conn.on('error' , (error) => {
+          console.log(error);
+          if (error.code === 'PROTOCOL_CONNECTION_LOST') {
+            setTimeout(() =>
+              this.connect(process.env.MYSQL_RECONNECTION_TIME)
+                .then((interval) => {
                   console.log('Successful Reconnection to database.');
                   clearInterval(interval);
-              })
-              .catch(e => {
+                })
+                .catch(e => {
                   console.log(e);
-              }), 1000);
+                }), 1000);
+          }
+        });
     }
-});
+}
+
 /**
  * @param {Number} reconTime time in miliseconds to send a ping to database
- * @returns {Promise}
+ * @returns {Promise<number>}
  */
 MySQLDataBase.prototype.connect = function (reconTime) {
     return new Promise((resolve, reject) => {
         this.conn.connect(err => {
             if (err) return reject(err);
-            resolve(setInterval(() => {
+            const inter = (setInterval(() => {
                 this.ping()
                     .then(() => console.log('Successful ping to Database.'))
                     .catch(e => {
                         console.log(e);
                     });
             }, reconTime));
+            resolve(inter);
         })
     });
 };
