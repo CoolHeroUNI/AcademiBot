@@ -33,9 +33,6 @@ class MySQLDataBase {
                 .then((interval) => {
                   console.log('Successful Reconnection to database.');
                   clearInterval(interval);
-                })
-                .catch(e => {
-                  console.error(e);
                 }), 1000);
           }
         });
@@ -53,9 +50,6 @@ MySQLDataBase.prototype.connect = function (reconTime) {
             const inter = (setInterval(() => {
                 this.ping()
                     .then(() => console.log('Successful ping to Database.'))
-                    .catch(e => {
-                        console.log(e);
-                    });
             }, reconTime));
             resolve(inter);
         })
