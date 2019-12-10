@@ -360,11 +360,6 @@ MySQLDataBase.prototype.promiseQuery = function (SQL) {
     });
 };
 MySQLDataBase.prototype.ping = function () {
-    return new Promise((resolve, reject) => {
-        this.conn.ping(err => {
-            if (err) return reject(err);
-            return resolve();
-        });
-    });
+    return Promise.resolve(this.conn.ping());
 };
 module.exports = MySQLDataBase;
