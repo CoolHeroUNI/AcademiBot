@@ -6,13 +6,14 @@ const Curso = require('./Curso');
 
 class MySQLDataBase {
     constructor(host, user, password, database, port, cacheTime) {
-        this.conn = mysql.createConnection({
-            host : host,
-            user : user,
-            password : password,
-            database : database,
-            port : port
-        });
+        this.config = {
+          host : host,
+          user : user,
+          password : password,
+          database : database,
+          port : port
+        };
+        this.conn = mysql.createConnection(this.config);
         this.Archivo = 'Archivo';
         this.Ciclo = 'Ciclo';
         this.Curso = 'Curso';
@@ -25,16 +26,18 @@ class MySQLDataBase {
 
         this.cache = new CacheHandler(cacheTime);
         this.conn.on('error' , (error) => {
-          console.log("ERROR FOUND!");
-          console.error(error);
-          if (error.code === 'PROTOCOL_CONNECTION_LOST') {
-            setTimeout(() =>
-              this.connect(process.env.MYSQL_RECONNECTION_TIME)
-                .then((interval) => {
-                  console.log('Successful Reconnection to database.');
-                  clearInterval(interval);
-                }), 1000);
-          }
+            console.log("ERROR FOUND!");
+            console.error(error);
+            if (error.code === 'PROTOCOL_CONNECTION_LOST') {
+                setTimeout(() => {
+                    this.conn = mysql.createConnection(this.config);
+                    this.connect(process.env.MYSQL_RECONNECTION_TIME)
+                      .then((interval) => {
+                        console.log('Successful Reconnection to database.');
+                        clearInterval(interval);
+                      })
+                }, 1000);
+            }
         });
     }
 }
