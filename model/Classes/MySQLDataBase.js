@@ -25,7 +25,8 @@ class MySQLDataBase {
 
         this.cache = new CacheHandler(cacheTime);
         this.conn.on('error' , (error) => {
-          console.log(error);
+          console.log("ERROR FOUND!");
+          console.error(error);
           if (error.code === 'PROTOCOL_CONNECTION_LOST') {
             setTimeout(() =>
               this.connect(process.env.MYSQL_RECONNECTION_TIME)
@@ -34,7 +35,7 @@ class MySQLDataBase {
                   clearInterval(interval);
                 })
                 .catch(e => {
-                  console.log(e);
+                  console.error(e);
                 }), 1000);
           }
         });
