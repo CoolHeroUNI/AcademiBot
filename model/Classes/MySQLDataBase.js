@@ -50,7 +50,7 @@ MySQLDataBase.prototype.connect = function (reconTime) {
             const inter = (setInterval(() => {
                 this.ping()
                   .then(() => console.log('Successful ping to Database.'))
-                  .catch(e => throw e);
+                  .catch(e => {throw e});
             }, reconTime));
             resolve(inter);
         })
