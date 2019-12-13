@@ -1,19 +1,17 @@
 'use strict';
-// Librerias y polyfills
-require('./src/metodos');
-const randomPing = require('./src/randomPing');
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const createError = require('http-errors');
-// creacion de la aplicacion
+const cors = require('cors');
 const app = express();
-// Definir puerto y
-app.set('port', (process.env.PORT || 5000));
+const routes = require('./routes');
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(session({
@@ -26,21 +24,13 @@ app.use(session({
     maxAge: 1000*60*30
   }
 }));
-// Importar rutas
-const indexRoute = require('./routes/index');
-const webhookRoute = require('./routes/webhook');
-const cierraRoute = require('./routes/cierra');
-const loginRoute = require('./routes/login');
-const logoutRoute = require('./routes/logout');
-const adminRoute = require('./routes/admin');
-app.use('/', indexRoute);
+
+routes.forEach(router => {
+  const routeName = router.routeName;
+  app.use(routeName, router);
+});
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use('/favicon.ico', express.static(path.join(__dirname, 'public/images/favicon.ico')));
-app.use('/admin', adminRoute);
-app.use('/webhook', webhookRoute);
-app.use('/login', loginRoute);
-app.use('/logout', logoutRoute);
-app.use('/cierra', cierraRoute);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -48,7 +38,7 @@ app.use(function(req, res, next) {
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function(err, req, res) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -56,11 +46,6 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
-});
-
-app.listen(app.get('port'), () => {
-  console.log(`Servidor escuchando en el puerto ${app.get('port')}.`);
-  randomPing(process.env.ACADEMIBOT_URL);
 });
 
 process.on('SIGTERM', () => {

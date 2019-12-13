@@ -17,6 +17,7 @@
     "aws-sdk": "^2.553.0",
     "bluebird": "^3.5.3",
     "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
     "debug": "^4.1.1",
     "dialogflow": "^0.9.1",
     "dotenv": "^8.0.0",
@@ -32,9 +33,9 @@
     "pug": "^2.0.4",
     "request": "^2.88.0",
     "request-promise": "^4.2.4",
+    "sequelize": "latest",
     "stream": "0.0.2",
-    "uuid": "^3.3.2",
-    "sequelize": "latest"
+    "uuid": "^3.3.2"
   },
   "devDependencies": {},
   "repository": {

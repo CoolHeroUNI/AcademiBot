@@ -10,4 +10,4 @@ const dialect = 'mysql';
 
 const sequelize = new Sequelize({ database, host, port, dialect, username, password, timezone });
 
-export default  sequelize;
+module.exports = sequelize;

@@ -1,4 +1,4 @@
-const http = require("http");
+const http = require('http');
 /**
  * Envia un ping a url con tiempo aleatorio entre 10-15 minutos
  * @param {String} url
