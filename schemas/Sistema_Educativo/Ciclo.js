@@ -17,7 +17,7 @@ Ciclo.init({
   freezeTableName: true,
   timestamps: false,
   sequelize,
-  comment: 'Esta entidad almacena atributos sobre el Ciclo.'
+  comment: 'Esta entidad almacena atributos sobre el Ciclo academico.'
 });
 
 export default Ciclo;

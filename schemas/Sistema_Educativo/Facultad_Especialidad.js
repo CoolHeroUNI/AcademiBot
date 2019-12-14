@@ -34,7 +34,7 @@ Facultad_Especialidad.init({
       fields: ['id_facultad', 'id_especialidad']
     }
   ],
-  comment: 'This is the relationship between Faculty and Speciality, readonly mostly.',
+  comment: 'Esta es la relacion de tipo agrupa entre las entidades Facultad y Especialidad.',
   sequelize
 });
 

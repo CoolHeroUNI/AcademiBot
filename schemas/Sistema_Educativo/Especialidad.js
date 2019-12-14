@@ -29,8 +29,10 @@ Especialidad.init({
       fields: ['codigo']
     }
   ],
-  comment: 'This entity stores attributes from the Speciality, it is mostly for read only.',
+  comment: 'Esta entidad almacena atributos de la Especialidad.',
   freezeTableName: true,
   timestamps: false,
   sequelize
 });
+
+export default Especialidad;

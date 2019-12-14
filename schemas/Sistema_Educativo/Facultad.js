@@ -30,9 +30,10 @@ Facultad.init({
       fields: ['codigo']
     }
   ],
-  comment: 'This entity stores attributes from the Faculty, it is mostly for read only.',
+  comment: 'Esta entidad almacena atributos de la Facultad.',
   freezeTableName: true,
   timestamps: false,
   sequelize
 });
+
 export default Facultad;
