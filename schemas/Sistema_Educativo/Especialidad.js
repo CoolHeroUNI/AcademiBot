@@ -1,9 +1,8 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../../config/database';
+class Especialidad extends Model {  }
 
-class Facultad extends Model {  }
-
-Facultad.init({
+Especialidad.init({
   codigo: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -19,7 +18,7 @@ Facultad.init({
     allowNull: true,
     defaultValue: ''
   }
-}, {
+},{
   indexes: [
     {
       unique: true,
@@ -30,9 +29,8 @@ Facultad.init({
       fields: ['codigo']
     }
   ],
-  comment: 'This entity stores attributes from the Faculty, it is mostly for read only.',
+  comment: 'This entity stores attributes from the Speciality, it is mostly for read only.',
   freezeTableName: true,
   timestamps: false,
   sequelize
 });
-export default Facultad;
