@@ -1,7 +1,7 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../../config/database';
 
-class Facultad extends Model {  }
+export default class Facultad extends Model {  }
 
 Facultad.init({
   codigo: {
@@ -36,4 +36,3 @@ Facultad.init({
   sequelize
 });
 
-export default Facultad;

@@ -1,7 +1,7 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../../config/database';
 
-class Ciclo extends Model {  }
+export default class Ciclo extends Model {  }
 
 Ciclo.init({
   numero: {
@@ -20,4 +20,3 @@ Ciclo.init({
   comment: 'Esta entidad almacena atributos sobre el Ciclo academico.'
 });
 
-export default Ciclo;

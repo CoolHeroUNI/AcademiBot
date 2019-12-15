@@ -1,6 +1,7 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../../config/database';
-class Especialidad extends Model {  }
+
+export default class Especialidad extends Model {  }
 
 Especialidad.init({
   codigo: {
@@ -35,4 +36,3 @@ Especialidad.init({
   sequelize
 });
 
-export default Especialidad;

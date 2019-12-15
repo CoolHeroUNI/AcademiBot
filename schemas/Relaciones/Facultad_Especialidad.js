@@ -3,7 +3,7 @@ import Especialidad from "../Entidades/Especialidad";
 import Facultad from "../Entidades/Facultad";
 import sequelize from "../../config/database";
 
-class Facultad_Especialidad extends Model {  }
+export default class Facultad_Especialidad extends Model {  }
 
 Facultad_Especialidad.init({
   id_facultad: {
@@ -38,4 +38,3 @@ Facultad_Especialidad.init({
   sequelize
 });
 
-export default Facultad_Especialidad;
