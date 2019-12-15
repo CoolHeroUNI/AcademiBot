@@ -1,6 +1,6 @@
 import { Model, DataTypes } from "sequelize";
-import Especialidad from "./Especialidad";
-import Facultad from "./Facultad";
+import Especialidad from "../Entidades/Especialidad";
+import Facultad from "../Entidades/Facultad";
 import sequelize from "../../config/database";
 
 class Facultad_Especialidad extends Model {  }

@@ -1,7 +1,7 @@
 import { Model, DataTypes } from 'sequelize';
-import Especialidad from "./Especialidad";
-import Ciclo from "./Ciclo";
-import Curso from "./Curso";
+import Especialidad from "../Entidades/Especialidad";
+import Ciclo from "../Entidades/Ciclo";
+import Curso from "../Entidades/Curso";
 import sequelize from "../../config/database";
 
 export default class Malla_Curricular extends Model {  }
