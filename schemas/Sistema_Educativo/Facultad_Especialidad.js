@@ -7,7 +7,7 @@ class Facultad_Especialidad extends Model {  }
 
 Facultad_Especialidad.init({
   id_facultad: {
-    type: DataTypes.STRING,
+    type: DataTypes.INTEGER,
     allowNull: false,
     references: {
       model: Facultad,
@@ -16,7 +16,7 @@ Facultad_Especialidad.init({
     comment: 'Clave foranea que pertenece a la entidad Facultad.'
   },
   id_especialidad: {
-    type: DataTypes.STRING,
+    type: DataTypes.INTEGER,
     allowNull: false,
     references: {
       model: Especialidad,
