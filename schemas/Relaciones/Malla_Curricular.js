@@ -39,5 +39,11 @@ Malla_Curricular.init({
   updatedAt: false,
   freezeTableName: true,
   sequelize,
+  indexes: [
+    {
+      unique: true,
+      fields: ['id_ciclo', 'id_especialidad', 'id_curso']
+    }
+  ],
   comment: 'Relacion entre las entidades Especialidad, Ciclo y Curso.'
 });
