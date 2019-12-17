@@ -1,4 +1,4 @@
-import { Model, DataTypes } from 'sequelize';
+import { DataTypes, Model } from 'sequelize';
 import sequelize from '../../config/database';
 
 export default class Facultad extends Model {  }
@@ -6,13 +6,11 @@ export default class Facultad extends Model {  }
 Facultad.init({
   codigo: {
     type: DataTypes.STRING,
-    allowNull: false,
-    unique: true
+    allowNull: false
   },
   nombre: {
     type: DataTypes.STRING,
-    allowNull: false,
-    unique: true
+    allowNull: false
   },
   descripcion: {
     type: DataTypes.TEXT,
@@ -20,16 +18,6 @@ Facultad.init({
     defaultValue: ''
   }
 }, {
-  indexes: [
-    {
-      unique: true,
-      fields: ['nombre']
-    },
-    {
-      unique: true,
-      fields: ['codigo']
-    }
-  ],
   comment: 'Esta entidad almacena atributos de la Facultad.',
   freezeTableName: true,
   timestamps: false,

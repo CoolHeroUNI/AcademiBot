@@ -1,4 +1,4 @@
-import { Model, DataTypes } from 'sequelize';
+import { DataTypes, Model } from 'sequelize';
 import sequelize from '../../config/database';
 
 export default class Especialidad extends Model {  }
@@ -6,13 +6,11 @@ export default class Especialidad extends Model {  }
 Especialidad.init({
   codigo: {
     type: DataTypes.STRING,
-    allowNull: false,
-    unique: true
+    allowNull: false
   },
   nombre: {
     type: DataTypes.STRING,
-    allowNull: false,
-    unique: true
+    allowNull: false
   },
   descripcion: {
     type: DataTypes.TEXT,

@@ -1,4 +1,4 @@
-import { Model, DataTypes } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import sequelize from "../../config/database";
 
 export default class SistemaCalificacion extends Model {  }
@@ -6,8 +6,7 @@ export default class SistemaCalificacion extends Model {  }
 SistemaCalificacion.init({
   codigo: {
     type: DataTypes.CHAR,
-    allowNull: false,
-    unique: true
+    allowNull: false
   },
   descripcion: {
     type: DataTypes.TEXT,

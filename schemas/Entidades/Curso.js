@@ -1,4 +1,4 @@
-import { Model, DataTypes, Sequelize } from 'sequelize';
+import { DataTypes, Model } from 'sequelize';
 import sequelize from '../../config/database';
 
 export default class Curso extends Model {  };
@@ -6,8 +6,7 @@ export default class Curso extends Model {  };
 Curso.init({
   codigo: {
     type: DataTypes.STRING,
-    allowNull: false,
-    unique: true
+    allowNull: false
   },
   nombre: {
     type: DataTypes.STRING,
@@ -23,5 +22,11 @@ Curso.init({
   timestamps: true,
   createdAt: false,
   sequelize,
+  indexes: [
+    {
+      unique: true,
+      fields: ['codigo']
+    }
+  ],
   comment: 'Esta entidad almacena atributos sobre el Curso.'
 });
