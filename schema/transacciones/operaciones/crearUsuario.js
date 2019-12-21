@@ -1,5 +1,5 @@
 const Usuario = require("../../Entidades/Usuario");
 
-module.exports = function crearUsuario(t) {
+module.exports = async function crearUsuario(t) {
   return Usuario.create({}, { transaction: t });
 };
