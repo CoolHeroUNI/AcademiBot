@@ -1,4 +1,4 @@
-import { Sequelize } from 'sequelize';
+const { Sequelize } = require('sequelize');
 
 const database = process.env.MYSQL_DATABASE;
 const username = process.env.MYSQL_USERNAME;
@@ -10,4 +10,4 @@ const dialect = 'mysql';
 
 const sequelize = new Sequelize({ database, host, port, dialect, username, password, timezone });
 
-export default sequelize;
+module.exports = sequelize;
