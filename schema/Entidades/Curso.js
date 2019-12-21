@@ -1,7 +1,7 @@
-import { DataTypes, Model } from 'sequelize';
-import sequelize from '../../config/database';
+const { DataTypes, Model } = require("sequelize");
+const sequelize = require("../../config/database");
 
-export default class Curso extends Model {  };
+class Curso extends Model {  }
 
 Curso.init({
   codigo: {
@@ -30,3 +30,4 @@ Curso.init({
   ],
   comment: 'Esta entidad almacena atributos sobre el Curso.'
 });
+module.exports = Curso;

@@ -1,7 +1,7 @@
-import { DataTypes, Model } from "sequelize";
-import sequelize from "../../config/database";
+const { DataTypes, Model } = require("sequelize");
+const sequelize = require("../../config/database");
 
-export default class CanalMensajeria extends Model {  }
+class CanalMensajeria extends Model {  }
 
 CanalMensajeria.init({
   nombre: {
@@ -20,3 +20,4 @@ CanalMensajeria.init({
   sequelize,
   comment: 'Entidad que contiene los atributos del Canal de Mensajeria.'
 });
+module.exports = CanalMensajeria;

@@ -1,11 +1,12 @@
-import { DataTypes, Model } from "sequelize";
-import sequelize from "../../config/database";
+const { DataTypes, Model } = require("sequelize");
+const sequelize = require("../../config/database");
 
-export default class Usuario extends Model {  }
+class Usuario extends Model {  }
 
 Usuario.init({
   acepta_publicidad: {
     type: DataTypes.BOOLEAN,
+    allowNull: false,
     defaultValue: true
   }
 }, {
@@ -14,3 +15,4 @@ Usuario.init({
   sequelize,
   comment: 'Entidad usuario, solo contiene una Fecha de Creacion.'
 });
+module.exports = Usuario;

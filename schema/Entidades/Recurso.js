@@ -1,7 +1,7 @@
-import { DataTypes, Model } from "sequelize";
-import sequelize from "../../config/database";
+const { DataTypes, Model, Op } = require("sequelize");
+const sequelize = require("../../config/database");
 
-export default class Recurso extends Model {  }
+class Recurso extends Model {  }
 
 Recurso.init({
   ruta: {
@@ -15,6 +15,7 @@ Recurso.init({
   }
 }, {
   timestamps: true,
+  freezeTableName: true,
   updatedAt: false,
   indexes: [
     {
@@ -26,7 +27,7 @@ Recurso.init({
       fields: ['extension'],
       where: {
         extension: {
-          $ne: null
+          [Op.ne]: null
         }
       }
     }
@@ -34,3 +35,4 @@ Recurso.init({
   sequelize,
   comment: 'Entidad Recurso, esta representa un archivo para distribuir.'
 });
+module.exports = Recurso;

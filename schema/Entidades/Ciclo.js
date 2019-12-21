@@ -1,7 +1,7 @@
-import { DataTypes, Model } from 'sequelize';
-import sequelize from '../../config/database';
+const { DataTypes, Model } = require("sequelize");
+const sequelize = require("../../config/database");
 
-export default class Ciclo extends Model {  }
+class Ciclo extends Model {  }
 
 Ciclo.init({
   numero: {
@@ -25,3 +25,4 @@ Ciclo.init({
   comment: 'Esta entidad almacena atributos sobre el Ciclo academico.'
 });
 
+module.exports = Ciclo;

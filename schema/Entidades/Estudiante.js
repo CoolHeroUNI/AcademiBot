@@ -1,7 +1,7 @@
-import { DataTypes, Model } from "sequelize";
-import sequelize from "../../config/database";
+const { DataTypes, Model, Op } = require("sequelize");
+const sequelize = require("../../config/database");
 
-export default class Estudiante extends Model {  }
+class Estudiante extends Model {  }
 
 Estudiante.init({
   codigo_universitario: {
@@ -24,10 +24,11 @@ Estudiante.init({
       fields: ['codigo_universitario'],
       where: {
         codigo_universitario: {
-          $ne: null
+          [Op.ne]: null
         }
       }
     }
   ],
   comment: 'Entidad con los atributos de Estudiante.'
 });
+module.exports = Estudiante;

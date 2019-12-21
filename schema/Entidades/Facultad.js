@@ -1,7 +1,7 @@
-import { DataTypes, Model } from 'sequelize';
-import sequelize from '../../config/database';
+const { DataTypes, Model } = require("sequelize");
+const sequelize = require("../../config/database");
 
-export default class Facultad extends Model {  }
+class Facultad extends Model {  }
 
 Facultad.init({
   codigo: {
@@ -23,4 +23,4 @@ Facultad.init({
   timestamps: false,
   sequelize
 });
-
+module.exports = Facultad;

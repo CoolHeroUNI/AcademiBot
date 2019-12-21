@@ -1,7 +1,7 @@
-import { DataTypes, Model } from "sequelize";
-import sequelize from "../../config/database";
+const { DataTypes, Model } = require("sequelize");
+const sequelize = require("../../config/database");
 
-export default class SistemaCalificacion extends Model {  }
+class SistemaCalificacion extends Model {  }
 
 SistemaCalificacion.init({
   codigo: {
@@ -25,3 +25,4 @@ SistemaCalificacion.init({
   sequelize,
   comment: 'Esta entidad almacena atributos acerca el sistema de calificacion.'
 });
+module.exports = SistemaCalificacion;
