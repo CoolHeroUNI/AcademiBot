@@ -1,7 +1,7 @@
-import { DataTypes, Model } from "sequelize";
-import sequelize from "../../config/database";
+const { DataTypes, Model } = require("sequelize");
+const sequelize = require("../../config/database");
 
-export default class cuenta_Solicitante extends Model {  }
+class cuenta_Solicitante extends Model {  }
 
 cuenta_Solicitante.init({
   ruta_seleccionada: {
@@ -34,3 +34,4 @@ cuenta_Solicitante.init({
   freezeTableName: true,
   comment: 'Cuenta de Solicitudes de recursos'
 });
+module.exports = cuenta_Solicitante;

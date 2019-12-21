@@ -1,15 +1,15 @@
-import { DataTypes, Model } from "sequelize";
-import sequelize from "../../config/database";
+const { DataTypes, Model } = require("sequelize");
+const sequelize = require("../../config/database");
 
-export default class cuenta_Mensajeria extends Model {  }
+class cuenta_Mensajeria extends Model {  }
 
 cuenta_Mensajeria.init({
-  total_mensajes_recibidos: {
+  total_mensajes_enviados: {
     type: DataTypes.INTEGER({ unsigned: true }),
     allowNull: false,
     defaultValue: 0
   },
-  hora_promedio_mensajes_recibidos: {
+  hora_promedio_mensajes_enviados: {
     type: DataTypes.TIME,
     allowNull: false,
     defaultValue: DataTypes.NOW
@@ -25,3 +25,4 @@ cuenta_Mensajeria.init({
   freezeTableName: true,
   comment: 'Cuenta de mensajes del Usuario.'
 });
+module.exports = cuenta_Mensajeria;

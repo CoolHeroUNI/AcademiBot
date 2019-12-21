@@ -1,7 +1,7 @@
-import { DataTypes, Model } from "sequelize";
-import sequelize from "../../config/database";
+const { DataTypes, Model, Op } = require("sequelize");
+const sequelize = require("../../config/database");
 
-export default class cuenta_Estudiante extends Model {  };
+class cuenta_Estudiante extends Model {  }
 
 cuenta_Estudiante.init({
   ciclo_relativo_indicado: {
@@ -22,7 +22,7 @@ cuenta_Estudiante.init({
       fields: ['ciclo_relativo_indicado'],
       where: {
         ciclo_relativo_indicado: {
-          $ne: null
+          [Op.ne]: null
         }
       }
     },
@@ -31,7 +31,7 @@ cuenta_Estudiante.init({
       fields: ['especialidad_indicada'],
       where: {
         especialidad_indicada: {
-          $ne: null
+          [Op.ne]: null
         }
       }
     }
@@ -40,3 +40,4 @@ cuenta_Estudiante.init({
   sequelize,
   comment: 'Cuenta para el estudiante, guarda informacion sobre el ciclo indicado y la especialidad indicada.'
 });
+module.exports = cuenta_Estudiante;

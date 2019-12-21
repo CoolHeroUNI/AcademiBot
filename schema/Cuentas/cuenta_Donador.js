@@ -1,7 +1,7 @@
-import { DataTypes, Model } from "sequelize";
-import sequelize from "../../config/database";
+const { DataTypes, Model } = require("sequelize");
+const sequelize = require("../../config/database");
 
-export default class cuenta_Donador extends Model {  }
+class cuenta_Donador extends Model {  }
 
 cuenta_Donador.init({
   total_recursos_donados: {
@@ -20,3 +20,4 @@ cuenta_Donador.init({
   sequelize,
   comment: 'Cuenta de donaciones.'
 });
+module.exports = cuenta_Donador;
