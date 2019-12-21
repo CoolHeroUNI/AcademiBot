@@ -1,8 +1,8 @@
-import { DataTypes, Model } from "sequelize";
-import sequelize from "../../config/database";
-import cuenta_Mensajeria from "../Cuentas/cuenta_Mensajeria";
+const { DataTypes, Model } = require("sequelize");
+const sequelize = require("../../config/database");
+const cuenta_Mensajeria = require("../Cuentas/cuenta_Mensajeria");
 
-export default class Historial_Mensajes extends Model {  }
+class Historial_Mensajes extends Model {  }
 
 Historial_Mensajes.init({
   codigo_cuenta: {
@@ -31,3 +31,4 @@ Historial_Mensajes.init({
   freezeTableName: true,
   comment: 'Historial de la cuenta de mensajeria del usuario.'
 });
+module.exports = Historial_Mensajes;

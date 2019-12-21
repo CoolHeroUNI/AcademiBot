@@ -1,9 +1,9 @@
-import { DataTypes, Model } from "sequelize";
-import sequelize from "../../config/database";
-import Recurso from "../Entidades/Recurso";
-import CanalMensajeria from "../Entidades/CanalMensajeria";
+const { DataTypes, Model } = require("sequelize");
+const sequelize = require("../../config/database");
+const Recurso = require("../Entidades/Recurso");
+const CanalMensajeria = require("../Entidades/CanalMensajeria");
 
-export default class Recurso_CanalMensajeria extends Model {  }
+class Recurso_CanalMensajeria extends Model {  }
 
 Recurso_CanalMensajeria.init({
   codigo_recurso: {
@@ -44,3 +44,4 @@ Recurso_CanalMensajeria.init({
   sequelize,
   comment: 'Relacion de detalle entre los recursos y canales de mensajeria, estos ultimos definen tipos de datos y codigos de reutilizacion.'
 });
+module.exports = Recurso_CanalMensajeria;

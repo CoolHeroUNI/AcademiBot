@@ -1,9 +1,9 @@
-import { DataTypes, Model } from "sequelize";
-import sequelize from "../../config/database";
-import cuenta_Solicitante from "../Cuentas/cuenta_Solicitante";
-import Recurso from "../Entidades/Recurso";
+const { DataTypes, Model } = require("sequelize");
+const sequelize = require("../../config/database");
+const cuenta_Solicitante = require("../Cuentas/cuenta_Solicitante");
+const Recurso = require("../Entidades/Recurso");
 
-export default class Historial_Envio extends Model {  }
+class Historial_Envio extends Model {  }
 
 Historial_Envio.init({
   codigo_cuenta: {
@@ -15,7 +15,7 @@ Historial_Envio.init({
     }
   },
   recurso_solicitado: {
-    type: DataTypes.STRING,
+    type: DataTypes.INTEGER,
     allowNull: false,
     references: {
       model: Recurso,
@@ -43,3 +43,4 @@ Historial_Envio.init({
   sequelize,
   comment: 'Historial de envios, registra la cuenta responsable y el recurso solicitado.'
 });
+module.exports = Historial_Envio;

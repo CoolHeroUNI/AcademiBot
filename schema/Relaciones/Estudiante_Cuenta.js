@@ -1,9 +1,9 @@
-import { DataTypes, Model } from "sequelize";
-import sequelize from "../../config/database";
-import cuenta_Estudiante from "../Cuentas/cuenta_Estudiante";
-import Estudiante from "../Entidades/Estudiante";
+const { DataTypes, Model } = require("sequelize");
+const sequelize = require("../../config/database");
+const cuenta_Estudiante = require("../Cuentas/cuenta_Estudiante");
+const Estudiante = require("../Entidades/Estudiante");
 
-export default class Estudiante_Cuenta extends Model {  }
+class Estudiante_Cuenta extends Model {  }
 
 Estudiante_Cuenta.init({
   codigo_estudiante: {
@@ -31,10 +31,11 @@ Estudiante_Cuenta.init({
       fields: ['codigo_cuenta']
     },
     {
-      unique: unique,
+      unique: true,
       fields: ['codigo_estudiante']
     }
   ],
   sequelize,
   comment: 'Relacion entre la entidad Estudiante y su Cuenta.'
 });
+module.exports = Estudiante_Cuenta;

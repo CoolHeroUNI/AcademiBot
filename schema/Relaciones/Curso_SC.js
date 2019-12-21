@@ -1,10 +1,9 @@
-import { Model, DataTypes } from "sequelize";
-import sequelize from "../../config/database";
-import Curso from "../Entidades/Curso";
-import SistemaCalificacion from "../Entidades/SistemaCalificacion";
+const { DataTypes, Model } = require("sequelize");
+const sequelize = require("../../config/database");
+const Curso = require("../Entidades/Curso");
+const SistemaCalificacion = require("../Entidades/SistemaCalificacion");
 
-
-export default class Curso_SC extends Model {  }
+class Curso_SC extends Model {  }
 
 Curso_SC.init({
   id_curso: {
@@ -37,3 +36,5 @@ Curso_SC.init({
   sequelize,
   comment: 'Relacion entre las entidades Curso y Sistema de Calificacion'
 });
+
+module.exports = Curso_SC;

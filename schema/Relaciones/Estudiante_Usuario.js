@@ -1,9 +1,9 @@
-import { DataTypes, Model } from "sequelize";
-import sequelize from "../../config/database";
-import Estudiante from "../Entidades/Estudiante";
-import Usuario from "../Entidades/Usuario";
+const { DataTypes, Model } = require("sequelize");
+const sequelize = require("../../config/database");
+const Estudiante = require("../Entidades/Estudiante");
+const Usuario = require("../Entidades/Usuario");
 
-export default class Estudiante_Usuario extends Model {  }
+class Estudiante_Usuario extends Model {  }
 
 Estudiante_Usuario.init({
   codigo_estudiante: {
@@ -34,3 +34,4 @@ Estudiante_Usuario.init({
   freezeTableName: true,
   comment: 'Relacion entre los roles de la persona Estudiante y Usuario.'
 });
+module.exports = Estudiante_Usuario;

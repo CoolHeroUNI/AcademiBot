@@ -1,9 +1,9 @@
-import { Model, DataTypes } from "sequelize";
-import Especialidad from "../Entidades/Especialidad";
-import Facultad from "../Entidades/Facultad";
-import sequelize from "../../config/database";
+const { DataTypes, Model } = require("sequelize");
+const sequelize = require("../../config/database");
+const Especialidad = require("../Entidades/Especialidad");
+const Facultad = require("../Entidades/Facultad");
 
-export default class Facultad_Especialidad extends Model {  }
+class Facultad_Especialidad extends Model {  }
 
 Facultad_Especialidad.init({
   id_facultad: {
@@ -38,3 +38,4 @@ Facultad_Especialidad.init({
   sequelize
 });
 
+module.exports = Facultad_Especialidad;

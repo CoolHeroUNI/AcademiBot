@@ -1,8 +1,8 @@
-import { DataTypes, Model } from "sequelize";
-import sequelize from "../../config/database";
-import cuenta_Donador from "../Cuentas/cuenta_Donador";
+const { DataTypes, Model } = require("sequelize");
+const sequelize = require("../../config/database");
+const cuenta_Donador = require("../Cuentas/cuenta_Donador");
 
-export default class Historial_Donador extends Model {  }
+class Historial_Donador extends Model {  }
 
 Historial_Donador.init({
   codigo_cuenta: {
@@ -34,3 +34,4 @@ Historial_Donador.init({
   freezeTableName: true,
   comment: 'Relacion de Historial para la cuenta de donador y el evento de donacion.'
 });
+module.exports = Historial_Donador;

@@ -1,8 +1,8 @@
-import { DataTypes, Model } from "sequelize";
-import sequelize from "../../config/database";
-import cuenta_Estudiante from "../Cuentas/cuenta_Estudiante";
+const { DataTypes, Model } = require("sequelize");
+const sequelize = require("../../config/database");
+const cuenta_Estudiante = require("../Cuentas/cuenta_Estudiante");
 
-export default class Historial_Estudiante extends Model {  }
+class Historial_Estudiante extends Model {  }
 
 Historial_Estudiante.init({
   codigo_cuenta: {
@@ -40,3 +40,4 @@ Historial_Estudiante.init({
   sequelize,
   comment: 'Historial de los cambios realizados en la cuenta Estudiante por los eventos.'
 });
+module.exports = Historial_Estudiante;

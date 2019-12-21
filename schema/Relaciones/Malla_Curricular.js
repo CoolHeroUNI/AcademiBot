@@ -1,10 +1,10 @@
-import { Model, DataTypes } from 'sequelize';
-import Especialidad from "../Entidades/Especialidad";
-import Ciclo from "../Entidades/Ciclo";
-import Curso from "../Entidades/Curso";
-import sequelize from "../../config/database";
+const { DataTypes, Model } = require("sequelize");
+const sequelize = require("../../config/database");
+const Especialidad = require("../Entidades/Especialidad");
+const Ciclo = require("../Entidades/Ciclo");
+const Curso = require("../Entidades/Curso");
 
-export default class Malla_Curricular extends Model {  }
+class Malla_Curricular extends Model {  }
 
 Malla_Curricular.init({
   id_especialidad: {
@@ -47,3 +47,4 @@ Malla_Curricular.init({
   ],
   comment: 'Relacion entre las entidades Especialidad, Ciclo y Curso.'
 });
+module.exports = Malla_Curricular;
