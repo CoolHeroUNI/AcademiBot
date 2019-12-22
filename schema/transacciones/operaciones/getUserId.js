@@ -6,7 +6,9 @@ module.exports = async function(codigoIdentificador, nombreCanal) {
   const cachedUserId = dbCache.get(cacheId);
   if (cachedUserId) return cachedUserId;
   const canal = await Canal.findOne({ where: { nombre: nombreCanal }});
-  const relacion = await Usuario_Canal.findOne({ where: { codigo_canal: canal.get('id') }});
+  const relacion = await Usuario_Canal.findOne({ where:
+      { codigo_canal: canal.get('id'), codigo_identificador: codigoIdentificador }
+  });
   const userId = relacion.get('codigo_usuario');
   dbCache.set(cacheId, userId);
   return userId;
