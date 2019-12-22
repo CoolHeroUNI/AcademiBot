@@ -6,7 +6,7 @@ const Facultad = require("../Entidades/Facultad");
 class Facultad_Especialidad extends Model {  }
 
 Facultad_Especialidad.init({
-  id_facultad: {
+  codigo_facultad: {
     type: DataTypes.INTEGER,
     allowNull: false,
     references: {
@@ -15,14 +15,13 @@ Facultad_Especialidad.init({
     },
     comment: 'Clave foranea que pertenece a la entidad Facultad.'
   },
-  id_especialidad: {
+  codigo_especialidad: {
     type: DataTypes.INTEGER,
     allowNull: false,
     references: {
       model: Especialidad,
       key: 'id'
     },
-    unique: true,
     comment: 'Clave foranea que pertenece a la entidad Especialidad.'
   }
 }, {
@@ -31,7 +30,7 @@ Facultad_Especialidad.init({
   indexes: [
     {
       unique: true,
-      fields: ['id_facultad', 'id_especialidad']
+      fields: ['codigo_facultad', 'codigo_especialidad']
     }
   ],
   comment: 'Esta es la relacion de tipo agrupa entre las entidades Facultad y Especialidad.',

@@ -7,7 +7,7 @@ const Curso = require("../Entidades/Curso");
 class Malla_Curricular extends Model {  }
 
 Malla_Curricular.init({
-  id_especialidad: {
+  codigo_especialidad: {
     type: DataTypes.INTEGER,
     allowNull: false,
     references: {
@@ -16,7 +16,7 @@ Malla_Curricular.init({
     },
     comment: 'Clave foranea que relaciona con la Especialidad.'
   },
-  id_ciclo: {
+  codigo_ciclo: {
     type: DataTypes.INTEGER,
     allowNull: false,
     references: {
@@ -25,7 +25,7 @@ Malla_Curricular.init({
     },
     comment: 'Clave foranea que relaciona con el Ciclo.'
   },
-  id_curso: {
+  codigo_curso: {
     type: DataTypes.INTEGER,
     allowNull: false,
     references: {
@@ -42,7 +42,11 @@ Malla_Curricular.init({
   indexes: [
     {
       unique: true,
-      fields: ['id_ciclo', 'id_especialidad', 'id_curso']
+      fields: ['codigo_ciclo', 'codigo_especialidad', 'codigo_curso']
+    },
+    {
+      unique: false,
+      fields: ['codigo_ciclo', 'codigo_especialidad']
     }
   ],
   comment: 'Relacion entre las entidades Especialidad, Ciclo y Curso.'

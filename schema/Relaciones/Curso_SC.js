@@ -6,7 +6,7 @@ const SistemaCalificacion = require("../Entidades/SistemaCalificacion");
 class Curso_SC extends Model {  }
 
 Curso_SC.init({
-  id_curso: {
+  codigo_curso: {
     type: DataTypes.INTEGER,
     allowNull: false,
     references: {
@@ -15,7 +15,7 @@ Curso_SC.init({
     },
     comment: 'Clave foranea de la relacion con Curso.'
   },
-  id_sc: {
+  codigo_sc: {
     type: DataTypes.INTEGER,
     allowNull: false,
     references: {
@@ -30,7 +30,7 @@ Curso_SC.init({
   indexes: [
     {
       unique: true,
-      fields: ['id_curso', 'id_sc']
+      fields: ['codigo_curso', 'codigo_sc']
     }
   ],
   sequelize,

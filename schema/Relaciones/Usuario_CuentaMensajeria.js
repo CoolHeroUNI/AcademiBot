@@ -31,7 +31,7 @@ Usuario_CuentaMensajeria.init({
   ],
   freezeTableName: true,
   sequelize,
-  timestamps: true,
+  timestamps: false,
   comment: 'Relacion entre la entidad Usuario y Cuenta de mensajeria.'
 });
 module.exports = Usuario_CuentaMensajeria;

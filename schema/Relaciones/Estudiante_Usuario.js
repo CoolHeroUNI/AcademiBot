@@ -27,7 +27,11 @@ Estudiante_Usuario.init({
   indexes: [
     {
       unique: true,
-      fields: ['codigo_estudiante', 'codigo_usuario']
+      fields: ['codigo_estudiante']
+    },
+    {
+      unique: true,
+      fields: ['codigo_usuario']
     }
   ],
   sequelize,

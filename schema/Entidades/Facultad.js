@@ -19,6 +19,12 @@ Facultad.init({
   }
 }, {
   comment: 'Esta entidad almacena atributos de la Facultad.',
+  indexes: [
+    {
+      unique: true,
+      fields: ['codigo']
+    }
+  ],
   freezeTableName: true,
   timestamps: false,
   sequelize
