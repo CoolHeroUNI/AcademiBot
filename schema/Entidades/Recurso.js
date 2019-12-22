@@ -12,6 +12,11 @@ Recurso.init({
     type: DataTypes.STRING({ length: 10 }),
     allowNull: true,
     defaultValue: null
+  },
+  habilitado: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: true
   }
 }, {
   timestamps: true,
@@ -19,7 +24,10 @@ Recurso.init({
   indexes: [
     {
       unique: true,
-      fields: ['ruta']
+      fields: ['ruta'],
+      where: {
+        habilitado: true
+      }
     },
     {
       unique: false,
