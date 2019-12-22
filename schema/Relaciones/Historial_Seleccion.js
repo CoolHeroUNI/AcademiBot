@@ -1,11 +1,10 @@
 const { DataTypes, Model } = require("sequelize");
 const sequelize = require("../../config/database");
 const cuenta_Solicitante = require("../Cuentas/cuenta_Solicitante");
-const Recurso = require("../Entidades/Recurso");
 
-class Historial_Envio extends Model {  }
+class Historial_Seleccion extends Model {  }
 
-Historial_Envio.init({
+Historial_Seleccion.init({
   codigo_cuenta: {
     type: DataTypes.INTEGER,
     allowNull: false,
@@ -14,16 +13,12 @@ Historial_Envio.init({
       key: 'id'
     }
   },
-  codigo_recurso: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    references: {
-      model: Recurso,
-      key: 'id'
-    }
+  anterior_ruta_seleccionada: {
+    type: DataTypes.STRING,
+    allowNull: false
   },
-  envio_exitoso: {
-    type: DataTypes.BOOLEAN,
+  nueva_ruta_seleccionada: {
+    type: DataTypes.STRING,
     allowNull: false
   }
 }, {
@@ -31,16 +26,12 @@ Historial_Envio.init({
     {
       unique: false,
       fields: ['codigo_cuenta']
-    },
-    {
-      unique: false,
-      fields: ['codigo_recurso']
     }
   ],
   freezeTableName: true,
   timestamps: true,
   updatedAt: false,
   sequelize,
-  comment: 'Historial de envios, registra la cuenta responsable y el recurso solicitado.'
+  comment: 'Historial de Seleccion, registra la anterior ruta y nueva ruta seleccionada.'
 });
-module.exports = Historial_Envio;
+module.exports = Historial_Seleccion;

@@ -6,7 +6,7 @@ const Usuario_Canal = require("./Usuario_Canal");
 class Usuario_CuentaMensajeria extends Model {  }
 
 Usuario_CuentaMensajeria.init({
-  codigo_perfil: {
+  codigo_usuario: {
     type: DataTypes.INTEGER,
     references: {
       model: Usuario_Canal,
@@ -26,7 +26,7 @@ Usuario_CuentaMensajeria.init({
   indexes: [
     {
       unique: true,
-      fields: ['codigo_perfil', 'codigo_cuenta']
+      fields: ['codigo_usuario', 'codigo_cuenta']
     }
   ],
   freezeTableName: true,

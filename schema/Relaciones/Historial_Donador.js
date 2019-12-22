@@ -13,7 +13,7 @@ Historial_Donador.init({
       key: 'id'
     }
   },
-  ruta_recurso_donado: {
+  codigo_recurso: {
     type: DataTypes.STRING,
     allowNull: false
   }
@@ -23,7 +23,7 @@ Historial_Donador.init({
   indexes: [
     {
       unique: true,
-      fields: ['ruta_recurso_donado']
+      fields: ['codigo_recurso']
     },
     {
       unique: false,

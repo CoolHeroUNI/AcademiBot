@@ -16,7 +16,6 @@ Recurso.init({
 }, {
   timestamps: true,
   freezeTableName: true,
-  updatedAt: false,
   indexes: [
     {
       unique: true,

@@ -11,6 +11,7 @@ Usuario.init({
   }
 }, {
   timestamps: true,
+  freezeTableName: true,
   updatedAt: false,
   sequelize,
   comment: 'Entidad usuario, solo contiene una Fecha de Creacion.'

@@ -22,6 +22,12 @@ cuenta_Solicitante.init({
     allowNull: false,
     defaultValue: 0
   },
+  total_envios: {
+    type: DataTypes.INTEGER({ unsigned: true }),
+    unique: false,
+    allowNull: false,
+    defaultValue: 0
+  },
   hora_promedio_envios: {
     type: DataTypes.TIME,
     unique: false,
