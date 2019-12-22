@@ -6,16 +6,14 @@ const crearCuentaPerfilMensajeria = require("./operaciones/crearCuentaPerfilMens
 const sequelize = require("../../config/database");
 
 module.exports = function crearTodo(nombreCanal, codigoIdentificador) {
-  sequelize.transaction(t => {
-    return crearUsuario(t)
-      .then(usuario => {
-        const usuarioId = usuario.get('id');
-        const promesaCuentaDonador = crearCuentaDonador(usuarioId, t);
-        const promesaCuentaSolicitante = crearCuentaSolicitante(usuarioId, t);
-        const promesaPerfil = crearPerfilMensajeria(usuarioId, nombreCanal, codigoIdentificador, t)
-          .then(perfil => crearCuentaPerfilMensajeria(perfil.get('id'), t));
-        return Promise.all([promesaPerfil, promesaCuentaSolicitante, promesaCuentaDonador]);
-      })
+  return sequelize.transaction(async t => {
+    const usuario = await crearUsuario(t);
+    const usuarioId = usuario.get('id');
+    const promesaCuentaDonador = crearCuentaDonador(usuarioId, t);
+    const promesaCuentaSolicitante = crearCuentaSolicitante(usuarioId, t);
+    const promesaPerfil = crearPerfilMensajeria(usuarioId, nombreCanal, codigoIdentificador, t)
+      .then(perfil => crearCuentaPerfilMensajeria(perfil.get('id'), t));
+    return Promise.all([promesaPerfil, promesaCuentaSolicitante, promesaCuentaDonador])
+      .then(() => usuarioId);
   })
-
 };
