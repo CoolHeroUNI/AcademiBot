@@ -1,3 +1,6 @@
+require("../schema/Cuentas");
+require("../schema/Entidades");
+require("../schema/Relaciones");
 const { wait } = require("../lib");
 const sequelize = require("../config/database");
 const crearUsuario = require("../schema/transacciones/crearTodo");
@@ -12,10 +15,10 @@ const getUserId = require("../schema/transacciones/operaciones/getUserId");
 
 function createDB() {
   return sequelize.sync({ force: true })
-}
+};
 
 async function creationTest() {
-  createDB();
+  await createDB();
   const canal = "WHATSAPP";
   const codigo = "9091354414";
   const recurso = "Lineal/1pc/21-4.jpg";
@@ -61,6 +64,6 @@ async function stressTest() {
   }
   await Promise.all(promesaMensaje);
 }
-stressTest()
+creationTest()
   .then(() => console.log('Finished!'))
   .catch(e => console.error(e));

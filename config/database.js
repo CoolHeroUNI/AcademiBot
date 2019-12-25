@@ -8,9 +8,9 @@ const host = process.env.MYSQL_HOST;
 const port = process.env.MYSQL_PORT;
 const dialect = 'mysql';
 const pool = {
-  acquire: 30000,
+  acquire: 300000,
   max: 15,
-  min: 1,
+  min: 0,
   idle: 10000,
   evict: 10000
 };
