@@ -48,3 +48,4 @@ RecursoCanal_mensajeria.init({
     }
   ]
 });
+module.exports = RecursoCanal_mensajeria;

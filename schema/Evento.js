@@ -32,3 +32,4 @@ Evento.init({
   sequelize,
   comment: "Instancia evento, representa a un evento real, hereda atributos de un tipo de evento."
 });
+module.exports = Evento;
