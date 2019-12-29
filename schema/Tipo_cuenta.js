@@ -7,7 +7,6 @@ Tipo_cuenta.init({
   id: {
     type: DataTypes.SMALLINT.UNSIGNED,
     primaryKey: true,
-    allowNull: false,
     autoIncrement: true
   },
   nombre: {

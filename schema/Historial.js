@@ -22,18 +22,10 @@ Historial.init({
   },
   cuenta_id: {
     type: DataTypes.INTEGER({ length: 10, zerofill: true, unsigned: true}),
-    references: {
-      model: Cuenta,
-      key: 'id'
-    },
     allowNull: false
   },
   evento_id: {
     type: DataTypes.INTEGER({ length: 10, zerofill: true, unsigned: true}),
-    references: {
-      model: Evento,
-      key: 'id'
-    },
     allowNull: false
   },
   atributos: {
@@ -50,5 +42,8 @@ Historial.init({
   sequelize,
   comment: "Instancia evento, representa a un evento real, hereda atributos de un tipo de evento."
 });
+
+Historial.belongsTo(Cuenta, { foreignKey: { name: 'cuenta_id' }, as: 'cuenta' });
+Historial.belongsTo(Evento, { foreignKey: { name: 'evento_id' }, as:'evento' });
 
 module.exports = Historial;

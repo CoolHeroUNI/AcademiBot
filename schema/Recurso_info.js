@@ -1,7 +1,6 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
 const Cuenta = require("./Cuenta");
-const Recurso = require("./Recurso");
 
 class Recurso_info extends Model {  }
 
@@ -16,10 +15,7 @@ Recurso_info.init({
   },
   recurso_id: {
     type: DataTypes.INTEGER({ length: 10, unsigned: true, zerofill: true}),
-    references: {
-      model: Recurso,
-      key: 'id'
-    }
+    unique: true
   },
   ruta: {
     type: DataTypes.STRING,
@@ -27,7 +23,7 @@ Recurso_info.init({
   },
   es_visible: {
     type: DataTypes.BOOLEAN,
-    allowNull: true,
+    allowNull: false,
     defaultValue: true
   },
   extension: {
@@ -49,3 +45,5 @@ Recurso_info.init({
   underscored: true,
   comment: "Cuenta de información de recurso, útil para manejar información como la ruta en un sistema de archivos, extension y si el recurso es visible para los usuarios.\nPosee cierta redundancia con respecto a la extension, ya que esta se recalcula en funcion a la ruta."
 });
+
+module.exports = Recurso_info;

@@ -1,5 +1,5 @@
 const { DataTypes, Model } = require("sequelize");
-const sequelize = require("../../config/database");
+const sequelize = require("../config/database");
 const Especialidad = require("./Especialidad");
 const Curso = require("./Curso");
 const Ciclo = require("./Ciclo");
@@ -37,6 +37,12 @@ Malla_curricular.init({
   createdAt: false,
   underscored: true,
   sequelize,
+  indexes: [
+    {
+      unique: false,
+      fields: [{ name: 'especialidad_id' }, { name: 'ciclo_id' }]
+    }
+  ],
   comment: "Elemento de la malla curricular, denotado por tres claves foraneas que la vez se comportan como primaria."
 });
 

@@ -27,7 +27,13 @@ Cuenta.init({
   createdAt: false,
   paranoid: true,
   underscored: true,
-  comment: "Instancia de cuenta, entidad volátil y cambiante que permite representar el comportamiento de los personajes."
+  indexes: [
+    {
+      unique: false,
+      fields: [{ name: 'tipo_cuenta_id' }]
+    }
+  ],
+  comment: "Instancia de cuenta, entidad volátil que permite representar el comportamiento de los personajes."
 });
 
 module.exports = Cuenta;

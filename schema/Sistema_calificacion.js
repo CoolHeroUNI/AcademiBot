@@ -1,5 +1,5 @@
 const { DataTypes, Model } = require("sequelize");
-const sequelize = require("../../config/database");
+const sequelize = require("../config/database");
 
 class Sistema_calificacion extends Model {  }
 
@@ -14,12 +14,6 @@ Sistema_calificacion.init({
     allowNull: true
   }
 }, {
-  indexes: [
-    {
-      unique: true,
-      fields: [{ name: 'codigo' }]
-    }
-  ],
   timestamps: false,
   tableName: 'sistema_calificacion',
   sequelize,

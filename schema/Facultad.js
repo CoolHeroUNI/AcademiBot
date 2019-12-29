@@ -1,12 +1,13 @@
 const { DataTypes, Model } = require("sequelize");
-const sequelize = require("../../config/database");
+const sequelize = require("../config/database");
 
 class Facultad extends Model {  }
 
 Facultad.init({
   id: {
     type: DataTypes.STRING(10),
-    allowNull: false
+    allowNull: false,
+    primaryKey: true
   },
   nombre: {
     type: DataTypes.STRING,

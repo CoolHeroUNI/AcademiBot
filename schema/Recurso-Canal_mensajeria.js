@@ -1,6 +1,5 @@
 const { DataTypes, Model, Op } = require("sequelize");
-const sequelize = require("../../config/database");
-const Recurso = require("./Recurso");
+const sequelize = require("../config/database");
 const Canal_mensajeria = require("./Canal_mensajeria");
 
 class RecursoCanal_mensajeria extends Model {  }
@@ -8,10 +7,6 @@ class RecursoCanal_mensajeria extends Model {  }
 RecursoCanal_mensajeria.init({
   recurso_id: {
     type: DataTypes.INTEGER({ length: 10, zerofill: true, unsigned: true}),
-    references: {
-      model: Recurso,
-      key: 'id'
-    },
     primaryKey: true
   },
   canal_mensajeria_id: {
@@ -40,7 +35,8 @@ RecursoCanal_mensajeria.init({
     {
       unique: true,
       fields: [{ name: 'canal_mensajeria_id' }, { name: 'codigo_reutilizacion' }],
-      where: { codigo_reutilizacion: { [Op.ne]: null }}
+      where: { codigo_reutilizacion: { [Op.ne]: null }},
+      name: 'r-cm_cm_id_c_r'
     },
     {
       unique: false,
