@@ -1,38 +1,23 @@
 const { DataTypes, Model } = require("sequelize");
 const sequelize = require("../config/database");
-const Especialidad = require("./Especialidad");
-const Curso = require("./Curso");
-const Ciclo = require("./Ciclo");
 
-class Malla_curricular extends Model {  }
+class Elemento_malla_curricular extends Model {  }
 
-Malla_curricular.init({
+Elemento_malla_curricular.init({
   especialidad_id: {
     type: DataTypes.STRING(10),
-    primaryKey: true,
-    references: {
-      model: Especialidad,
-      key: 'id'
-    }
+    primaryKey: true
   },
   curso_id: {
     type: DataTypes.STRING(10),
-    primaryKey: true,
-    references: {
-      model: Curso,
-      key: 'id'
-    }
+    primaryKey: true
   },
   ciclo_id: {
     type: DataTypes.TINYINT.UNSIGNED,
-    primaryKey: true,
-    references: {
-      model: Ciclo,
-      key: 'id'
-    }
+    primaryKey: true
   }
 }, {
-  tableName: 'malla_curricular',
+  tableName: 'elemento_malla_curricular',
   timestamps: true,
   createdAt: false,
   underscored: true,
@@ -46,4 +31,4 @@ Malla_curricular.init({
   comment: "Elemento de la malla curricular, denotado por tres claves foraneas que la vez se comportan como primaria."
 });
 
-module.exports = Malla_curricular;
+module.exports = Elemento_malla_curricular;

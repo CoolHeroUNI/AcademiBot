@@ -1,8 +1,5 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
-const Tipo_historial = require("./Tipo_historial");
-const Cuenta = require("./Cuenta");
-const Evento = require("./Evento");
 
 class Historial extends Model {  }
 
@@ -14,10 +11,6 @@ Historial.init({
   },
   tipo_historial_id: {
     type: DataTypes.SMALLINT.UNSIGNED,
-    references: {
-      model: Tipo_historial,
-      key: 'id'
-    },
     allowNull: false
   },
   cuenta_id: {
@@ -30,7 +23,8 @@ Historial.init({
   },
   atributos: {
     type: DataTypes.JSON,
-    allowNull: false
+    allowNull: true,
+    defaultValue: null
   }
 }, {
   initialAutoIncrement: 1000000000,
@@ -43,7 +37,6 @@ Historial.init({
   comment: "Instancia evento, representa a un evento real, hereda atributos de un tipo de evento."
 });
 
-Historial.belongsTo(Cuenta, { foreignKey: { name: 'cuenta_id' }, as: 'cuenta' });
-Historial.belongsTo(Evento, { foreignKey: { name: 'evento_id' }, as:'evento' });
+
 
 module.exports = Historial;

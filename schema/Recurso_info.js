@@ -1,17 +1,12 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
-const Cuenta = require("./Cuenta");
 
 class Recurso_info extends Model {  }
 
 Recurso_info.init({
   id: {
     type: DataTypes.INTEGER({ length: 10, unsigned: true, zerofill: true}),
-    primaryKey: true,
-    references: {
-      model: Cuenta,
-      key: 'id'
-    }
+    primaryKey: true
   },
   recurso_id: {
     type: DataTypes.INTEGER({ length: 10, unsigned: true, zerofill: true}),

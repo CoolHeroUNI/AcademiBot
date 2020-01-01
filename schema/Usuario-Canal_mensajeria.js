@@ -1,18 +1,12 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
-const Cuenta = require("./Cuenta");
-const Canal_mensajeria = require("./Canal_mensajeria");
 
 class UsuarioCanal_mensajeria extends Model {  }
 
 UsuarioCanal_mensajeria.init({
   id: {
     type: DataTypes.INTEGER({ length: 10, zerofill: true, unsigned: true}),
-    primaryKey: true,
-    references: {
-      model: Cuenta,
-      key: 'id'
-    }
+    primaryKey: true
   },
   usuario_id: {
     type: DataTypes.INTEGER({ length: 10, zerofill: true, unsigned: true}),
@@ -20,10 +14,6 @@ UsuarioCanal_mensajeria.init({
   },
   canal_mensajeria_id: {
     type: DataTypes.STRING(10),
-    references: {
-      model: Canal_mensajeria,
-      key: 'id'
-    },
     allowNull: false
   },
   codigo: {
@@ -40,17 +30,39 @@ UsuarioCanal_mensajeria.init({
     defaultValue: 0,
     allowNull: false
   },
+  longitud_promedio: {
+    type: DataTypes.SMALLINT.UNSIGNED,
+    defaultValue: 0,
+    allowNull: false
+  },
+  ultimo_mensaje: {
+    type: DataTypes.STRING(1023),
+    defaultValue: '',
+    allowNull: false
+  },
   hora_promedio: {
     type: DataTypes.TIME,
     defaultValue: DataTypes.NOW
   }
 }, {
-  tableName: 'usuario-info',
+  tableName: 'usuario-canal_mensajeria',
   timestamps: true,
   paranoid: true,
   underscored: true,
   sequelize,
   comment: "Cuenta del usuario en un canal de mensajeria definido, posee informacion publica de este en formato JSON y un identificador que puede o no ser único en el canal de mensajería."
+});
+
+UsuarioCanal_mensajeria.beforeUpdate(async (cuenta, options) => {
+  const n = cuenta.total_mensajes_enviados - 1;
+  cuenta.longitud_promedio = (( cuenta.longitud_promedio * n ) + cuenta.ultimo_mensaje.length )/( n + 1 );
+  let hora_promedio = await sequelize.query("SELECT CALC_MEAN_TIME(?,?)", {
+    replacements: [cuenta.hora_promedio.toLocaleString(), n],
+    plain: true,
+    transaction: options.transaction
+  });
+  hora_promedio = Object.values(hora_promedio)[0];
+  cuenta.hora_promedio = hora_promedio;
 });
 
 module.exports = UsuarioCanal_mensajeria;

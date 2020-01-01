@@ -34,4 +34,13 @@ Usuario_donacion.init({
   comment: "Cuenta de donaciones, lleva registro de los recursos que ha donado el usuario."
 });
 
+Usuario_donacion.beforeUpdate(async (cuenta, options) => {
+  let hora_promedio = await sequelize.query("SELECT CALC_MEAN_TIME(?,?)", {
+    replacements: [cuenta.hora_promedio.toLocaleString(), cuenta.total - 1],
+    plain: true,
+    transaction: options.transaction
+  });
+  hora_promedio = Object.values(hora_promedio)[0];
+  cuenta.hora_promedio = hora_promedio;
+});
 module.exports = Usuario_donacion;

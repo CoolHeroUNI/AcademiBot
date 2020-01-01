@@ -1,6 +1,5 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
-const Tipo_evento = require("./Tipo_evento");
 
 class Evento extends Model {  }
 
@@ -12,15 +11,17 @@ Evento.init({
   },
   tipo_evento_id: {
     type: DataTypes.SMALLINT.UNSIGNED,
-    references: {
-      model: Tipo_evento,
-      key: 'id'
-    },
     allowNull: false
   },
   duracion_en_ms: {
     type: DataTypes.INTEGER.UNSIGNED,
-    allowNull: false
+    allowNull: false,
+    defaultValue: 0
+  },
+  error: {
+    type: DataTypes.JSON,
+    allowNull: true,
+    defaultValue: null
   }
 }, {
   initialAutoIncrement: 1000000000,
@@ -32,4 +33,5 @@ Evento.init({
   sequelize,
   comment: "Instancia evento, representa a un evento real, hereda atributos de un tipo de evento."
 });
+
 module.exports = Evento;

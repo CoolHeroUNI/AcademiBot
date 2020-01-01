@@ -17,12 +17,30 @@ Tipo_historial.init({
   },
   descripcion: {
     type: DataTypes.TEXT,
-    allowNull: true
+    allowNull: false
+  },
+  modelo_atributos: {
+    type: DataTypes.JSON,
+    allowNull: false
+  },
+  tipo_evento_id: {
+    type: DataTypes.SMALLINT.UNSIGNED,
+    allowNull: false
+  },
+  tipo_cuenta_id: {
+    type: DataTypes.SMALLINT.UNSIGNED,
+    allowNull: false
   }
 }, {
   timestamps: false,
   underscored: true,
   sequelize,
+  indexes: [
+    {
+      unique: true,
+      fields: [{ name: 'tipo_evento_id' }, { name: 'tipo_cuenta_id' }]
+    }
+  ],
   tableName: 'tipo_historial',
   comment: "Tipología de historial, correspondiente a los diferentes tipos de eventos y cada uno registra diferentes cambios en cuentas."
 });

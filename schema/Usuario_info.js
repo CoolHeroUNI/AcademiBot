@@ -1,20 +1,12 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
-const Cuenta = require("./Cuenta");
-const Especialidad = require("./Especialidad");
-const Ciclo = require("./Ciclo");
-
 
 class Usuario_info extends Model {  }
 
 Usuario_info.init({
   id: {
     type: DataTypes.INTEGER({ length: 10, zerofill: true, unsigned: true}),
-    primaryKey: true,
-    references: {
-      model: Cuenta,
-      key: 'id'
-    }
+    primaryKey: true
   },
   usuario_id: {
     type: DataTypes.INTEGER({ length: 10, zerofill: true, unsigned: true}),
@@ -27,19 +19,11 @@ Usuario_info.init({
   },
   ciclo_id: {
     type: DataTypes.TINYINT.UNSIGNED,
-    references: {
-      model: Ciclo,
-      key: 'id'
-    },
     allowNull: true,
     defaultValue: null
   },
   especialidad_id: {
     type: DataTypes.STRING(10),
-    references: {
-      model: Especialidad,
-      key: 'id'
-    },
     allowNull: true,
     defaultValue: null
   },

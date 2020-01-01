@@ -1,25 +1,16 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
-const Cuenta = require("./Cuenta");
-const Recurso = require("./Recurso");
 
 class Recurso_obtencion extends Model {  }
 
 Recurso_obtencion.init({
   id: {
     type: DataTypes.INTEGER({ length: 10, unsigned: true, zerofill: true}),
-    primaryKey: true,
-    references: {
-      model: Cuenta,
-      key: 'id'
-    }
+    primaryKey: true
   },
   recurso_id: {
     type: DataTypes.INTEGER({ length: 10, unsigned: true, zerofill: true}),
-    references: {
-      model: Recurso,
-      key: 'id'
-    }
+    unique: true
   },
   total_exitosas: {
     type: DataTypes.SMALLINT.UNSIGNED,
@@ -44,5 +35,13 @@ Recurso_obtencion.init({
   sequelize,
   underscored: true,
   comment: "Cuenta de las obtenciones que se realizaron al recurso."
+});
+
+Recurso_obtencion.beforeUpdate(async (cuenta, options) => {
+  cuenta.fecha_promedio = await sequelize.query("SELECT CALC_MEAN_DATE(?,?)", {
+    replacements: [cuenta.fecha_promedio.toLocaleString(), cuenta.total],
+    plain: true,
+    transaction: options.transaction
+  });
 });
 module.exports = Recurso_obtencion;

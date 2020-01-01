@@ -20,4 +20,5 @@ Sistema_calificacion.init({
   underscored: true,
   comment: 'Esta entidad describe un sistema de calificación, incluyendo el como se debe calcular el promedio en cada caso.'
 });
+
 module.exports = Sistema_calificacion;

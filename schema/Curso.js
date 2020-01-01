@@ -1,6 +1,5 @@
 const { DataTypes, Model } = require("sequelize");
 const sequelize = require("../config/database");
-const Sistema_calificacion = require("./Sistema_calificacion");
 
 class Curso extends Model {  }
 
@@ -40,6 +39,5 @@ Curso.init({
   ],
   comment: 'Esta entidad almacena atributos sobre el Curso.'
 });
-Curso.belongsTo(Sistema_calificacion, { foreignKey: 'sistema_calificacion_id', as: 'sc' });
 
 module.exports = Curso;

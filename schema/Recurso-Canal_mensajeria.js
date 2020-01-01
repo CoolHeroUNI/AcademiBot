@@ -1,6 +1,5 @@
-const { DataTypes, Model, Op } = require("sequelize");
+const { DataTypes, Model } = require("sequelize");
 const sequelize = require("../config/database");
-const Canal_mensajeria = require("./Canal_mensajeria");
 
 class RecursoCanal_mensajeria extends Model {  }
 
@@ -11,10 +10,6 @@ RecursoCanal_mensajeria.init({
   },
   canal_mensajeria_id: {
     type: DataTypes.STRING(10),
-    references: {
-      model: Canal_mensajeria,
-      key: 'id'
-    },
     primaryKey: true
   },
   tipo_archivo: {
@@ -32,12 +27,6 @@ RecursoCanal_mensajeria.init({
   tableName: 'recurso-canal_mensajeria',
   sequelize,
   indexes: [
-    {
-      unique: true,
-      fields: [{ name: 'canal_mensajeria_id' }, { name: 'codigo_reutilizacion' }],
-      where: { codigo_reutilizacion: { [Op.ne]: null }},
-      name: 'r-cm_cm_id_c_r'
-    },
     {
       unique: false,
       fields: [{ name: 'tipo_archivo' }]

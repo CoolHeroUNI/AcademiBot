@@ -1,6 +1,5 @@
 const { DataTypes, Model } = require("sequelize");
 const sequelize = require("../config/database");
-const Facultad = require("./Facultad");
 
 class Especialidad extends Model {  }
 
@@ -19,10 +18,6 @@ Especialidad.init({
   },
   facultad_id: {
     type: DataTypes.STRING(10),
-    references: {
-      model: Facultad,
-      key: 'id'
-    },
     allowNull: false
   }
 },{
@@ -35,6 +30,7 @@ Especialidad.init({
   comment: 'Esta entidad almacena atributos de la Especialidad.',
   tableName: 'especialidad',
   timestamps: false,
+  underscored: true,
   sequelize
 });
 module.exports = Especialidad;

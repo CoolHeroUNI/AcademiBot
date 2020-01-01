@@ -1,6 +1,5 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
-const Tipo_cuenta = require("./Tipo_cuenta");
 
 class Cuenta extends Model {  }
 
@@ -12,10 +11,6 @@ Cuenta.init({
   },
   tipo_cuenta_id: {
     type: DataTypes.SMALLINT.UNSIGNED,
-    references: {
-      model: Tipo_cuenta,
-      key: 'id'
-    },
     allowNull: false
   }
 }, {
