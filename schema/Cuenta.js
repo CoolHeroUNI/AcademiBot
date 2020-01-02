@@ -19,7 +19,6 @@ Cuenta.init({
   initialAutoIncrement: 1000000000,
   timestamps: true,
   updatedAt: false,
-  createdAt: false,
   paranoid: true,
   underscored: true,
   indexes: [

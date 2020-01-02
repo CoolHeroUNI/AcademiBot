@@ -27,18 +27,15 @@ UsuarioCanal_mensajeria.init({
   },
   total_mensajes_enviados: {
     type: DataTypes.INTEGER.UNSIGNED,
-    defaultValue: 0,
-    allowNull: false
+    defaultValue: 0
   },
   longitud_promedio: {
     type: DataTypes.SMALLINT.UNSIGNED,
-    defaultValue: 0,
-    allowNull: false
+    defaultValue: 0
   },
   ultimo_mensaje: {
     type: DataTypes.STRING(1023),
-    defaultValue: '',
-    allowNull: false
+    defaultValue: ''
   },
   hora_promedio: {
     type: DataTypes.TIME,

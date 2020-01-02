@@ -10,7 +10,7 @@ Tipo_cuenta.init({
     autoIncrement: true
   },
   nombre: {
-    type: DataTypes.STRING(20),
+    type: DataTypes.STRING(50),
     allowNull: false,
     unique: true
   },

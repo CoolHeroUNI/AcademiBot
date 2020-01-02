@@ -5,7 +5,7 @@ class Canal_mensajeria extends Model {  }
 
 Canal_mensajeria.init({
   id: {
-    type: DataTypes.STRING(10),
+    type: DataTypes.STRING(20),
     primaryKey: true,
     comment: "Nombre del canal de mensajería."
   },

@@ -10,10 +10,13 @@ Tipo_historial.init({
     allowNull: false,
     autoIncrement: true
   },
-  nombre: {
-    type: DataTypes.STRING(20),
-    allowNull: false,
-    unique: true
+  tipo_evento_id: {
+    type: DataTypes.SMALLINT.UNSIGNED,
+    allowNull: false
+  },
+  tipo_cuenta_id: {
+    type: DataTypes.SMALLINT.UNSIGNED,
+    allowNull: false
   },
   descripcion: {
     type: DataTypes.TEXT,
@@ -21,14 +24,6 @@ Tipo_historial.init({
   },
   modelo_atributos: {
     type: DataTypes.JSON,
-    allowNull: false
-  },
-  tipo_evento_id: {
-    type: DataTypes.SMALLINT.UNSIGNED,
-    allowNull: false
-  },
-  tipo_cuenta_id: {
-    type: DataTypes.SMALLINT.UNSIGNED,
     allowNull: false
   }
 }, {
