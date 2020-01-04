@@ -23,7 +23,7 @@ Recurso_info.init({
   },
   extension: {
     type: DataTypes.STRING(10),
-    allowNull: false
+    allowNull: true
   }
 }, {
   tableName: 'recurso-info',

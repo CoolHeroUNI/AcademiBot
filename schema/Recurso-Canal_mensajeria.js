@@ -19,7 +19,7 @@ RecursoCanal_mensajeria.init({
   codigo_reutilizacion: {
     type: DataTypes.STRING(30),
     allowNull: true,
-    defaultValue: true
+    defaultValue: null
   }
 }, {
   timestamps: true,

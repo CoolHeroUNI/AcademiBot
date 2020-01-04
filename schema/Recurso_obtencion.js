@@ -10,7 +10,8 @@ Recurso_obtencion.init({
   },
   recurso_id: {
     type: DataTypes.INTEGER({ length: 10, unsigned: true, zerofill: true}),
-    unique: true
+    unique: true,
+    allowNull: false
   },
   total_exitosas: {
     type: DataTypes.SMALLINT.UNSIGNED,
@@ -34,14 +35,8 @@ Recurso_obtencion.init({
   createdAt: false,
   sequelize,
   underscored: true,
+  hasTrigger: true,
   comment: "Cuenta de las obtenciones que se realizaron al recurso."
 });
 
-Recurso_obtencion.beforeUpdate(async (cuenta, options) => {
-  cuenta.fecha_promedio = await sequelize.query("SELECT CALC_MEAN_DATE(?,?)", {
-    replacements: [cuenta.fecha_promedio.toLocaleString(), cuenta.total],
-    plain: true,
-    transaction: options.transaction
-  });
-});
 module.exports = Recurso_obtencion;

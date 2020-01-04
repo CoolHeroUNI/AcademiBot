@@ -24,7 +24,8 @@ Tipo_historial.init({
   },
   modelo_atributos: {
     type: DataTypes.JSON,
-    allowNull: false
+    allowNull: true,
+    defaultValue: null
   }
 }, {
   timestamps: false,

@@ -1,4 +1,4 @@
-const { Model, DataTypes } = require("sequelize");
+const { Model, DataTypes, Op } = require("sequelize");
 const sequelize = require("../config/database");
 
 class Usuario_info extends Model {  }
@@ -10,7 +10,8 @@ Usuario_info.init({
   },
   usuario_id: {
     type: DataTypes.INTEGER({ length: 10, zerofill: true, unsigned: true}),
-    unique: true
+    unique: true,
+    allowNull: false
   },
   acepta_publicidad: {
     type: DataTypes.BOOLEAN,
@@ -27,6 +28,11 @@ Usuario_info.init({
     allowNull: true,
     defaultValue: null
   },
+  curso_id: {
+    type: DataTypes.STRING(10),
+    allowNull: true,
+    defaultValue: null
+  },
   ruta: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -35,6 +41,16 @@ Usuario_info.init({
 }, {
   tableName: 'usuario-info',
   timestamps: true,
+  indexes: [
+    {
+      unique: false,
+      fields: [{ name: 'especialidad_id' }, { name: 'ciclo_id' }],
+      where: {
+        especialidad_id: { [Op.ne]: null },
+        ciclo_id: { [Op.ne]: null }
+      }
+    }
+  ],
   createdAt: false,
   underscored: true,
   sequelize,

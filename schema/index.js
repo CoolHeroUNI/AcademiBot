@@ -47,6 +47,7 @@ Sistema_calificacion.hasMany(Curso, { as: 'curso', foreignKey: { name: 'sistema_
 
 Curso.belongsTo(Sistema_calificacion, { as: 'sc', foreignKey: { name: 'sistema_calificacion_id' }});
 Curso.hasMany(Elemento_malla_curricular, { as: 'malla', foreignKey: { name: 'curso_id'}});
+Curso.hasMany(Usuario_info, { as: 'usuario', foreignKey: { name: 'curso_id' }});
 
 Especialidad.belongsTo(Facultad, { as: 'facultad', foreignKey: { name: 'facultad_id' }});
 Especialidad.hasMany(Elemento_malla_curricular, { as: 'malla', foreignKey: { name: 'especialidad_id' }});
@@ -59,10 +60,11 @@ Elemento_malla_curricular.belongsTo(Especialidad, { as: 'especialidad', foreignK
 Elemento_malla_curricular.belongsTo(Ciclo, { as: 'ciclo', foreignKey: { name: 'ciclo_id' }});
 Elemento_malla_curricular.belongsTo(Curso, { as: 'curso', foreignKey: { name: 'curso_id' }});
 
-Usuario_info.belongsTo(Ciclo, { as: 'ciclo', foreignKey: { name: 'ciclo_id' }});
-Usuario_info.belongsTo(Especialidad, { as: 'especialidad', foreignKey: { name: 'especialidad_id' }});
+Usuario_info.belongsTo(Ciclo, { as: 'ciclo', foreignKey: { name: 'ciclo_id', allowNull: true }});
+Usuario_info.belongsTo(Especialidad, { as: 'especialidad', foreignKey: { name: 'especialidad_id', allowNull: true }});
 Usuario_info.belongsTo(Usuario, { as: 'usuario', foreignKey: { name: 'usuario_id' }});
 Usuario_info.belongsTo(Cuenta, { as: 'cuenta', foreignKey: { name: 'id' }});
+Usuario_info.belongsTo(Curso, { as: 'curso', foreignKey: { name: 'curso_id', allowNull: true }});
 
 Recurso.hasOne(Recurso_info, { as: 'info', foreignKey: { name: 'recurso_id' }});
 Recurso.hasOne(Recurso_obtencion, { as: 'obtencion', foreignKey: { name: 'recurso_id' }});
@@ -85,6 +87,7 @@ Usuario.hasMany(UsuarioCanal_mensajeria, { as: 'canal', foreignKey: { name: 'usu
 Usuario.hasOne(Usuario_info, { as: 'info', foreignKey: { name: 'usuario_id' }});
 Usuario.hasOne(Usuario_donacion, { as: 'donacion', foreignKey: { name: 'usuario_id' }});
 Usuario.hasOne(Usuario_solicitud, { as: 'solicitud', foreignKey: { name: 'usuario_id' }});
+Usuario.hasMany(Recurso, { as: 'recurso', foreignKey: { name: 'usuario_id', allowNull: true }});
 
 UsuarioCanal_mensajeria.belongsTo(Usuario, { as: 'usuario', foreignKey: { name: 'usuario_id'}});
 UsuarioCanal_mensajeria.belongsTo(Canal_mensajeria, { as: 'canal_mensajeria', foreignKey: { name: 'canal_mensajeria_id' }});

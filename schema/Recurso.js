@@ -9,13 +9,28 @@ Recurso.init({
     primaryKey: true,
     autoIncrement: true
   },
+  longitud_en_bytes: {
+    type: DataTypes.INTEGER.UNSIGNED,
+    allowNull: false
+  },
+  mime: {
+    type: DataTypes.STRING(20),
+    allowNull: false
+  },
+  hash: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true
+  },
   es_visible: {
     type: DataTypes.BOOLEAN,
-    allowNull: false
+    allowNull: false,
+    defaultValue: true
   },
   es_academico: {
     type: DataTypes.BOOLEAN,
-    allowNull: false
+    allowNull: false,
+    defaultValue: true
   },
   usuario_id: {
     type: DataTypes.INTEGER({ length: 10, zerofill: true, unsigned: true}),
