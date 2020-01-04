@@ -1,44 +1,98 @@
 const {
   createAndAssociateUser,
   associateUserWithChannel,
-  createHistorialOfUserCreation
+  createHistorial,
+  updateSolicitudObtencion,
+  createAndAssociateResource
 } = require("./Transactions");
-const { findTipo_evento } = require("./FasterOperations");
-const { Evento, Tipo_evento, Historial, Tipo_historial } = require("../");
+const { findTipo_evento, findCuenta } = require("./FasterOperations");
+const { Evento } = require("../");
 
 async function createUser (channelName, idCode) {
-  let duracion_en_ms = 0;
-  let startTime = Date.now();
   const tipo_evento = await findTipo_evento('crea-usuario');
-  duracion_en_ms += Date.now() - startTime;
   const tipo_evento_id = tipo_evento.get('id');
-  startTime = Date.now();
-  let evento = await Evento.create({ tipo_evento_id });
-  duracion_en_ms += Date.now() - startTime;
-
   let error = null;
-  startTime = Date.now();
   try {
-    var { usuario, tipos, cuentas } = await createAndAssociateUser(channelName, idCode);
+    var { usuario, cuentas, tiempo_ejecucion } = await createAndAssociateUser(channelName, idCode);
   } catch (e) {
     error = e;
   }
-  duracion_en_ms += Date.now() - startTime;
-  const evento_id = evento.get('id');
-  if (error === null) {
-    startTime = Date.now();
-    try {
-      await createHistorialOfUserCreation(evento_id, tipo_evento_id, tipos, cuentas);
-    } catch (e) {
-      error = e;
-    }
-    duracion_en_ms += Date.now() - startTime;
-  }
-  evento = await evento.update({
+  let duracion_en_ms = tiempo_ejecucion || 0;
+  let evento = await Evento.create({
+    tipo_evento_id,
     duracion_en_ms,
     error
   });
-  return { usuario, evento };
+  if (!error) {
+    duracion_en_ms = 0;
+    try {
+      for (let cuenta of cuentas) {
+        duracion_en_ms += await createHistorial(evento, cuenta);
+      }
+    } catch (e) {
+      error = e;
+      evento.update({ error });
+    }
+    await evento.increment({ duracion_en_ms });
+  }
+  if (error) throw error;
+
+  return { usuario };
 }
 
-module.exports = { createUser };
+async function actualizarEnvio(usuario, recurso, exito) {
+  const tipo_evento = await findTipo_evento('envio-recurso');
+  const solicitante = usuario.get('solicitud');
+  const obtenciones = recurso.get('obtencion');
+  const tipo_evento_id = tipo_evento.get('id');
+  let error = null, duracion_en_ms = 0;
+  try {
+    duracion_en_ms = await updateSolicitudObtencion(solicitante, obtenciones, exito);
+  } catch (e) {
+    error = e;
+  }
+  const evento = Evento.create({ tipo_evento_id, duracion_en_ms, error });
+  if (error === null) {
+    duracion_en_ms = 0;
+    try {
+      const cuenta_solicitud = await findCuenta(solicitante.get('id'));
+      const cuenta_obtencion = await findCuenta(obtenciones.get('id'));
+      duracion_en_ms += await createHistorial(evento, cuenta_solicitud, { exito });
+      duracion_en_ms += await createHistorial(evento, cuenta_obtencion, { exito });
+    } catch (e) {
+      error = e;
+      evento.update({ error });
+    }
+    await evento.increment({ duracion_en_ms });
+  }
+  if (error) throw error;
+}
+
+async function createResource(atributos, usuario = null) {
+  const tipo_evento = await findTipo_evento('crea-recurso');
+  const tipo_evento_id = tipo_evento.get('id');
+  let error = null, duracion_en_ms = 0;
+  try {
+    var { recurso, tiempo_ejecucion, cuentas } = await createAndAssociateResource(atributos, usuario);
+    duracion_en_ms += tiempo_ejecucion;
+  } catch (e) {
+    error = e;
+  }
+  const evento = await Evento.create({ tipo_evento_id, duracion_en_ms, error });
+  if (error === null) {
+    duracion_en_ms = 0;
+    try {
+      for (let cuenta of cuentas) {
+        duracion_en_ms += await createHistorial(evento, cuenta);
+      }
+    } catch (e) {
+      error = e;
+      evento.update({ error });
+    }
+    await evento.increment({ duracion_en_ms });
+  }
+  if (error) throw error;
+  return { recurso };
+}
+
+module.exports = { createUser, createResource };
