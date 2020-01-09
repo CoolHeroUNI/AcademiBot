@@ -1,7 +1,29 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
 
-class Recurso_info extends Model {  }
+class Recurso_info extends Model {
+  getFileName() {
+    const list = this.get('ruta').split('/');
+    return list[list.length - 1];
+  }
+  getShortName() {
+    const partes = this.getFileName().split('-');
+    partes.pop();
+    return partes.join('-');
+  }
+  matchesText(text) {
+    const expression = new RegExp(this.getShortName(), 'i');
+    const expressionText = new RegExp(text);
+    const ownShortName = this.getShortName();
+    if (expressionText.test(ownShortName)) return true;
+    return (expression.test(text));
+  }
+  getPage() {
+    const last = this.getFileName().split('-').pop();
+    const dotIndex = last.lastIndexOf('.');
+    return parseInt(last.substring(0, dotIndex));
+  }
+}
 
 Recurso_info.init({
   id: {
@@ -21,6 +43,11 @@ Recurso_info.init({
     allowNull: false,
     defaultValue: true
   },
+  es_academico: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: true
+  },
   extension: {
     type: DataTypes.STRING(10),
     allowNull: true
@@ -32,7 +59,7 @@ Recurso_info.init({
   sequelize,
   indexes: [
     {
-      unique: true,
+      unique: false,
       fields: [{ name: 'ruta' }],
       where: { es_visible: true }
     }

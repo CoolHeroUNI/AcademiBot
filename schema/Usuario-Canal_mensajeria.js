@@ -27,11 +27,18 @@ UsuarioCanal_mensajeria.init({
   },
   total_mensajes_enviados: {
     type: DataTypes.INTEGER.UNSIGNED,
+    allowNull: false,
     defaultValue: 0
   },
   hora_promedio: {
     type: DataTypes.TIME,
+    allowNull: false,
     defaultValue: DataTypes.NOW
+  },
+  valido: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: true
   }
 }, {
   tableName: 'usuario-canal_mensajeria',

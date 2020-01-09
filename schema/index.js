@@ -7,6 +7,7 @@ const Especialidad = require("./Especialidad");
 const Evento = require("./Evento");
 const Facultad = require("./Facultad");
 const Historial = require("./Historial");
+const Parametros = require("./Parametros");
 const Recurso = require("./Recurso");
 const RecursoCanal_mensajeria = require("./Recurso-Canal_mensajeria");
 const Recurso_info = require("./Recurso_info");
@@ -109,6 +110,7 @@ module.exports = {
   Evento,
   Facultad,
   Historial,
+  Parametros,
   Recurso,
   RecursoCanal_mensajeria,
   Recurso_info,

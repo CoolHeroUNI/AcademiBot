@@ -1,7 +1,20 @@
 const { DataTypes, Model } = require("sequelize");
 const sequelize = require("../config/database");
 
-class Curso extends Model {  }
+class Curso extends Model {
+  enviable() {
+    return {
+      title: this.get('nombre').toUpperCase(),
+      subtitle: `Sis. de evaluación: ${this.get('sistema_calificacion_id')}\nCréditos: ${this.get('creditos')}`,
+      buttons: [
+        {
+          title : `MATERIAL ${this.get('id')}`,
+          payload : `SetCurso:${this.get('id')}`
+        }
+      ]
+    };
+  }
+}
 
 Curso.init({
   id: {

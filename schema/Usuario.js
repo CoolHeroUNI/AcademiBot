@@ -8,6 +8,11 @@ Usuario.init({
     type: DataTypes.INTEGER({ length: 10, zerofill: true, unsigned: true}),
     primaryKey: true,
     autoIncrement: true
+  },
+  activo: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: true
   }
 }, {
   initialAutoIncrement: 1000000000,

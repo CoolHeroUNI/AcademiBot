@@ -22,16 +22,6 @@ Recurso.init({
     allowNull: false,
     unique: true
   },
-  es_visible: {
-    type: DataTypes.BOOLEAN,
-    allowNull: false,
-    defaultValue: true
-  },
-  es_academico: {
-    type: DataTypes.BOOLEAN,
-    allowNull: false,
-    defaultValue: true
-  },
   usuario_id: {
     type: DataTypes.INTEGER({ length: 10, zerofill: true, unsigned: true}),
     allowNull: true,

@@ -1,7 +1,14 @@
 const { DataTypes, Model } = require("sequelize");
 const sequelize = require("../config/database");
 
-class Ciclo extends Model {  }
+class Ciclo extends Model {
+  enviable() {
+    return {
+      title: this.get('nombre'),
+      payload: `SetCiclo:${this.get('id')}`
+    }
+  }
+}
 
 Ciclo.init({
   id: {
