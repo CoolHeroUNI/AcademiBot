@@ -79,6 +79,7 @@ const onExitOperations = {
 };
 
 app.set('port', port);
+sequelize.sync({ force: false });
 app.set('sequelize', sequelize);
 app.set('onExitOperations', onExitOperations);
 server.listen(app.get('port'));
