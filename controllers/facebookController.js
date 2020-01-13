@@ -16,7 +16,7 @@ const {
 } = require("../lib/schema/Events/FasterOperations");
 const { detectaCursos, detectaCarpetas, detectaArchivos } = require("../lib/databaseOperations");
 
-async function nuevoUsuario(canal, usuario) {
+async function nuevoUsuario(usuario) {
   const usuario_id = usuario.get('canal').get('codigo');
   const ruta_recurso_bienvenida = media_folder + "/welcome";
   const recurso = await findRecurso(nombreCanal, ruta_recurso_bienvenida);
