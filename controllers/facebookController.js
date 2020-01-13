@@ -46,6 +46,7 @@ async function empiezaInteraccion(codigo) {
     const infoPublica = await FB.getUserInfo(codigo);
     const e = await E.creaUsuario(canal, codigo, infoPublica);
     usuario = e.usuario;
+    if (e.evento.get('error')) throw new Error(e.evento.get('error'));
   }
   return usuario;
 }
