@@ -43,8 +43,8 @@ async function empiezaInteraccion(codigo) {
   await FB.typingOn(codigo);
   if (!usuario) {
     const infoPublica = await FB.getUserInfo(codigo);
-    usuario = await E.creaUsuario(canal, codigo, infoPublica);
-    await nuevoUsuario(canal, usuario);
+    const e = await E.creaUsuario(canal, codigo, infoPublica);
+    usuario = e.usuario;
   }
   return usuario;
 }
