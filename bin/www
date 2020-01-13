@@ -5,7 +5,7 @@ const debug = require('debug')('AcademiBot:server');
 const http = require('http');
 const port = normalizePort(process.env.PORT || '3000');
 const server = http.createServer(app);
-const PING_TIMEOUT = process.env.PING_TIMEOUT;
+const PING_TIMEOUT = parseInt(process.env.PING_TIMEOUT);
 const sequelize = require('../config/database');
 
 function normalizePort(val) {
