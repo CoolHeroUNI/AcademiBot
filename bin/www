@@ -6,6 +6,7 @@ const http = require('http');
 const port = normalizePort(process.env.PORT || '3000');
 const server = http.createServer(app);
 const PING_TIMEOUT = process.env.PING_TIMEOUT;
+const sequelize = require('../config/database');
 
 function normalizePort(val) {
   const port = parseInt(val, 10);
@@ -71,8 +72,17 @@ function onSIGTERM() {
   })
 
 }
+const onExitOperations = {
+  start: (cb) => {
+    app.get('sequelize').close()
+      .then(cb)
+      .catch(cb);
+  }
+};
 
 app.set('port', port);
+app.set('sequelize', sequelize);
+app.set('onExitOperations', onExitOperations);
 server.listen(app.get('port'));
 server.on('error', onError);
 server.on('listening', onListening);

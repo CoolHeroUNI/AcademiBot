@@ -48,11 +48,4 @@ app.use(function(err, req, res) {
   res.render('error');
 });
 
-process.on('SIGTERM', () => {
-  console.log('Ya esta atardeciendo...');
-  setTimeout(() => {
-    process.exit(0);
-  }, 250);
-});
-
 module.exports = app;
