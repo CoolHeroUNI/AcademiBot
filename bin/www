@@ -35,15 +35,13 @@ function onError(error) {
       process.exit(1);
       break;
     case 'PROTOCOL_ENQUEUE_AFTER_FATAL_ERROR':
-      console.error(error);
       process.exit(1);
       break;
     case 'PROTOCOL_CONNECTION_LOST':
-      console.error(error);
       process.exit(1);
       break;
     default:
-      throw error;
+      console.log(error);
   }
 }
 function onListening() {
