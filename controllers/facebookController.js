@@ -20,7 +20,7 @@ async function nuevoUsuario(usuario) {
   const usuario_id = usuario.get('canal').get('codigo');
   const ruta_recurso_bienvenida = media_folder + "/welcome";
   const recurso = await findRecurso(nombreCanal, ruta_recurso_bienvenida);
-  const recurso_canal = recurso.get('canal');
+  const recurso_canal = recurso.get('canal_mensajeria');
   const enviable = {
     url: '',
     attachment_id: recurso_canal.get('codigo_reutilizacion'),
@@ -102,7 +102,7 @@ async function enviaRecursos(user, resources, academicos = true) {
     });
   }
   const enviables = resources.map(r => {
-    const rCanal = r.get('canal');
+    const rCanal = r.get('canal_mensajeria');
     return {
       'type': rCanal.get('tipo_archivo'),
       'attachment_id': rCanal.get('codigo_reutilizacion'),
