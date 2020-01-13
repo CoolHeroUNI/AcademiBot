@@ -25,7 +25,7 @@ Facebook.prototype.startInteraction = function (userId) {
     return this.markSeen(userId)
         .then(() => this.typingOn(userId));
 };
-Facebook.prototype.sendText = function (userId, text, publicity) {
+Facebook.prototype.sendText = function (userId, text, publicity = false) {
     const params = {
         uri : `https://graph.facebook.com/v${this.versionAPI}/me/messages`,
         qs : {access_token : this.Token},
@@ -117,7 +117,7 @@ Facebook.prototype.sendSecuentialAttachments = async function (userId, parameter
           .then(() => this.typingOn(userId));
     };
     const params = parameterList.map((parameter) => [userId, parameter]);
-    return execute(send, params, 100)
+    return execute(send, params, 200)
       .then(() => results);
     /*const results = [];
     for (let parameter of parameterList) {

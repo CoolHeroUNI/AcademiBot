@@ -13,7 +13,7 @@ Parametros.init({
     allowNull: false
   }
 }, {
-  tableName: 'map',
+  tableName: 'parametros',
   sequelize,
   timestamps: false,
   underscored: true,

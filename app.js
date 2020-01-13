@@ -25,10 +25,10 @@ app.use(session({
   }
 }));
 
-routes.forEach(router => {
+for (let router of routes) {
   const routeName = router.routeName;
   app.use(routeName, router);
-});
+}
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use('/favicon.ico', express.static(path.join(__dirname, 'public/images/favicon.ico')));
 

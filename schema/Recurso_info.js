@@ -50,7 +50,8 @@ Recurso_info.init({
   },
   extension: {
     type: DataTypes.STRING(10),
-    allowNull: true
+    allowNull: true,
+    set(v) {}
   }
 }, {
   tableName: 'recurso-info',

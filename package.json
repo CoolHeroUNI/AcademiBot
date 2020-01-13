@@ -6,7 +6,7 @@
   },
   "main": "app.js",
   "scripts": {
-    "test": "node ./test/dbTest.js"
+    "test": "node ./test/mainTest.js"
   },
   "author": "Marco Antonio Vela Rodriguez",
   "license": "MIT",
@@ -26,6 +26,8 @@
     "fs": "0.0.1-security",
     "http": "0.0.0",
     "http-errors": "^1.7.3",
+    "i": "^0.3.6",
+    "jimp": "^0.9.3",
     "jquery": "^3.4.1",
     "linkifyjs": "^2.1.8",
     "moment": "^2.24.0",
@@ -39,7 +41,9 @@
     "stream": "0.0.2",
     "uuid": "^3.3.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "mime-types": "^2.1.25"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/CoolHeroUNI/AcademiBot.git"

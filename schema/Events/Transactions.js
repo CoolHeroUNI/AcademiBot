@@ -20,15 +20,15 @@ const { findTipo_historial, findTipo_cuenta, findCanal_mensajeria } = require(".
 
 /**
  *
- * @param channelName
+ * @param canal
  * @param idCode
+ * @param informacion_publica
  * @returns {Promise<{cuentas:Array, usuario, usuario_cuentas:Array, tipos:Array, tiempo_ejecucion:Number}>}
  */
-function createAndAssociateUser(channelName, idCode) {
+function createAndAssociateUser(canal, idCode, informacion_publica) {
   return sequelize.transaction(async t => {
     let tiempo_ejecucion = 0;
     const logging = (sql, time) => {tiempo_ejecucion += time; console.log(sql)};
-    const canal = await findCanal_mensajeria(channelName, t, logging);
     let usuario = await Usuario.create({}, { transaction: t, logging });
     const usuario_id = usuario.get('id');
     let promesas = [
@@ -48,7 +48,7 @@ function createAndAssociateUser(channelName, idCode) {
       Usuario_solicitud.create({ id: cuentas[1].get('id'), usuario_id }, { transaction: t, logging }),
       Usuario_donacion.create({ id: cuentas[2].get('id'), usuario_id }, { transaction: t, logging }),
       UsuarioCanal_mensajeria.create(
-        { id: cuentas[3].get('id'), usuario_id, canal_mensajeria_id: canal.get('id'), codigo: idCode },
+        { id: cuentas[3].get('id'), usuario_id, canal_mensajeria_id: canal.get('id'), codigo: idCode, informacion_publica },
         { transaction: t, logging }
         )
     ];
@@ -58,10 +58,11 @@ function createAndAssociateUser(channelName, idCode) {
         { model: Usuario_info, as: 'info' },
         { model: Usuario_solicitud, as: 'solicitud'},
         { model: Usuario_donacion, as: 'donacion' },
-        { model: UsuarioCanal_mensajeria, as: 'canal' }
+        { model: UsuarioCanal_mensajeria, as: 'canal', where: { canal_mensajeria_id: canal.get('id') } }
       ],
       transaction: t, logging
     });
+    usuario.setDataValue('canal', usuario.get('canal')[0]);
     return {
       usuario,
       tipos,
@@ -76,26 +77,25 @@ function createAndAssociateUser(channelName, idCode) {
  *
  * @param event
  * @param account
+ * @param t
  * @param attributes
  * @returns {Promise<Number>}
  */
-function createHistorial(event, account, attributes = null) {
+async function createHistorial(event, account, t, attributes = null) {
   const tipo_evento_id = event.get('tipo_evento_id');
   const evento_id = event.get('id');
   const tipo_cuenta_id = account.get('tipo_cuenta_id');
   const cuenta_id = account.get('id');
-  return sequelize.transaction(async t => {
-    let tiempo_ejecucion = 0;
-    const logging = (sql, time) => {tiempo_ejecucion += time; console.log(sql)};
-    const tipo_historial = await findTipo_historial(tipo_cuenta_id, tipo_evento_id, t, logging);
-    await Historial.create({
-      tipo_historial_id: tipo_historial.get('id'),
-      cuenta_id,
-      evento_id,
-      atributos: attributes
-    }, { transaction: t, logging });
-    return tiempo_ejecucion;
-  })
+  let tiempo_ejecucion = 0;
+  const logging = (sql, time) => {tiempo_ejecucion += time; console.log(sql)};
+  const tipo_historial = await findTipo_historial(tipo_cuenta_id, tipo_evento_id, t, logging);
+  await Historial.create({
+    tipo_historial_id: tipo_historial.get('id'),
+    cuenta_id,
+    evento_id,
+    atributos: attributes
+  }, { transaction: t, logging });
+  return tiempo_ejecucion;
 }
 
 /**
@@ -161,19 +161,19 @@ function updateSolicitudObtencion(solicitud, obtencion, exito) {
   })
 }
 
-function associateResourceWithChannel(recurso, canal, tipo_archivo, codigo_reutilizacion = null) {
+function associateResourceWithChannel(recurso, canal, atributos) {
+  const tipo_archivo = atributos.tipo_archivo || null;
+  const codigo_reutlizacion = atributos.codigo_reutilizacion || null;
+  const recurso_id = recurso.get('id');
+  const canal_id = canal.get('id');
   return sequelize.transaction(async t => {
     let tiempo_ejecucion = 0;
     const logging = (sql, time) => {tiempo_ejecucion += time; console.log(sql)};
-    const recurso_canal = await RecursoCanal_mensajeria.create({
-      recurso_id: recurso.get('id'),
-      canal_mensajeria_id: canal.get('id'),
-      tipo_archivo,
-      codigo_reutilizacion
+    await RecursoCanal_mensajeria.create({
+      recurso_id, canal_id, codigo_reutlizacion, tipo_archivo
     }, { transaction: t, logging });
-    await recurso.addCanal_mensajeria(recurso_canal, { transaction: t, logging });
-    return { recurso, tiempo_ejecucion };
-  });
+    return tiempo_ejecucion;
+  })
 }
 
 function associateUserWithChannel (user, channelName, idCode) {
@@ -196,5 +196,6 @@ module.exports = {
   associateUserWithChannel,
   createHistorial,
   updateSolicitudObtencion,
-  createAndAssociateResource
+  createAndAssociateResource,
+  associateResourceWithChannel
 };

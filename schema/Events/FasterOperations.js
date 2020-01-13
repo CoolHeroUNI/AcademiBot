@@ -1,4 +1,5 @@
 const sequelize = require("../../config/database");
+const { Op } = require("sequelize");
 const {
   Tipo_cuenta,
   Cuenta,
@@ -10,7 +11,11 @@ const {
   Canal_mensajeria,
   Tipo_historial,
   Historial,
-  Tipo_evento
+  Tipo_evento,
+  Recurso,
+  Recurso_info,
+  Recurso_obtencion,
+  RecursoCanal_mensajeria
 } = require("../");
 const dbCache = require("../../config/databaseCache");
 
@@ -74,18 +79,50 @@ async function findUsuario(channelName, idCode, t, logging = console.log) {
   const searchString = "ENCUENTRA_USUARIO" + channelName + idCode;
   let cuenta = dbCache.get(searchString);
   if (!cuenta) {
-    const canal = await findCanal_mensajeria(channelName, t, logging);
     cuenta = await UsuarioCanal_mensajeria.findOne({
-      where: { canal_mensajeria_id: canal.get('id'), codigo: idCode },
+      where: { canal_mensajeria_id: channelName, codigo: idCode },
       transaction: t,
       logging
     });
     if (!cuenta) return null;
     dbCache.set(searchString, cuenta);
   }
-  return await Usuario.findByPk(cuenta.get('usuario_id'), { transaction: t, logging, include: [{ all: true }] });
+  return Usuario.findByPk(cuenta.get('usuario_id'), {
+    include: [
+      { model: Usuario_info, as: 'info' },
+      { model: Usuario_solicitud, as: 'solicitud'},
+      { model: Usuario_donacion, as: 'donacion' },
+      { model: UsuarioCanal_mensajeria, as: 'canal', where: { canal_mensajeria_id: canal.get('id') } }
+    ],
+    transaction: t, logging
+  });
 }
 
+async function findRecurso(channelName, ruta, es_visible = true) {
+  const recurso = await Recurso.findOne({ include:
+      [
+        { model: Recurso_info, as: 'info', where: { ruta: { [Op.like]: `${ruta}%` }, es_visible } },
+        { model: Recurso_obtencion, as: 'obtencion'},
+        { model: RecursoCanal_mensajeria, as: 'canal', where: { canal_mensajeria_id: channelName } }
+      ],
+    rejectOnEmpty: true
+  });
+  recurso.setDataValue('canal', recurso.get('canal')[0]);
+  return recurso;
+}
 
+async function findRecursos(channelName, ruta, es_visible = true) {
+  const recursos = await Recurso.findAll({ include:
+      [
+        { model: Recurso_info, as: 'info', where: { ruta: { [Op.like]: `${ruta}%` }, es_visible } },
+        { model: Recurso_obtencion, as: 'obtencion'},
+        { model: RecursoCanal_mensajeria, as: 'canal', where: { canal_mensajeria_id: channelName } }
+      ]
+  });
+  for (let recurso of recursos) {
+    recurso.setDataValue('canal', recurso.get('canal')[0]);
+  }
+  return recursos;
+}
 
-module.exports = { findCanal_mensajeria, findTipo_cuenta, findTipo_evento, findTipo_historial, findCuenta, findUsuario };
+module.exports = { findCanal_mensajeria, findTipo_cuenta, findTipo_evento, findTipo_historial, findCuenta, findUsuario, findRecurso, findRecursos };

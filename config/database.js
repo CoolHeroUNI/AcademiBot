@@ -9,11 +9,11 @@ const port = process.env.MYSQL_PORT;
 const dialect = 'mysql';
 const pool = {
   acquire: 300000,
-  max: 15,
+  max: 50,
   min: 0,
   idle: 10000,
   evict: 10000
 };
-const sequelize = new Sequelize({ database, host, port, dialect, username, password, timezone, pool });
+const sequelize = new Sequelize({ database, host, port, dialect, username, password, timezone, pool, benchmark: true });
 
 module.exports = sequelize;
