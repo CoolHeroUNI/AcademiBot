@@ -37,6 +37,7 @@ async function nuevoUsuario(canal, usuario) {
 }
 
 async function empiezaInteraccion(codigo) {
+  codigo = codigo.toString();
   await FB.markSeen(codigo);
   const canal = await findCanal_mensajeria(nombreCanal);
   let usuario = await findUsuario(nombreCanal, codigo);
