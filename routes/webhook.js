@@ -1,6 +1,7 @@
 const express = require('express');
 const FBController = require('../controllers/facebookController');
 const RequestPromise = require('request-promise');
+const { S3 } = require('../lib/classes/instances');
 const router = express.Router();
 const usersFolder = process.env.ACADEMIBOT_USERS_FOLDER;
 
