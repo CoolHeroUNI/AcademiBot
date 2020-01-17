@@ -3,17 +3,18 @@ const nombreCanal = "FACEBOOK";
 const media_folder = process.env.ACADEMIBOT_MEDIA_FOLDER;
 const mensaje_bienvenida = process.env.ACADEMIBOT_GREETINGS;
 const ABURL = process.env.ACADEMIBOT_URL;
+const usersFolder = process.env.ACADEMIBOT_USERS_FOLDER;
 
-const { FB, Dialogflow } = require("../lib/classes/instances");
-const { Parametros, Facultad, Ciclo, Especialidad } = require("../lib/schema");
-const E = require("../lib/schema/Events");
+const { FB, Dialogflow, S3 } = require("../lib/classes/instances");
+const { Parametros, Facultad, Ciclo, Especialidad } = require("../Schema");
+const E = require("../Events");
 const { wait, creaTicket } = require("../lib");
 const {
   findUsuario,
   findCanal_mensajeria,
   findRecurso,
   findRecursos
-} = require("../lib/schema/Events/FasterOperations");
+} = require("../Events/FasterOperations");
 const { detectaCursos, detectaCarpetas, detectaArchivos } = require("../lib/databaseOperations");
 
 async function nuevoUsuario(usuario) {
@@ -266,12 +267,15 @@ async function recibePayload(user, payload) {
 
 async function recibeDonacion(atributos, user) {
   const { evento } = await E.creaRecursos(atributos, user);
-  const p = creaTicket(evento, user);
+  const { dir, buffer } = creaTicket(evento, user);
   const enviable = {
-    url: ABURL + 'public/images/' + p,
+    url: ABURL + 'public/images/' + dir,
     attachment_id: null,
     type: 'image'
   };
+  const key = usersFolder + '/' + user.get('id') + '/tickets/' + dir;
+  await S3.putObject(key, { Body: buffer, ContentType: 'image/png' });
+
   return FB.sendAttachment(user.get('id'), enviable);
 }
 

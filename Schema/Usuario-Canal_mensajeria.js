@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require("sequelize");
-const sequelize = require("../../config/database");
+const sequelize = require("../config/database");
 
 class UsuarioCanal_mensajeria extends Model {  }
 

@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require("sequelize");
-const sequelize = require("../../config/database");
+const sequelize = require("../config/database");
 
-class Usuario_solicitud extends Model {  }
+class Usuario_donacion extends Model {  }
 
-Usuario_solicitud.init({
+Usuario_donacion.init({
   id: {
     type: DataTypes.INTEGER({ length: 10, zerofill: true, unsigned: true}),
     primaryKey: true
@@ -12,14 +12,6 @@ Usuario_solicitud.init({
     type: DataTypes.INTEGER({ length: 10, zerofill: true, unsigned: true}),
     unique: true,
     allowNull: false
-  },
-  total_exitosas: {
-    type: DataTypes.SMALLINT.UNSIGNED,
-    defaultValue: 0
-  },
-  total_fallidas: {
-    type: DataTypes.SMALLINT.UNSIGNED,
-    defaultValue: 0
   },
   total: {
     type: DataTypes.SMALLINT.UNSIGNED,
@@ -30,13 +22,13 @@ Usuario_solicitud.init({
     defaultValue: DataTypes.NOW
   }
 }, {
-  tableName: 'usuario-solicitud',
+  tableName: 'usuario-donacion',
   timestamps: true,
   createdAt: false,
   underscored: true,
   sequelize,
   hasTrigger: true,
-  comment: "Cuenta de solicitudes, lleva registro de cuantas solicitudes realizó cada usuario y si fueron exitosas."
+  comment: "Cuenta de donaciones, lleva registro de los recursos que ha donado el usuario."
 });
 
-module.exports = Usuario_solicitud;
+module.exports = Usuario_donacion;

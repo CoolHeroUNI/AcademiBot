@@ -56,33 +56,15 @@ function onSIGTERM() {
   server.close(err => {
     if (err) console.error(err);
     console.log('Server closed.');
-    if (app.enabled('onExitOperations') && 'start' in Object(app.get('onExitOperations'))) {
-      console.log('Executing exit operations');
-      app.get('onExitOperations')
-        .start(err => {
-          if (err) console.error(err);
-          console.log('Operations finished, exiting process...');
-          process.exit(0);
-        })
-    } else {
-      console.log('Exiting process...');
-      process.exit(0);
-    }
+    sequelize.close();
   })
 
 }
-const onExitOperations = {
-  start: (cb) => {
-    app.get('sequelize').close()
-      .then(cb)
-      .catch(cb);
-  }
-};
+
 
 app.set('port', port);
+app.set('env', process.env.ENVIRONMENT);
 sequelize.sync({ force: false });
-app.set('sequelize', sequelize);
-app.set('onExitOperations', onExitOperations);
 server.listen(app.get('port'));
 server.on('error', onError);
 server.on('listening', onListening);

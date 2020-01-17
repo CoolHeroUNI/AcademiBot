@@ -1,4 +1,4 @@
-const sequelize = require("../../../config/database");
+const sequelize = require("../config/database");
 const {
   Tipo_cuenta,
   Cuenta,
@@ -14,7 +14,7 @@ const {
   Recurso,
   RecursoCanal_mensajeria,
   Recurso_info
-} = require("../index");
+} = require("../Schema");
 
 const { findTipo_historial, findTipo_cuenta, findCanal_mensajeria } = require("./FasterOperations");
 

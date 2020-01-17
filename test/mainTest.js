@@ -3,8 +3,8 @@ const recursos = require('./genRecursos');
 const usuarios = require('./genUsuarios');
 const mensajes = require('./genMessage');
 
-const E = require('../lib/schema/Events');
-const S = require('../lib/schema');
+const E = require('../Events');
+const S = require('../Schema');
 const sequelize = require('../config/database');
 
 let users = [], resources = [], events = [], i = 0;

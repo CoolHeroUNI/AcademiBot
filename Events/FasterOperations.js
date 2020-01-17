@@ -1,4 +1,3 @@
-const sequelize = require("../../../config/database");
 const { Op } = require("sequelize");
 const {
   Tipo_cuenta,
@@ -16,8 +15,8 @@ const {
   Recurso_info,
   Recurso_obtencion,
   RecursoCanal_mensajeria
-} = require("../index");
-const dbCache = require("../../../config/databaseCache");
+} = require("../Schema");
+const dbCache = require("../config/databaseCache");
 
 function findCanal_mensajeria (channelName, t, logging = console.log) {
   const searchString = "CANAL" + channelName;
