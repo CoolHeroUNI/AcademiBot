@@ -57,6 +57,7 @@ function onSIGTERM() {
     if (err) console.error(err);
     console.log('Server closed.');
     sequelize.close();
+    process.exit(0);
   })
 
 }
