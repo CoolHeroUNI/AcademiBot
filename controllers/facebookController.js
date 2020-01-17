@@ -276,7 +276,7 @@ async function recibeDonacion(atributos, user) {
   const key = usersFolder + '/' + user.get('id') + '/tickets/' + dir;
   await S3.putObject(key, { Body: buffer, ContentType: 'image/png' });
 
-  return FB.sendAttachment(user.get('id'), enviable);
+  return FB.sendAttachment(user.get('canal').get('codigo'), enviable);
 }
 
 module.exports = { recibeMensaje, recibePayload, empiezaInteraccion, recibeDonacion };
