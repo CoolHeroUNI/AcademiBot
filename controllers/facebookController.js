@@ -266,10 +266,11 @@ async function recibePayload(user, payload) {
 }
 
 async function recibeDonacion(atributos, user) {
+  console.log(atributos);
   const { evento } = await E.creaRecursos(atributos, user);
-  const { dir, buffer } = await creaTicket(evento, user);
+  const { uid, buffer } = await creaTicket(evento, user);
   const enviable = {
-    url: ABURL + dir,
+    url: ABURL + 'public/images/'+uid+'.png',
     attachment_id: null,
     type: 'image'
   };
