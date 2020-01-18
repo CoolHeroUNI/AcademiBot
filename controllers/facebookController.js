@@ -267,15 +267,15 @@ async function recibePayload(user, payload) {
 
 async function recibeDonacion(atributos, user) {
   const { evento } = await E.creaRecursos(atributos, user);
-  const { dir, buffer } = creaTicket(evento, user);
+  const { dir, buffer } = await creaTicket(evento, user);
   const enviable = {
-    url: ABURL + 'public/images/' + dir,
+    url: ABURL + dir,
     attachment_id: null,
     type: 'image'
   };
+  console.log(enviable);
   const key = usersFolder + '/' + user.get('id') + '/tickets/' + dir;
   await S3.putObject(key, { Body: buffer, ContentType: 'image/png' });
-
   return FB.sendAttachment(user.get('canal').get('codigo'), enviable);
 }
 
