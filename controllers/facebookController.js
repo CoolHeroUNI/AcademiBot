@@ -275,7 +275,7 @@ async function recibeDonacion(atributos, user) {
     type: 'image'
   };
   console.log(enviable);
-  const key = usersFolder + '/' + user.get('id') + '/tickets/' + dir;
+  const key = usersFolder + '/' + user.get('id') + '/tickets/' + uid + '.png';
   await S3.putObject(key, { Body: buffer, ContentType: 'image/png' });
   return FB.sendAttachment(user.get('canal').get('codigo'), enviable);
 }

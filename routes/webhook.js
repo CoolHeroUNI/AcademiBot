@@ -51,9 +51,8 @@ router.post('/', (req, res) => {
               if (!mime) throw new Error('No content header in ' + url);
               attributes.mime = mime;
               if (!Body) throw new Error('No body in ' + url);
-              const d = await S3.putObject(key, { Body , ContentType : mime });
-              console.log(d);
-              attributes.hash = d.Etag;
+              const { ETag } = await S3.putObject(key, { Body , ContentType : mime });
+              attributes.hash = ETag;
               return attributes;
             });
             return Promise.all(promises)
