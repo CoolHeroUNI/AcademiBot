@@ -266,7 +266,6 @@ async function recibePayload(user, payload) {
 }
 
 async function recibeDonacion(atributos, user) {
-  console.log(atributos);
   const { evento } = await E.creaRecursos(atributos, user);
   const { uid, buffer } = await creaTicket(evento, user);
   const enviable = {
@@ -274,7 +273,6 @@ async function recibeDonacion(atributos, user) {
     attachment_id: null,
     type: 'image'
   };
-  console.log(enviable);
   const key = usersFolder + '/' + user.get('id') + '/tickets/' + uid + '.png';
   await S3.putObject(key, { Body: buffer, ContentType: 'image/png' });
   return FB.sendAttachment(user.get('canal').get('codigo'), enviable);
