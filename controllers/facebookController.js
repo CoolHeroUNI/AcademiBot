@@ -5,17 +5,17 @@ const mensaje_bienvenida = process.env.ACADEMIBOT_GREETINGS;
 const ABURL = process.env.ACADEMIBOT_URL;
 const usersFolder = process.env.ACADEMIBOT_USERS_FOLDER;
 
-const { FB, Dialogflow, S3 } = require("../lib/classes/instances");
+const { FB, Dialogflow, S3 } = require("../util/classes/instances");
 const { Parametros, Facultad, Ciclo, Especialidad } = require("../Schema");
 const E = require("../Events");
-const { wait, creaTicket } = require("../lib");
+const { wait, creaTicket } = require("../util");
 const {
   findUsuario,
   findCanal_mensajeria,
   findRecurso,
   findRecursos
 } = require("../Events/FasterOperations");
-const { detectaCursos, detectaCarpetas, detectaArchivos } = require("../lib/databaseOperations");
+const { detectaCursos, detectaCarpetas, detectaArchivos } = require("../util/databaseOperations");
 
 async function nuevoUsuario(usuario) {
   const usuario_id = usuario.get('canal').get('codigo');

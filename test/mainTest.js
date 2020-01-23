@@ -1,4 +1,4 @@
-const { wait } = require("../lib");
+const { wait } = require("../util");
 const recursos = require('./genRecursos');
 const usuarios = require('./genUsuarios');
 const mensajes = require('./genMessage');
