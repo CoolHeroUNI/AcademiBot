@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require("sequelize");
-const sequelize = require("../config/database");
+const sequelize = require("../database");
 
 class Recurso_info extends Model {
   getFileName() {
@@ -33,6 +33,10 @@ Recurso_info.init({
   recurso_id: {
     type: DataTypes.INTEGER({ length: 10, unsigned: true, zerofill: true}),
     unique: true
+  },
+  url: {
+    type: DataTypes.STRING,
+    allowNull: true
   },
   ruta: {
     type: DataTypes.STRING,

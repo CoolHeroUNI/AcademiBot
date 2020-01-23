@@ -26,7 +26,7 @@ S3.prototype.listObjectsUnder = async function (prefix, continuationToken, previ
         EncodingType : 'url',
         Prefix : prefix
     };
-    if (continuationToken) params['continuationToken'] = continuationToken;
+    if (continuationToken) params['ContinuationToken'] = continuationToken;
     const respuesta = await this.s3.listObjectsV2(params).promise();
     const resultado = [...previusResult, ...respuesta.Contents.map(objeto => objeto.Key)];
     if (respuesta.IsTruncated) {
@@ -50,7 +50,7 @@ S3.prototype.listObjectsDirectlyUnder = async function (prefix, continuationToke
         Prefix : prefix,
         Delimiter : '/'
     };
-    if (continuationToken) params['continuationToken'] = continuationToken;
+    if (continuationToken) params['ContinuationToken'] = continuationToken;
     const respuesta = await this.s3.listObjectsV2(params).promise();
     const resultado = [...previusResult, ...respuesta.CommonPrefixes.map(objeto => objeto.Prefix)]
         .filter((value, index, self) => self.indexOf(value) === index);
@@ -141,5 +141,7 @@ S3.prototype.getPublicURL = function (key) {
     };
     return this.s3.getSignedUrlPromise('getObject', params);
 };
+
+
 
 module.exports = S3;

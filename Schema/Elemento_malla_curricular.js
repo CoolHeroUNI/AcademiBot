@@ -1,5 +1,5 @@
 const { DataTypes, Model } = require("sequelize");
-const sequelize = require("../config/database");
+const sequelize = require("../database");
 
 class Elemento_malla_curricular extends Model {  }
 

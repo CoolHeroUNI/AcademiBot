@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const createError = require('http-errors');
 const cors = require('cors');
+const { serverConfig } = require("./config");
 const app = express();
 const routes = require('./routes');
 
@@ -15,13 +16,13 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(session({
-  name: process.env.COOKIE_NAME,
-  secret: process.env.COOKIE_SECRET,
+  name: serverConfig.cookie.name,
+  secret: serverConfig.cookie.secret,
   resave: true,
   saveUninitialized: true,
   rolling: true,
   cookie: {
-    maxAge: 1000*60*30
+    maxAge: serverConfig.cookie.maxAge
   }
 }));
 

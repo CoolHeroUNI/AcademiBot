@@ -1,25 +1,28 @@
 const nombreCanal = "FACEBOOK";
+const { awsCredentials, s3Config, fbConfig, dialogflowConfig, academibotConfig, ownUrl } = require("../config");
 
-const media_folder = process.env.ACADEMIBOT_MEDIA_FOLDER;
-const mensaje_bienvenida = process.env.ACADEMIBOT_GREETINGS;
-const ABURL = process.env.ACADEMIBOT_URL;
-const usersFolder = process.env.ACADEMIBOT_USERS_FOLDER;
+const S3 = require("../util/classes/S3");
+const Facebook = require("../util/classes/Facebook");
+const Dialogflow = require("../util/classes/Dialogflow");
 
-const { FB, Dialogflow, S3 } = require("../util/classes/instances");
-const { Parametros, Facultad, Ciclo, Especialidad } = require("../Schema");
-const E = require("../Events");
+const S = require("../Schema");
+const E = require("../Schema/Events");
 const { wait, creaTicket } = require("../util");
 const {
   findUsuario,
   findCanal_mensajeria,
   findRecurso,
   findRecursos
-} = require("../Events/FasterOperations");
+} = require("../Schema/Events/FasterOperations");
 const { detectaCursos, detectaCarpetas, detectaArchivos } = require("../util/databaseOperations");
+const { mediaFolder, bienvenida, usersFolder } = academibotConfig;
+const s3 = new S3(awsCredentials.accessKeyId, awsCredentials.secretAccessKey, s3Config.region, s3Config.bucket, s3Config.cache);
+const fb = new Facebook(fbConfig.token, fbConfig.version);
+const dialogflow = new Dialogflow(dialogflowConfig.project, dialogflowConfig.lang);
 
 async function nuevoUsuario(usuario) {
   const usuario_id = usuario.get('canal').get('codigo');
-  const ruta_recurso_bienvenida = media_folder + "/welcome";
+  const ruta_recurso_bienvenida = mediaFolder + "/welcome";
   const recurso = await findRecurso(nombreCanal, ruta_recurso_bienvenida);
   const recurso_canal = recurso.get('canal_mensajeria');
   const enviable = {
@@ -27,9 +30,9 @@ async function nuevoUsuario(usuario) {
     attachment_id: recurso_canal.get('codigo_reutilizacion'),
     type: recurso_canal.get('tipo_archivo')
   };
-  await FB.sendText(usuario_id, mensaje_bienvenida, false);
+  await fb.sendText(usuario_id, bienvenida, false);
   await wait(250);
-  return FB.sendAttachment(usuario_id, enviable)
+  return fb.sendAttachment(usuario_id, enviable)
     .then(() => E.actualizarEnvio(usuario, recurso, true))
     .catch(e => {
       console.error(e);
@@ -39,12 +42,12 @@ async function nuevoUsuario(usuario) {
 
 async function empiezaInteraccion(codigo) {
   codigo = codigo.toString();
-  await FB.markSeen(codigo);
+  await fb.markSeen(codigo);
   const canal = await findCanal_mensajeria(nombreCanal);
   let usuario = await findUsuario(nombreCanal, codigo);
-  await FB.typingOn(codigo);
+  await fb.typingOn(codigo);
   if (!usuario) {
-    const infoPublica = await FB.getUserInfo(codigo);
+    const infoPublica = await fb.getUserInfo(codigo);
     const e = await E.creaUsuario(canal, codigo, infoPublica);
     usuario = e.usuario;
     if (e.evento.get('error')) throw new Error(e.evento.get('error'));
@@ -55,13 +58,13 @@ async function empiezaInteraccion(codigo) {
 async function enviaListaCursos(user, cursos) {
   const id = user.get('canal').get('codigo');
   const enviables = cursos.map(curso => curso.enviable());
-  return FB.sendOptionsMenu(id, enviables);
+  return fb.sendOptionsMenu(id, enviables);
 }
 
 async function enviaListaCarpetas(user, carpetas) {
   const id = user.get('canal').get('codigo');
   const info = user.get('info');
-  let respuesta = (await Parametros.findByPk('PETICION-CARPETAS')).get('value').random();
+  let respuesta = (await S.Parametros.findByPk('PETICION-CARPETAS')).get('value').random();
   respuesta = respuesta.replace('***', info.get('curso_id'));
   const enviables = carpetas.map(carpeta => {
     carpeta = carpeta.substr(0, carpeta.length - 1);
@@ -70,7 +73,7 @@ async function enviaListaCarpetas(user, carpetas) {
       'payload' : `SetCarpeta:${carpeta}`
     }
   });
-  return FB.sendReplyButtons(id, respuesta, enviables);
+  return fb.sendReplyButtons(id, respuesta, enviables);
 }
 
 async function enviaListaRecursos(user, resources) {
@@ -79,7 +82,7 @@ async function enviaListaRecursos(user, resources) {
   let carpeta = info.get('ruta');
   carpeta = carpeta.substr(0, carpeta.length - 1);
   carpeta = carpeta.substr(carpeta.lastIndexOf('/') + 1);
-  let respuesta = (await Parametros.findByPk('PETICION-RECURSOS')).get('value').random();
+  let respuesta = (await S.Parametros.findByPk('PETICION-RECURSOS')).get('value').random();
   respuesta = respuesta.replace('***', carpeta);
   const enviables = Array.from(new Set(resources.map(r => r.get('info').getShortName())))
     .map(short => {
@@ -88,7 +91,7 @@ async function enviaListaRecursos(user, resources) {
         'payload' : `SetArchivo:${short}`
       }
     });
-  return FB.sendReplyButtons(id, respuesta, enviables);
+  return fb.sendReplyButtons(id, respuesta, enviables);
 }
 
 async function enviaRecursos(user, resources, academicos = true) {
@@ -110,7 +113,7 @@ async function enviaRecursos(user, resources, academicos = true) {
       'url': null
     };
   });
-  const resultados = await FB.sendSecuentialAttachments(id, enviables);
+  const resultados = await fb.sendSecuentialAttachments(id, enviables);
   let exito = true;
   for (let i = 0; i < resultados.length; i++) {
     const resultado = resultados[i];
@@ -160,12 +163,12 @@ async function recibeMensaje (user, message) {
 
 
   const userId = user.get('canal').get('codigo');
-  return Dialogflow.processText(userId, message)
+  return dialogflow.processText(userId, message)
     .then(intent => {
       const { text, payload } = intent;
       const payloadKeys = Object.getOwnPropertyNames(payload);
       if (payloadKeys.length > 0) return procesarPayloadFromNLP(user, intent);
-      return FB.sendTextWithURLs(userId, text, false)
+      return fb.sendTextWithURLs(userId, text, false)
     })
     .catch(e => console.error(e));
 }
@@ -202,11 +205,11 @@ async function executeCommand(user, command, parameters) {
       if (!user.puede_pedir_cursos()) return regularizaUsuario(user);
       return enviaListaCursos(user, await detectaCursos(user, ''));
     case 'SetFacultad':
-      const message = (await Parametros.findByPk('PETICION-ESPECIALIDAD')).get('value').random();
+      const message = (await S.Parametros.findByPk('PETICION-ESPECIALIDAD')).get('value').random();
       const facultad_id = parameters['facultad'] || parameters;
-      const enviables = (await Especialidad.findAll({ where: { facultad_id }})).map(e => e.enviable());
-      await FB.sendText(userId, message);
-      return FB.sendOptionsMenu(userId, enviables);
+      const enviables = (await S.Especialidad.findAll({ where: { facultad_id }})).map(e => e.enviable());
+      await fb.sendText(userId, message);
+      return fb.sendOptionsMenu(userId, enviables);
     case 'SetEspecialidad':
       const especialidad_id = parameters['especialidad'] || parameters;
       await E.actualizarInfoUsuario(user, { especialidad_id });
@@ -237,8 +240,8 @@ async function executePetition(user, petition, text) {
   const userId = user.get('canal').get('codigo');
   switch (petition) {
     case 'Meme':
-      let memes = (await findRecursos(nombreCanal, media_folder + '/memes')).slice(0, 1 + Math.floor(Math.random() * 2));
-      await FB.sendText(userId, text);
+      let memes = (await findRecursos(nombreCanal, mediaFolder + '/memes')).slice(0, 1 + Math.floor(Math.random() * 2));
+      await fb.sendText(userId, text);
       return enviaRecursos(user, memes, false);
     default:
       throw new Error("Petición no valida " + petition);
@@ -248,14 +251,14 @@ async function executePetition(user, petition, text) {
 async function regularizaUsuario(user) {
   const info = user.get('info');
   if (!info.get('especialidad_id')) {
-    const message = (await Parametros.findByPk('PETICION-FACULTAD')).get('value').random();
-    const enviables = (await Facultad.findAll()).map(facultad => facultad.enviable());
-    await FB.sendText(user, message);
-    return FB.sendOptionsMenu(user, enviables);
+    const message = (await S.Parametros.findByPk('PETICION-FACULTAD')).get('value').random();
+    const enviables = (await S.Facultad.findAll()).map(facultad => facultad.enviable());
+    await fb.sendText(user, message);
+    return fb.sendOptionsMenu(user, enviables);
   } else if (!info.get('ciclo_id')) {
-    const message = (await Parametros.findByPk('PETICION-CICLO')).get('value').random();
-    const enviables = (await Ciclo.findAll()).map(ciclo => ciclo.enviable());
-    return FB.sendReplyButtons(user, message, enviables);
+    const message = (await S.Parametros.findByPk('PETICION-CICLO')).get('value').random();
+    const enviables = (await S.Ciclo.findAll()).map(ciclo => ciclo.enviable());
+    return fb.sendReplyButtons(user, message, enviables);
   }
 }
 
@@ -269,13 +272,13 @@ async function recibeDonacion(atributos, user) {
   const { evento } = await E.creaRecursos(atributos, user);
   const { uid, buffer } = await creaTicket(evento, user);
   const enviable = {
-    url: ABURL + 'public/images/'+uid+'.png',
+    url: ownUrl + 'public/images/'+uid+'.png',
     attachment_id: null,
     type: 'image'
   };
   const key = usersFolder + '/' + user.get('id') + '/tickets/' + uid + '.png';
-  await S3.putObject(key, { Body: buffer, ContentType: 'image/png' });
-  return FB.sendAttachment(user.get('canal').get('codigo'), enviable);
+  await s3.putObject(key, { Body: buffer, ContentType: 'image/png' });
+  return fb.sendAttachment(user.get('canal').get('codigo'), enviable);
 }
 
 module.exports = { recibeMensaje, recibePayload, empiezaInteraccion, recibeDonacion };

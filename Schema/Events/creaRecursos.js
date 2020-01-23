@@ -1,7 +1,6 @@
 const { createHistorial } = require("./Transactions");
-const S = require("../Schema");
-const sequelize = require("../config/database");
-const { S3 } = require('../util/classes/instances');
+const S = require("../index");
+const sequelize = require("../../database");
 
 /**
  *

@@ -15,8 +15,8 @@ const {
   Recurso_info,
   Recurso_obtencion,
   RecursoCanal_mensajeria
-} = require("../Schema");
-const dbCache = require("../config/databaseCache");
+} = require("../index");
+const dbCache = require("../../cache");
 
 function findCanal_mensajeria (channelName, t, logging = console.log) {
   const searchString = "CANAL" + channelName;

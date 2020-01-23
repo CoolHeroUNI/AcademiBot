@@ -1,13 +1,15 @@
 'use strict';
-const { randomPing } = require('../lib');
+const { randomPing } = require('../util');
+const fs = require("fs");
+const { serverConfig, pingInterval, ownUrl, env, dialogflowConfig } = require("../config");
+fs.writeFileSync(dialogflowConfig.path, dialogflowConfig.json);
 const app = require('../app');
 const debug = require('debug')('AcademiBot:server');
 const http = require('http');
-const port = normalizePort(process.env.PORT || '3000');
+const sequelize = require('../database');
+const port = normalizePort(serverConfig.port || '3000');
 const server = http.createServer(app);
-const PING_TIMEOUT = parseInt(process.env.PING_TIMEOUT);
-const URL = process.env.ACADEMIBOT_URL;
-const sequelize = require('../config/database');
+
 
 function normalizePort(val) {
   const port = parseInt(val, 10);
@@ -49,7 +51,7 @@ function onListening() {
   const addr = server.address();
   const bind = typeof addr === 'string' ? ('pipe ' + addr) : ('port ' + addr.port);
   debug('Listening on ' + bind);
-  randomPing(URL, PING_TIMEOUT);
+  if (!isNaN(pingInterval)) randomPing(ownUrl, pingInterval);
 }
 function onSIGTERM() {
   console.log('SIGTERM signal received, closing server...');
@@ -64,9 +66,10 @@ function onSIGTERM() {
 
 
 app.set('port', port);
-app.set('env', process.env.ENVIRONMENT);
-sequelize.sync({ force: false });
-server.listen(app.get('port'));
+app.set('env', env);
+sequelize.sync({ force: false })
+    .then(() => server.listen(app.get('port')));
+
 server.on('error', onError);
 server.on('listening', onListening);
 process.on('SIGTERM', onSIGTERM);

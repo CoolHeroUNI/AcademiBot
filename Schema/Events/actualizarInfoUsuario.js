@@ -1,6 +1,6 @@
 const { createHistorial } = require("./Transactions");
-const S = require("../Schema");
-const sequelize = require("../config/database");
+const S = require("../index");
+const sequelize = require("../../database");
 
 async function actualizarInfoUsuario(usuario, atribs) {
     let duracion_en_ms = 0;

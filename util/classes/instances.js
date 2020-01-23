@@ -22,4 +22,4 @@ const projectId = JSON.parse(DialogFlowString)['project_id'];
 const language = process.env.GOOGLE_DIALOGFLOW_LANG;
 const Dialogflow = new dialogflow(projectId, language);
 
-module.exports = { FB, Dialogflow, S3 };
+module.exports = { fb: FB, dialogflow: Dialogflow, s3: S3 };

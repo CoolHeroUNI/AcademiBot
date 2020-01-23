@@ -1,12 +1,14 @@
 const express = require('express');
 const FBController = require('../controllers/facebookController');
 const RequestPromise = require('request-promise');
-const { S3 } = require('../util/classes/instances');
+const S3 = require('../util/classes/S3');
+const { academibotConfig, fbConfig, awsCredentials, s3Config } = require("../config");
 const router = express.Router();
-const usersFolder = process.env.ACADEMIBOT_USERS_FOLDER;
+const { usersFolder } = academibotConfig;
+const s3 = new S3(awsCredentials.accessKeyId, awsCredentials.secretAccessKey, s3Config.region, s3Config.bucket, s3Config.cache);
 
 router.get('/', (req, res) => {
-  if (req.query['hub.verify_token'] === process.env.FACEBOOK_VERIFY_TOKEN) {
+  if (req.query['hub.verify_token'] === fbConfig.verifyToken) {
     res.send(req.query['hub.challenge']);
   } else {
     res.send("Wrong token");
@@ -51,7 +53,7 @@ router.post('/', (req, res) => {
               if (!mime) throw new Error('No content header in ' + url);
               attributes.mime = mime;
               if (!Body) throw new Error('No body in ' + url);
-              const { ETag } = await S3.putObject(key, { Body , ContentType : mime });
+              const { ETag } = await s3.putObject(key, { Body , ContentType : mime });
               attributes.hash = ETag;
               return attributes;
             });

@@ -23,8 +23,8 @@ const {
   Usuario_solicitud
 } = require("../Schema");
 const { Op } = require("sequelize");
-const { findRecurso } = require("../Events/FasterOperations");
-const dbCache = require("../config/databaseCache");
+const { findRecurso } = require("../Schema/Events/FasterOperations");
+const dbCache = require("../cache");
 const compare = require("./SorensenDice");
 
 /**
