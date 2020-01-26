@@ -80,6 +80,7 @@ Recurso_obtencion.belongsTo(Cuenta, { as: 'cuenta', foreignKey: { name: 'id' }})
 
 RecursoCanal_mensajeria.belongsTo(Recurso, { as: 'recurso', foreignKey: { name: 'recurso_id' }});
 RecursoCanal_mensajeria.belongsTo(Canal_mensajeria, { as: 'canal_mensajeria', foreignKey: { name: 'canal_mensajeria_id' }});
+RecursoCanal_mensajeria.belongsTo(Cuenta, { as: 'cuenta', foreignKey: { name: 'id' }});
 
 Canal_mensajeria.hasMany(RecursoCanal_mensajeria, { as: 'recurso', foreignKey: { name: 'canal_mensajeria_id' }});
 Canal_mensajeria.hasMany(UsuarioCanal_mensajeria, { as: 'usuario', foreignKey: { name: 'canal_mensajeria_id'}});

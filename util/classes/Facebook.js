@@ -218,8 +218,28 @@ Facebook.prototype.sendOptionsMenu = function (userId, parameters) {
     return RequestPromise(params);
 };
 
-
-
+Facebook.prototype.getAttachmentId = function (parameters) {
+    if (!parameters.hasOwnProperty('url')) return Promise.reject(new Error("Propiedad url faltante"));
+    if (!parameters.hasOwnProperty('type')) return Promise.reject(new Error("Propiedad type faltante"));
+    const params = {
+        uri : `https://graph.facebook.com/v${this.versionAPI}/me/message_attachments`,
+        qs : {access_token : this.Token},
+        method : "POST",
+        json: {
+            message: {
+                attachment: {
+                    type: parameters.type,
+                    payload: {
+                        is_reusable: true,
+                        url: parameters.url
+                    }
+                }
+            }
+        }
+    };
+    return RequestPromise(params)
+        .then(r => r['attachment_id']);
+};
 
 /**
  * Metodo para enviar una accion al usuario

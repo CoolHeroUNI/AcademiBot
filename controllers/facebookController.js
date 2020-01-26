@@ -42,7 +42,7 @@ async function nuevoUsuario(usuario) {
 
 async function empiezaInteraccion(codigo) {
   codigo = codigo.toString();
-  await fb.markSeen(codigo);
+  await fb.startInteraction(codigo);
   const canal = await findCanal_mensajeria(nombreCanal);
   let usuario = await findUsuario(nombreCanal, codigo);
   await fb.typingOn(codigo);
@@ -110,7 +110,7 @@ async function enviaRecursos(user, resources, academicos = true) {
     return {
       'type': rCanal.get('tipo_archivo'),
       'attachment_id': rCanal.get('codigo_reutilizacion'),
-      'url': null
+      'url': r.get('info').get('url')
     };
   });
   const resultados = await fb.sendSecuentialAttachments(id, enviables);

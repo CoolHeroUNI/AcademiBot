@@ -8,11 +8,11 @@ module.exports.dbConfig = {
     dialect: process.env.DATABASE_DIALECT,
     benchmark: true,
     pool: {
-        acquire: process.env.DATABASE_ACQUIRE_TIME,
-        max: process.env.DATABASE_MAX_CONNECTION,
-        min: process.env.DATABASE_MIN_CONNECTION,
-        idle: process.env.DATABASE_IDLE_TIME,
-        evict: process.env.DATABASE_EVICT_TIME
+        acquire: parseInt(process.env.DATABASE_ACQUIRE_TIME),
+        max: parseInt(process.env.DATABASE_MAX_CONNECTION),
+        min: parseInt(process.env.DATABASE_MIN_CONNECTION),
+        idle: parseInt(process.env.DATABASE_IDLE_TIME),
+        evict: parseInt(process.env.DATABASE_EVICT_TIME)
     }
 };
 
@@ -27,13 +27,12 @@ module.exports.cacheTime = parseInt(process.env.CACHE_TIME);
 module.exports.awsCredentials = {
     accessKeyId: process.env.AWS_ACCESS_KEY,
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-
 };
 
 module.exports.s3Config = {
     region: process.env.AWS_S3_REGION,
     bucket: process.env.AWS_S3_BUCKET,
-    cache: process.env.AWS_S3_CACHE
+    cache: parseInt(process.env.AWS_S3_CACHE)
 };
 
 module.exports.fbConfig = {

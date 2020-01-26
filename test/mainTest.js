@@ -4,8 +4,10 @@ const usuarios = require('./genUsuarios');
 const mensajes = require('./genMessage');
 
 const E = require('../Schema/Events');
+const F = require('../Schema/Events/FasterOperations');
 const S = require('../Schema');
 const sequelize = require('../database');
+
 
 let users = [], resources = [], events = [], i = 0;
 
@@ -106,6 +108,31 @@ async function test(concurrency) {
   console.log('Deleting all records in 60 seconds.');
 }
 
+async function customTest() {
+  await E.batchRecursos();
+  console.log('Done!')
+}
+
+async function customTest2() {
+  const usuarios = require('./academibot_Usuario_AcademiBot.json');
+  const face = await S.Canal_mensajeria.findByPk('FACEBOOK');
+  const Facebook = require('../util/classes/Facebook');
+  const { fbConfig } = require('../config');
+  const fb = new Facebook(fbConfig.token, fbConfig.version);
+  for (let usuario of usuarios) {
+    const id = usuario['FacebookId'];
+    const usuari = await F.findUsuario('FACEBOOK', id);
+    await E.actualizarInfoUsuario(usuari, {
+      ciclo_id: usuario['Ciclo'] || null,
+      especialidad_id: usuario['Especialidad'] ? usuario['Especialidad'].toUpperCase() : null,
+      curso_id: usuario['Curso']
+    });
+    await wait(50);
+  }
+
+  console.log('Done!');
+}
+
 async function drop(){
   await S.Recurso_obtencion.destroy({ force: true, where: {} });
   await S.Recurso_info.destroy({ force: true, where: {} });
@@ -122,6 +149,5 @@ async function drop(){
 
 
 sequelize.sync({ force: false })
-  .then(() => test(50))
-
-  .catch(e => console.log(e));
+    .then(customTest)
+    .catch(e => console.log(e));

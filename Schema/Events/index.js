@@ -1,9 +1,10 @@
-const creaUsuario = require('./creaUsuario');
-const creaRecursos = require('./creaRecursos');
-const mensajeTexto = require('./mensajeTexto');
-const actualizarEnvio = require('./actualizarEnvio');
-const actualizarInfoUsuario = require('./actualizarInfoUsuario');
-const actualizarInfoRecurso = require('./actualizarInfoRecurso');
+module.exports.creaUsuario = require('./creaUsuario');
+module.exports.creaRecursos = require('./creaRecursos');
+module.exports.mensajeTexto = require('./mensajeTexto');
+module.exports.actualizarEnvio = require('./actualizarEnvio');
+module.exports.actualizarInfoUsuario = require('./actualizarInfoUsuario');
+module.exports.actualizarInfoRecurso = require('./actualizarInfoRecurso');
+module.exports.batchRecursos = require('./batchRecursos');
 
 
 
@@ -26,11 +27,3 @@ const actualizarInfoRecurso = require('./actualizarInfoRecurso');
   if (error) throw error;
 }**/
 
-module.exports = {
-  creaUsuario,
-  creaRecursos,
-  mensajeTexto,
-  actualizarEnvio,
-  actualizarInfoUsuario,
-  actualizarInfoRecurso
-};

@@ -133,11 +133,11 @@ S3.prototype.renameObject = function (key, newName) {
     const newKey = lista.join('/') + '/' + newName + extension;
     return this.moveObject(key, newKey);
 };
-S3.prototype.getPublicURL = function (key) {
+S3.prototype.getPublicURL = function (key, time = 300) {
     const params = {
         Bucket : this.bucket,
         Key : key,
-        Expires : 300
+        Expires : time
     };
     return this.s3.getSignedUrlPromise('getObject', params);
 };

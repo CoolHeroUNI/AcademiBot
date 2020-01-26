@@ -46,6 +46,13 @@ UsuarioCanal_mensajeria.init({
   paranoid: true,
   underscored: true,
   sequelize,
+  indexes: [
+    {
+      name: 'u-c_m',
+      unique: true,
+      fields: [{ name: 'canal_mensajeria_id' }, { name: 'codigo' }]
+    }
+  ],
   hasTrigger: true,
   comment: "Cuenta del usuario en un canal de mensajeria definido, posee informacion publica de este en formato JSON y un identificador que puede o no ser único en el canal de mensajería."
 });

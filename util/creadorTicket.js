@@ -15,7 +15,7 @@ async function creador(evento, usuario) {
   let mili = fecha.getMilliseconds().toString();
   mili = mili.length === 3 ? mili : mili.length === 2 ? "0" + mili : "00" + mili;
   const hora = fecha.toLocaleString("es-PE", options) + ":" + mili;
-  let xxx = Math.floor((await evento.getHistorial()).length / 3).toString();
+  let xxx = Math.floor(((await evento.getHistorial()).length - 1) / 2).toString();
   xxx = xxx.length === 3 ? xxx : xxx.length === 2 ? "0" + xxx : "00" + xxx;
   const image = await Jimp.read(path.join(__dirname, './ticket.png'));
   const font = await Jimp.loadFont(Jimp.FONT_SANS_32_BLACK);

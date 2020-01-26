@@ -44,6 +44,7 @@ Curso.init({
   timestamps: true,
   createdAt: false,
   sequelize,
+  underscored: true,
   indexes: [
     {
       unique: false,
