@@ -16,10 +16,11 @@ function dateToString(creado) {
 module.exports = async () => {
     console.log('Starting report generation!');
     const s3 = new S3(aws.accessKeyId, aws.secretAccessKey, s3Config.region, s3Config.bucket, s3Config.cache);
-    const day = 60*60*24;
-    const lastDate = new Date(Date.now() - Math.floor(day * reportes.intervalo));
+    const day = 1000*60*60*24;
+    const actual = new Date();
+    const lastDate = new Date(actual.getTime() - Math.floor(day * reportes.intervalo));
     const fn = pug.compileFile(path.resolve(__dirname, './assets/report.pug'));
-    let eventos = await S.Evento.findAll({ where: { created_at: {[Op.lt]: lastDate}} });
+    let eventos = await S.Evento.findAll({ where: { createdAt: {[Op.gt]: lastDate, [Op.lt]: actual}} });
     eventos = eventos.map(async e => {
         const creado = e.get('createdAt');
         return {
@@ -32,7 +33,7 @@ module.exports = async () => {
         }
     });
     eventos = await Promise.all(eventos);
-    const html = fn({ eventos });
+    const html = fn({ eventos, anteriorFecha: dateToString(lastDate), fechaActual: dateToString(actual)});
     pdf.create(html, options).toStream((e, stream) => {
         if (e) return console.error(e);
         s3.putObject(reportes.folder + Date.now() + '.pdf' , {
