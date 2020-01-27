@@ -109,7 +109,41 @@ async function test(concurrency) {
 }
 
 async function customTest() {
-  await require('../util/generaReportes')();
+  const usuarios = require('./transicion_Usuario_AcademiBot');
+  const transacts = require('./transicion_Transaccion');
+  const Face = await S.Canal_mensajeria.findByPk('FACEBOOK');
+  const Facebook = require('../util/classes/Facebook');
+  const { fbConfig } = require('../config');
+  const fb = new Facebook(fbConfig.token, fbConfig.version);
+  while (usuarios.length) {
+    await Promise.all(usuarios.splice(0, 50).map(async usuario => {
+      try {
+        const id = usuario["FacebookId"].toString();
+        const publicInfo = await fb.getUserInfo(id);
+        const { usuario: usuari} = await E.creaUsuario(Face, id, publicInfo);
+        await E.actualizarInfoUsuario(usuari, {
+          ciclo_id: usuario['Ciclo'] || null,
+          especialidad_id: usuario['Especialidad'] ? usuario['Especialidad'].toUpperCase() : null,
+          curso_id: usuario['Curso']
+        });
+        await wait(50);
+      } catch (e) {
+        console.log(e);
+      }
+    }))
+  }
+  while(transacts.length) {
+    await Promise.all(transacts.splice(0 ,50).map(async t => {
+      try {
+        const u = await F.findUsuario('FACEBOOK', t["Usuario"].toString());
+        const r = await F.findRecurso('FACEBOOK', t["KeyObtenida"]);
+        const exito = t["Exitosa"];
+        await E.actualizarEnvio(u, r, exito);
+      } catch (e) {
+        console.error(e);
+      }
+    }))
+  }
   console.log('Done!')
 }
 
@@ -149,5 +183,5 @@ async function drop(){
 
 
 sequelize.sync({ force: false })
-    .then(customTest)
+    .then(()=>require('../util/generaReportes')())
     .catch(e => console.log(e));
