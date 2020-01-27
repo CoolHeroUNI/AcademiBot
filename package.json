@@ -12,18 +12,16 @@
   "license": "MIT",
   "dependencies": {
     "@google-cloud/storage": "^4.0.0",
-    "archiver": "^3.1.1",
     "async-executer": "^1.0.5",
     "aws-sdk": "^2.553.0",
     "bluebird": "^3.5.3",
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
-    "debug": "^4.1.1",
     "dialogflow": "^0.9.1",
-    "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "express-session": "^1.16.2",
     "fs": "0.0.1-security",
+    "html-pdf": "^2.2.0",
     "http": "0.0.0",
     "http-errors": "^1.7.3",
     "i": "^0.3.6",
@@ -33,6 +31,7 @@
     "moment": "^2.24.0",
     "mysql": "^2.17.1",
     "mysql2": "^2.1.0",
+    "node-cron": "^2.0.3",
     "path": "^0.12.7",
     "pug": "^2.0.4",
     "request": "^2.88.0",
@@ -42,7 +41,8 @@
     "uuid": "^3.3.2"
   },
   "devDependencies": {
-    "mime-types": "^2.1.25"
+    "mime-types": "^2.1.25",
+    "pug-cli": "^1.0.0-alpha6"
   },
   "repository": {
     "type": "git",

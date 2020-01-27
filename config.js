@@ -62,3 +62,14 @@ module.exports.serverConfig = {
    },
     port: process.env.PORT
 };
+
+module.exports.reportes = {
+    intervalo: parseFloat(process.env.REPORT_TIME_INTERVAL),
+    folder: process.env.REPORT_FOLDER
+};
+
+module.exports.jobs = {
+    ping: process.env.JOBS_PING,
+    reporte: process.env.JOBS_REPORTE,
+    batch_recursos: process.env.JOBS_BATCH_RECURSOS
+};

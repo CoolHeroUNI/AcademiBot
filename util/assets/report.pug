@@ -1,0 +1,35 @@
+head
+    title Report
+    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css")
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js")
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js")
+
+body
+    - var ahora = new Date(Date.now());
+    - var seconds = ahora.getSeconds().toString().length === 2 ? ahora.getSeconds().toString() : '0' + ahora.getSeconds().toString();
+    - var minutes = ahora.getMinutes().toString().length === 2 ? ahora.getMinutes().toString() : '0' + ahora.getMinutes().toString();
+    h1(align='center') Reporte semanal
+    h4(align='right') #{`${ahora.getDate()}/${ahora.getMonth()+1}/${ahora.getFullYear()} ${ahora.getHours()}:${minutes}:${seconds}`}
+    h2(align='center') Eventos
+    table(class='table table-striped table-bordered')
+        thead(align='center')
+            tr
+                th Id
+                th Tipo evento
+                th Duracion
+                th Error
+                th # cuentas afectadas
+                th Fecha ejecucion
+        tbody
+            - eventos = eventos || []
+            each event in eventos
+                tr
+                    th(scope="row") !{event.id}
+                    td !{event.tipo}
+                    td !{event.duracion}
+                    td !{event.error}
+                    td !{event.cuentas}
+                    td !{event.fecha}
+            else
+                tr
+

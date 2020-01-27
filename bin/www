@@ -1,10 +1,9 @@
 'use strict';
-const { randomPing } = require('../util');
 const fs = require("fs");
-const { serverConfig, pingInterval, ownUrl, env, dialogflowConfig } = require("../config");
+const jobs = require('../util/jobSchedule');
+const { serverConfig, env, dialogflowConfig } = require("../config");
 fs.writeFileSync(dialogflowConfig.path, dialogflowConfig.json);
 const app = require('../app');
-const debug = require('debug')('AcademiBot:server');
 const http = require('http');
 const sequelize = require('../database');
 const port = normalizePort(serverConfig.port || '3000');
@@ -50,8 +49,8 @@ function onError(error) {
 function onListening() {
   const addr = server.address();
   const bind = typeof addr === 'string' ? ('pipe ' + addr) : ('port ' + addr.port);
-  debug('Listening on ' + bind);
-  if (!isNaN(pingInterval)) randomPing(ownUrl, pingInterval);
+  console.log('Listening on ' + bind);
+  jobs();
 }
 function onSIGTERM() {
   console.log('SIGTERM signal received, closing server...');

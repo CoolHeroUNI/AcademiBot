@@ -109,7 +109,7 @@ async function test(concurrency) {
 }
 
 async function customTest() {
-  await E.batchRecursos();
+  await require('../util/generaReportes')();
   console.log('Done!')
 }
 

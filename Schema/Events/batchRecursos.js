@@ -35,7 +35,7 @@ async function batchRecursos() {
                 ], transaction, logging });
             const canalFB = await S.Canal_mensajeria.findByPk('FACEBOOK', { transaction, logging, rejectOnEmpty: true });
             while(recursos.length) {
-                await Promise.all(recursos.splice(0, 25).map(async recurso => {
+                await Promise.all(recursos.splice(0, 50).map(async recurso => {
                     const atributos = { nuevos: { }};
                     const info = recurso.get('info');
                     let canal = recurso.get('canal_mensajeria').find(c => c.get('canal_mensajeria_id') === canalFB.get('id'));
