@@ -117,7 +117,7 @@ async function findRecursos(channelName, ruta, es_visible = true) {
       [
         { model: Recurso_info, as: 'info', where: { ruta: { [Op.like]: `${ruta}%` }, es_visible } },
         { model: Recurso_obtencion, as: 'obtencion'},
-        { model: RecursoCanal_mensajeria, as: 'canal', where: { canal_mensajeria_id: channelName } }
+        { model: RecursoCanal_mensajeria, as: 'canal_mensajeria', where: { canal_mensajeria_id: channelName } }
       ]
   });
   for (let recurso of recursos) {

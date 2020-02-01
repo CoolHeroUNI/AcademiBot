@@ -23,7 +23,7 @@ const {
   Usuario_solicitud
 } = require("../Schema");
 const { Op } = require("sequelize");
-const { findRecurso } = require("../Schema/Events/FasterOperations");
+const { findRecursos } = require("../Schema/Events/FasterOperations");
 const dbCache = require("../cache");
 const compare = require("./SorensenDice");
 
@@ -109,7 +109,7 @@ async function detectaCarpetas(usuario, mensaje) {
   let searchString = "RECURSOS" + directory;
   let recursos = dbCache.get(searchString);
   if (!recursos) {
-    recursos = await findRecurso(usuario.get('canal').get('canal_mensajeria_id'), directory);
+    recursos = await findRecursos(usuario.get('canal').get('canal_mensajeria_id'), directory);
     dbCache.set(searchString, recursos);
   }
   const rutas = recursos.map(recurso => {
@@ -139,7 +139,7 @@ async function detectaArchivos(usuario, mensaje) {
   let searchString = "RECURSOS" + directory;
   let recursos = dbCache.get(searchString);
   if (!recursos) {
-    recursos = await findRecurso(usuario.get('canal').get('canal_mensajeria_id'), directory);
+    recursos = await findRecursos(usuario.get('canal').get('canal_mensajeria_id'), directory);
     dbCache.set(searchString, recursos);
   }
   return recursos.map.filter(recurso => recurso.get('info').matchesText(mensaje));
