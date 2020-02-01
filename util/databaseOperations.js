@@ -108,9 +108,8 @@ async function detectaCarpetas(usuario, mensaje) {
   const directory = info.get('ruta');
   let searchString = "RECURSOS" + directory;
   let recursos = dbCache.get(searchString);
-  console.log(directory, usuario.get('canal').get('id'));
   if (!recursos) {
-    recursos = await findRecurso(usuario.get('canal').get('id'), directory);
+    recursos = await findRecurso(usuario.get('canal').get('canal_mensajeria_id'), directory);
     dbCache.set(searchString, recursos);
   }
   const rutas = recursos.map(recurso => {
@@ -140,7 +139,7 @@ async function detectaArchivos(usuario, mensaje) {
   let searchString = "RECURSOS" + directory;
   let recursos = dbCache.get(searchString);
   if (!recursos) {
-    recursos = await findRecurso(usuario.get('canal').get('id'), directory);
+    recursos = await findRecurso(usuario.get('canal').get('canal_mensajeria_id'), directory);
     dbCache.set(searchString, recursos);
   }
   return recursos.map.filter(recurso => recurso.get('info').matchesText(mensaje));
