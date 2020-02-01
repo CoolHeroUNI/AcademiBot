@@ -20,8 +20,6 @@ module.exports.env = process.env.NODE_ENVIRONMENT;
 
 module.exports.ownUrl = process.env.SERVER_OWN_URL;
 
-module.exports.pingInterval = parseInt(process.env.PROCESS_OWN_PING_INTERVAL);
-
 module.exports.cacheTime = parseInt(process.env.CACHE_TIME);
 
 module.exports.awsCredentials = {

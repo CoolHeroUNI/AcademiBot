@@ -1,15 +1,15 @@
 const cron = require('node-cron');
+const rp = require('request-promise');
 const jobReporte = require('./generaReportes');
-const { randomPing } = require('../util');
-const { pingInterval, ownUrl, jobs } = require("../config");
+const { ownUrl, jobs } = require("../config");
 const { batchRecursos } = require('../Schema/Events');
 const { ping, reporte, batch_recursos } = jobs;
 
 module.exports = () => {
-    if (!isNaN(pingInterval)) cron.schedule(ping, () => {
-        randomPing(ownUrl, pingInterval);
+    if (ping) cron.schedule(ping, () => {
+        rp.get(ownUrl);
     });
     cron.schedule(reporte, jobReporte);
     cron.schedule(batch_recursos, batchRecursos);
-    console.log('Jobs scheduled.')
+    console.log('Jobs scheduled.');
 };
