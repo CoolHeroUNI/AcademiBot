@@ -223,10 +223,11 @@ async function executeCommand(user, command, parameters) {
     case 'SetCurso':
       const curso_id = parameters['curso'] || parameters;
       await E.actualizarInfoUsuario(user, { curso_id });
-      return enviaListaCarpetas(user, detectaCarpetas(user, ''));
+      return enviaListaCarpetas(user, detectaCarpetas(user));
     case 'SetCarpeta':
       const folder = parameters['carpeta'] || parameters;
-      await E.actualizarInfoUsuario(user, { ruta: info.get('ruta') + folder + '/' });
+      // las carpetas ya incluyen un / al final.
+      await E.actualizarInfoUsuario(user, { ruta: info.get('ruta') + folder });
       return enviaListaArchivosDisponibles(user);
     case 'SetArchivo':
       const shortName = parameters['archivo'] || parameters;

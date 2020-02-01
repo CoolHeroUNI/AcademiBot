@@ -102,7 +102,7 @@ async function detectaCursos(usuario, mensaje) {
   return resultado.concat(result2);
 }
 
-async function detectaCarpetas(usuario, mensaje) {
+async function detectaCarpetas(usuario, mensaje = '') {
   const info = usuario.get('info');
   if (!info.puede_pedir_carpetas()) return [];
   const directory = info.get('ruta');
@@ -117,9 +117,8 @@ async function detectaCarpetas(usuario, mensaje) {
     ruta = ruta.replace(directory, '');
     return  ruta.substring(0, ruta.indexOf('/') + 1);
   });
-  console.log(rutas);
+  if (!mensaje) return Array.from((new Set(rutas)).values());
   return Array.from((new Set(rutas)).values()).filter(carpeta => {
-    if (!mensaje) return true;
     const expresion = new RegExp(carpeta.removeTildesLower().replace(/-/g, '(|-| )'), 'i');
     return expresion.test(mensaje.removeTildesLower());
   });
