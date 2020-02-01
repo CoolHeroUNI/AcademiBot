@@ -219,11 +219,11 @@ async function executeCommand(user, command, parameters) {
       if (!info.get('especialidad_id')) return regularizaUsuario(user);
       const ciclo_id = parseInt(parameters['ciclo'] || parameters);
       await E.actualizarInfoUsuario(user, { ciclo_id });
-      return enviaListaCursos(user, detectaCursos(user, ''));
+      return enviaListaCursos(user, await detectaCursos(user, ''));
     case 'SetCurso':
       const curso_id = parameters['curso'] || parameters;
       await E.actualizarInfoUsuario(user, { curso_id });
-      return enviaListaCarpetas(user, detectaCarpetas(user));
+      return enviaListaCarpetas(user, await detectaCarpetas(user));
     case 'SetCarpeta':
       const folder = parameters['carpeta'] || parameters;
       // las carpetas ya incluyen un / al final.
@@ -231,7 +231,7 @@ async function executeCommand(user, command, parameters) {
       return enviaListaArchivosDisponibles(user);
     case 'SetArchivo':
       const shortName = parameters['archivo'] || parameters;
-      const recursos = detectaArchivos(user, shortName);
+      const recursos = await detectaArchivos(user, shortName);
       return enviaRecursos(user, recursos);
     default:
       throw new Error('Commando no valido, ' + command);
