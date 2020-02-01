@@ -45,13 +45,17 @@ Usuario_info.init({
     set(val) {
       this.setDataValue('especialidad_id', val);
       this.setDataValue('curso_id', null);
-      this.setDataValue('ruta', '');
     }
   },
   curso_id: {
     type: DataTypes.STRING(10),
     allowNull: true,
-    defaultValue: null
+    defaultValue: null,
+    set(val) {
+      const [ facu ] = this.get('ruta').split('/');
+      this.setDataValue('ruta', `${facu}/${val}/`);
+      this.setDataValue('curso_id', val);
+    }
   },
   ruta: {
     type: DataTypes.STRING,

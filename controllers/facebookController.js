@@ -209,6 +209,7 @@ async function executeCommand(user, command, parameters) {
       const facultad_id = parameters['facultad'] || parameters;
       const enviables = (await S.Especialidad.findAll({ where: { facultad_id }})).map(e => e.enviable());
       await fb.sendText(userId, message);
+      await E.actualizarInfoUsuario(user, { ruta: facultad_id + '/' });
       return fb.sendOptionsMenu(userId, enviables);
     case 'SetEspecialidad':
       const especialidad_id = parameters['especialidad'] || parameters;
@@ -225,7 +226,7 @@ async function executeCommand(user, command, parameters) {
       return enviaListaCarpetas(user, detectaCarpetas(user, ''));
     case 'SetCarpeta':
       const folder = parameters['carpeta'] || parameters;
-      await E.actualizarInfoUsuario(user, { ruta: info.get('ruta') + folder });
+      await E.actualizarInfoUsuario(user, { ruta: info.get('ruta') + folder + '/' });
       return enviaListaArchivosDisponibles(user);
     case 'SetArchivo':
       const shortName = parameters['archivo'] || parameters;

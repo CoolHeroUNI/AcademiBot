@@ -107,8 +107,29 @@ async function test(concurrency) {
   await infoRecursoTest(concurrency);
   console.log('Deleting all records in 60 seconds.');
 }
-
 async function customTest() {
+  const usuarios = require('./transicion_Usuario_AcademiBot');
+  while (usuarios.length) {
+    await Promise.all(usuarios.splice(0, 50).map(async usuario => {
+      try {
+        const id = usuario["FacebookId"].toString();
+        const u = await F.findUsuario('FACEBOOK', id);
+        const info = u.get('info');
+        if (info.get('especialidad_id')) {
+          let ruta = 'FIIS/';
+          if (info.get('curso_id')) {
+            ruta += info.get('curso_id') + '/';
+          }
+          await E.actualizarInfoUsuario(u, { ruta });
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    }))
+  }
+}
+
+async function customTest3() {
   const usuarios = require('./transicion_Usuario_AcademiBot');
   const transacts = require('./transicion_Transaccion');
   const Face = await S.Canal_mensajeria.findByPk('FACEBOOK');
@@ -183,5 +204,5 @@ async function drop(){
 
 
 sequelize.sync({ force: false })
-    .then(()=>require('../util/generaReportes')())
+    .then(customTest)
     .catch(e => console.log(e));
