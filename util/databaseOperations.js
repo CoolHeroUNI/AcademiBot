@@ -108,6 +108,7 @@ async function detectaCarpetas(usuario, mensaje) {
   const directory = info.get('ruta');
   let searchString = "RECURSOS" + directory;
   let recursos = dbCache.get(searchString);
+  console.log(directory, usuario.get('canal').get('id'));
   if (!recursos) {
     recursos = await findRecurso(usuario.get('canal').get('id'), directory);
     dbCache.set(searchString, recursos);
@@ -117,6 +118,7 @@ async function detectaCarpetas(usuario, mensaje) {
     ruta = ruta.replace(directory, '');
     return  ruta.substring(0, ruta.indexOf('/') + 1);
   });
+  console.log(rutas);
   return Array.from((new Set(rutas)).values()).filter(carpeta => {
     if (!mensaje) return true;
     const expresion = new RegExp(carpeta.removeTildesLower().replace(/-/g, '(|-| )'), 'i');
