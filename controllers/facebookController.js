@@ -67,7 +67,6 @@ async function enviaListaCarpetas(user, carpetas) {
   let respuesta = (await S.Parametros.findByPk('PETICION-CARPETAS')).get('value').random();
   respuesta = respuesta.replace('***', info.get('curso_id'));
   const enviables = carpetas.map(carpeta => {
-    carpeta = carpeta.substr(0, carpeta.length - 1);
     return {
       'title' : carpeta.replace(/-/g,' '),
       'payload' : `SetCarpeta:${carpeta}`
