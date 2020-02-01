@@ -202,7 +202,7 @@ async function executeCommand(user, command, parameters) {
       await E.actualizarInfoUsuario(user, { ciclo_id: null });
       return regularizaUsuario(user);
     case 'Cursos':
-      if (!user.puede_pedir_cursos()) return regularizaUsuario(user);
+      if (!info.puede_pedir_cursos()) return regularizaUsuario(user);
       return enviaListaCursos(user, await detectaCursos(user, ''));
     case 'SetFacultad':
       const message = (await S.Parametros.findByPk('PETICION-ESPECIALIDAD')).get('value').random();
