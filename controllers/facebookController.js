@@ -146,7 +146,8 @@ async function recibeMensaje (user, message) {
 
   const folders = await detectaCarpetas(user, message);
   if (folders.length === 1) {
-    await E.actualizarInfoUsuario(user, { ruta: info.get('ruta') + folders[0] });
+    const [ f, c ] = info.get('ruta').split('/');
+    await E.actualizarInfoUsuario(user, { ruta: `${f}/${c}/${folders[0]}/` });
     userRequestedOnlyOneFolder = true;
   } else if (folders.length > 1) return enviaListaCarpetas(user, folders);
 
@@ -226,7 +227,8 @@ async function executeCommand(user, command, parameters) {
     case 'SetCarpeta':
       const folder = parameters['carpeta'] || parameters;
       // las carpetas ya incluyen un / al final.
-      await E.actualizarInfoUsuario(user, { ruta: info.get('ruta') + folder });
+      const [ f, cu ] = info.get('ruta').split('/');
+      await E.actualizarInfoUsuario(user, { ruta: `${f}/${cu}/${folder}/` });
       return enviaListaArchivosDisponibles(user);
     case 'SetArchivo':
       const shortName = parameters['archivo'] || parameters;
