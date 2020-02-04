@@ -68,10 +68,11 @@ async function enviaListaCarpetas(user, carpetas) {
   respuesta = respuesta.replace('***', info.get('curso_id'));
   const enviables = carpetas.map(carpeta => {
     return {
-      'title' : carpeta.replace(/-/g,' '),
+      'title' : carpeta.replace(/-/g, ' '),
       'payload' : `SetCarpeta:${carpeta}`
     }
   });
+  console.log(enviables);
   return fb.sendReplyButtons(id, respuesta, enviables);
 }
 

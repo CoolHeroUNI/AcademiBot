@@ -115,7 +115,7 @@ async function detectaCarpetas(usuario, mensaje = '') {
   const rutas = recursos.map(recurso => {
     let ruta = recurso.get('info').get('ruta');
     ruta = ruta.replace(directory, '');
-    return  ruta.substring(0, ruta.indexOf('/') + 1);
+    return  ruta.substring(0, ruta.indexOf('/'));
   });
   if (!mensaje) return Array.from((new Set(rutas)).values());
   return Array.from((new Set(rutas)).values()).filter(carpeta => {
