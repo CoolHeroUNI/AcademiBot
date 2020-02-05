@@ -56,6 +56,7 @@ function comparaArregloDeTexto(arreglo, mensaje, minimoLetras = 0, umbral = 0.4)
  * @returns {Promise<Curso[]>}
  */
 async function detectaCursos(usuario, mensaje) {
+  await usuario.reload();
   const info = usuario.get('info');
   if (!info.puede_pedir_cursos()) return [];
   const especialidad_id = info.get('especialidad_id');
@@ -103,6 +104,7 @@ async function detectaCursos(usuario, mensaje) {
 }
 
 async function detectaCarpetas(usuario, mensaje = '') {
+  await usuario.reload();
   const info = usuario.get('info');
   if (!info.puede_pedir_carpetas()) return [];
   const directory = info.get('ruta');
@@ -131,6 +133,7 @@ async function detectaCarpetas(usuario, mensaje = '') {
  * @returns {Promise<Recurso[]>}
  */
 async function detectaArchivos(usuario, mensaje = '') {
+  await usuario.reload();
   const info = usuario.get('info');
   mensaje = RegExp.escape(mensaje);
   if (!info.puede_pedir_archivos()) return [];
