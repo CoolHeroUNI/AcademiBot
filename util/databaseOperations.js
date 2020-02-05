@@ -55,7 +55,7 @@ function comparaArregloDeTexto(arreglo, mensaje, minimoLetras = 0, umbral = 0.4)
  * @param {String} mensaje
  * @returns {Promise<Curso[]>}
  */
-async function detectaCursos(usuario, mensaje) {
+async function detectaCursos(usuario, mensaje='') {
   const info = usuario.get('info');
   if (!info.puede_pedir_cursos()) return [];
   const especialidad_id = info.get('especialidad_id');
@@ -68,6 +68,7 @@ async function detectaCursos(usuario, mensaje) {
     });
     dbCache.set(searchString,cursosMismoCiclo);
   }
+  if (!mensaje) return cursosMismoCiclo;
   let resultado = comparaArregloDeTexto(cursosMismoCiclo.map(curso => curso.get('curso').get('nombre')), mensaje, 1)
     .map(nombre => cursosMismoCiclo.find(curso => curso.get('curso').get('nombre') === nombre).get('curso'));
   if (resultado.length === 1) return resultado;
