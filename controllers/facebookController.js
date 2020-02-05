@@ -127,6 +127,7 @@ async function enviaRecursos(user, resources, academicos = true) {
     }
   }
   if (!exito) return Promise.reject(new Error("Envio fallido"));
+  return enviaListaRecursos(user, await detectaArchivos(user));
 }
 
 async function enviaListaArchivosDisponibles(user) {
