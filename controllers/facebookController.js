@@ -230,7 +230,7 @@ async function executeCommand(user, command, parameters) {
       await E.actualizarInfoUsuario(user, { curso_id });
       const carpetas = await detectaCarpetas(user);
       if (carpetas.length) return enviaListaCarpetas(user, carpetas);
-      const text = (await S.Parametros.findByPk('SIN-CARPETAS')).random();
+      const text = (await S.Parametros.findByPk('SIN-CARPETAS')).get('value').random();
       return fb.sendText(userId, text);
     case 'SetCarpeta':
       const folder = parameters['carpeta'] || parameters;
