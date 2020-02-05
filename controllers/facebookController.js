@@ -258,6 +258,7 @@ async function executePetition(user, petition, text) {
 
 async function regularizaUsuario(user) {
   const info = user.get('info');
+  await info.reload();
   const userId = user.get('canal').get('codigo');
   if (!info.get('especialidad_id')) {
     const message = (await S.Parametros.findByPk('PETICION-FACULTAD')).get('value').random();
