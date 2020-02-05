@@ -201,7 +201,7 @@ async function executeCommand(user, command, parameters) {
       await nuevoUsuario(user);
       return regularizaUsuario(user);
     case 'ResetEspecialidad':
-      await E.actualizarInfoUsuario(user, { especialidad_id: null });
+      await E.actualizarInfoUsuario(user, { especialidad_id: null, ruta: '' });
       return regularizaUsuario(user);
     case 'ResetCiclo':
       await E.actualizarInfoUsuario(user, { ciclo_id: null });
