@@ -208,7 +208,7 @@ async function executeCommand(user, command, parameters) {
       return regularizaUsuario(user);
     case 'Cursos':
       if (!info.puede_pedir_cursos()) return regularizaUsuario(user);
-      return enviaListaCursos(user, await detectaCursos(user, ''));
+      return enviaListaCursos(user, await detectaCursos(user));
     case 'SetFacultad':
       const message = (await S.Parametros.findByPk('PETICION-ESPECIALIDAD')).get('value').random();
       const facultad_id = parameters['facultad'] || parameters;
@@ -228,7 +228,9 @@ async function executeCommand(user, command, parameters) {
     case 'SetCurso':
       const curso_id = parameters['curso'] || parameters;
       await E.actualizarInfoUsuario(user, { curso_id });
-      return enviaListaCarpetas(user, await detectaCarpetas(user));
+      const carpetas = await detectaCarpetas(user);
+      if (carpetas.length) return enviaListaCarpetas(user, carpetas);
+      return fb.sendText(userId, 'No dispongo de carpetas para este curso, selecciona otro por favor.');
     case 'SetCarpeta':
       const folder = parameters['carpeta'] || parameters;
       // las carpetas ya incluyen un / al final.
