@@ -127,7 +127,7 @@ async function enviaRecursos(user, resources, academicos = true) {
 }
 
 async function enviaListaArchivosDisponibles(user) {
-  const recursos = await detectaArchivos(user, '');
+  const recursos = await detectaArchivos(user);
   return enviaListaRecursos(user, recursos);
 }
 

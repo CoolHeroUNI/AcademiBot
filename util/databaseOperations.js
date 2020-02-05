@@ -56,7 +56,6 @@ function comparaArregloDeTexto(arreglo, mensaje, minimoLetras = 0, umbral = 0.4)
  * @returns {Promise<Curso[]>}
  */
 async function detectaCursos(usuario, mensaje) {
-  await usuario.reload();
   const info = usuario.get('info');
   if (!info.puede_pedir_cursos()) return [];
   const especialidad_id = info.get('especialidad_id');
@@ -104,8 +103,8 @@ async function detectaCursos(usuario, mensaje) {
 }
 
 async function detectaCarpetas(usuario, mensaje = '') {
-  await usuario.reload();
   const info = usuario.get('info');
+  await info.reload();
   if (!info.puede_pedir_carpetas()) return [];
   const directory = info.get('ruta');
   let searchString = "RECURSOS" + directory;
@@ -133,9 +132,8 @@ async function detectaCarpetas(usuario, mensaje = '') {
  * @returns {Promise<Recurso[]>}
  */
 async function detectaArchivos(usuario, mensaje = '') {
-  await usuario.reload();
   const info = usuario.get('info');
-  mensaje = RegExp.escape(mensaje);
+  await info.reload();
   if (!info.puede_pedir_archivos()) return [];
   const directory = info.get('ruta');
   let searchString = "RECURSOS" + directory;
@@ -144,11 +142,9 @@ async function detectaArchivos(usuario, mensaje = '') {
     recursos = await findRecursos(usuario.get('canal').get('canal_mensajeria_id'), directory);
     dbCache.set(searchString, recursos);
   }
-  for (let recurso of recursos) {
-    console.log(recurso);
-  }
+  console.log(recursos);
   if (!mensaje) return recursos;
-  return recursos.filter(recurso => recurso.get('info').matchesText(mensaje));
+  return recursos.filter(recurso => recurso.get('info').matchesText(RegExp.escape(mensaje)));
 }
 
 module.exports = { detectaCursos, detectaCarpetas, detectaArchivos };
