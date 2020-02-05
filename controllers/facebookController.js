@@ -91,6 +91,7 @@ async function enviaListaRecursos(user, resources) {
         'payload' : `SetArchivo:${short}`
       }
     });
+  console.log(enviables);
   return fb.sendReplyButtons(id, respuesta, enviables);
 }
 
