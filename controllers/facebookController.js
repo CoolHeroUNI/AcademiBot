@@ -258,15 +258,16 @@ async function executePetition(user, petition, text) {
 
 async function regularizaUsuario(user) {
   const info = user.get('info');
+  const userId = user.get('canal').get('codigo');
   if (!info.get('especialidad_id')) {
     const message = (await S.Parametros.findByPk('PETICION-FACULTAD')).get('value').random();
     const enviables = (await S.Facultad.findAll()).map(facultad => facultad.enviable());
-    await fb.sendText(user, message);
-    return fb.sendOptionsMenu(user, enviables);
+    await fb.sendText(userId, message);
+    return fb.sendOptionsMenu(userId, enviables);
   } else if (!info.get('ciclo_id')) {
     const message = (await S.Parametros.findByPk('PETICION-CICLO')).get('value').random();
     const enviables = (await S.Ciclo.findAll()).map(ciclo => ciclo.enviable());
-    return fb.sendReplyButtons(user, message, enviables);
+    return fb.sendReplyButtons(userId, message, enviables);
   }
 }
 
