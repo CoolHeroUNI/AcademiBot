@@ -4,6 +4,7 @@ const sequelize = require("../../database");
 
 async function actualizarInfoUsuario(usuario, atribs) {
     let duracion_en_ms = 0;
+    const info = usuario.get('info');
     const logging = (sql, time) => {duracion_en_ms += time; console.log(sql + ' ' + time)};
     const tipo_evento_id = (await S.Tipo_evento.findOne({ where: { nombre: 'actualizar-usuario'}, logging, rejectOnEmpty: true })).get('id');
     const evento = await S.Evento.create({
@@ -14,7 +15,7 @@ async function actualizarInfoUsuario(usuario, atribs) {
     try  {
         await sequelize.transaction(async transaction => {
             const atributos = { nuevos: { }, antiguos: { } };
-            const info = await usuario.getInfo({ transaction, logging });
+            await info.reload({ transaction, logging });
             for (let key of Object.keys(atribs)) {
                 info.set(key, atribs[key]);
             }
