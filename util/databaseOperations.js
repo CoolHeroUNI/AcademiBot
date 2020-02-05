@@ -68,7 +68,7 @@ async function detectaCursos(usuario, mensaje='') {
     });
     dbCache.set(searchString,cursosMismoCiclo);
   }
-  if (!mensaje) return cursosMismoCiclo;
+  if (!mensaje) return cursosMismoCiclo.map(e => e.get('curso'));
   let resultado = comparaArregloDeTexto(cursosMismoCiclo.map(curso => curso.get('curso').get('nombre')), mensaje, 1)
     .map(nombre => cursosMismoCiclo.find(curso => curso.get('curso').get('nombre') === nombre).get('curso'));
   if (resultado.length === 1) return resultado;
