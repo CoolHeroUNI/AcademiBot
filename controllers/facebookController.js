@@ -224,7 +224,7 @@ async function executeCommand(user, command, parameters) {
       if (!info.get('especialidad_id')) return regularizaUsuario(user);
       const ciclo_id = parseInt(parameters['ciclo'] || parameters);
       await E.actualizarInfoUsuario(user, { ciclo_id });
-      return enviaListaCursos(user, await detectaCursos(user, ''));
+      return enviaListaCursos(user, await detectaCursos(user));
     case 'SetCurso':
       const curso_id = parameters['curso'] || parameters;
       await E.actualizarInfoUsuario(user, { curso_id });
