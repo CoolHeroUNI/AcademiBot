@@ -230,7 +230,8 @@ async function executeCommand(user, command, parameters) {
       await E.actualizarInfoUsuario(user, { curso_id });
       const carpetas = await detectaCarpetas(user);
       if (carpetas.length) return enviaListaCarpetas(user, carpetas);
-      return fb.sendText(userId, 'No dispongo de carpetas para este curso, selecciona otro por favor.');
+      const text = (await S.Parametros.findByPk('SIN-CARPETAS')).random();
+      return fb.sendText(userId, text);
     case 'SetCarpeta':
       const folder = parameters['carpeta'] || parameters;
       // las carpetas ya incluyen un / al final.
