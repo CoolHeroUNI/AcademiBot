@@ -130,7 +130,7 @@ async function detectaCarpetas(usuario, mensaje = '') {
  * @param mensaje
  * @returns {Promise<Recurso[]>}
  */
-async function detectaArchivos(usuario, mensaje) {
+async function detectaArchivos(usuario, mensaje = '') {
   const info = usuario.get('info');
   mensaje = RegExp.escape(mensaje);
   if (!info.puede_pedir_archivos()) return [];
@@ -144,6 +144,7 @@ async function detectaArchivos(usuario, mensaje) {
   for (let recurso of recursos) {
     console.log(recurso);
   }
+  if (!mensaje) return recursos;
   return recursos.filter(recurso => recurso.get('info').matchesText(mensaje));
 }
 
