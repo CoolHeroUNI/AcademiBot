@@ -118,10 +118,12 @@ async function enviaRecursos(user, resources, academicos = true) {
   let exito = true;
   for (let i = 0; i < resultados.length; i++) {
     const resultado = resultados[i];
-    if (resultado instanceof Error) E.actualizarEnvio(user, resources[i], false);
-    else {
-      E.actualizarEnvio(user, resources[i], true);
+    if (resultado instanceof Error) {
+      await E.actualizarEnvio(user, resources[i], false);
       exito = false;
+    }
+    else {
+      await E.actualizarEnvio(user, resources[i], true);
     }
   }
   if (!exito) return Promise.reject(new Error("Envio fallido"));
