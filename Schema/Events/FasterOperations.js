@@ -121,7 +121,7 @@ async function findRecursos(channelName, ruta, es_visible = true) {
       ]
   });
   for (let recurso of recursos) {
-    recurso.setDataValue('canal', recurso.get('canal_mensajeria')[0]);
+    recurso.setDataValue('canal_mensajeria', recurso.get('canal_mensajeria')[0]);
   }
   return recursos;
 }

@@ -142,6 +142,7 @@ async function detectaArchivos(usuario, mensaje = '') {
     recursos = await findRecursos(usuario.get('canal').get('canal_mensajeria_id'), directory);
     dbCache.set(searchString, recursos);
   }
+
   console.log(recursos);
   if (!mensaje) return recursos;
   return recursos.filter(recurso => recurso.get('info').matchesText(RegExp.escape(mensaje)));
