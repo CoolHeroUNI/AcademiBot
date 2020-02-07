@@ -137,6 +137,7 @@ async function enviaListaArchivosDisponibles(user) {
 
 async function recibeMensaje (user, message) {
   console.log(message);
+  const userId = user.get('canal').get('codigo');
   const mensajeria = user.get('canal');
   await E.mensajeTexto(user, message);
   if (!mensajeria.get('valido')) return Promise.reject(new Error('Usuario no valido.'));
@@ -165,12 +166,13 @@ async function recibeMensaje (user, message) {
     return enviaListaArchivosDisponibles(user);
   } else if (userRequestedOnlyOneCourse) {
     console.log('Just one course!');
-    const folders = await detectaCarpetas(user);
-    return enviaListaCarpetas(user, folders);
+    const carpetas = await detectaCarpetas(user);
+    if (carpetas.length) return enviaListaCarpetas(user, carpetas);
+    const text = (await S.Parametros.findByPk('SIN-CARPETAS')).get('value').random().replace('***', courses[0].get('id'));
+    return fb.sendText(userId, text);
   }
 
 
-  const userId = user.get('canal').get('codigo');
   return dialogflow.processText(userId, message)
     .then(intent => {
       const { text, payload } = intent;
@@ -233,7 +235,7 @@ async function executeCommand(user, command, parameters) {
       await E.actualizarInfoUsuario(user, { curso_id });
       const carpetas = await detectaCarpetas(user);
       if (carpetas.length) return enviaListaCarpetas(user, carpetas);
-      const text = (await S.Parametros.findByPk('SIN-CARPETAS')).get('value').random();
+      const text = (await S.Parametros.findByPk('SIN-CARPETAS')).get('value').random().replace('***', curso_id);
       return fb.sendText(userId, text);
     case 'SetCarpeta':
       const folder = parameters['carpeta'] || parameters;
