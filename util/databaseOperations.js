@@ -43,7 +43,7 @@ function comparaArregloDeTexto(arreglo, mensaje, minimoLetras = 0, umbral = 0.4)
   const palabras = mensaje.split(' ');
   const mensajeLargo = (minimoLetras > 0 ? palabras.filter(palabra => palabra.length >= minimoLetras) : palabras)
     .join(' ').removeTildesLower().toUpperCase();
-  const comparator = (v1, v2) => (compare(v2.toUpperCase(), mensajeLargo) - compare(v1.toUpperCase(), mensajeLargo));
+  const comparator = (v1, v2) => (compare(v1.toUpperCase(), mensajeLargo) - compare(v2.toUpperCase(), mensajeLargo));
   return arreglo.sort(comparator).filter(v => compare(v.toUpperCase(), mensajeLargo) > umbral);
 }
 
