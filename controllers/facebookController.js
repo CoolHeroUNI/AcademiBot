@@ -136,6 +136,7 @@ async function enviaListaArchivosDisponibles(user) {
 }
 
 async function recibeMensaje (user, message) {
+  console.log(message);
   const mensajeria = user.get('canal');
   await E.mensajeTexto(user, message);
   if (!mensajeria.get('valido')) return Promise.reject(new Error('Usuario no valido.'));
@@ -147,6 +148,7 @@ async function recibeMensaje (user, message) {
   if (courses.length === 1) {
     await E.actualizarInfoUsuario(user, { curso_id: courses[0].get('id') });
     userRequestedOnlyOneCourse = true;
+    console.log(info.get('curso_id'));
   } else if (courses.length > 1) return enviaListaCursos(user, courses);
 
   const folders = await detectaCarpetas(user, message);
@@ -162,7 +164,8 @@ async function recibeMensaje (user, message) {
   if (userRequestedOnlyOneFolder) {
     return enviaListaArchivosDisponibles(user);
   } else if (userRequestedOnlyOneCourse) {
-    const folders = await detectaCarpetas(user, '');
+    console.log('Just one course!');
+    const folders = await detectaCarpetas(user);
     return enviaListaCarpetas(user, folders);
   }
 
