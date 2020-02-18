@@ -184,7 +184,7 @@ async function recibeMensaje (user, message) {
 }
 
 async function procesarPayloadFromNLP(user, Payload) {
-  const { payload, parameters } = Payload;
+  const { payload, parameters, text } = Payload;
   if (payload['comando']) {
     // Commands come with parameters that must be procesed
     const command = payload['comando'];
