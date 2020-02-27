@@ -45,6 +45,7 @@ Usuario_info.init({
     set(val) {
       this.setDataValue('especialidad_id', val);
       this.setDataValue('curso_id', null);
+      this.setDataValue('ciclo_id', null);
     }
   },
   curso_id: {
