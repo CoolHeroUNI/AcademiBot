@@ -128,6 +128,7 @@ async function enviaRecursos(user, resources, academicos = true) {
   }
   if (!exito) return Promise.reject(new Error("Envio fallido"));
   if(academicos) return enviaListaRecursos(user, await detectaArchivos(user));
+  return fb.typingOff(id);
 }
 
 async function enviaListaArchivosDisponibles(user) {
@@ -256,7 +257,7 @@ async function executePetition(user, petition, text) {
   const userId = user.get('canal').get('codigo');
   switch (petition) {
     case 'Meme':
-      let memes = (await findRecursos(nombreCanal, mediaFolder + '/memes')).slice(0, 1 + Math.floor(Math.random() * 2));
+      let memes = Array.shuffle(await findRecursos(nombreCanal, mediaFolder + '/memes')).slice(0, 1 + Math.floor(Math.random() * 2));
       await fb.sendText(userId, text);
       return enviaRecursos(user, memes, false);
     default:
