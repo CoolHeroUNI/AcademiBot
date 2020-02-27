@@ -219,7 +219,7 @@ async function executeCommand(user, command, parameters) {
       const facultad_id = parameters['facultad'] || parameters;
       const enviables = (await S.Especialidad.findAll({ where: { facultad_id }})).map(e => e.enviable());
       await fb.sendText(userId, message);
-      await E.actualizarInfoUsuario(user, { ruta: facultad_id + '/' });
+      await E.actualizarInfoUsuario(user, { ruta: facultad_id + '/', especialidad_id: null });
       return fb.sendOptionsMenu(userId, enviables);
     case 'SetEspecialidad':
       const especialidad_id = parameters['especialidad'] || parameters;
