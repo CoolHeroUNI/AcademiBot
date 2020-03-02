@@ -108,7 +108,7 @@ async function detectaCarpetas(usuario, mensaje = '') {
   const info = usuario.get('info');
   await info.reload();
   if (!info.puede_pedir_carpetas()) return [];
-  const [ f, c ] = info.get('ruta');
+  const [ f, c ] = info.get('ruta').split('/');
   const directory = `${f}/${c}/`;
   let searchString = "RECURSOS" + directory;
   let recursos = dbCache.get(searchString);
