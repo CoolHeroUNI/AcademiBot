@@ -120,6 +120,7 @@ async function detectaCarpetas(usuario, mensaje = '') {
     ruta = ruta.replace(directory, '');
     return ruta.substring(0, ruta.indexOf('/'));
   });
+  console.log(rutas);
   if (!mensaje) return Array.from((new Set(rutas)).values());
   return Array.from((new Set(rutas)).values()).filter(carpeta => {
     const expresion = new RegExp(carpeta.removeTildesLower().replace(/-/g, '(|-| )'), 'i');
