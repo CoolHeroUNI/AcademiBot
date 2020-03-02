@@ -12,7 +12,7 @@ async function actualizarInfoUsuario(usuario, atribs) {
         duracion_en_ms: 0,
         error: null
     }, { logging });
-    try  {
+    try {
         await sequelize.transaction(async transaction => {
             const atributos = { nuevos: { }, antiguos: { } };
             await info.reload({ transaction, logging });

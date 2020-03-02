@@ -156,6 +156,7 @@ async function recibeMensaje (user, message) {
   const folders = await detectaCarpetas(user, message);
   if (folders.length === 1) {
     const [ f, c ] = info.get('ruta').split('/');
+    console.log(f,'//',c, '//', folders[0]);
     await E.actualizarInfoUsuario(user, { ruta: `${f}/${c}/${folders[0]}/` });
     userRequestedOnlyOneFolder = true;
   } else if (folders.length > 1) return enviaListaCarpetas(user, folders);

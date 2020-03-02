@@ -72,7 +72,6 @@ async function detectaCursos(usuario, mensaje='') {
   if (!mensaje) return cursosMismoCiclo.map(e => e.get('curso'));
   let resultado = comparaArregloDeTexto(cursosMismoCiclo.map(curso => curso.get('curso').get('nombre')), mensaje, 1)
     .map(nombre => cursosMismoCiclo.find(curso => curso.get('curso').get('nombre') === nombre).get('curso'));
-  console.log(resultado);
   if (resultado.length === 1) return resultado;
   if (ciclo_id > 5) {
     searchString = "CURSOS" + especialidad_id + 11;
@@ -119,7 +118,7 @@ async function detectaCarpetas(usuario, mensaje = '') {
   const rutas = recursos.map(recurso => {
     let ruta = recurso.get('info').get('ruta');
     ruta = ruta.replace(directory, '');
-    return  ruta.substring(0, ruta.indexOf('/'));
+    return ruta.substring(0, ruta.indexOf('/'));
   });
   if (!mensaje) return Array.from((new Set(rutas)).values());
   return Array.from((new Set(rutas)).values()).filter(carpeta => {
