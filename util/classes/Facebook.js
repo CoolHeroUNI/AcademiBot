@@ -106,6 +106,7 @@ Facebook.prototype.sendAttachment = function (userId, parameters) {
         params['json']['message']['attachment']['payload']['url'] = parameters['url'];
         params['json']['message']['attachment']['payload']['is_reusable'] = true;
     }
+    console.table(params.json);
     return RequestPromise(params);
 };
 Facebook.prototype.sendSecuentialAttachments = async function (userId, parameterList) {
