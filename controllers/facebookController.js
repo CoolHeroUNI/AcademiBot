@@ -114,6 +114,8 @@ async function enviaRecursos(user, resources, academicos = true) {
       'url': r.get('info').get('url')
     };
   });
+  console.log(id);
+  console.log(enviables);
   const resultados = await fb.sendSecuentialAttachments(id, enviables);
   let exito = true;
   for (let i = 0; i < resultados.length; i++) {
