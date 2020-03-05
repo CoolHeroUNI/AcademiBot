@@ -84,7 +84,7 @@ Facebook.prototype.sendAttachment = function (userId, parameters) {
     if (!parameters.hasOwnProperty('url')) return Promise.reject(new Error("Propiedad url faltante"));
     if (!parameters.hasOwnProperty('attachment_id')) return Promise.reject(new Error("Propiedad attachment_id faltante"));
     if (!parameters.hasOwnProperty('type')) return Promise.reject(new Error("Propiedad type faltante"));
-
+    console.log(`User id=${userId}, tipo=${typeof userId}.`);
     const params = {
         uri : `https://graph.facebook.com/v${this.versionAPI}/me/messages`,
         qs : {access_token : this.Token},
