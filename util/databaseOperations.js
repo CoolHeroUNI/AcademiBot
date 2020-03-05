@@ -146,7 +146,6 @@ async function detectaArchivos(usuario, mensaje = '') {
     dbCache.set(searchString, recursos);
   }
 
-  console.log(recursos);
   if (!mensaje) return recursos;
   return recursos.filter(recurso => recurso.get('info').matchesText(RegExp.escape(mensaje)));
 }

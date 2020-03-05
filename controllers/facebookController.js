@@ -72,7 +72,6 @@ async function enviaListaCarpetas(user, carpetas) {
       'payload' : `SetCarpeta:${carpeta}`
     }
   });
-  console.log(enviables);
   return fb.sendReplyButtons(id, respuesta, enviables);
 }
 
@@ -91,7 +90,6 @@ async function enviaListaRecursos(user, resources) {
         'payload' : `SetArchivo:${short}`
       }
     });
-  console.log(enviables);
   return fb.sendReplyButtons(id, respuesta, enviables);
 }
 
@@ -114,8 +112,6 @@ async function enviaRecursos(user, resources, academicos = true) {
       'url': r.get('info').get('url')
     };
   });
-  console.log(id);
-  console.log(enviables);
   const resultados = await fb.sendSecuentialAttachments(id, enviables);
   let exito = true;
   for (let i = 0; i < resultados.length; i++) {
@@ -129,7 +125,7 @@ async function enviaRecursos(user, resources, academicos = true) {
     }
   }
   if (!exito) {
-    await fb.sendText("Envio fallido...");
+    await fb.sendText(id, "Envio fallido...");
     return enviaListaRecursos(user, resources);
   }
   if(academicos) return enviaListaRecursos(user, await detectaArchivos(user));
@@ -142,7 +138,6 @@ async function enviaListaArchivosDisponibles(user) {
 }
 
 async function recibeMensaje (user, message) {
-  console.log(message);
   const userId = user.get('canal').get('codigo');
   const mensajeria = user.get('canal');
   await E.mensajeTexto(user, message);
@@ -155,13 +150,11 @@ async function recibeMensaje (user, message) {
   if (courses.length === 1) {
     await E.actualizarInfoUsuario(user, { curso_id: courses[0].get('id') });
     userRequestedOnlyOneCourse = true;
-    console.log(info.get('curso_id'));
   } else if (courses.length > 1) return enviaListaCursos(user, courses);
 
   const folders = await detectaCarpetas(user, message);
   if (folders.length === 1) {
     const [ f, c ] = info.get('ruta').split('/');
-    console.log(f,'//',c, '//', folders[0]);
     await E.actualizarInfoUsuario(user, { ruta: `${f}/${c}/${folders[0]}/` });
     userRequestedOnlyOneFolder = true;
   } else if (folders.length > 1) return enviaListaCarpetas(user, folders);
@@ -172,7 +165,6 @@ async function recibeMensaje (user, message) {
   if (userRequestedOnlyOneFolder) {
     return enviaListaArchivosDisponibles(user);
   } else if (userRequestedOnlyOneCourse) {
-    console.log('Just one course!');
     const carpetas = await detectaCarpetas(user);
     if (carpetas.length) return enviaListaCarpetas(user, carpetas);
     const text = (await S.Parametros.findByPk('SIN-CARPETAS')).get('value').random().replace('***', courses[0].get('id'));
