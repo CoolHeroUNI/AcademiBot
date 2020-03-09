@@ -125,10 +125,6 @@ async function enviaRecursos(user, resources, academicos = true) {
       await E.actualizarEnvio(user, resources[i], true);
     }
   }
-  if (!exito) {
-    await fb.sendText(id, "Envio fallido...");
-    return enviaListaRecursos(user, resources);
-  }
   if(academicos) return enviaListaRecursos(user, await detectaArchivos(user));
   return fb.typingOff(id);
 }
