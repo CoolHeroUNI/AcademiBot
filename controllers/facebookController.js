@@ -118,6 +118,7 @@ async function enviaRecursos(user, resources, academicos = true) {
     const resultado = resultados[i];
     if (resultado instanceof Error) {
       await E.actualizarEnvio(user, resources[i], false);
+      await fb.sendText(id, enviables[i].url);
       exito = false;
     }
     else {
