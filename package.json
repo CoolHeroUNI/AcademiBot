@@ -4,38 +4,46 @@
   "engines": {
     "node": "12.2.0"
   },
-  "main": "app.js",
+  "main": "./bin/www",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node ./test/mainTest.js"
   },
   "author": "Marco Antonio Vela Rodriguez",
   "license": "MIT",
   "dependencies": {
     "@google-cloud/storage": "^4.0.0",
-    "archiver": "^3.1.1",
     "async-executer": "^1.0.5",
     "aws-sdk": "^2.553.0",
     "bluebird": "^3.5.3",
     "body-parser": "^1.18.3",
-    "debug": "^4.1.1",
+    "cors": "^2.8.5",
     "dialogflow": "^0.9.1",
-    "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "express-session": "^1.16.2",
     "fs": "0.0.1-security",
+    "html-pdf": "^2.2.0",
     "http": "0.0.0",
     "http-errors": "^1.7.3",
+    "i": "^0.3.6",
+    "jimp": "^0.9.3",
     "jquery": "^3.4.1",
     "linkifyjs": "^2.1.8",
+    "moment": "^2.24.0",
     "mysql": "^2.17.1",
+    "mysql2": "^2.1.0",
+    "node-cron": "^2.0.3",
     "path": "^0.12.7",
     "pug": "^2.0.4",
     "request": "^2.88.0",
     "request-promise": "^4.2.4",
+    "sequelize": "latest",
     "stream": "0.0.2",
     "uuid": "^3.3.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "mime-types": "^2.1.25",
+    "pug-cli": "^1.0.0-alpha6"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/CoolHeroUNI/AcademiBot.git"

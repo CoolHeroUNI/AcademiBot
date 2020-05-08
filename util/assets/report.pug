@@ -1,0 +1,33 @@
+head
+    title Reporte
+    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css")
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js")
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js")
+
+body
+    h1(align='center') Reporte periodico
+    h4(align='right') Desde !{anteriorFecha + '\t'}
+    h4(align='right') Hasta !{fechaActual + '\t'}
+    h2(align='center') Eventos
+    table(class='table table-striped table-bordered')
+        thead(align='center')
+            tr
+                th Id
+                th Tipo evento
+                th Duracion
+                th Error
+                th # cuentas afectadas
+                th Fecha ejecucion
+        tbody
+            - eventos = eventos || []
+            each event in eventos
+                tr
+                    th(scope="row") !{event.id}
+                    td !{event.tipo}
+                    td !{event.duracion}
+                    td !{event.error}
+                    td !{event.cuentas}
+                    td !{event.fecha}
+            else
+                tr
+

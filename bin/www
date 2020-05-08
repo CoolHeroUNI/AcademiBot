@@ -1,0 +1,74 @@
+'use strict';
+const fs = require("fs");
+const jobs = require('../util/jobSchedule');
+const { serverConfig, env, dialogflowConfig } = require("../config");
+fs.writeFileSync(dialogflowConfig.path, dialogflowConfig.json);
+const app = require('../app');
+const http = require('http');
+const sequelize = require('../database');
+const port = normalizePort(serverConfig.port || '3000');
+const server = http.createServer(app);
+
+
+function normalizePort(val) {
+  const port = parseInt(val, 10);
+  if (isNaN(port)) {
+    return val;
+  }
+  if (port >= 0) {
+    return port;
+  }
+  return false;
+}
+function onError(error) {
+  if (error.syscall !== 'listen') {
+    throw error;
+  }
+  const port = app.get('port');
+  const bind = typeof port === 'string' ? ('Pipe' + port) : ('Port' + port);
+
+  switch (error.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges.');
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use.');
+      process.exit(1);
+      break;
+    case 'PROTOCOL_ENQUEUE_AFTER_FATAL_ERROR':
+      process.exit(1);
+      break;
+    case 'PROTOCOL_CONNECTION_LOST':
+      process.exit(1);
+      break;
+    default:
+      console.log(error);
+  }
+}
+function onListening() {
+  const addr = server.address();
+  const bind = typeof addr === 'string' ? ('pipe ' + addr) : ('port ' + addr.port);
+  console.log('Listening on ' + bind);
+  jobs();
+}
+function onSIGTERM() {
+  console.log('SIGTERM signal received, closing server...');
+  server.close(err => {
+    if (err) console.error(err);
+    console.log('Server closed.');
+    sequelize.close();
+    process.exit(0);
+  })
+
+}
+
+
+app.set('port', port);
+app.set('env', env);
+sequelize.sync({ force: false })
+    .then(() => server.listen(app.get('port')));
+
+server.on('error', onError);
+server.on('listening', onListening);
+process.on('SIGTERM', onSIGTERM);
